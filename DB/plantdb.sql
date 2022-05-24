@@ -388,7 +388,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `plantdb`;
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `first_name`, `last_name`, `email`, `image_url`, `bio`, `role`) VALUES (1, 'admin', 'x', 1, NULL, NULL, NULL, NULL, NULL, 'ROLE_ADMIN');
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `first_name`, `last_name`, `email`, `image_url`, `bio`, `role`) VALUES (1, 'admin', '$2a$10$XR0stvrxAeiPsPSh0hHruesmB0UETSkbRPjK3fRxibq0DvQ/eoQbm', 1, NULL, NULL, NULL, NULL, NULL, 'ROLE_ADMIN');
 
 COMMIT;
 

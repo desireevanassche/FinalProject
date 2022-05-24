@@ -17,6 +17,10 @@ public class User {
 	private String username;
 
 	private String password;
+	
+	private boolean enabled;
+	
+	private String role;
 
 	public User() {
 		super();
@@ -45,10 +49,28 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + "]";
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", enabled=" + enabled
+				+ ", role=" + role + "]";
 	}
 
 	@Override
