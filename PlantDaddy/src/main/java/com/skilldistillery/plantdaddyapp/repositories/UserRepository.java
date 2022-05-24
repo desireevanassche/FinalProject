@@ -1,5 +1,9 @@
 package com.skilldistillery.plantdaddyapp.repositories;
 
-public class UserRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.skilldistillery.plantdaddyapp.entities.User;
+
+public interface UserRepository extends JpaRepository<User, Integer> {
 
 }
