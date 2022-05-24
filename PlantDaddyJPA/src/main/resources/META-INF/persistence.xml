@@ -8,10 +8,8 @@
     </provider>
 
 		<!-- BEGIN List Entities Here -->
-		<class>com.skilldistillery.todoapp.entities.User</class>
+		<class>com.skilldistillery.plantdaddyapp.entities.User</class>
 		
-
-
 
 		<!-- END List Entities Here -->
 
