@@ -1,0 +1,5 @@
+rootProject.name = 'PlantDaddy'
+
+
+
+includeFlat 'PlantDaddyJPA'
