@@ -53,7 +53,6 @@ public class Comment {
 	@OneToMany(mappedBy="comment")
 	private List<Comment> comments;
 	
-	// in_reply_to_id
 		
 
 	public Comment() {

@@ -130,6 +130,20 @@ class UserTest {
 		
 		
 	}
-	
-
+	@Test
+	@DisplayName("testing relational mapping user to friend in db")
+	void test6() {
+	/* mysql> select * from user join friend on user.id = friend.user_id where user.id = 1;
++----+------------+----------+--------------------------------------------------------------+---------+------------+-----------+-----------------+--------------------------------------------------+----------------------------------+------------+---------+-----------+
+| id | address_id | username | password                                                     | enabled | first_name | last_name | email           | image_url                                        | biography                        | role       | user_id | friend_id |
++----+------------+----------+--------------------------------------------------------------+---------+------------+-----------+-----------------+--------------------------------------------------+----------------------------------+------------+---------+-----------+
+|  1 |          1 | admin    | $2a$10$XR0stvrxAeiPsPSh0hHruesmB0UETSkbRPjK3fRxibq0DvQ/eoQbm |       1 | admin      | admin     | admin@admin.com | https://freesvg.org/img/abstract-user-flat-4.png | Look at me, I am the captian now | ROLE_ADMIN |       1 |         1 |
++----+------------+----------+--------------------------------------------------------------+---------+------------+-----------+-----------------+--------------------------------------------------+----------------------------------+------------+---------+-----------+*/ 
+		
+		assertNotNull(user);
+		assertNotNull(user.getId());
+		assertTrue(user.getFriends().size()>0); 
+		
+		
+	}
 }
