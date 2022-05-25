@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -70,9 +71,14 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List<Plant> plants; 
 	
+
 	@OneToMany(mappedBy="user")
 	private List<UserPlant> userPlants; 
 	
+
+	@OneToMany(mappedBy = "user")
+	private List<PottingMix> pottingMix;
+
 	
 	
 	public User() {
@@ -200,7 +206,14 @@ public class User {
 	public void setPlants(List<Plant> plants) {
 		this.plants = plants;
 	}
+	
+	public List<PottingMix> getPottingMix() {
+		return pottingMix;
+	}
 
+	public void setPottingMix(List<PottingMix> pottingMix) {
+		this.pottingMix = pottingMix;
+	}
 
 	public List<UserPlant> getUserPlants() {
 		return userPlants;
