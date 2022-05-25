@@ -16,6 +16,8 @@
 		<class>com.skilldistillery.plantdaddyapp.entities.Post</class>
 		<class>com.skilldistillery.plantdaddyapp.entities.Todo</class>
 		<class>com.skilldistillery.plantdaddyapp.entities.Topic</class>
+		<class>com.skilldistillery.plantdaddyapp.entities.PlantCategory</class>
+		<class>com.skilldistillery.plantdaddyapp.entities.PottingMix</class>
 		
 
 		<!-- END List Entities Here -->
