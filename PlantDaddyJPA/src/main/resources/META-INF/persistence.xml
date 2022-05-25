@@ -9,6 +9,13 @@
 
 		<!-- BEGIN List Entities Here -->
 		<class>com.skilldistillery.plantdaddyapp.entities.User</class>
+		<class>com.skilldistillery.plantdaddyapp.entities.Blog</class>
+		<class>com.skilldistillery.plantdaddyapp.entities.Comment</class>
+		<class>com.skilldistillery.plantdaddyapp.entities.Plant</class>
+		<class>com.skilldistillery.plantdaddyapp.entities.PlantPhoto</class>
+		<class>com.skilldistillery.plantdaddyapp.entities.Post</class>
+		<class>com.skilldistillery.plantdaddyapp.entities.Todo</class>
+		<class>com.skilldistillery.plantdaddyapp.entities.Topic</class>
 		
 
 		<!-- END List Entities Here -->
