@@ -1,6 +1,7 @@
 package com.skilldistillery.plantdaddyapp.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,11 +14,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class CommentTest {
+class PlantPhotoTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Comment comment;
+	private PlantPhoto plantPhoto;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -34,30 +35,21 @@ class CommentTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		comment = em.find(Comment.class, 1);
+		plantPhoto = em.find(PlantPhoto.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		comment = null;
+		plantPhoto = null;
 	}
 
-/* +----+---------+----------------+-------------------+----------+-------------+--------+------------+
-| id | post_id | in_reply_to_id | content           | in_reply | create_date | active | commentcol |
-+----+---------+----------------+-------------------+----------+-------------+--------+------------+
-|  1 |       1 |              1 | Our first comment | NULL     | NULL        |      1 | NULL       |
-+----+---------+----------------+-------------------+----------+-------------+--------+------------+*/ 
-	@Test
-	@DisplayName("Testing comment mapping")
-	void test() {
-		assertNotNull(comment);
-		assertEquals("Our first comment", comment.getContent());
 	
-		
+	@Test
+	@DisplayName("Testing plant photo mapping")
+	void test() {
+		assertNotNull(plantPhoto);
+
 	}
 
 }
-
-
-
