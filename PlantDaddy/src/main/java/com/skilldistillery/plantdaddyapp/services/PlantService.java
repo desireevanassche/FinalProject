@@ -10,13 +10,11 @@ public interface PlantService {
 
 	Plant findById(int id);
 
-	Plant addPlant(Plant plant);
+	Plant addPlant(Plant plant, String username);
 
-	Plant updatePlant(Plant plant, int id);
+	Plant updatePlant(Plant plant, int id, String username);
 	
-	Plant deactivate(Plant plant, int id);
-
-	List<Plant> listAllPlantByType(String keyword);
+	Plant deactivate(Plant plant, int id, String username);
 
 	List<Plant> listPlantByKeyword(String keyword);
 

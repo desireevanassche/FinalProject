@@ -25,14 +25,16 @@ public class PlantServiceImpl implements PlantService {
 	}
 
 	@Override
-	public Plant addPlant(Plant plant) {
+	public Plant addPlant(Plant plant, String username) {
+
 		plant = plantRepo.saveAndFlush(plant);
 		return plant;
 	}
 
 	@Override
-	public Plant updatePlant(Plant plant, int id) {
-		Plant managed = plantRepo.findById(id).get();
+	public Plant updatePlant(Plant plant, int postId, String username) {
+		
+		Plant managed = plantRepo.findByUser_UsernameAndId(username, postId);
 		if (managed != null) {
 			managed.setCommonName(plant.getCommonName());
 			managed.setDescription(plant.getDescription());
@@ -49,7 +51,7 @@ public class PlantServiceImpl implements PlantService {
 	}
 
 	@Override
-	public Plant deactivate(Plant plant, int id) {
+	public Plant deactivate(Plant plant, int id, String username) {
 		Plant deactivate = plantRepo.findById(id).get();
 		if (deactivate != null) {
 			deactivate.setActive(false);
@@ -58,22 +60,17 @@ public class PlantServiceImpl implements PlantService {
 		return deactivate;
 	}
 
-	@Override
-	public List<Plant> listAllPlantByType(String keyword) {
-		keyword = "%" + keyword + "%";
-		return plantRepo.findByTypeLike(keyword);
-	}
 
 	@Override
 	public List<Plant> listPlantByKeyword(String keyword) {
 		keyword = "%" + keyword + "%";
-		return plantRepo.findByKeywordLike(keyword);
+		return plantRepo.findByCommonNameOrDescriptionLike(keyword, keyword);
 	}
 
 	@Override
 	public List<Plant> listPlantByDifficulty(String keyword) {
 		keyword = "%" + keyword + "%";
-		return plantRepo.findByDifficultyLike(keyword);
+		return plantRepo.findByCareDifficultyLike(keyword);
 	}
 
 }

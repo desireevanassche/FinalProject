@@ -9,10 +9,11 @@ import com.skilldistillery.plantdaddyapp.entities.Plant;
 
 public interface PlantRepository extends JpaRepository<Plant, Integer> {
 	
-	List<Plant> findByTypeLike(@Param("k") String keyword);
 	
-	List<Plant> findByKeywordLike(@Param("k") String keyword);
+	List<Plant> findByCommonNameOrDescriptionLike(@Param("k") String keyword, @Param("k")String keyword2);
 	
-	List<Plant> findByDifficultyLike(@Param("k") String keyword);
+	List<Plant> findByCareDifficultyLike(@Param("k") String keyword);
+
+	Plant findByUser_UsernameAndId(String username, int postId);
 	
 }
