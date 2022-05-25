@@ -32,9 +32,9 @@ public class PlantServiceImpl implements PlantService {
 	}
 
 	@Override
-	public Plant updatePlant(Plant plant, int id, String username) {
+	public Plant updatePlant(Plant plant, int plantid, String username) {
 		
-		Plant managed = plantRepo.findByUser_UsernameAndId(username, id);
+		Plant managed = plantRepo.findByUser_UsernameAndId(username, plantid);
 		if (managed != null) {
 			managed.setCommonName(plant.getCommonName());
 			managed.setDescription(plant.getDescription());
@@ -45,8 +45,8 @@ public class PlantServiceImpl implements PlantService {
 			managed.setWaterType(plant.getWaterType());
 			managed.setLightReq(plant.getLightReq());
 			managed.setActive(plant.isActive());
+			plantRepo.saveAndFlush(managed);
 		}
-		plantRepo.saveAndFlush(managed);
 		return managed;
 	}
 
