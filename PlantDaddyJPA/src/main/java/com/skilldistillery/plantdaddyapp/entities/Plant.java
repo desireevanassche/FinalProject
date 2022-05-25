@@ -34,7 +34,7 @@ public class Plant {
 	// created_by_id  
 	  
 	
-	// this is a test edit for merge conflict
+	// this is a test edit for merge
 	
 	
 	@Column(name="common_name")
