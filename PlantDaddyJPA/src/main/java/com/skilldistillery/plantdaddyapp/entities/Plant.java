@@ -32,6 +32,10 @@ public class Plant {
 	private int id;
 	
 	// created_by_id  
+	  
+	
+	// this is a test edit for merge conflict
+	
 	
 	@Column(name="common_name")
 	private String commonName; 
