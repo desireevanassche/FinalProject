@@ -64,7 +64,6 @@ public class User {
 	@JoinColumn(name="address_id")
 	private Address address;
 		
-	
 	@OneToMany(mappedBy="user")
 	private List<Blog> blogs;
 	
