@@ -1,5 +1,7 @@
 package com.skilldistillery.plantdaddyapp.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -7,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 /*
  * +-------------+---------------+------+-----+---------+----------------+
@@ -33,19 +36,60 @@ public class PlantCategory {
 
 	@Column(name = "image_url")
 	private String imageUrl;
+	
+	@ManyToMany(mappedBy="plantCategories")
+	private List<Plant> plants;
+	
+	
+	
+	// -------------------CONSTRUCTORS --------------------------
 
 	public PlantCategory() {
 		super();
+		
 	}
+	
+	// ------------------- METHODS -----------------------
 
-	public int getId() {
+	public void addPlants(Plant plant) {
+		if (plants == null) {
+			plants = new ArrayList<>();
+			if (!plants.contains(plant)) {
+				plants.add(plant);
+				plant.addPlantCategory(this);
+				
+				
+			}
+		}
+	}
+	
+	public void removePlants(Plant plant) {
+		
+		if(plants != null && plants.contains(plant)) {
+			plants.remove(plant);
+			plant.removePlantCategory(this);
+			
+		
+			
+		}
+		
+		
+	}
+	
+	
+	// ------------------- GETTERS & SETTERS --------------------------
+	
+	
+
+	
+
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
-
 	public String getName() {
 		return name;
 	}
@@ -69,6 +113,18 @@ public class PlantCategory {
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
+
+	
+	
+	public List<Plant> getPlants() {
+		return plants;
+	}
+
+	public void setPlants(List<Plant> plants) {
+		this.plants = plants;
+	}
+
+
 
 	@Override
 	public String toString() {
