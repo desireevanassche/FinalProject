@@ -23,6 +23,7 @@
 
 		<class>com.skilldistillery.plantdaddyapp.entities.PlantCategory</class>
 		<class>com.skilldistillery.plantdaddyapp.entities.PottingMix</class>
+		<class>com.skilldistillery.plantdaddyapp.entities.Hashtag</class>
 
 		
 
