@@ -32,9 +32,9 @@ public class PlantServiceImpl implements PlantService {
 	}
 
 	@Override
-	public Plant updatePlant(Plant plant, int postId, String username) {
+	public Plant updatePlant(Plant plant, int id, String username) {
 		
-		Plant managed = plantRepo.findByUser_UsernameAndId(username, postId);
+		Plant managed = plantRepo.findByUser_UsernameAndId(username, id);
 		if (managed != null) {
 			managed.setCommonName(plant.getCommonName());
 			managed.setDescription(plant.getDescription());
