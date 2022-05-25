@@ -99,6 +99,20 @@ class UserTest {
 	}
 	
 	
+	@Test
+	@DisplayName("testing relational mapping user to plant in db")
+	void test4() {
+		
+/* mysql> select * from user join plant on user.id = plant.created_by_id where user.id = 1;
+ * | id | address_id | username | password                                                     | enabled | first_name | last_name | email           | image_url                                        | biography                        | role       | id | created_by_id | common_name | description | image_url                                                      | botanical_name       | care_difficulty | water_cycle | water_type    | light_requirement               | active |
++----+------------+----------+--------------------------------------------------------------+---------+------------+-----------+-----------------+--------------------------------------------------+----------------------------------+------------+----+---------------+-------------+-------------+----------------------------------------------------------------+----------------------+-----------------+-------------+---------------+---------------------------------+--------+
+|  1 |          1 | admin    | $2a$10$XR0stvrxAeiPsPSh0hHruesmB0UETSkbRPjK3fRxibq0DvQ/eoQbm |       1 | admin      | admin     | admin@admin.com | https://freesvg.org/img/abstract-user-flat-4.png | Look at me, I am the captian now | ROLE_ADMIN |  1 |             1 | Snake Plant | Tall Boi    | https://h2.commercev3.net/cdn.brecks.com/images/800/76621A.jpg | Dracaena trifasciata | Easy            | 2-8 weeks   | mineral water | 8 - 10 hours of direct sunlight |      1 |
+ */  
+		assertNotNull(user);
+		assertNotNull(user.getId());
+		assertTrue(user.getPlants().size()>0); 
+	
+	}
 	
 
 }

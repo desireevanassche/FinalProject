@@ -58,5 +58,14 @@ class PlantTest {
 		
 	}
 	
+	@Test
+	@DisplayName("Testing relational mapping from plant to user db")
+	void test2() {
+		
+		assertNotNull(plant);
+		assertNotNull(plant.getId());
+		assertEquals("admin",plant.getUser().getUsername());
+	}
+	
 }
 
