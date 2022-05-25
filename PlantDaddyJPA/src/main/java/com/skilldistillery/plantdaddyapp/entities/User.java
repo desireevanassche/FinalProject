@@ -30,7 +30,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 | /image_url  | varchar(1000) | YES  |     | NULL    |                |
 | /biography  | text          | YES  |     | NULL    |                |
 |/ role       | varchar(100)  | YES  |     | NULL    |                |
-+------------+---------------+------+-----+---------+----------------+ */ 
++------------+---------------+------+-----+---------+----------------+ */
 
 @Entity
 public class User {
@@ -42,59 +42,54 @@ public class User {
 	private String username;
 
 	private String password;
-	
-	private boolean enabled;
-	
-	@Column(name="first_name ")
-	private String firstName ;
-	
-	@Column(name="last_name ")
-	private String lastName ;
 
-	private String email;  
-	
-	@Column(name="image_url") 
-	private String imageUrl; 
-	
-	private String biography;  
+	private boolean enabled;
+
+	@Column(name = "first_name ")
+	private String firstName;
+
+	@Column(name = "last_name ")
+	private String lastName;
+
+	private String email;
+
+	@Column(name = "image_url")
+	private String imageUrl;
+
+	private String biography;
 
 	private String role;
-	
+
 	@JsonIgnore
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy = "user")
 	private List<Post> posts;
-	
+
 	@JsonIgnore
 	@OneToOne
-	@JoinColumn(name="address_id")
+	@JoinColumn(name = "address_id")
 	private Address address;
-		
+
 	@JsonIgnore
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy = "user")
 	private List<Blog> blogs;
-	
+
 	@JsonIgnore
-	@OneToMany(mappedBy="user")
-	private List<Plant> plants; 
-	
+	@OneToMany(mappedBy = "user")
+	private List<Plant> plants;
+
 	@JsonIgnore
-	@OneToMany(mappedBy="user")
-	private List<UserPlant> userPlants; 
-	
+	@OneToMany(mappedBy = "user")
+	private List<UserPlant> userPlants;
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<PottingMix> pottingMix;
-	
+
 	@JsonIgnore
 	@OneToMany
-	@JoinTable(name="friend", 
-	joinColumns=@JoinColumn(name="user_id"),
-	inverseJoinColumns=@JoinColumn(name="friend_id"))
+	@JoinTable(name = "friend", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "friend_id"))
 	private List<User> friends;
 
-	
-	
-	
 	public User() {
 		super();
 	}
@@ -122,7 +117,6 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
 
 	public boolean isEnabled() {
 		return enabled;
@@ -139,8 +133,7 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	
-	
+
 	public String getBiography() {
 		return biography;
 	}
@@ -181,9 +174,6 @@ public class User {
 		this.imageUrl = imageUrl;
 	}
 
-	
-	
-
 	public List<Post> getPosts() {
 		return posts;
 	}
@@ -212,7 +202,7 @@ public class User {
 	public int hashCode() {
 		return Objects.hash(id);
 	}
-	
+
 	public List<Plant> getPlants() {
 		return plants;
 	}
@@ -220,7 +210,7 @@ public class User {
 	public void setPlants(List<Plant> plants) {
 		this.plants = plants;
 	}
-	
+
 	public List<PottingMix> getPottingMix() {
 		return pottingMix;
 	}
@@ -236,8 +226,6 @@ public class User {
 	public void setUserPlants(List<UserPlant> userPlants) {
 		this.userPlants = userPlants;
 	}
-	
-	
 
 	public List<User> getFriends() {
 		return friends;
@@ -246,28 +234,26 @@ public class User {
 	public void setFriends(List<User> friends) {
 		this.friends = friends;
 	}
-	
+
 	public void add(User user) {
-		if (friends == null) { 
-			friends = new ArrayList<>(); }
-		
-		if (! friends.contains(user)) {
+		if (friends == null) {
+			friends = new ArrayList<>();
+		}
+
+		if (!friends.contains(user)) {
 			friends.add(user);
 			friends.add(this);
-			
-			
-		}
-		}
-		 
-	
-	public void remove(User user) {
-		if( friends != null & friends.contains(user)) {
-			friends.remove(user);
-			friends.remove(user);
-			
+
 		}
 	}
 
+	public void remove(User user) {
+		if (friends != null & friends.contains(user)) {
+			friends.remove(user);
+			friends.remove(user);
+
+		}
+	}
 
 	@Override
 	public boolean equals(Object obj) {
