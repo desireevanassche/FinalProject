@@ -1,5 +1,6 @@
 package com.skilldistillery.plantdaddyapp.controllers;
 
+import java.security.Principal;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -39,9 +40,9 @@ public class UserController {
 	
 
 	
-	@PutMapping("users/{userId}")
-	public User updateUser (@RequestBody User user, @PathVariable Integer userId, HttpServletResponse res, HttpServletRequest req) {
-		User updated = userService.updateUser(user, userId);
+	@PutMapping("users")
+	public User updateUser (@RequestBody User user, HttpServletResponse res, HttpServletRequest req, Principal principal) {
+		User updated = userService.updateUser(user, principal.getName());
 		if (updated == null) {
 			res.setStatus(404); 
 		} else {
