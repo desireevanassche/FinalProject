@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -64,7 +63,6 @@ public class User {
 	@JoinColumn(name="address_id")
 	private Address address;
 		
-	
 	@OneToMany(mappedBy="user")
 	private List<Blog> blogs;
 	
