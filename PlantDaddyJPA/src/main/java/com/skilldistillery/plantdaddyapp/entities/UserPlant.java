@@ -76,16 +76,15 @@ public class UserPlant {
 	@OneToMany(mappedBy="userPlant")
 	private List<PlantPhoto> photos;
 	
+	
+	
+	
 	public UserPlant() {
 		super();
 	}
 
 	public Integer getId() {
 		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public double getHeight() {
@@ -153,6 +152,7 @@ public class UserPlant {
 	}
 	
 	
+	
 
 	public User getUser() {
 		return user;
@@ -161,8 +161,6 @@ public class UserPlant {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
-	
 
 	public Plant getPlant() {
 		return plant;
@@ -172,8 +170,7 @@ public class UserPlant {
 		this.plant = plant;
 	}
 
-	
-	
+
 
 	public List<PlantPhoto> getPhotos() {
 		return photos;
@@ -190,6 +187,7 @@ public class UserPlant {
 	public void setTodos(List<Todo> todos) {
 		this.todos = todos;
 	}
+	
 
 	@Override
 	public String toString() {

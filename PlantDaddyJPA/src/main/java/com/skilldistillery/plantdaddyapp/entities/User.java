@@ -70,6 +70,10 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List<Plant> plants; 
 	
+	@OneToMany(mappedBy="user")
+	private List<UserPlant> userPlants; 
+	
+	
 	
 	public User() {
 		super();
@@ -197,6 +201,14 @@ public class User {
 		this.plants = plants;
 	}
 
+
+	public List<UserPlant> getUserPlants() {
+		return userPlants;
+	}
+
+	public void setUserPlants(List<UserPlant> userPlants) {
+		this.userPlants = userPlants;
+	}
 
 	@Override
 	public boolean equals(Object obj) {
