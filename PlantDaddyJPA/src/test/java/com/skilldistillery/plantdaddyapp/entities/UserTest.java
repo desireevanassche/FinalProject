@@ -2,7 +2,10 @@ package com.skilldistillery.plantdaddyapp.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+<<<<<<< HEAD
 import static org.junit.jupiter.api.Assertions.assertTrue;
+=======
+>>>>>>> bd0531fbf194906fcc7e5db549378039361b3057
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
