@@ -38,7 +38,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Post {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private int id;
 
 	private String title;
 
@@ -61,9 +61,11 @@ public class Post {
 	@JoinColumn(name="user_id")
 	private User user;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="post")
 	private List<Comment> comments;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="topic_id")
 	private Topic topic;
@@ -76,11 +78,11 @@ public class Post {
 		super();
 	}
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
