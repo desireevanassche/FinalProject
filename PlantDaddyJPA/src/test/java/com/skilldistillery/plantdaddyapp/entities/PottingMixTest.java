@@ -10,6 +10,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class PottingMixTest {
@@ -49,6 +50,7 @@ class PottingMixTest {
 	 */
 
 	@Test
+	@DisplayName("Test entity mapping for Potting Mix")
 	void test() {
 		assertNotNull(pottingMix);
 		assertEquals("Miracle Gro", pottingMix.getBrand());
@@ -60,5 +62,15 @@ class PottingMixTest {
 		assertEquals("2022-05-22", pottingMix.getDateCreated().toString());
 	
 	}
+	/*
+	 * mysql> SELECT * FROM potting_mix pm JOIN user u ON pm.user_id = u.id;
+	 */
+	@Test
+	@DisplayName("Test for pottinf mix to user relationship")
+	void test2() {
+		assertNotNull(pottingMix);
+		assertEquals("admin", pottingMix);
+	}
+	
 
 }
