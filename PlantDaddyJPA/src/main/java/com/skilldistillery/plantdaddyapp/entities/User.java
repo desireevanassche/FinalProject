@@ -67,6 +67,8 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List<Blog> blogs;
 	
+	@OneToMany(mappedBy="user")
+	private List<Plant> plants; 
 	
 	
 	public User() {
@@ -186,6 +188,15 @@ public class User {
 	public int hashCode() {
 		return Objects.hash(id);
 	}
+	
+	public List<Plant> getPlants() {
+		return plants;
+	}
+
+	public void setPlants(List<Plant> plants) {
+		this.plants = plants;
+	}
+
 
 	@Override
 	public boolean equals(Object obj) {

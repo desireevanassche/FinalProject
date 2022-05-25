@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /* +-------------------+---------------+------+-----+---------+----------------+
 | Field             | Type          | Null | Key | Default | Extra          |
@@ -61,6 +63,10 @@ public class Plant {
 	
 	@Column(name="light_requirement") 
 	private String lightReq; 
+	
+	@ManyToOne
+	@JoinColumn(name="created_by_id")
+	private User user; 
 	
 	//---------END FIELDS ---------------------------------- 
 	
@@ -151,6 +157,16 @@ public class Plant {
 
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+	
+	
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override
