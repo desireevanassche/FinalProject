@@ -10,16 +10,16 @@ import com.skilldistillery.plantdaddyapp.entities.User;
 import com.skilldistillery.plantdaddyapp.repositories.UserRepository;
 
 @Service
-public class UserServiceImpl implements UserService{
-	
+public class UserServiceImpl implements UserService {
+
 	@Autowired
 	private UserRepository userRepo;
 
 	@Override
 	public User getUserById(int userId) {
 		Optional<User> userOpt = userRepo.findById(userId);
-		if(userOpt.isPresent()) {
-			
+		if (userOpt.isPresent()) {
+
 			return userOpt.get();
 		}
 		return null;
@@ -32,27 +32,18 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public User updateUser(User user, int userId) {
-		user.setId(userId);
-
-		if (userRepo.existsById(userId)) {
-			return userRepo.save(user);
+	public User updateUser(User user, String username) {
+		User existing = userRepo.findByUsername(username);
+		if (existing != null) {
+			existing.setBiography(user.getBiography());
+			existing.setEmail(user.getEmail());
+			existing.setFirstName(user.getFirstName());
+			existing.setLastName(user.getLastName());
+			existing.setImageUrl(user.getImageUrl());
+			userRepo.saveAndFlush(existing);
 		}
-		return null;
+		return existing;
 
 	}
-	
 
 }
-
-
-
-
-
-
-
-
-
-
-
-

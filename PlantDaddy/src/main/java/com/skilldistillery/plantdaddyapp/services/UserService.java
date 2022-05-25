@@ -12,7 +12,7 @@ public interface UserService {
 	
 	public Set<User> findUserWithUsernameLike(String keyword);
 	
-	public User updateUser(User user, int userId); 
+	public User updateUser(User user, String username); 
 	
 	
 }
