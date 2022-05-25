@@ -6,13 +6,15 @@ import com.skilldistillery.plantdaddyapp.entities.Todo;
 
 public interface TodoService {
 
-	public Set<Todo> index(Integer userId);
+	public Set<Todo> index(String username);
 
-	public Todo show(Integer userId, Integer taskId);
+	public Todo show(String username, Integer todoId);
 
-	public Todo create(Integer userId, Todo todo);
+	public Todo create(String username, Todo todo);
 
-	public Todo update(Integer userId, Integer taskId, Todo todo);
+	public Todo update(String username, Integer todoId, Todo todo);
 
-	public boolean destroy(Integer userId, Integer taskId);
+	public boolean destroy(String username, Integer todoId);
+
+
 }

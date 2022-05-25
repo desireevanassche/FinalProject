@@ -525,6 +525,7 @@ COMMIT;
 START TRANSACTION;
 USE `plantdb`;
 INSERT INTO `user` (`id`, `address_id`, `username`, `password`, `enabled`, `first_name`, `last_name`, `email`, `image_url`, `biography`, `role`) VALUES (1, 1, 'admin', '$2a$10$XR0stvrxAeiPsPSh0hHruesmB0UETSkbRPjK3fRxibq0DvQ/eoQbm', 1, 'admin', 'admin', 'admin@admin.com', 'https://freesvg.org/img/abstract-user-flat-4.png', 'Look at me, I am the captian now', 'ROLE_ADMIN');
+INSERT INTO `user` (`id`, `address_id`, `username`, `password`, `enabled`, `first_name`, `last_name`, `email`, `image_url`, `biography`, `role`) VALUES (2, 1, 'friend', 'friend', 1, 'friend', 'friend', 'friend@friend.com', 'https://freesvg.org/img/abstract-user-flat-4.png', 'I am friend', 'ROLE_ADMIN');
 
 COMMIT;
 
@@ -675,7 +676,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `plantdb`;
-INSERT INTO `friend` (`user_id`, `friend_id`) VALUES (1, 1);
+INSERT INTO `friend` (`user_id`, `friend_id`) VALUES (1, 2);
 
 COMMIT;
 

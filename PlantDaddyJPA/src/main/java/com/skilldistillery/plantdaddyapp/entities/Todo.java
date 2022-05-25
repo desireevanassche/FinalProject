@@ -24,6 +24,8 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Todo {
 
@@ -45,10 +47,11 @@ public class Todo {
 	@CreationTimestamp
 	private LocalDateTime createdAt;
 
-	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="user_plant_id")
 	private UserPlant userPlant;
+	
 	
 	
 	
@@ -140,6 +143,8 @@ public class Todo {
 		return "Todo [id=" + id + ", name=" + name + ", description=" + description + ", dueDate=" + dueDate
 				+ ", completeDate=" + completeDate + ", createdAt=" + createdAt + "]";
 	}
+
+	
 
 
 	
