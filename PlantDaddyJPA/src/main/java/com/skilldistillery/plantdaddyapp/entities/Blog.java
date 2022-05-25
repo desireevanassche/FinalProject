@@ -30,7 +30,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 public class Blog {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 
 	private String title; 
 	
@@ -56,11 +56,11 @@ public class Blog {
 	
 	
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
