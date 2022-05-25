@@ -10,6 +10,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class BlogTest {
@@ -45,6 +46,7 @@ class BlogTest {
 	
 	/* |  1 |       1 | Our First Blog | This is a blog, about plants, posted by an admin | https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/house-plants-1629187361.jpg?crop=0.288xw:0.577xh;0.0465xw,0.205xh&resize=640:* | NULL        | NULL        |      1 |*/
 	@Test
+	@DisplayName("Testing blog mapping")
 	void test() {
 		assertNotNull(blog);
 		assertEquals("Our First Blog", blog.getTitle());

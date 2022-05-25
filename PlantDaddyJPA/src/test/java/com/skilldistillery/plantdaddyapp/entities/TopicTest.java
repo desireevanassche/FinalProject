@@ -13,11 +13,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class CommentTest {
+class TopicTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Comment comment;
+	private Topic topic;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -34,30 +34,27 @@ class CommentTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		comment = em.find(Comment.class, 1);
+		topic = em.find(Topic.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		comment = null;
+		topic = null;
 	}
 
-/* +----+---------+----------------+-------------------+----------+-------------+--------+------------+
-| id | post_id | in_reply_to_id | content           | in_reply | create_date | active | commentcol |
-+----+---------+----------------+-------------------+----------+-------------+--------+------------+
-|  1 |       1 |              1 | Our first comment | NULL     | NULL        |      1 | NULL       |
-+----+---------+----------------+-------------------+----------+-------------+--------+------------+*/ 
+/* +----+--------+--------------+----------------------------------------------------------------------------------------------------+
+| id | name   | description  | image_url                                                                                          |
++----+--------+--------------+----------------------------------------------------------------------------------------------------+
+|  1 | Indoor | Indoor Plant | https://media.allure.com/photos/5fdcf516563e46c7d11ee93f/master/pass/AllureBeginnerHouseplants.jpg |
++----+--------+--------------+----------------------------------------------------------------------------------------------------+ */ 
 	@Test
 	@DisplayName("Testing comment mapping")
 	void test() {
-		assertNotNull(comment);
-		assertEquals("Our first comment", comment.getContent());
+		assertNotNull(topic);
+		assertEquals("Indoor", topic.getName());
+		assertEquals("Indoor Plant", topic.getDescription());
 	
 		
 	}
-
 }
-
-
-
