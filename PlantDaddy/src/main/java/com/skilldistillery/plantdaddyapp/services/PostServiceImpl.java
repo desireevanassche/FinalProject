@@ -20,7 +20,7 @@ public class PostServiceImpl implements PostService {
 	
 	@Autowired
 	private UserRepository userRepo;
-	  
+	   
 	
 	@Override
 	public List<Post> indexAll(){
