@@ -1,5 +1,6 @@
 package com.skilldistillery.plantdaddyapp.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -12,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /*+------------+---------------+------+-----+---------+----------------+
 | Field      | Type          | Null | Key | Default | Extra          |
@@ -57,27 +60,32 @@ public class User {
 
 	private String role;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="user")
 	private List<Post> posts;
 	
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name="address_id")
 	private Address address;
 		
+	@JsonIgnore
 	@OneToMany(mappedBy="user")
 	private List<Blog> blogs;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="user")
 	private List<Plant> plants; 
 	
-
+	@JsonIgnore
 	@OneToMany(mappedBy="user")
 	private List<UserPlant> userPlants; 
 	
-
+	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<PottingMix> pottingMix;
 	
+	@JsonIgnore
 	@OneToMany
 	@JoinTable(name="friend", 
 	joinColumns=@JoinColumn(name="user_id"),
@@ -238,6 +246,28 @@ public class User {
 	public void setFriends(List<User> friends) {
 		this.friends = friends;
 	}
+	
+	public void add(User user) {
+		if (friends == null) { 
+			friends = new ArrayList<>(); }
+		
+		if (! friends.contains(user)) {
+			friends.add(user);
+			friends.add(this);
+			
+			
+		}
+		}
+		 
+	
+	public void remove(User user) {
+		if( friends != null & friends.contains(user)) {
+			friends.remove(user);
+			friends.remove(user);
+			
+		}
+	}
+
 
 	@Override
 	public boolean equals(Object obj) {
