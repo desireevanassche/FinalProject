@@ -115,5 +115,10 @@ class PostTest {
 		
 		
 	}
-
+	@Test
+	@DisplayName("Testing relationa; mapping from post to hashtag")
+	void test4() {
+		assertNotNull(post.getHashtags());
+		assertEquals("Plant", post.getHashtags().get(0).getName());
+	}
 }

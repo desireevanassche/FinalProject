@@ -79,6 +79,14 @@ class BlogTest {
 		assertNotNull(blog.getId());
 		assertEquals("admin",blog.getUser().getUsername());
 	}
+	
+	//mysql> SELECT * FROM blog b JOIN hashtag_has_blog hb ON b.id = hb.blog_id JOIN hashtag h ON h.id = hb.hasttag_id;
+	@Test
+	@DisplayName("Testing for mapping between blog and hashtag")
+	void test3() {
+		assertNotNull(blog.getHashtags());
+		assertEquals("Plant", blog.getHashtags().get(0).getName());
+	}
 
 
 }
