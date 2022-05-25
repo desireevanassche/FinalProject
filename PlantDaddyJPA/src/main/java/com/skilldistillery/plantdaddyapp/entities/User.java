@@ -8,6 +8,22 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/*+------------+---------------+------+-----+---------+----------------+
+| Field      | Type          | Null | Key | Default | Extra          |
++------------+---------------+------+-----+---------+----------------+
+| /id         | int(11)       | NO   | PRI | NULL    | auto_increment |
+| /address_id | int(11)       | YES  | MUL | NULL    |                |
+|/ username   | varchar(100)  | NO   | UNI | NULL    |                |
+|/ password   | varchar(200)  | NO   |     | NULL    |                |
+|/ enabled    | tinyint(4)    | NO   |     | 1       |                |
+|/ first_name | varchar(100)  | YES  |     | NULL    |                |
+| /last_name  | varchar(100)  | YES  |     | NULL    |                |
+| /email      | varchar(100)  | YES  |     | NULL    |                |
+| /image_url  | varchar(1000) | YES  |     | NULL    |                |
+| /biography  | text          | YES  |     | NULL    |                |
+|/ role       | varchar(100)  | YES  |     | NULL    |                |
++------------+---------------+------+-----+---------+----------------+ */ 
+
 @Entity
 public class User {
 
@@ -15,15 +31,13 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
+
 	private String username;
 
 	private String password;
 	
 	private boolean enabled;
 	
-	private String role;
-	
-
 	@Column(name="first_name ")
 	private String firstName ;
 	
@@ -35,8 +49,12 @@ public class User {
 	@Column(name="image_url") 
 	private String imageUrl; 
 	
-	private String bio;  
+	private String biography;  
 
+	private String role;
+	
+	//address_id 
+	
 
 	public User() {
 		super();
@@ -84,6 +102,15 @@ public class User {
 	}
 	
 	
+	
+
+	public String getBiography() {
+		return biography;
+	}
+
+	public void setBiography(String biography) {
+		this.biography = biography;
+	}
 
 	public String getFirstName() {
 		return firstName;
@@ -117,22 +144,6 @@ public class User {
 		this.imageUrl = imageUrl;
 	}
 
-	public String getBio() {
-		return bio;
-	}
-
-	public void setBio(String bio) {
-		this.bio = bio;
-	}
-
-	
-
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", enabled=" + enabled
-				+ ", role=" + role + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", imageUrl=" + imageUrl + ", bio=" + bio + "]";
-	}
 
 	@Override
 	public int hashCode() {
@@ -149,6 +160,13 @@ public class User {
 			return false;
 		User other = (User) obj;
 		return id == other.id;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", enabled=" + enabled
+				+ ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", imageUrl=" + imageUrl
+				+ ", biography=" + biography + ", role=" + role + "]";
 	}
 
 }
