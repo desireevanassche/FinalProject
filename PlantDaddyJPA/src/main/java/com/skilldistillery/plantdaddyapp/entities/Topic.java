@@ -1,5 +1,6 @@
 package com.skilldistillery.plantdaddyapp.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -15,6 +16,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Topic {
@@ -32,6 +34,9 @@ public class Topic {
 	private String imageUrl;
 
 
+	@OneToMany(mappedBy="topic")
+	private List<Post> post;
+	
 	public Topic() {
 		super();
 	}
@@ -74,6 +79,18 @@ public class Topic {
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+
+
+	
+	
+	public List<Post> getPost() {
+		return post;
+	}
+
+
+	public void setPost(List<Post> post) {
+		this.post = post;
 	}
 
 
