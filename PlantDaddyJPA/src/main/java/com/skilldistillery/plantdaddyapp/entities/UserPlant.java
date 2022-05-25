@@ -69,9 +69,12 @@ public class UserPlant {
 	@JoinColumn(name="plant_id")
 	private Plant plant;
 	
-	//@OneToMany(mappedBy="userPlant")
-	private List<UserPlant> plants;
+	@OneToMany(mappedBy="userPlant")
+	private List<Todo> todos;
 	
+	
+	@OneToMany(mappedBy="userPlant")
+	private List<PlantPhoto> photos;
 	
 	public UserPlant() {
 		super();
@@ -170,12 +173,22 @@ public class UserPlant {
 	}
 
 	
-	public List<UserPlant> getPlants() {
-		return plants;
+	
+
+	public List<PlantPhoto> getPhotos() {
+		return photos;
 	}
 
-	public void setPlants(List<UserPlant> plants) {
-		this.plants = plants;
+	public void setPhotos(List<PlantPhoto> photos) {
+		this.photos = photos;
+	}
+
+	public List<Todo> getTodos() {
+		return todos;
+	}
+
+	public void setTodos(List<Todo> todos) {
+		this.todos = todos;
 	}
 
 	@Override

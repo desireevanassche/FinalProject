@@ -101,6 +101,37 @@ class UserPlantTest {
 	
 	}
 	
+	@Test
+	@DisplayName("Entity relational mapping of User Plant to Todo database")
+	void test_relational_mapping_of_user_plant_to_todo_in_database() {
+		
+//		mysql> select * from user_plant join todo on todo.user_plant_id = user_plant.id where user_plant.id = 1;
+//		+----+---------+----------+---------------+---------------+----------+---------------------+-------------------------------------------------------------------------------------------------+---------------+--------------+--------+----+---------------+------------+-------------+---------------------+------------+---------------------+
+//		| id | user_id | plant_id | height_inches | spread_inches | nickname | pot_diameter_inches | image_url                                                                                       | home_location | description  | active | id | user_plant_id | name       | description | date_created        | due_date   | completion_date     |
+//		+----+---------+----------+---------------+---------------+----------+---------------------+-------------------------------------------------------------------------------------------------+---------------+--------------+--------+----+---------------+------------+-------------+---------------------+------------+---------------------+
+//		|  1 |       1 |        1 |             6 |             6 | Todd     |                   4 | https://www.bybrittanygoldwyn.com/wp-content/uploads/2021/03/Sans-Trifasciata-Snake-Plant-6.jpg | Living room   | My happy boi |      1 |  1 |             1 | Water Todd | water Todd  | 2202-05-24 12:00:00 | 2022-05-30 | 2202-05-24 12:01:01 |
+//		+----+---------+----------+---------------+---------------+----------+---------------------+-------------------------------------------------------------------------------------------------+---------------+--------------+--------+----+---------------+------------+-------------+---------------------+------------+---------------------+
+//		1 row in set (0.00 sec)
+		
+		assertNotNull(uPlant);
+		assertNotNull(uPlant.getId());
+		assertTrue(uPlant.getTodos().size()>0);
+	}
 	
-	
+	@Test
+	@DisplayName("Entity relational mapping of User Plant to Plant Photo database")
+	void test_relational_mapping_of_user_plant_to_plant_photo_in_database() {
+		
+//		mysql> select * from user_plant join plant_photo on plant_photo.user_plant_id = user_plant.id where user_plant.id = 1;
+//		+----+---------+----------+---------------+---------------+----------+---------------------+-------------------------------------------------------------------------------------------------+---------------+--------------+--------+----+---------------+---------------------------------------------------------------------------------------+---------------------+
+//		| id | user_id | plant_id | height_inches | spread_inches | nickname | pot_diameter_inches | image_url                                                                                       | home_location | description  | active | id | user_plant_id | image_url                                                                             | date_created        |
+//		+----+---------+----------+---------------+---------------+----------+---------------------+-------------------------------------------------------------------------------------------------+---------------+--------------+--------+----+---------------+---------------------------------------------------------------------------------------+---------------------+
+//		|  1 |       1 |        1 |             6 |             6 | Todd     |                   4 | https://www.bybrittanygoldwyn.com/wp-content/uploads/2021/03/Sans-Trifasciata-Snake-Plant-6.jpg | Living room   | My happy boi |      1 |  1 |             1 | https://i.etsystatic.com/18193121/r/il/872f52/2144887556/il_570xN.2144887556_ynis.jpg | 2022-05-24 12:30:00 |
+//		+----+---------+----------+---------------+---------------+----------+---------------------+-------------------------------------------------------------------------------------------------+---------------+--------------+--------+----+---------------+---------------------------------------------------------------------------------------+---------------------+
+//		1 row in set (0.00 sec)
+		
+		assertNotNull(uPlant);
+		assertNotNull(uPlant.getId());
+		assertTrue(uPlant.getPhotos().size()>0);
+	}
 }

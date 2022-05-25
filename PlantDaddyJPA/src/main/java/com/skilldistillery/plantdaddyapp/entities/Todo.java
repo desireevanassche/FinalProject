@@ -19,6 +19,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -43,6 +45,13 @@ public class Todo {
 	@CreationTimestamp
 	private LocalDateTime createdAt;
 
+	
+	@ManyToOne
+	@JoinColumn(name="user_plant_id")
+	private UserPlant userPlant;
+	
+	
+	
 	public Todo() {
 		super();
 	}
@@ -95,6 +104,18 @@ public class Todo {
 
 	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
+	}
+	
+	
+	
+	
+
+	public UserPlant getUserPlant() {
+		return userPlant;
+	}
+
+	public void setUserPlant(UserPlant userPlant) {
+		this.userPlant = userPlant;
 	}
 
 	@Override
