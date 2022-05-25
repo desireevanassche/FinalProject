@@ -81,6 +81,24 @@ class StoreTest {
 	}
 	
 	
+	@Test
+	@DisplayName("Testing relational mapping from store to plant db")
+	void test_relational_mapping_from_store_to_plant() {
+		
+//		mysql> select * from plant join store_has_plant phs on plant.id=phs.plant_id join store on store.id = phs.plant_id where plant.id=1;
+//		+----+---------------+-------------+-------------+----------------------------------------------------------------+----------------------+-----------------+-------------+---------------+---------------------------------+--------+----------+----------+----+----------------+------------+-----------------------------------------------------------------------------------------------------------+
+//		| id | created_by_id | common_name | description | image_url                                                      | botanical_name       | care_difficulty | water_cycle | water_type    | light_requirement               | active | store_id | plant_id | id | name           | address_id | image_url                                                                                                 |
+//		+----+---------------+-------------+-------------+----------------------------------------------------------------+----------------------+-----------------+-------------+---------------+---------------------------------+--------+----------+----------+----+----------------+------------+-----------------------------------------------------------------------------------------------------------+
+//		|  1 |             1 | Snake Plant | Tall Boi    | https://h2.commercev3.net/cdn.brecks.com/images/800/76621A.jpg | Dracaena trifasciata | Easy            | 2-8 weeks   | mineral water | 8 - 10 hours of direct sunlight |      1 |        1 |        1 |  1 | The Flower Bin |          1 | http://1.bp.blogspot.com/-M4LiJ0qCYhY/UQHvvCxZIYI/AAAAAAAAAB0/QD259KjwM1Q/s400/20100615_FLOWER_BIN-55.JPG |
+//		+----+---------------+-------------+-------------+----------------------------------------------------------------+----------------------+-----------------+-------------+---------------+---------------------------------+--------+----------+----------+----+----------------+------------+-----------------------------------------------------------------------------------------------------------+
+//		1 row in set (0.01 sec)
+
+		
+		assertNotNull(store);
+		assertNotNull(store.getId());
+		assertTrue( store.getPlants().size()>0);
+		
+	}
 
 
 }
