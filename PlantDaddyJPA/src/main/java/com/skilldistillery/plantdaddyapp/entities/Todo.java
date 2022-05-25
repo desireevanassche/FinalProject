@@ -52,6 +52,7 @@ public class Todo {
 	
 	
 	
+	
 	public Todo() {
 		super();
 	}
@@ -140,6 +141,8 @@ public class Todo {
 		return "Todo [id=" + id + ", name=" + name + ", description=" + description + ", dueDate=" + dueDate
 				+ ", completeDate=" + completeDate + ", createdAt=" + createdAt + "]";
 	}
+
+	
 
 
 	

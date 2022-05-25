@@ -11,29 +11,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.plantdaddyapp.entities.User;
 import com.skilldistillery.plantdaddyapp.services.UserService;
 
 @RestController
-@CrossOrigin({ "*", "http://localhost" })
+@RequestMapping("api")
+@CrossOrigin({ "*", "http://localhost:4295" })
 public class UserController {
 
 	@Autowired
 	private UserService userService;
 
-	// SMOKE TEST ONLY, DELETE/COMMENT OUT LATER
-	@GetMapping("test/users/{userId}")
-	public User getUserForTest(@PathVariable Integer userId, HttpServletResponse res) {
-		User user = userService.getUserById(userId);
-		if (user == null) {
-			res.setStatus(404);
-		}
-		return user;
-	}
 
-	@GetMapping("plantdaddy/users/{keyword}")
+	@GetMapping("users/{keyword}")
 	public Set<User> findUserByKeyword(@PathVariable String keyword, HttpServletResponse res, HttpServletRequest req) {
 		Set<User> users = userService.findUserWithUsernameLike(keyword);
 
@@ -46,7 +39,7 @@ public class UserController {
 	
 
 	
-	@PutMapping("plantdaddy/users/{userId}")
+	@PutMapping("users/{userId}")
 	public User updateUser (@RequestBody User user, @PathVariable Integer userId, HttpServletResponse res, HttpServletRequest req) {
 		User updated = userService.updateUser(user, userId);
 		if (updated == null) {
