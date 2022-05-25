@@ -13,11 +13,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class CommentTest {
+class TodoTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Comment comment;
+	private Todo todo;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -34,30 +34,30 @@ class CommentTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		comment = em.find(Comment.class, 1);
+		todo = em.find(Todo.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		comment = null;
+		todo = null;
 	}
 
-/* +----+---------+----------------+-------------------+----------+-------------+--------+------------+
-| id | post_id | in_reply_to_id | content           | in_reply | create_date | active | commentcol |
-+----+---------+----------------+-------------------+----------+-------------+--------+------------+
-|  1 |       1 |              1 | Our first comment | NULL     | NULL        |      1 | NULL       |
-+----+---------+----------------+-------------------+----------+-------------+--------+------------+*/ 
+	/*
+	 * +----+---------------+------------+-------------+---------------------+------------+---------------------+
+| id | user_plant_id | name       | description | date_created        | due_date   | completion_date     |
++----+---------------+------------+-------------+---------------------+------------+---------------------+
+|  1 |             1 | Water Todd | water Todd  | 2202-05-24 12:00:00 | 2022-05-30 | 2202-05-24 12:01:01 |
++----+---------------+------------+-------------+---------------------+------------+---------------------+ */ 
+
 	@Test
 	@DisplayName("Testing comment mapping")
 	void test() {
-		assertNotNull(comment);
-		assertEquals("Our first comment", comment.getContent());
+		assertNotNull(todo);
+		assertEquals("water Todd", todo.getDescription());
+		assertEquals("Water Todd", todo.getName());
 	
 		
 	}
 
 }
-
-
-

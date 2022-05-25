@@ -19,7 +19,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
-
+/*+---------------+---------------+------+-----+---------+----------------+
+| Field         | Type          | Null | Key | Default | Extra          |
++---------------+---------------+------+-----+---------+----------------+
+| id            | int(11)       | NO   | PRI | NULL    | auto_increment |
+| user_plant_id | int(11)       | NO   | MUL | NULL    |                |
+| image_url     | varchar(1000) | YES  |     | NULL    |                |
+| date_created  | datetime      | YES  |     | NULL    |                |
++---------------+---------------+------+-----+---------+----------------+ */ 
 @Entity
 @Table(name="plant_photo")
 public class PlantPhoto {
@@ -43,29 +50,43 @@ public class PlantPhoto {
 		super();
 	}
 
+	
+
 	public int getId() {
 		return id;
 	}
+
+
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
+
+
 	public LocalDateTime getCreatedAt() {
 		return createdAt;
 	}
+
+
 
 	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
 	}
 
+
+
 	public String getImageUrl() {
 		return imageUrl;
 	}
 
+
+
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
+
+
 
 	@Override
 	public int hashCode() {
