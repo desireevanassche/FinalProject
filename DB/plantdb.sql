@@ -173,11 +173,9 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `post_id` INT NOT NULL,
   `in_reply_to_id` INT NULL,
-  `content` VARCHAR(500) NOT NULL,
-  `in_reply` VARCHAR(500) NULL,
+  `content` TEXT NOT NULL,
   `create_date` DATETIME NULL,
   `active` TINYINT NOT NULL DEFAULT 1,
-  `commentcol` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_comment_post1_idx` (`post_id` ASC),
   INDEX `fk_comment_comment1_idx` (`in_reply_to_id` ASC),
@@ -252,7 +250,8 @@ DROP TABLE IF EXISTS `todo` ;
 CREATE TABLE IF NOT EXISTS `todo` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `user_plant_id` INT NOT NULL,
-  `task` VARCHAR(500) NULL,
+  `name` VARCHAR(200) NULL,
+  `description` TEXT NULL,
   `date_created` DATETIME NULL,
   `due_date` DATE NULL,
   `completion_date` DATETIME NULL,
@@ -423,7 +422,7 @@ DROP TABLE IF EXISTS `hashtag` ;
 
 CREATE TABLE IF NOT EXISTS `hashtag` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(100) NULL,
+  `name` VARCHAR(75) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -477,11 +476,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `hasttag_has_blog`
+-- Table `hashtag_has_blog`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `hasttag_has_blog` ;
+DROP TABLE IF EXISTS `hashtag_has_blog` ;
 
-CREATE TABLE IF NOT EXISTS `hasttag_has_blog` (
+CREATE TABLE IF NOT EXISTS `hashtag_has_blog` (
   `hasttag_id` INT NOT NULL,
   `blog_id` INT NOT NULL,
   PRIMARY KEY (`hasttag_id`, `blog_id`),
@@ -525,7 +524,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `plantdb`;
-INSERT INTO `user` (`id`, `address_id`, `username`, `password`, `enabled`, `first_name`, `last_name`, `email`, `image_url`, `biography`, `role`) VALUES (1, NULL, 'admin', '$2a$10$XR0stvrxAeiPsPSh0hHruesmB0UETSkbRPjK3fRxibq0DvQ/eoQbm', 1, 'admin', 'admin', 'admin@admin.com', 'https://freesvg.org/img/abstract-user-flat-4.png', 'Look at me, I am the captian now', 'ROLE_ADMIN');
+INSERT INTO `user` (`id`, `address_id`, `username`, `password`, `enabled`, `first_name`, `last_name`, `email`, `image_url`, `biography`, `role`) VALUES (1, 1, 'admin', '$2a$10$XR0stvrxAeiPsPSh0hHruesmB0UETSkbRPjK3fRxibq0DvQ/eoQbm', 1, 'admin', 'admin', 'admin@admin.com', 'https://freesvg.org/img/abstract-user-flat-4.png', 'Look at me, I am the captian now', 'ROLE_ADMIN');
 
 COMMIT;
 
@@ -535,7 +534,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `plantdb`;
-INSERT INTO `plant` (`id`, `created_by_id`, `common_name`, `description`, `image_url`, `botanical_name`, `care_difficulty`, `water_cycle`, `water_type`, `light_requirement`, `active`) VALUES (1, 1, 'Snake Plant', 'Tall Boi', 'https://h2.commercev3.net/cdn.brecks.com/images/800/76621A.jpg', 'Dracaena trifasciata', 'Easy', '2-8 weeks', NULL, NULL, DEFAULT);
+INSERT INTO `plant` (`id`, `created_by_id`, `common_name`, `description`, `image_url`, `botanical_name`, `care_difficulty`, `water_cycle`, `water_type`, `light_requirement`, `active`) VALUES (1, 1, 'Snake Plant', 'Tall Boi', 'https://h2.commercev3.net/cdn.brecks.com/images/800/76621A.jpg', 'Dracaena trifasciata', 'Easy', '2-8 weeks', 'mineral water', '8 - 10 hours of direct sunlight', 1);
 
 COMMIT;
 
@@ -545,7 +544,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `plantdb`;
-INSERT INTO `user_plant` (`id`, `user_id`, `plant_id`, `height_inches`, `spread_inches`, `nickname`, `pot_diameter_inches`, `image_url`, `home_location`, `description`, `active`) VALUES (1, 1, 1, 6, 6, 'Todd', 4, 'https://www.bybrittanygoldwyn.com/wp-content/uploads/2021/03/Sans-Trifasciata-Snake-Plant-6.jpg', 'Living room', NULL, 1);
+INSERT INTO `user_plant` (`id`, `user_id`, `plant_id`, `height_inches`, `spread_inches`, `nickname`, `pot_diameter_inches`, `image_url`, `home_location`, `description`, `active`) VALUES (1, 1, 1, 6, 6, 'Todd', 4, 'https://www.bybrittanygoldwyn.com/wp-content/uploads/2021/03/Sans-Trifasciata-Snake-Plant-6.jpg', 'Living room', 'My happy boi', 1);
 
 COMMIT;
 
@@ -555,8 +554,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `plantdb`;
-INSERT INTO `topic` (`id`, `name`, `description`, `image_url`) VALUES (1, 'Indoor', NULL, NULL);
-INSERT INTO `topic` (`id`, `name`, `description`, `image_url`) VALUES (2, 'Health', NULL, NULL);
+INSERT INTO `topic` (`id`, `name`, `description`, `image_url`) VALUES (1, 'Indoor', 'Indoor Plant', 'https://media.allure.com/photos/5fdcf516563e46c7d11ee93f/master/pass/AllureBeginnerHouseplants.jpg');
+INSERT INTO `topic` (`id`, `name`, `description`, `image_url`) VALUES (2, 'Health', 'Healthy Boi', 'http://westchestertreelife.com/wp-content/uploads/2015/06/Healthy-Plant-WestchesterTreeLife.jpg');
 
 COMMIT;
 
@@ -566,7 +565,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `plantdb`;
-INSERT INTO `post` (`id`, `user_id`, `topic_id`, `title`, `content`, `image_url`, `create_date`, `update_date`, `active`) VALUES (1, 1, 1, 'Our First Post', 'This is a post, about plants, posted by a user.', 'https://www.ikea.com/us/en/images/products/sansevieria-trifasciata-potted-plant-mother-in-laws-tongue__0908898_pe676659_s5.jpg', NULL, NULL, 1);
+INSERT INTO `post` (`id`, `user_id`, `topic_id`, `title`, `content`, `image_url`, `create_date`, `update_date`, `active`) VALUES (1, 1, 1, 'Our First Post', 'This is a post, about plants, posted by a user.', 'https://www.ikea.com/us/en/images/products/sansevieria-trifasciata-potted-plant-mother-in-laws-tongue__0908898_pe676659_s5.jpg', '2022-05-24 12:25:00', '2022-05-24 13:25:00', 1);
 
 COMMIT;
 
@@ -576,7 +575,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `plantdb`;
-INSERT INTO `comment` (`id`, `post_id`, `in_reply_to_id`, `content`, `in_reply`, `create_date`, `active`, `commentcol`) VALUES (1, 1, 1, 'Our first comment', NULL, NULL, 1, NULL);
+INSERT INTO `comment` (`id`, `post_id`, `in_reply_to_id`, `content`, `create_date`, `active`) VALUES (1, 1, 1, 'Our first comment', '2022-05-24 12:00:00', 1);
 
 COMMIT;
 
@@ -586,7 +585,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `plantdb`;
-INSERT INTO `potting_mix` (`id`, `user_id`, `brand`, `name`, `type`, `quantity`, `unit`, `image_url`, `date_created`, `active`) VALUES (1, 1, 'Miracle Gro', 'Potting Mix', 'Soil', 1, 'cup', NULL, NULL, DEFAULT);
+INSERT INTO `potting_mix` (`id`, `user_id`, `brand`, `name`, `type`, `quantity`, `unit`, `image_url`, `date_created`, `active`) VALUES (1, 1, 'Miracle Gro', 'Potting Mix', 'Soil', 1, 'cup', 'https://images.heb.com/is/image/HEBGrocery/001382808', '2022-05-22 12:00:00', 1);
 
 COMMIT;
 
@@ -596,7 +595,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `plantdb`;
-INSERT INTO `blog` (`id`, `user_id`, `title`, `content`, `image_url`, `create_date`, `update_date`, `active`) VALUES (1, 1, 'Our First Blog', 'This is a blog, about plants, posted by an admin', 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/house-plants-1629187361.jpg?crop=0.288xw:0.577xh;0.0465xw,0.205xh&resize=640:*', NULL, NULL, DEFAULT);
+INSERT INTO `blog` (`id`, `user_id`, `title`, `content`, `image_url`, `create_date`, `update_date`, `active`) VALUES (1, 1, 'Our First Blog', 'This is a blog, about plants, posted by an admin', 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/house-plants-1629187361.jpg?crop=0.288xw:0.577xh;0.0465xw,0.205xh&resize=640:*', '2022-05-24 12:00:00', '2022-05-24 12:00:01', 1);
 
 COMMIT;
 
@@ -606,7 +605,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `plantdb`;
-INSERT INTO `todo` (`id`, `user_plant_id`, `task`, `date_created`, `due_date`, `completion_date`) VALUES (1, 1, 'water Todd', NULL, NULL, NULL);
+INSERT INTO `todo` (`id`, `user_plant_id`, `name`, `description`, `date_created`, `due_date`, `completion_date`) VALUES (1, 1, 'Water Todd', 'water Todd', '2202-05-24 12:00:00', '2022-05-30', '2202-05-24 12:01:01');
 
 COMMIT;
 
@@ -626,7 +625,57 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `plantdb`;
-INSERT INTO `plant_photo` (`id`, `user_plant_id`, `image_url`, `date_created`) VALUES (1, 1, 'https://i.etsystatic.com/18193121/r/il/872f52/2144887556/il_570xN.2144887556_ynis.jpg', NULL);
+INSERT INTO `plant_photo` (`id`, `user_plant_id`, `image_url`, `date_created`) VALUES (1, 1, 'https://i.etsystatic.com/18193121/r/il/872f52/2144887556/il_570xN.2144887556_ynis.jpg', '2022-05-24 12:30:00');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `plant_category`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `plantdb`;
+INSERT INTO `plant_category` (`id`, `name`, `description`, `image_url`) VALUES (1, 'flowering plant', 'bears flowers or fruits', 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Maitohorsma_%28Epilobium_angustifolium%29.JPG/380px-Maitohorsma_%28Epilobium_angustifolium%29.JPG');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `plant_has_plant_category`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `plantdb`;
+INSERT INTO `plant_has_plant_category` (`plant_id`, `plant_category_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `plant_has_potting_mix`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `plantdb`;
+INSERT INTO `plant_has_potting_mix` (`plant_id`, `potting_mix_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `store_has_plant`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `plantdb`;
+INSERT INTO `store_has_plant` (`store_id`, `plant_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `friend`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `plantdb`;
+INSERT INTO `friend` (`user_id`, `friend_id`) VALUES (1, 1);
 
 COMMIT;
 
@@ -637,6 +686,36 @@ COMMIT;
 START TRANSACTION;
 USE `plantdb`;
 INSERT INTO `hashtag` (`id`, `name`) VALUES (1, 'Plant');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `hashtag_has_topic`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `plantdb`;
+INSERT INTO `hashtag_has_topic` (`hashtag_id`, `topic_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `hashtag_has_post`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `plantdb`;
+INSERT INTO `hashtag_has_post` (`hashtag_id`, `post_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `hashtag_has_blog`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `plantdb`;
+INSERT INTO `hashtag_has_blog` (`hasttag_id`, `blog_id`) VALUES (1, 1);
 
 COMMIT;
 
