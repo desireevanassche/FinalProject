@@ -9,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -78,7 +78,14 @@ public class User {
 
 	@OneToMany(mappedBy = "user")
 	private List<PottingMix> pottingMix;
+	
+	@OneToMany
+	@JoinTable(name="friend", 
+	joinColumns=@JoinColumn(name="user_id"),
+	inverseJoinColumns=@JoinColumn(name="friend_id"))
+	private List<User> friends;
 
+	
 	
 	
 	public User() {
@@ -221,6 +228,16 @@ public class User {
 
 	public void setUserPlants(List<UserPlant> userPlants) {
 		this.userPlants = userPlants;
+	}
+	
+	
+
+	public List<User> getFriends() {
+		return friends;
+	}
+
+	public void setFriends(List<User> friends) {
+		this.friends = friends;
 	}
 
 	@Override
