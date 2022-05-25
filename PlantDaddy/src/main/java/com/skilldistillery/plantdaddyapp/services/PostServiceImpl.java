@@ -11,6 +11,7 @@ import com.skilldistillery.plantdaddyapp.entities.User;
 import com.skilldistillery.plantdaddyapp.repositories.PostRepository;
 import com.skilldistillery.plantdaddyapp.repositories.UserRepository;
 
+
 @Service
 public class PostServiceImpl implements PostService {
 
