@@ -1,5 +1,7 @@
 package com.skilldistillery.plantdaddyapp.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,7 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /* +-------------------+---------------+------+-----+---------+----------------+
 | Field             | Type          | Null | Key | Default | Extra          |
@@ -64,21 +69,122 @@ public class Plant {
 	@Column(name="light_requirement") 
 	private String lightReq; 
 	
+	private boolean active;
+	
 	@ManyToOne
 	@JoinColumn(name="created_by_id")
 	private User user; 
+	
+	
+	@OneToMany(mappedBy="plant")
+	private List<UserPlant> plants;
+	
+	
+	@ManyToMany
+	@JoinTable(name="plant_has_plant_category",
+	joinColumns = @JoinColumn(name="plant_id"),
+	inverseJoinColumns = @JoinColumn(name="plant_category_id"))
+	private List<PlantCategory> plantCategories;
+	
+	
+	@ManyToMany
+	@JoinTable(name="plant_has_potting_mix",
+	joinColumns = @JoinColumn(name="plant_id"),
+	inverseJoinColumns = @JoinColumn(name="potting_mix_id"))
+	private List<PottingMix> pottingMixes;
+	
+	
+	@ManyToMany
+	@JoinTable(name="store_has_plant",
+	joinColumns = @JoinColumn(name="plant_id"),
+	inverseJoinColumns = @JoinColumn(name="store_id"))
+	private List<Store> stores;
+	
+	
 	
 	//---------END FIELDS ---------------------------------- 
 	
 	
 
 	
-	private boolean active;
+	// -------------------CONSTRUCTORS --------------------------
 
 	public Plant() {
 		super();
 	}
 
+	
+	// ------------------- METHODS -----------------------
+	
+	public void addStore(Store store) {
+		if (stores == null) {
+			stores = new ArrayList<>();
+			if (!stores.contains(store)) {
+				stores.add(store);
+				store.addPlant(this);
+			}
+		}
+		
+	}
+	
+	 
+	public void removeStore(Store store) {
+		
+		if(stores != null && stores.contains(store)) {
+			stores.remove(store);
+			store.removePlant(this);
+			
+		}
+	}
+	
+	public void addPottingMix(PottingMix pottingMix) {
+		if (pottingMixes == null) {
+			pottingMixes = new ArrayList<>();
+			if (!pottingMixes.contains(pottingMix)) {
+				pottingMixes.add(pottingMix);
+				pottingMix.addPlant(this);
+			}
+		}
+		
+	}
+	
+	 
+	public void removePottingMix(PottingMix pottingMix) {
+		
+		if(pottingMixes != null && pottingMixes.contains(pottingMix)) {
+			pottingMixes.remove(pottingMix);
+			pottingMix.removePlant(this);
+			
+		}
+	}
+	
+	public void addPlantCategory(PlantCategory category) {
+		if (plantCategories == null) {
+			plantCategories = new ArrayList<>();
+			if (!plantCategories.contains(category)) {
+				plantCategories.add(category);
+				category.addPlants(this);
+			}
+		}
+		
+		
+	}
+	
+	@SuppressWarnings("unlikely-arg-type")
+	public void removePlantCategory(PlantCategory category) {
+		
+		if(plantCategories != null && plants.contains(category)) {
+			plantCategories.remove(category);
+			category.removePlants(this);
+			
+		}
+		
+	}
+	
+	
+	// -------------------GETTERS & SETTERS --------------------------
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -159,7 +265,6 @@ public class Plant {
 		this.active = active;
 	}
 	
-	
 
 	public User getUser() {
 		return user;
@@ -168,6 +273,48 @@ public class Plant {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	
+	public List<Store> getStores() {
+		return stores;
+	}
+
+
+	public void setStores(List<Store> stores) {
+		this.stores = stores;
+	}
+
+
+	public List<PottingMix> getPottingMixes() {
+		return pottingMixes;
+	}
+
+
+	public void setPottingMixes(List<PottingMix> pottingMixes) {
+		this.pottingMixes = pottingMixes;
+	}
+
+
+	public List<UserPlant> getPlants() {
+		return plants;
+	}
+
+	public void setPlants(List<UserPlant> plants) {
+		this.plants = plants;
+	}
+	
+	
+	
+
+	public List<PlantCategory> getPlantCategories() {
+		return plantCategories;
+	}
+
+
+	public void setPlantCategories(List<PlantCategory> plantCategories) {
+		this.plantCategories = plantCategories;
+	}
+
 
 	@Override
 	public int hashCode() {

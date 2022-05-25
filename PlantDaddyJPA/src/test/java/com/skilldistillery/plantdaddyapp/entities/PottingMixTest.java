@@ -77,5 +77,23 @@ class PottingMixTest {
 		assertEquals("ROLE_ADMIN", pottingMix.getUser().getRole());
 	}
 	
+	
+	@Test
+	@DisplayName("Testing relational mapping from potting mix to plant db")
+	void test_relational_mapping_from_potting_mix_to_plant_to_plant() {
+		
+//		mysql> select * from plant join plant_has_potting_mix jpm on  plant.id = jpm.plant_id join potting_mix pm on jpm.potting_mix_id = pm.id where plant.id=1;
+//		+----+---------------+-------------+-------------+----------------------------------------------------------------+----------------------+-----------------+-------------+---------------+---------------------------------+--------+----------+----------------+----+---------+-------------+-------------+------+----------+------+------------------------------------------------------+---------------------+--------+
+//		| id | created_by_id | common_name | description | image_url                                                      | botanical_name       | care_difficulty | water_cycle | water_type    | light_requirement               | active | plant_id | potting_mix_id | id | user_id | brand       | name        | type | quantity | unit | image_url                                            | date_created        | active |
+//		+----+---------------+-------------+-------------+----------------------------------------------------------------+----------------------+-----------------+-------------+---------------+---------------------------------+--------+----------+----------------+----+---------+-------------+-------------+------+----------+------+------------------------------------------------------+---------------------+--------+
+//		|  1 |             1 | Snake Plant | Tall Boi    | https://h2.commercev3.net/cdn.brecks.com/images/800/76621A.jpg | Dracaena trifasciata | Easy            | 2-8 weeks   | mineral water | 8 - 10 hours of direct sunlight |      1 |        1 |              1 |  1 |       1 | Miracle Gro | Potting Mix | Soil |        1 | cup  | https://images.heb.com/is/image/HEBGrocery/001382808 | 2022-05-22 12:00:00 |      1 |
+//		+----+---------------+-------------+-------------+----------------------------------------------------------------+----------------------+-----------------+-------------+---------------+---------------------------------+--------+----------+----------------+----+---------+-------------+-------------+------+----------+------+------------------------------------------------------+---------------------+--------+
+//		1 row in set (0.00 sec)
+		
+		
+		assertNotNull(pottingMix);
+		assertNotNull(pottingMix.getId());
+		assertTrue(pottingMix.getPlants().size()>0);
+	}
 
 }

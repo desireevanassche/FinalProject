@@ -1,6 +1,8 @@
 package com.skilldistillery.plantdaddyapp.entities;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -9,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity(name = "potting_mix")
@@ -54,11 +57,39 @@ public class PottingMix {
 	@JoinColumn(name = "user_id")
 	private User user;
 	
+	@ManyToMany(mappedBy="pottingMixes")
+	private List<Plant> plants;
+	
+	// -------------------CONSTRUCTORS --------------------------
 
 	public PottingMix() {
 		super();
 	}
 
+	// ------------------- METHODS -----------------------
+	
+	public void addPlant(Plant plant) {
+		if (plants == null) { 
+			plants = new ArrayList<>();
+			if (!plants.contains(plant)) {
+				plants.add(plant);
+				plant.addPottingMix(this);
+			}
+		}
+		
+	}
+	
+	public void removePlant(Plant plant) {
+		if(plants != null && plants.contains(plant)) {
+			plants.remove(plant);
+			plant.removePottingMix(this);
+			 
+		}
+		
+	}
+	
+	
+	// -------------------GETTERS & SETTERS --------------------------
 	public Integer getId() {
 		return id;
 	}
@@ -138,6 +169,16 @@ public class PottingMix {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	
+	
+	public List<Plant> getPlants() {
+		return plants;
+	}
+
+	public void setPlants(List<Plant> plants) {
+		this.plants = plants;
 	}
 
 	@Override
