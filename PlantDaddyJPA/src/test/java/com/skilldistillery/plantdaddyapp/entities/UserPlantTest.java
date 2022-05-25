@@ -134,4 +134,21 @@ class UserPlantTest {
 		assertNotNull(uPlant.getId());
 		assertTrue(uPlant.getPhotos().size()>0);
 	}
+	
+	@Test
+	@DisplayName("Entity relational mapping of User Plant to User Photo database")
+	void test() {
+		
+/* 
+		mysql> select * from user join user_plant on user.id = user_plant.user_id where user.id = 1;
+		+----+------------+----------+--------------------------------------------------------------+---------+------------+-----------+-----------------+--------------------------------------------------+----------------------------------+------------+----+---------+----------+---------------+---------------+----------+---------------------+-------------------------------------------------------------------------------------------------+---------------+--------------+--------+
+		| id | address_id | username | password                                                     | enabled | first_name | last_name | email           | image_url                                        | biography                        | role       | id | user_id | plant_id | height_inches | spread_inches | nickname | pot_diameter_inches | image_url                                                                                       | home_location | description  | active |
+		+----+------------+----------+--------------------------------------------------------------+---------+------------+-----------+-----------------+--------------------------------------------------+----------------------------------+------------+----+---------+----------+---------------+---------------+----------+---------------------+-------------------------------------------------------------------------------------------------+---------------+--------------+--------+
+		|  1 |          1 | admin    | $2a$10$XR0stvrxAeiPsPSh0hHruesmB0UETSkbRPjK3fRxibq0DvQ/eoQbm |       1 | admin      | admin     | admin@admin.com | https://freesvg.org/img/abstract-user-flat-4.png | Look at me, I am the captian now | ROLE_ADMIN |  1 |       1 |        1 |             6 |             6 | Todd     |                   4 | https://www.bybrittanygoldwyn.com/wp-content/uploads/2021/03/Sans-Trifasciata-Snake-Plant-6.jpg | Living room   | My happy boi |      1 |
+		+----+------------+----------+--------------------------------------------------------------+---------+------------+-----------+-----------------+--------------------------------------------------+----------------------------------+------------+----+---------+----------+---------------+---------------+----------+---------------------+-------------------------------------------------------------------------------------------------+---------------+--------------+--------+*/
+		
+		assertNotNull(uPlant);
+		assertNotNull(uPlant.getId());
+		assertEquals("admin" ,uPlant.getUser().getUsername());
+	}
 }

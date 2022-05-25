@@ -71,8 +71,14 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List<Plant> plants; 
 	
+
+	@OneToMany(mappedBy="user")
+	private List<UserPlant> userPlants; 
+	
+
 	@OneToMany(mappedBy = "user")
 	private List<PottingMix> pottingMix;
+
 	
 	
 	public User() {
@@ -207,6 +213,14 @@ public class User {
 
 	public void setPottingMix(List<PottingMix> pottingMix) {
 		this.pottingMix = pottingMix;
+	}
+
+	public List<UserPlant> getUserPlants() {
+		return userPlants;
+	}
+
+	public void setUserPlants(List<UserPlant> userPlants) {
+		this.userPlants = userPlants;
 	}
 
 	@Override
