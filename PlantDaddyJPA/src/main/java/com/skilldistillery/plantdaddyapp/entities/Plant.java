@@ -36,7 +36,7 @@ public class Plant {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	
 	// created_by_id  
 	  
@@ -185,11 +185,11 @@ public class Plant {
 	// -------------------GETTERS & SETTERS --------------------------
 	
 	
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
