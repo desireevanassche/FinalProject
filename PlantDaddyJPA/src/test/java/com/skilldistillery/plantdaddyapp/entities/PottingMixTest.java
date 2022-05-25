@@ -69,7 +69,12 @@ class PottingMixTest {
 	@DisplayName("Test for pottinf mix to user relationship")
 	void test2() {
 		assertNotNull(pottingMix);
-		assertEquals("admin", pottingMix);
+		assertEquals("admin", pottingMix.getUser().getUsername());
+		assertEquals("$2a$10$XR0stvrxAeiPsPSh0hHruesmB0UETSkbRPjK3fRxibq0DvQ/eoQbm", pottingMix.getUser().getPassword());
+		assertEquals("admin@admin.com", pottingMix.getUser().getEmail());
+		assertEquals("https://freesvg.org/img/abstract-user-flat-4.png", pottingMix.getUser().getImageUrl());
+		assertEquals("Look at me, I am the captian now", pottingMix.getUser().getBiography());
+		assertEquals("ROLE_ADMIN", pottingMix.getUser().getRole());
 	}
 	
 
