@@ -59,5 +59,23 @@ class TodoTest {
 	
 		
 	}
+	
+	@Test
+	@DisplayName("Testing relational mapping from todo to user plant in db")
+	void test_relation_mapping_todo_to_userplant_in_db() {
+		
+//		mysql> select * from todo join user_plant on user_plant.id = todo.user_plant_id where todo.id = 1;
+//		+----+---------------+------------+-------------+---------------------+------------+---------------------+----+---------+----------+---------------+---------------+----------+---------------------+-------------------------------------------------------------------------------------------------+---------------+--------------+--------+
+//		| id | user_plant_id | name       | description | date_created        | due_date   | completion_date     | id | user_id | plant_id | height_inches | spread_inches | nickname | pot_diameter_inches | image_url                                                                                       | home_location | description  | active |
+//		+----+---------------+------------+-------------+---------------------+------------+---------------------+----+---------+----------+---------------+---------------+----------+---------------------+-------------------------------------------------------------------------------------------------+---------------+--------------+--------+
+//		|  1 |             1 | Water Todd | water Todd  | 2202-05-24 12:00:00 | 2022-05-30 | 2202-05-24 12:01:01 |  1 |       1 |        1 |             6 |             6 | Todd     |                   4 | https://www.bybrittanygoldwyn.com/wp-content/uploads/2021/03/Sans-Trifasciata-Snake-Plant-6.jpg | Living room   | My happy boi |      1 |
+//		+----+---------------+------------+-------------+---------------------+------------+---------------------+----+---------+----------+---------------+---------------+----------+---------------------+-------------------------------------------------------------------------------------------------+---------------+--------------+--------+
+//		1 row in set (0.00 sec)
+		
+		assertNotNull(todo); 
+		assertNotNull(todo.getId());
+		assertEquals("Living room",todo.getUserPlant().getHomeLocation());
+		
+	}
 
 }

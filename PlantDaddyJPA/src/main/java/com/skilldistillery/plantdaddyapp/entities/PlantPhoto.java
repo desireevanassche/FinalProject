@@ -16,6 +16,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -46,6 +48,12 @@ public class PlantPhoto {
 
 	//user_plant_id
 
+	
+	@ManyToOne
+	@JoinColumn(name="user_plant_id")
+	private UserPlant userPlant;
+	
+	
 	public PlantPhoto() {
 		super();
 	}
@@ -84,6 +92,20 @@ public class PlantPhoto {
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+
+	
+	
+
+
+	public UserPlant getUserPlant() {
+		return userPlant;
+	}
+
+
+
+	public void setUserPlant(UserPlant userPlant) {
+		this.userPlant = userPlant;
 	}
 
 

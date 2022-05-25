@@ -1,5 +1,6 @@
 package com.skilldistillery.plantdaddyapp.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -7,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /*+------------+---------------+------+-----+---------+----------------+
 | Field      | Type          | Null | Key | Default | Extra          |
@@ -52,9 +56,19 @@ public class User {
 
 	private String role;
 	
-	//address_id 
+	@OneToMany(mappedBy="user")
+	private List<Post> posts;
 	
-
+	@OneToOne
+	@JoinColumn(name="address_id")
+	private Address address;
+		
+	
+	@OneToMany(mappedBy="user")
+	private List<Blog> blogs;
+	
+	
+	
 	public User() {
 		super();
 	}
@@ -101,8 +115,6 @@ public class User {
 	}
 	
 	
-	
-
 	public String getBiography() {
 		return biography;
 	}
@@ -143,6 +155,32 @@ public class User {
 		this.imageUrl = imageUrl;
 	}
 
+	
+	
+
+	public List<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public List<Blog> getBlogs() {
+		return blogs;
+	}
+
+	public void setBlogs(List<Blog> blogs) {
+		this.blogs = blogs;
+	}
 
 	@Override
 	public int hashCode() {
