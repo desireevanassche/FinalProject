@@ -1,6 +1,7 @@
 package com.skilldistillery.plantdaddyapp.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -24,11 +25,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Post {
@@ -57,13 +61,16 @@ public class Post {
 	@JoinColumn(name="user_id")
 	private User user;
 	
-	
 	@OneToMany(mappedBy="post")
 	private List<Comment> comments;
 	
 	@ManyToOne
 	@JoinColumn(name="topic_id")
 	private Topic topic;
+	
+	@JsonIgnore
+	@ManyToMany(mappedBy="posts")
+	private List<Hashtag> hashtags;
 
 	public Post() {
 		super();
@@ -125,7 +132,6 @@ public class Post {
 		this.active = active;
 	}
 	
-	
 
 	public User getUser() {
 		return user;
@@ -149,6 +155,32 @@ public class Post {
 
 	public void setTopic(Topic topic) {
 		this.topic = topic;
+	}
+	
+	public List<Hashtag> getHashtags() {
+		return hashtags;
+	}
+
+	public void setHashtags(List<Hashtag> hashtags) {
+		this.hashtags = hashtags;
+	}
+	
+	
+	public void addHashtag(Hashtag hashtag) {
+		if (hashtags == null)
+			hashtags = new ArrayList<>();
+
+		if (!hashtags.contains(hashtag)) {
+			hashtags.add(hashtag);
+			hashtag.addPost(this);
+		}
+	}
+
+	public void removeHashtag(Hashtag hashtag) {
+		if (hashtags != null && hashtags.contains(hashtag)) {
+			hashtags.remove(hashtag);
+			hashtag.removePost(this);
+		}
 	}
 
 	@Override

@@ -1,6 +1,8 @@
 package com.skilldistillery.plantdaddyapp.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -9,10 +11,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /* +-------------+---------------+------+-----+---------+----------------+
 | Field       | Type          | Null | Key | Default | Extra          |
@@ -32,29 +37,30 @@ public class Blog {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	private String title; 
-	
-	private String content;  
-	
-	
-	@Column(name="image_url") 
+	private String title;
+
+	private String content;
+
+	@Column(name = "image_url")
 	private String imageUrl;
-	
+
 	@Column(name = "create_date")
 	@CreationTimestamp
 	private LocalDateTime createdAt;
-	
+
 	@Column(name = "update_date")
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
-	
+
 	private boolean active;
-	
+
 	@ManyToOne
-	@JoinColumn(name="user_id")
+	@JoinColumn(name = "user_id")
 	private User user;
-	
-	
+
+	@JsonIgnore
+	@ManyToMany(mappedBy = "blogs")
+	private List<Hashtag> hashtags;
 
 	public Integer getId() {
 		return id;
@@ -112,14 +118,37 @@ public class Blog {
 		this.active = active;
 	}
 
-	
-	
 	public User getUser() {
 		return user;
 	}
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public List<Hashtag> getHashtags() {
+		return hashtags;
+	}
+
+	public void setHashtags(List<Hashtag> hashtags) {
+		this.hashtags = hashtags;
+	}
+
+	public void addHashtag(Hashtag hashtag) {
+		if (hashtags == null)
+			hashtags = new ArrayList<>();
+
+		if (!hashtags.contains(hashtag)) {
+			hashtags.add(hashtag);
+			hashtag.addBlog(this);
+		}
+	}
+
+	public void removeHashtag(Hashtag hashtag) {
+		if (hashtags != null && hashtags.contains(hashtag)) {
+			hashtags.remove(hashtag);
+			hashtag.removeBlog(this);
+		}
 	}
 
 	@Override
@@ -146,10 +175,6 @@ public class Blog {
 	public String toString() {
 		return "Blog [id=" + id + ", title=" + title + ", content=" + content + ", imageUrl=" + imageUrl
 				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + ", active=" + active + "]";
-	} 
-	
-	
-	
-	
-	
+	}
+
 }

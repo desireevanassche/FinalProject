@@ -77,6 +77,13 @@ class TopicTest {
 	
 		
 	}
+	@Test
+	@DisplayName("Testing relational mapping from topic to hashtag")
+	void test2() {
+		assertNotNull(topic.getHashtag());
+		assertEquals("Plant", topic.getHashtag().get(0).getName());
+	}
+	
 		
 		
 }
