@@ -75,7 +75,7 @@ public class PostServiceImpl implements PostService {
 			existing.setImageUrl(post.getImageUrl());
 			existing.setActive(post.getActive());
 			postRepo.saveAndFlush(existing);
-		}
+		} 
 		
 		
 		return existing;
