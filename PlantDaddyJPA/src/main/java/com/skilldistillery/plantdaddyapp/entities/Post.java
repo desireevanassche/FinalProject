@@ -43,6 +43,8 @@ public class Post {
 	private String title;
 
 	private String content;
+	
+	private boolean active;
 
 	@Column(name = "image_url")
 	private String imageUrl;
@@ -55,7 +57,7 @@ public class Post {
 	@UpdateTimestamp
 	private LocalDateTime updatedDate;
 
-	private boolean active;
+
 
 	@ManyToOne
 	@JoinColumn(name="user_id")
@@ -126,7 +128,7 @@ public class Post {
 		this.updatedDate = updatedDate;
 	}
 
-
+ 
 	public boolean getActive() {
 		return active;
 	}
