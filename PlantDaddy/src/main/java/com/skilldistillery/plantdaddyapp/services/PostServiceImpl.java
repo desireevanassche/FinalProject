@@ -55,30 +55,43 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	public Post addPost(String username, Post post) {
-		// TODO Auto-generated method stub
-		return null;
+		User user = userRepo.findByUsername(username);
+		if(user !=null) {
+			post.setUser(user);
+		
+		}
+		
+		return postRepo.saveAndFlush(post);
 	}
 
 	@Override
-	public Post updatePost(String username, int postId, Post post) {
+	public Post updatePost(String username,Post post, int postId) {
 		
 		Post existing = postRepo.findByUser_UsernameAndId(username, postId); 
 	 
 		if(existing != null) {
 			existing.setContent(post.getContent());
-			existing.setContent(post.getTitle());
-			existing.setContent(post.getImageUrl());
+			existing.setTitle(post.getTitle());
+			existing.setImageUrl(post.getImageUrl());
+			existing.setActive(post.getActive());
 			postRepo.saveAndFlush(existing);
-		}
+		} 
 		
 		
 		return existing;
 	}
 
+	
 	@Override
 	public boolean deletePost(String username, int postId) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean deleted = false;
+		Post deletedPost = postRepo.findByUser_UsernameAndId(username, postId);
+		if(deletedPost != null) {
+			postRepo.deleteById(postId);;
+			deleted = true;
+		}
+		
+		return deleted;
 	}
 
 

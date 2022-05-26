@@ -64,8 +64,8 @@ public class Post {
 	@JsonIgnore
 	@OneToMany(mappedBy="post")
 	private List<Comment> comments;
+
 	
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="topic_id")
 	private Topic topic;
@@ -126,14 +126,14 @@ public class Post {
 		this.updatedDate = updatedDate;
 	}
 
-	public boolean isActive() {
+
+	public boolean getActive() {
 		return active;
 	}
 
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-	
 
 	public User getUser() {
 		return user;
