@@ -11,6 +11,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './services/auth.service';
+import { PostComponent } from './components/post/post.component';
 
 
 
@@ -21,7 +22,8 @@ import { AuthService } from './services/auth.service';
     LoginComponent,
     LogoutComponent,
     RegisterComponent,
-    NavbarComponent
+    NavbarComponent,
+    PostComponent
 
   ],
   imports: [
