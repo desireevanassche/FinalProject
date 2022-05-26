@@ -59,3 +59,13 @@ export class SocialmediaComponent implements OnInit {
     );
   }
 }
+addPost() {
+
+}
+
+updatePost() {
+
+}
+deletePost() {
+
+}
