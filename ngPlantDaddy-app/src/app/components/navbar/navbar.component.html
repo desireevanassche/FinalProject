@@ -14,7 +14,7 @@
       <li class="nav-item" *ngIf="!loggedIn()">
         <a class=" nav-link"  [routerLink]="['/login']" >Login</a>
       </li>
-      <li class="nav-item" *ngIf="!loggedIn()">
+      <li class="nav-item" *ngIf="loggedIn()">
         <a class=" nav-link"  [routerLink]="['/socialmedia']" >Social</a>
       </li>
 
