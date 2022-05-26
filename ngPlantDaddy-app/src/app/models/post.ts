@@ -1,5 +1,3 @@
-import { ExecOptionsWithStringEncoding } from "child_process";
-import { title } from "process";
 
 export class Post {
 
@@ -15,7 +13,7 @@ export class Post {
 constructor(
   id: number = 0,
   title: string = "",
-  content: string,
+  content: string = "",
   imageUrl: string = "",
   createDate: string = "",
   updateDate: string = "",
