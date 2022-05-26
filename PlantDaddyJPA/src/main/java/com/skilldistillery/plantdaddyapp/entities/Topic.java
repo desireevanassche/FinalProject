@@ -29,7 +29,7 @@ public class Topic {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private int id;
 
 	private String name;
 
@@ -38,6 +38,7 @@ public class Topic {
 	@Column(name = "image_url")
 	private String imageUrl;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "topic")
 	private List<Post> post;
 

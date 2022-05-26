@@ -64,8 +64,8 @@ public class Post {
 	@JsonIgnore
 	@OneToMany(mappedBy="post")
 	private List<Comment> comments;
+
 	
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="topic_id")
 	private Topic topic;
