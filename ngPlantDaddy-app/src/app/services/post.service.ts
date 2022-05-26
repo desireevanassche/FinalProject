@@ -11,7 +11,8 @@ import { AuthService } from './auth.service';
 })
 export class PostService {
 
-  private baseUrl = environment.baseUrl + "api/users/posts";
+  private url = environment.baseUrl + "api/users/posts";
+  private url2 = environment.baseUrl + "api/posts";
 
   constructor(private http : HttpClient, private datePipe : DatePipe,private auth : AuthService) { }
 
@@ -29,7 +30,7 @@ export class PostService {
    //--------------  SHOW ALL POST  WITH LOGIN NOT NEEDED----------------
 
    public indexAllPosts(){
-    return this.http.get<Post[]>(this.baseUrl)
+    return this.http.get<Post[]>(this.url2)
     .pipe(
       catchError((err:any) => {
         return throwError("index posts has an error- KABOOM!")
@@ -40,7 +41,7 @@ export class PostService {
 
 // ----------------  SHOW ALL POST WITH LOGIN NEEDED ---------------
   public indexPosts(){
-  return this.http.get<Post[]>(this.baseUrl,this.getHttpOptions() )
+  return this.http.get<Post[]>(this.url,this.getHttpOptions() )
   .pipe(
     catchError((err:any) => {
       return throwError("index posts has an error- KABOOM!")
@@ -53,7 +54,7 @@ export class PostService {
 
 
   public createPost(newPost : Post){
-  return this.http.post<Post []>(this.baseUrl, newPost,this.getHttpOptions())
+  return this.http.post<Post>(this.url, newPost,this.getHttpOptions())
   .pipe(
     catchError((err:any)=>{
       console.log(err);
@@ -69,7 +70,7 @@ export class PostService {
 
 
   public updatePost(updatePost : Post, id:number){
-    return this.http.put<Post> (this.baseUrl + "/" + id, updatePost,this.getHttpOptions())
+    return this.http.put<Post> (this.url + "/" + id, updatePost,this.getHttpOptions())
     .pipe(
       catchError((err : any)=>{
 
@@ -83,8 +84,8 @@ export class PostService {
 
   //--------------   DISABLE POST ----------------
 
-  public disablePost(disablePost : Post, id :number){
-    return this.http.put<Post> (this.baseUrl + "/" + id, disablePost, this.getHttpOptions())
+  public disablePost(disablePost : Post){
+    return this.http.put<Post> (this.url, disablePost, this.getHttpOptions())
     .pipe(
       catchError((err:any)=>{
         console.log(err);
@@ -97,7 +98,7 @@ export class PostService {
   /// --------------------- SHOW POST ------------------
 
   public show(id:number){
-    return this.http.get<Post>(this.baseUrl + "/" + id,this.getHttpOptions())
+    return this.http.get<Post>(this.url + "/" + id,this.getHttpOptions())
     .pipe(
       catchError((err:any)=>{
         return throwError('Check this- KABOOM!')

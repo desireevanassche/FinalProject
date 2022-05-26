@@ -18,6 +18,7 @@ export class SocialmediaComponent implements OnInit {
   editPost: Post | null = null;
 
   posts: Post[] = [];
+  allPosts : Post [] =[];
 
   topics: Topic[] = [];
 
@@ -45,6 +46,7 @@ export class SocialmediaComponent implements OnInit {
     this.postSvc.indexPosts().subscribe({
       next: (data) => {
         this.posts = data;
+        this.displayAllPosts();
         this.topicSvc.indexTopics().subscribe({
           next: (topicData) => {
             this.topics = topicData;
@@ -82,8 +84,8 @@ export class SocialmediaComponent implements OnInit {
       (err) => console.error(err)
     );
   }
-  disablePost(post: Post, id: number) {
-    this.postSvc.disablePost(post, id).subscribe(
+  disablePost(post: Post) {
+    this.postSvc.disablePost(post).subscribe(
       (data) => {
         this.reload();
         this.editPost = null;
@@ -113,4 +115,23 @@ export class SocialmediaComponent implements OnInit {
       }
     );
   }
+
+displayAllPosts(){
+  this.postSvc.indexAllPosts().subscribe(
+    (data) => {
+       this.allPosts = data;
+      // if (!this.allPosts) {
+      //   this.router.navigateByUrl('/notFound');
+      // }
+    },
+    (err) => {
+      console.log(err);
+      // if (!this.allPosts) {
+      //   this.router.navigateByUrl('/notFound');
+      // }
+    }
+  )
+}
+
+
 }

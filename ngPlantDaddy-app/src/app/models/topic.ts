@@ -1,6 +1,6 @@
 export class Topic {
 
-  id: number | null;
+  id: number;
   description: string | null;
   imageUrl: string | null;
 
