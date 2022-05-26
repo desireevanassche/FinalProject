@@ -81,7 +81,7 @@ export class PostService {
 
 
 
-  //--------------   DISABLE HUNTS ----------------
+  //--------------   DISABLE POST ----------------
 
   public disablePost(disablePost : Post, id :number){
     return this.http.put<Post> (this.baseUrl + "/" + id, disablePost, this.getHttpOptions())
@@ -94,7 +94,16 @@ export class PostService {
     );
   }
 
+  /// --------------------- SHOW POST ------------------
 
+  public show(id:number){
+    return this.http.get<Post>(this.baseUrl + "/" + id,this.getHttpOptions())
+    .pipe(
+      catchError((err:any)=>{
+        return throwError('Check this- KABOOM!')
+      })
+    )
+  }
 
 
 }
