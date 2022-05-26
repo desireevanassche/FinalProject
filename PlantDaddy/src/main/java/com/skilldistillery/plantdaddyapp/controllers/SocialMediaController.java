@@ -55,7 +55,7 @@ public class SocialMediaController {
 		 if(newPost !=null) {
 			 res.setStatus(201);
 		 }
-	
+	 
 		return newPost;
 	}
 	
@@ -69,16 +69,11 @@ public class SocialMediaController {
 		return postServ.updatePost(principal.getName(),post, postId);
 	}
 	
-	@DeleteMapping("users/posts/{id}")
-	public void deletePost(@PathVariable("id") int postId, Principal principal, 
+	@PutMapping("users/posts/disable/{id}")
+	public Post deletePost(@PathVariable("id") int postId,@RequestBody Post post, Principal principal, 
 			HttpServletResponse res) {
-		boolean deleted = postServ.deletePost(principal.getName(), postId);
-		
-		
-		if(deleted == true) {
-			res.setStatus(200);
 
-		}
+		return postServ.disablePost(principal.getName(),post, postId);
 		
 	}
 	
