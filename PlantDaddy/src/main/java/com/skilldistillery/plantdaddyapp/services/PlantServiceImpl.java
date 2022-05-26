@@ -72,4 +72,9 @@ public class PlantServiceImpl implements PlantService {
 		return plantRepo.findByCareDifficultyLike(keyword);
 	}
 
+	@Override
+	public List<Plant> indexByUsername(String name) {
+		return plantRepo.findByUser_Username(name);
+	}
+
 }
