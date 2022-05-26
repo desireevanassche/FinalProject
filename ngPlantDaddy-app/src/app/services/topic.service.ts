@@ -9,7 +9,7 @@ import { catchError, throwError } from 'rxjs';
   providedIn: 'root',
 })
 export class TopicService {
-  private baseUrl = environment.baseUrl + 'api/topics';
+  private baseUrl = environment.baseUrl + 'api/posts';
 
   constructor(private http: HttpClient, private auth: AuthService) {}
 

@@ -10,7 +10,7 @@ export class Post {
   createDate: string | null;
   updateDate: string | null;
   active: boolean | null;
-  topic: Topic | null;
+  topic: Topic;
 
 
 constructor(
