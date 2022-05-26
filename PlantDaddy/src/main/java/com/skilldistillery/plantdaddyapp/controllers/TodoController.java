@@ -28,14 +28,14 @@ public class TodoController {
 		return todoServ.index(principal.getName());
 	}
 	
-//	@GetMapping("todos/{tid}")
-//	public Todo show(HttpServletResponse resp, @PathVariable Integer todoId, Principal principal) {
-//		Todo todo = todoServ.show(principal.getName(), todoId);
-//		if(todo == null) {
-//			resp.setStatus(404);
-//		}
-//		return todo;
-//	}
+	@GetMapping("todos/{tid}")
+	public Todo show(HttpServletResponse resp, @PathVariable Integer todoId, Principal principal) {
+		Todo todo = todoServ.show(principal.getName(), todoId);
+		if(todo == null) {
+			resp.setStatus(404);
+		}
+		return todo;
+	}
 //	
 //	@PostMapping("todos")
 //	public Todo create(@RequestBody Todo todo, Principal principal) {
