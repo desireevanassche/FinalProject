@@ -25,7 +25,7 @@ import { DatePipe } from '@angular/common';
     LogoutComponent,
     RegisterComponent,
     NavbarComponent,
-    SocialmediaComponent,
+    SocialmediaComponent
 
 
   ],
@@ -33,7 +33,7 @@ import { DatePipe } from '@angular/common';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,
+    FormsModule
 
 
   ],
