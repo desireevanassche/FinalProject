@@ -43,8 +43,8 @@ export class SocialmediaComponent implements OnInit {
     );
   }
 
-  addPost() {
-    this.postSvc.createPost(this.newPost).subscribe(
+  addPost(newPost : Post) {
+    this.postSvc.createPost(newPost).subscribe(
       (data) => {
         this.reload();
         this.newPost = new Post();
@@ -53,13 +53,13 @@ export class SocialmediaComponent implements OnInit {
     );
   }
 
-  updatePost(post: Post, id: number) {
-    this.postSvc.updatePost(post, id).subscribe(
+  updatePost(updatedPost: Post, id: number) {
+    this.postSvc.updatePost(updatedPost, id).subscribe(
       (data) => {
         this.reload();
-        this.editPost = null;
+        this.newPost = updatedPost;
         if (this.selected) {
-          this.selected = Object.assign({}, post);
+          this.selected = Object.assign({}, updatedPost);
         }
       },
       (err) => console.error(err)
