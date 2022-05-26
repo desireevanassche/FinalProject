@@ -3,7 +3,6 @@ package com.skilldistillery.plantdaddyapp.services;
 import java.util.List;
 
 import com.skilldistillery.plantdaddyapp.entities.Post;
-import com.skilldistillery.plantdaddyapp.entities.User;
 
 public interface PostService {
 
