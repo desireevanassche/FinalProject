@@ -80,5 +80,20 @@ export class SocialmediaComponent implements OnInit {
   displayPost(post: Post) {
     this.selected = post;
   }
-
+  show(id: number) {
+    this.postSvc.show(id).subscribe(
+      (data) => {
+        this.selected = data;
+        if (!this.selected) {
+          this.router.navigateByUrl('/notFound');
+        }
+      },
+      (err) => {
+        console.log(err);
+        if (!this.selected) {
+          this.router.navigateByUrl('/notFound');
+        }
+      }
+    );
+  }
 }
