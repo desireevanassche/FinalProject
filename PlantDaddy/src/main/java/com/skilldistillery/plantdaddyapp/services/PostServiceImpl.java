@@ -55,8 +55,13 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	public Post addPost(String username, Post post) {
-		// TODO Auto-generated method stub
-		return null;
+		User user = userRepo.findByUsername(username);
+		if(user !=null) {
+			post.setUser(user);
+		
+		}
+		
+		return postRepo.saveAndFlush(post);
 	}
 
 	@Override
@@ -75,10 +80,16 @@ public class PostServiceImpl implements PostService {
 		return existing;
 	}
 
+	
 	@Override
 	public boolean deletePost(String username, int postId) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean deleted = false;
+		Post deletedPost = postRepo.findByUser_UsernameAndId(username, postId);
+		if(deletedPost.isActive() && deletedPost != null) {
+			deleted = true;
+		}
+		
+		return deleted;
 	}
 
 
