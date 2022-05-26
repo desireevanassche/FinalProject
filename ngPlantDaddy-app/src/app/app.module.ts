@@ -16,6 +16,7 @@ import { DatePipe } from '@angular/common';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,8 @@ import { DatePipe } from '@angular/common';
     LogoutComponent,
     RegisterComponent,
     NavbarComponent,
-    SocialmediaComponent
+    SocialmediaComponent,
+
 
   ],
   imports: [

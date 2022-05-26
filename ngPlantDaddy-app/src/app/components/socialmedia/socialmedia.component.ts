@@ -1,7 +1,9 @@
+import { TopicService } from './../../services/topic.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from 'src/app/models/post';
 import { PostService } from 'src/app/services/post.service';
+import { Topic } from 'src/app/models/topic';
 
 @Component({
   selector: 'app-socialmedia',
@@ -17,12 +19,15 @@ export class SocialmediaComponent implements OnInit {
 
   posts: Post[] = [];
 
+  topics: Topic[] = [];
+
   selected: Post | null = null;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private postSvc: PostService
+    private postSvc: PostService,
+    private topicSvc: TopicService
   ) {}
 
   ngOnInit(): void {
@@ -37,13 +42,25 @@ export class SocialmediaComponent implements OnInit {
   }
 
   reload() {
-    this.postSvc.indexPosts().subscribe(
-      (data) => (this.posts = data),
-      (err) => console.error(err)
-    );
+    this.postSvc.indexPosts().subscribe({
+      next: (data) => {
+        this.posts = data;
+        this.topicSvc.indexTopics().subscribe({
+          next: (topicData) => {
+            this.topics = topicData;
+          },
+          error: (fail) => {
+            console.log(fail);
+          },
+        });
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    });
   }
 
-  addPost(newPost : Post) {
+  addPost(newPost: Post) {
     this.postSvc.createPost(newPost).subscribe(
       (data) => {
         this.reload();
