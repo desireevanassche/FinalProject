@@ -15,7 +15,7 @@ import com.skilldistillery.plantdaddyapp.entities.User;
 import com.skilldistillery.plantdaddyapp.services.AuthService;
 
 @RestController
-@CrossOrigin({"*", "http://localhost"})
+@CrossOrigin({"*", "http://localhost:8095"})
 public class AuthController {
 	@Autowired
 	private AuthService authService;

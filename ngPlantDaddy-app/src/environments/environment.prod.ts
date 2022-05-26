@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
 
-  baseUrl : "/PlantDaddy"
+  baseUrl : "/PlantDaddy/"
 };
