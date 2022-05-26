@@ -1,0 +1,18 @@
+body{
+  margin: 0 0;
+}
+
+button {
+  background-color: #445824;
+  border-color: #445824;
+}
+
+button:hover {
+background-color: #627F3B;
+border-color: #627F3B;
+}
+
+#registrationForm {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}

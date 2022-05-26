@@ -12,6 +12,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './services/auth.service';
 import { SocialmediaComponent } from './components/socialmedia/socialmedia.component';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -30,11 +31,12 @@ import { SocialmediaComponent } from './components/socialmedia/socialmedia.compo
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,
+    FormsModule
+
 
   ],
   providers: [
-
+    DatePipe,
     AuthService
 
   ],
