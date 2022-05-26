@@ -25,18 +25,19 @@ import javax.persistence.ManyToOne;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Todo {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	
-	private String name;  
-	
-	private String description; 
-	
+	private int id;
+
+	private String name;
+
+	private String description;
+
 	@Column(name = "due_date")
 	private LocalDate dueDate;
 
@@ -47,27 +48,22 @@ public class Todo {
 	@CreationTimestamp
 	private LocalDateTime createdAt;
 
-	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name="user_plant_id")
+	@JsonIgnoreProperties({"todos"})
+	@JoinColumn(name = "user_plant_id")
 	private UserPlant userPlant;
-	
-	
-	
-	
+
 	public Todo() {
 		super();
 	}
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
-
-
 
 	public String getName() {
 		return name;
@@ -108,10 +104,6 @@ public class Todo {
 	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
 	}
-	
-	
-	
-	
 
 	public UserPlant getUserPlant() {
 		return userPlant;
@@ -143,11 +135,5 @@ public class Todo {
 		return "Todo [id=" + id + ", name=" + name + ", description=" + description + ", dueDate=" + dueDate
 				+ ", completeDate=" + completeDate + ", createdAt=" + createdAt + "]";
 	}
-
-	
-
-
-	
-	
 
 }

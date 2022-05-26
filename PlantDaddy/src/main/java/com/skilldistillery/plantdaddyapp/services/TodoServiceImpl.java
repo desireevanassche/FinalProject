@@ -26,10 +26,8 @@ public class TodoServiceImpl implements TodoService {
 	}
 	
 
-
-
 	@Override
-	public Todo show(String username, Integer todoId) {
+	public Todo show(String username, int todoId) {
 		Optional<Todo> op = todoRepo.findById(todoId);
 		if(op.isPresent()) {
 			Todo result = op.get();
@@ -43,15 +41,15 @@ public class TodoServiceImpl implements TodoService {
 	@Override
 	public Todo create(String username, Todo todo) {
 		User user = userRepo.findByUsername(username);
+		System.out.println(user);
 		if (user != null) {
 			todo.getUserPlant().setUser(user);
-			return todoRepo.saveAndFlush(todo);
 		}
-		return null;
+		return todoRepo.saveAndFlush(todo);
 	}
 
 	@Override
-	public Todo update(String username, Integer todoId, Todo todo) {
+	public Todo update(String username, int todoId, Todo todo) {
 		Optional<Todo> op = todoRepo.findById(todoId);
 		if(op.isPresent()) {
 			Todo result = op.get();
@@ -66,7 +64,7 @@ public class TodoServiceImpl implements TodoService {
 	}
 
 	@Override
-	public boolean destroy(String username, Integer todoId) {
+	public boolean destroy(String username, int todoId) {
 		Optional<Todo> op = todoRepo.findById(todoId);
 		if(op.isPresent()) {
 			Todo result = op.get();
