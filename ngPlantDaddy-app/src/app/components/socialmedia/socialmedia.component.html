@@ -37,9 +37,9 @@
 
                   <div class="d-flex flex-row align-items-center mb-4">
 
-                      <select name="topic">
+                      <select [(ngModel)]="newPost.topic.id" name="topic">
 
-                        <option [(ngModel)]="newPost.topic" value="1">Plant</option>
+                        <option  *ngFor="let topic of topics" value="{{topic.id}}">{{topic.description}}</option>
 
                     </select>
                       <!-- <div class="dropdown-divider"></div> -->

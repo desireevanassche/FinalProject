@@ -53,7 +53,7 @@ export class PostService {
 
 
   public createPost(newPost : Post){
-  return this.http.post<Post []>(this.baseUrl, newPost,this.getHttpOptions())
+  return this.http.post<Post>(this.baseUrl, newPost,this.getHttpOptions())
   .pipe(
     catchError((err:any)=>{
       console.log(err);
