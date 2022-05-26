@@ -15,5 +15,7 @@ public interface PlantRepository extends JpaRepository<Plant, Integer> {
 	List<Plant> findByCareDifficultyLike(@Param("k") String keyword);
 
 	Plant findByUser_UsernameAndId(String username, int postId);
+
+	List<Plant> findByUser_Username(String name);
 	
 }

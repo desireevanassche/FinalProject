@@ -20,4 +20,6 @@ public interface PlantService {
 
 	List<Plant> listPlantByDifficulty(String keyword);
 
+	List<Plant> indexByUsername(String name);
+
 }
