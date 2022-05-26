@@ -57,17 +57,19 @@ public class PlantController {
 			HttpServletResponse res) {
 		return plantServ.deactivate(plant, plantId, principal.getName());
 	}
-	
+
 	@GetMapping("plants/search/{keyword}")
-	public List<Plant> findByNameOrDescription(@PathVariable String keyword){
+	public List<Plant> findByNameOrDescription(@PathVariable String keyword) {
 		return plantServ.listPlantByKeyword(keyword);
 	}
+
 	@GetMapping("plants/search/difficulty/{keyword}")
-	public List<Plant> findByDifficulty(@PathVariable String keyword){
+	public List<Plant> findByDifficulty(@PathVariable String keyword) {
 		return plantServ.listPlantByDifficulty(keyword);
 	}
+
 	@GetMapping("plants/search/users/{username}")
-	public List<Plant> findByUsername(@PathVariable String username){
+	public List<Plant> findByUsername(@PathVariable String username) {
 		return plantServ.indexByUsername(username);
 	}
 
