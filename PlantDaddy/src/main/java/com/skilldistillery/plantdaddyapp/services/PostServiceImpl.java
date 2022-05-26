@@ -62,7 +62,7 @@ public class PostServiceImpl implements PostService {
 		}
 		
 		return postRepo.saveAndFlush(post);
-	}
+	} 
 
 	@Override
 	public Post updatePost(String username,Post post, int postId) {
