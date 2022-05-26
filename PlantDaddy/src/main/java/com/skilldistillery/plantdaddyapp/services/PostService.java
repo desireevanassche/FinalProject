@@ -7,6 +7,8 @@ import com.skilldistillery.plantdaddyapp.entities.User;
 
 public interface PostService {
 
+	
+	
 	public List<Post> indexAll();
 	
 	public List<Post> indexByUsername(String username);

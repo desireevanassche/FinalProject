@@ -77,7 +77,7 @@ public class SocialMediaController {
 		
 		if(deleted == true) {
 			res.setStatus(200);
-			
+
 		}
 		
 	}
