@@ -65,7 +65,7 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public Post updatePost(String username, int postId, Post post) {
+	public Post updatePost(String username,Post post, int postId) {
 		
 		Post existing = postRepo.findByUser_UsernameAndId(username, postId); 
 	 
