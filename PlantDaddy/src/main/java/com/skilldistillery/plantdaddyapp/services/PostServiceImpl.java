@@ -88,9 +88,7 @@ public class PostServiceImpl implements PostService {
 		Post existing = postRepo.findByUser_UsernameAndId(username, postId); 
 	 
 		if(existing != null) {
-			existing.setContent(post.getContent());
-			existing.setTitle(post.getTitle());
-			existing.setImageUrl(post.getImageUrl());
+			
 			existing.setActive(post.getActive());
 			postRepo.saveAndFlush(existing);
 		} 

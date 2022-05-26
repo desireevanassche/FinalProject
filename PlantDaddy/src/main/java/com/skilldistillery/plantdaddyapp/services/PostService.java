@@ -18,7 +18,9 @@ public interface PostService {
 	
 	public Post updatePost(String username,Post post, int postId);
 	
-	public boolean deletePost(String username, int postId);
+//	public boolean deletePost(String username, int postId);
+
+	Post disablePost(String username, Post post, int postId);
 	
 	
 }
