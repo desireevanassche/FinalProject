@@ -4,11 +4,9 @@ import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,8 +15,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skilldistillery.plantdaddyapp.entities.Comment;
 import com.skilldistillery.plantdaddyapp.entities.Post;
+import com.skilldistillery.plantdaddyapp.entities.Topic;
+import com.skilldistillery.plantdaddyapp.services.CommentService;
 import com.skilldistillery.plantdaddyapp.services.PostService;
+import com.skilldistillery.plantdaddyapp.services.TopicService;
 
 @RestController
 @RequestMapping("api")
@@ -29,6 +31,13 @@ public class SocialMediaController {
 	
 	@Autowired
 	private PostService postServ;
+	
+	@Autowired 
+	private TopicService topicServ;
+	
+	@Autowired 
+	private CommentService comServ;
+	
 	
 //	----------------- POST CONTROLLERS ----------------------
 	
@@ -89,6 +98,51 @@ public class SocialMediaController {
 	}
 	
 
+//	----------------- TOPIC CONTROLLERS -----------------------
+	
+	
+	// TESTED IN POSTMAN AND PASSES http://localhost:8095/api/topics
+	@GetMapping("topics")
+	public List<Topic> indexAllTopics(HttpServletResponse res){
+		
+		return topicServ.findAll();
+		
+	}
+	
+	
+	// TESTED IN POSTMAN AND PASSES http://localhost:8095/api/topics/Indoor
+	@GetMapping("topics/{name}")
+	public Topic findTopicByUsername(@PathVariable("name") String name, HttpServletResponse res) {
+		
+		
+		return topicServ.findByName(name);
+	}
+	
+//	------------------- COMMENT CONTROLLERS ------------------
+	
+	
+	
+	// TESTED IN POSTMAN AND PASSES http://localhost:8095/api/comments/1
+	@GetMapping("comments/{postId}")
+	public List<Comment> indexComments(@PathVariable("postId")int postId,
+			HttpServletResponse res){
+		
+		return comServ.findAllByPostId(postId);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }
