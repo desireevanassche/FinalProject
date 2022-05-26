@@ -33,7 +33,7 @@ public class PlantServiceImpl implements PlantService {
 
 	@Override
 	public Plant updatePlant(Plant plant, int plantid, String username) {
-		
+
 		Plant managed = plantRepo.findByUser_UsernameAndId(username, plantid);
 		if (managed != null) {
 			managed.setCommonName(plant.getCommonName());
@@ -59,7 +59,6 @@ public class PlantServiceImpl implements PlantService {
 		plantRepo.saveAndFlush(deactivate);
 		return deactivate;
 	}
-
 
 	@Override
 	public List<Plant> listPlantByKeyword(String keyword) {

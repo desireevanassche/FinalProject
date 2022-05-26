@@ -1,5 +1,5 @@
-import { ExecOptionsWithStringEncoding } from "child_process";
-import { title } from "process";
+import { Topic } from "./topic";
+
 
 export class Post {
 
@@ -10,16 +10,19 @@ export class Post {
   createDate: string | null;
   updateDate: string | null;
   active: boolean | null;
+  topic: Topic;
 
 
 constructor(
   id: number = 0,
   title: string = "",
-  content: string,
+  content: string = "",
   imageUrl: string = "",
   createDate: string = "",
   updateDate: string = "",
-  active: boolean = false
+  active: boolean = false,
+  topic : Topic = new Topic()
+
 
 
 ){
@@ -31,6 +34,8 @@ this.imageUrl = imageUrl
 this.createDate = createDate;
 this.updateDate =updateDate;
 this.active = active;
+this.topic = topic;
+
 
 
 }

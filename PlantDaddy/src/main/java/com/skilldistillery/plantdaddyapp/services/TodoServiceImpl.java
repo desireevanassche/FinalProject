@@ -1,13 +1,13 @@
 package com.skilldistillery.plantdaddyapp.services;
 
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.Optional;
+
 import com.skilldistillery.plantdaddyapp.entities.Todo;
 import com.skilldistillery.plantdaddyapp.entities.User;
-import com.skilldistillery.plantdaddyapp.entities.UserPlant;
 import com.skilldistillery.plantdaddyapp.repositories.TodoRepository;
 import com.skilldistillery.plantdaddyapp.repositories.UserRepository;
 

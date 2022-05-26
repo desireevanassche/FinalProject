@@ -11,7 +11,9 @@ import { RegisterComponent } from './components/register/register.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './services/auth.service';
-import { PostComponent } from './components/post/post.component';
+import { SocialmediaComponent } from './components/socialmedia/socialmedia.component';
+import { DatePipe } from '@angular/common';
+
 
 
 
@@ -23,18 +25,20 @@ import { PostComponent } from './components/post/post.component';
     LogoutComponent,
     RegisterComponent,
     NavbarComponent,
-    PostComponent
+    SocialmediaComponent
+
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,
+    FormsModule
+
 
   ],
   providers: [
-
+    DatePipe,
     AuthService
 
   ],

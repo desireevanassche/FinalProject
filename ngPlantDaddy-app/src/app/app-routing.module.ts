@@ -1,3 +1,4 @@
+import { SocialmediaComponent } from './components/socialmedia/socialmedia.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
@@ -10,7 +11,8 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'logout', component: LogoutComponent }
+  { path: 'logout', component: LogoutComponent },
+  { path: 'socialmedia', component: SocialmediaComponent }
 ];
 
 @NgModule({

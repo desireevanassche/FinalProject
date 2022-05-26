@@ -3,7 +3,6 @@ package com.skilldistillery.plantdaddyapp.services;
 import java.util.List;
 
 import com.skilldistillery.plantdaddyapp.entities.Post;
-import com.skilldistillery.plantdaddyapp.entities.User;
 
 public interface PostService {
 
@@ -19,7 +18,9 @@ public interface PostService {
 	
 	public Post updatePost(String username,Post post, int postId);
 	
-	public boolean deletePost(String username, int postId);
+//	public boolean deletePost(String username, int postId);
+
+	Post disablePost(String username, Post post, int postId);
 	
 	
 }
