@@ -26,17 +26,17 @@ public class PlantController {
 	@Autowired
 	PlantService plantServ;
 
-	@GetMapping("plant")
+	@GetMapping("plants")
 	public List<Plant> index() {
 		return plantServ.index();
 	}
 
-	@GetMapping
+	@GetMapping("users/plants")
 	public List<Plant> indexByUser(Principal principal, HttpServletResponse res) {
 		return plantServ.indexByUsername(principal.getName());
 	}
 
-	@PostMapping
+	@PostMapping("users/plants")
 	public Plant createPlant(@RequestBody Plant plant, HttpServletResponse res, Principal pricipal) {
 		Plant newPlant = plantServ.addPlant(plant, pricipal.getName());
 		if (newPlant != null) {
@@ -45,12 +45,15 @@ public class PlantController {
 		return newPlant;
 	}
 
-	@PutMapping
-	public Plant updatePlant(@PathVariable int id, @RequestBody Plant plant, HttpServletResponse res, Principal principal ) {
-		
-		
-		
-		
+	@PutMapping("users/plants/{id}")
+	public Plant updatePlant(@PathVariable int id, @RequestBody Plant plant, HttpServletResponse res,
+			Principal principal) {
+		return plantServ.updatePlant(plant, id, principal.getName());
+
+	}
+	
+	@PutMapping("users/plants/disable/{id}")
+	public Plant disablePlant(@PathVariable("id") int plantId, @RequestBody Plant plant, Principal principal, HttpServletResponse res) {
 		
 		return plant;
 		
