@@ -3,9 +3,12 @@ package com.skilldistillery.plantdaddyapp.controllers;
 import java.security.Principal;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,14 +28,14 @@ public class TodoController {
 		return todoServ.index(principal.getName());
 	}
 	
-//	@GetMapping("todos/{tid}")
-//	public Todo show(HttpServletResponse resp, @PathVariable Integer todoId, Principal principal) {
-//		Todo todo = todoServ.show(principal.getName(), todoId);
-//		if(todo == null) {
-//			resp.setStatus(404);
-//		}
-//		return todo;
-//	}
+	@GetMapping("todos/{tid}")
+	public Todo show(HttpServletResponse resp, @PathVariable Integer todoId, Principal principal) {
+		Todo todo = todoServ.show(principal.getName(), todoId);
+		if(todo == null) {
+			resp.setStatus(404);
+		}
+		return todo;
+	}
 //	
 //	@PostMapping("todos")
 //	public Todo create(@RequestBody Todo todo, Principal principal) {
