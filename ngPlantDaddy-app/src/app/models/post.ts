@@ -1,3 +1,4 @@
+import { Topic } from "./topic";
 
 
 export class Post {
@@ -9,6 +10,7 @@ export class Post {
   createDate: string | null;
   updateDate: string | null;
   active: boolean | null;
+  topic: Topic | null;
 
 
 constructor(
@@ -18,7 +20,9 @@ constructor(
   imageUrl: string = "",
   createDate: string = "",
   updateDate: string = "",
-  active: boolean = false
+  active: boolean = false,
+  topic : Topic = new Topic()
+
 
 
 ){
@@ -30,6 +34,8 @@ this.imageUrl = imageUrl
 this.createDate = createDate;
 this.updateDate =updateDate;
 this.active = active;
+this.topic = topic;
+
 
 
 }
