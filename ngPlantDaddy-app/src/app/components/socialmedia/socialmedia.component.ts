@@ -37,35 +37,48 @@ export class SocialmediaComponent implements OnInit {
   }
 
   reload() {
-    this.postSvc.index().subscribe(
-      (data) => (this.todos = data),
+    this.postSvc.indexPosts().subscribe(
+      (data) => (this.posts = data),
       (err) => console.error(err)
     );
   }
-  show(id: number) {
-    this.postSvc.show(id).subscribe(
+
+  addPost() {
+    this.postSvc.createPost(this.newPost).subscribe(
       (data) => {
-        this.selected = data;
-        if (!this.selected) {
-          this.router.navigateByUrl('/notFound');
-        }
+        this.reload();
+        this.newPost = new Post();
       },
-      (err) => {
-        console.log(err);
-        if (!this.selected) {
-          this.router.navigateByUrl('/notFound');
-        }
-      }
+      (err) => console.error(err)
     );
   }
-}
-addPost() {
 
-}
-
-updatePost() {
-
-}
-deletePost() {
+  updatePost(post: Post, id: number) {
+    this.postSvc.updatePost(post, id).subscribe(
+      (data) => {
+        this.reload();
+        this.editPost = null;
+        if (this.selected) {
+          this.selected = Object.assign({}, post);
+        }
+      },
+      (err) => console.error(err)
+    );
+  }
+  disablePost(post: Post, id: number) {
+    this.postSvc.disablePost(post, id).subscribe(
+      (data) => {
+        this.reload();
+        this.editPost = null;
+        if (this.selected) {
+          this.selected = Object.assign({}, post);
+        }
+      },
+      (err) => console.error(err)
+    );
+  }
+  displayPost(post: Post) {
+    this.selected = post;
+  }
 
 }
