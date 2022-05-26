@@ -19,6 +19,7 @@ public class PlantServiceImpl implements PlantService {
 		return plantRepo.findAll();
 	}
 
+
 	@Override
 	public Plant findById(int id) {
 		return plantRepo.findById(id).get();
