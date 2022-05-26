@@ -17,6 +17,9 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+
 /* +-------------------+---------------+------+-----+---------+----------------+
 | Field             | Type          | Null | Key | Default | Extra          |
 +-------------------+---------------+------+-----+---------+----------------+
@@ -73,7 +76,9 @@ public class Plant {
 	
 	private boolean active;
 	
+	
 	@ManyToOne
+	@JsonIgnoreProperties({"plants"})
 	@JoinColumn(name="created_by_id")
 	private User user; 
 	
@@ -83,6 +88,7 @@ public class Plant {
 	
 	@JsonIgnore
 	@ManyToMany
+	@JsonIgnoreProperties({"plants"})
 	@JoinTable(name="plant_has_plant_category",
 	joinColumns = @JoinColumn(name="plant_id"),
 	inverseJoinColumns = @JoinColumn(name="plant_category_id"))
