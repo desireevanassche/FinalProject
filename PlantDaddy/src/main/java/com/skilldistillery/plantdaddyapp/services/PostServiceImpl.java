@@ -83,15 +83,18 @@ public class PostServiceImpl implements PostService {
 
 	
 	@Override
-	public boolean deletePost(String username, int postId) {
-		boolean deleted = false;
-		Post deletedPost = postRepo.findByUser_UsernameAndId(username, postId);
-		if(deletedPost != null) {
-			postRepo.deleteById(postId);;
-			deleted = true;
-		}
+	public Post disablePost(String username,Post post, int postId) {
 		
-		return deleted;
+		Post existing = postRepo.findByUser_UsernameAndId(username, postId); 
+	 
+		if(existing != null) {
+			
+			existing.setActive(post.getActive());
+			postRepo.saveAndFlush(existing);
+		} 
+		
+		
+		return existing;
 	}
 
 
