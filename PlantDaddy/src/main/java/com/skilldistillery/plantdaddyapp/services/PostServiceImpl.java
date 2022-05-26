@@ -71,8 +71,9 @@ public class PostServiceImpl implements PostService {
 	 
 		if(existing != null) {
 			existing.setContent(post.getContent());
-			existing.setContent(post.getTitle());
-			existing.setContent(post.getImageUrl());
+			existing.setTitle(post.getTitle());
+			existing.setImageUrl(post.getImageUrl());
+			existing.setActive(post.getActive());
 			postRepo.saveAndFlush(existing);
 		}
 		
@@ -85,7 +86,8 @@ public class PostServiceImpl implements PostService {
 	public boolean deletePost(String username, int postId) {
 		boolean deleted = false;
 		Post deletedPost = postRepo.findByUser_UsernameAndId(username, postId);
-		if(deletedPost.isActive() && deletedPost != null) {
+		if(deletedPost != null) {
+			postRepo.deleteById(postId);;
 			deleted = true;
 		}
 		

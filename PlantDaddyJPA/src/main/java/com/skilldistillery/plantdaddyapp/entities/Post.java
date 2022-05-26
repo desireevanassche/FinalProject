@@ -126,14 +126,14 @@ public class Post {
 		this.updatedDate = updatedDate;
 	}
 
-	public boolean isActive() {
+
+	public boolean getActive() {
 		return active;
 	}
 
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-	
 
 	public User getUser() {
 		return user;
