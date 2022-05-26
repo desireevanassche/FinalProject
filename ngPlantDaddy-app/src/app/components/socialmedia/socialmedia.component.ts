@@ -37,10 +37,48 @@ export class SocialmediaComponent implements OnInit {
   }
 
   reload() {
-    this.postSvc.index().subscribe(
-      (data) => (this.todos = data),
+    this.postSvc.indexPosts().subscribe(
+      (data) => (this.posts = data),
       (err) => console.error(err)
     );
+  }
+
+  addPost() {
+    this.postSvc.createPost(this.newPost).subscribe(
+      (data) => {
+        this.reload();
+        this.newPost = new Post();
+      },
+      (err) => console.error(err)
+    );
+  }
+
+  updatePost(post: Post, id: number) {
+    this.postSvc.updatePost(post, id).subscribe(
+      (data) => {
+        this.reload();
+        this.editPost = null;
+        if (this.selected) {
+          this.selected = Object.assign({}, post);
+        }
+      },
+      (err) => console.error(err)
+    );
+  }
+  disablePost(post: Post, id: number) {
+    this.postSvc.disablePost(post, id).subscribe(
+      (data) => {
+        this.reload();
+        this.editPost = null;
+        if (this.selected) {
+          this.selected = Object.assign({}, post);
+        }
+      },
+      (err) => console.error(err)
+    );
+  }
+  displayPost(post: Post) {
+    this.selected = post;
   }
   show(id: number) {
     this.postSvc.show(id).subscribe(
@@ -58,14 +96,4 @@ export class SocialmediaComponent implements OnInit {
       }
     );
   }
-}
-addPost() {
-
-}
-
-updatePost() {
-
-}
-deletePost() {
-
 }
