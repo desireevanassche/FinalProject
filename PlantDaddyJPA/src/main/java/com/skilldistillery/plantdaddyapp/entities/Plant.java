@@ -16,10 +16,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-<<<<<<< HEAD
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-=======
->>>>>>> f4989277bb935dab092a0aa065bbf18e333a1ae8
+
 
 /* +-------------------+---------------+------+-----+---------+----------------+
 | Field             | Type          | Null | Key | Default | Extra          |
@@ -83,12 +82,8 @@ public class Plant {
 	@JoinColumn(name="created_by_id")
 	private User user; 
 	
-<<<<<<< HEAD
-=======
 	@JsonIgnore
->>>>>>> f4989277bb935dab092a0aa065bbf18e333a1ae8
 	@OneToMany(mappedBy="plant")
-	@JsonIgnore
 	private List<UserPlant> plants;
 	
 	@JsonIgnore
@@ -101,7 +96,6 @@ public class Plant {
 	
 	@JsonIgnore
 	@ManyToMany
-	@JsonIgnore
 	@JoinTable(name="plant_has_potting_mix",
 	joinColumns = @JoinColumn(name="plant_id"),
 	inverseJoinColumns = @JoinColumn(name="potting_mix_id"))
@@ -109,7 +103,6 @@ public class Plant {
 	
 	@JsonIgnore
 	@ManyToMany
-	@JsonIgnore
 	@JoinTable(name="store_has_plant",
 	joinColumns = @JoinColumn(name="plant_id"),
 	inverseJoinColumns = @JoinColumn(name="store_id"))
