@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.plantdaddyapp.entities.Comment;
+import com.skilldistillery.plantdaddyapp.entities.Post;
 import com.skilldistillery.plantdaddyapp.repositories.CommentRepository;
 import com.skilldistillery.plantdaddyapp.repositories.PostRepository;
 
@@ -30,20 +31,28 @@ public class CommentServiceImpl implements CommentService {
 		
 		
 		return comments;
-	}
-
-	@Override
-	public Comment createComment(Comment comment, int postId) {
 		
-		return null;
+		
+	}
+
+	@Override
+	public Comment createComment(Comment comment, 
+			int postId,
+			String username) {
+		Post post = postRepo.findByUser_UsernameAndId(username, postId);
+		
+		if(post != null) {
+			comment.setPost(post);
+		}
+		
+		return comRepo.saveAndFlush(comment);
 	}
 
 	
 	
 	
 	@Override
-	public boolean deleteComment(int postId, int commentId) {
-		// TODO Auto-generated method stub
+	public boolean deleteComment(int postId, int commentId, String username) {
 		return false;
 	}
 	
