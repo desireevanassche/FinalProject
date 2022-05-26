@@ -55,7 +55,7 @@ public class SocialMediaController {
 		 if(newPost !=null) {
 			 res.setStatus(201);
 		 }
-	
+	 
 		return newPost;
 	}
 	
