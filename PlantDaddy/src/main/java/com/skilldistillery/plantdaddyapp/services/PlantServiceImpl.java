@@ -27,7 +27,6 @@ public class PlantServiceImpl implements PlantService {
 
 	@Override
 	public Plant addPlant(Plant plant, String username) {
-
 		plant = plantRepo.saveAndFlush(plant);
 		return plant;
 	}
@@ -52,12 +51,12 @@ public class PlantServiceImpl implements PlantService {
 	}
 
 	@Override
-	public Plant deactivate(Plant plant, int id, String username) {
-		Plant deactivate = plantRepo.findById(id).get();
+	public Plant deactivate(Plant plant, int plantid, String username) {
+		Plant deactivate = plantRepo.findByUser_UsernameAndId(username, plantid);
 		if (deactivate != null) {
 			deactivate.setActive(false);
+			plantRepo.saveAndFlush(deactivate);
 		}
-		plantRepo.saveAndFlush(deactivate);
 		return deactivate;
 	}
 
