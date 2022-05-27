@@ -48,18 +48,40 @@ public class BlogController {
 		return blogServ.create(principal.getName(), blog);
 	}
 
-	@PutMapping("blogs/{tid}")
+	@PutMapping("blogs/{id}")
 	public Blog update(Principal principal, @RequestBody Blog blog, @PathVariable int id) {
 		return blogServ.update(principal.getName(), blog, id);
 	}
 
-//	@DeleteMapping("todos/{tid}")
-//	public boolean delete(HttpServletResponse resp, @PathVariable("tid") int todoId, Principal principal) {
-//		if (blogServ.destroy(principal.getName(), todoId)) {
-//			resp.setStatus(204);
-//		} else {
-//			resp.setStatus(404);
-//		}
-//	}
+	@DeleteMapping("blogs/{id}")
+	public void delete(HttpServletResponse resp, @PathVariable int id, Principal principal) {
+		if (blogServ.deleteBlogArticleById(principal.getName(), id)) {
+			resp.setStatus(204);
+		} else {
+			resp.setStatus(404);
+		}
+	}
+	
+	@GetMapping("blogs/title/search/{keyword}")
+	public List<Blog> findByTitle(@PathVariable String keyword, HttpServletResponse res) {
+		
+		List<Blog> projects = blogServ.findProjectWithTitleLike(keyword);
+		
+		if (projects == null ) {
+			res.setStatus(404);
+		}
+		return projects; 
+	}
+	@GetMapping("blogs/content/search/{keyword}")
+	public List<Blog> findByContent(@PathVariable String keyword, HttpServletResponse res) {
+		
+		List<Blog> projects = blogServ.findProjectWithContentLike(keyword);
+		
+		if (projects == null ) {
+			res.setStatus(404);
+		}
+		return projects; 
+	}
+	
 
 }
