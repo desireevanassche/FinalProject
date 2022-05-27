@@ -21,7 +21,7 @@ public class Store {
 	private int id;
 	
 	private String name;
-
+ 
 	
 	@Column(name="image_url")
 	private String imageUrl;
