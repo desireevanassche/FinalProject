@@ -33,13 +33,9 @@ export class PlantService {
     );
   }
   create(newPlant: Plant) {
-    const httpOptions = {
-      headers: {
-        'Content-type': 'application/json',
-        Authorization: 'Basic ' + this.auth.getCredentials(),
-      },
-    };
-    return this.http.post<Plant>(this.url2, newPlant, httpOptions).pipe(
+
+    return this.http.post<Plant>(this.url2, newPlant, this.getHttpOptions())
+    .pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('PlantService: error creating Plant');
@@ -54,7 +50,7 @@ export class PlantService {
       },
     };
     return this.http
-      .put<Plant>(this.url2 + updatePlant.id, updatePlant, httpOptions)
+      .put<Plant>(this.url2 + "/" + updatePlant.id, updatePlant, httpOptions)
       .pipe(
         catchError((err: any) => {
           console.log(err);

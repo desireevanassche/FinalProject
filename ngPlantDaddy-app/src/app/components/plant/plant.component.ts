@@ -102,8 +102,11 @@ export class PlantComponent implements OnInit {
       (err) => console.error(err)
     );
   }
-  displayAddForm(){
-    this.selected = null;
+  setPlant(plant: Plant) {
+    this.selected = plant;
+  }
+  setEditPlant(){
+    this.editPlant = Object.assign({}, this.selected);
   }
 
 }
