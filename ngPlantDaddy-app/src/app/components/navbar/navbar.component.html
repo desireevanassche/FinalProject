@@ -28,9 +28,6 @@
         <a class=" nav-link"  [routerLink]="['/blog']" >Account</a>
       </li>
 
-
-
-
       <li class="nav-item dropdown" *ngIf="loggedIn()">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           My Plants
@@ -40,7 +37,7 @@
 
 
           <!-- <div class="dropdown-divider"></div> -->
-          <a class="dropdown-item" [routerLink]="['/hunttrips']">My Garden</a>
+          <a class="dropdown-item" [routerLink]="['/plant']">My Garden</a>
           <!-- <div class="dropdown-divider"></div> -->
           <a class="dropdown-item" [routerLink]="['/hunttrips']">Gallery</a>
 
@@ -54,10 +51,9 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
 
-          <!-- <div class="dropdown-divider"></div> -->
-          <a class="dropdown-item" [routerLink]="['/hunttrips']">Plants By Type</a>
-          <!-- <div class="dropdown-divider"></div> -->
-          <a class="dropdown-item" [routerLink]="['/hunttrips']">Plants By Name</a>
+          <a class="dropdown-item" [routerLink]="['/plants']">Plants By Type</a>
+          <a class="dropdown-item" [routerLink]="['/plants']">Plants By Name</a>
+          <a class="dropdown-item" [routerLink]="['/plants']">All Plants</a>
 
 
         </div>
