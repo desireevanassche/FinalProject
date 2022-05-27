@@ -63,7 +63,7 @@ public class PlantServiceImpl implements PlantService {
 	@Override
 	public List<Plant> listPlantByKeyword(String keyword) {
 		keyword = "%" + keyword + "%";
-		return plantRepo.findByCommonNameOrDescriptionLike(keyword, keyword);
+		return plantRepo.findByCommonNameLikeOrDescriptionLike(keyword, keyword);
 	}
 
 	@Override
