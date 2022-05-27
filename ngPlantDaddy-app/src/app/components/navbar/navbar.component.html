@@ -24,20 +24,42 @@
         <a class=" nav-link"  [routerLink]="['/blog']" >Blog</a>
       </li>
 
+      <li class="nav-item" *ngIf="loggedIn()">
+        <a class=" nav-link"  [routerLink]="['/blog']" >Account</a>
+      </li>
+
 
 
 
       <li class="nav-item dropdown" *ngIf="loggedIn()">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          My Hunts
+          My Plants
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+
+
+          <!-- <div class="dropdown-divider"></div> -->
+          <a class="dropdown-item" [routerLink]="['/hunttrips']">My Garden</a>
+          <!-- <div class="dropdown-divider"></div> -->
+          <a class="dropdown-item" [routerLink]="['/hunttrips']">Gallery</a>
+
+
+        </div>
+      </li>
+      <li class="nav-item dropdown" *ngIf="loggedIn()">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         Plant Library
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
 
           <!-- <div class="dropdown-divider"></div> -->
-          <a class="dropdown-item" [routerLink]="['/hunttrips']">Past Hunts</a>
+          <a class="dropdown-item" [routerLink]="['/hunttrips']">Plants By Type</a>
           <!-- <div class="dropdown-divider"></div> -->
-          <a class="dropdown-item" [routerLink]="['/hunttrips']">Upcoming Hunts</a>
+          <a class="dropdown-item" [routerLink]="['/hunttrips']">Plants By Name</a>
+
+
         </div>
       </li>
       <li class="nav-item" *ngIf="loggedIn()" >
