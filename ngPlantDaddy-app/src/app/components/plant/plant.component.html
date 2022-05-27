@@ -53,6 +53,7 @@ Image: <input type="text" name="imageUrl" [(ngModel)]="newPlant.imageUrl">
   <p>{{selected.careDifficulty}}</p>
   <p>{{selected.description}}</p>
   <button (click)="setEditPlant()">Edit</button>
+  <button (click)="deactivate(selected, selected.id)">Deactivate</button>
   <button (click)="selected = null">Back</button>
   </div>
 
@@ -68,7 +69,7 @@ Image: <input type="text" name="imageUrl" [(ngModel)]="newPlant.imageUrl">
       <br>
       Image URL: <input type="text" name="image url" [(ngModel)]="editPlant.imageUrl">
       <br>
-      <button (click)="updatePlant(editPlant)">Save</button>
+      <button (click)="updatePlant(editPlant, editPlant.id)">Save</button>
       <br>
       <button (click)="editPlant = null">Cancel</button>
       <br>

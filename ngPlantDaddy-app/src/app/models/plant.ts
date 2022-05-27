@@ -11,7 +11,7 @@ export class Plant {
   waterCycle : string | null;
   waterType : string | null;
   lightRequirement : string | null;
-  active : boolean;
+  active : boolean | null;
   user: User;
 
   constructor( id : number = 0,

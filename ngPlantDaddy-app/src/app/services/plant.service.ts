@@ -42,7 +42,7 @@ export class PlantService {
       })
     );
   }
-  update(updatePlant: Plant) {
+  update(updatePlant: Plant, id: number) {
     const httpOptions = {
       headers: {
         'Content-type': 'application/json',
@@ -50,7 +50,7 @@ export class PlantService {
       },
     };
     return this.http
-      .put<Plant>(this.url2 + "/" + updatePlant.id, updatePlant, httpOptions)
+      .put<Plant>(this.url2 + "/" + id, updatePlant, httpOptions)
       .pipe(
         catchError((err: any) => {
           console.log(err);
@@ -58,15 +58,9 @@ export class PlantService {
         })
       );
   }
-  deactivate(deactivate: Plant) {
-    const httpOptions = {
-      headers: {
-        'Content-type': 'application/json',
-        Authorization: 'Basic ' + this.auth.getCredentials(),
-      },
-    };
+  deactivate(deactivate: Plant, id : number) {
     return this.http
-      .put<Plant>(this.url2 + deactivate.id, deactivate, httpOptions)
+      .put<Plant>(this.url2 + "/disable/" + id, deactivate, this.getHttpOptions())
       .pipe(
         catchError((err: any) => {
           console.log(err);
