@@ -8,10 +8,10 @@ public interface PlantPhotoServices {
 
 	public List<PlantPhoto> index();
 	
-	public List<PlantPhoto> showByUserPlantId(int userPlantId);
+	public List<PlantPhoto> findByUserPlantId(int userPlantId);
 	
-	
-	
+	public List<PlantPhoto> findByUsername( String username);
+ 	
 	
 	
 	

@@ -8,4 +8,7 @@ public interface TopicRepository extends JpaRepository<Topic, Integer> {
 
 	
 		Topic findByName(String name);
+		
+		// search by name or title etc
+		
 }
