@@ -27,7 +27,7 @@ public class PlantController {
 
 	@Autowired
 	private PlantService plantServ;
-	
+
 	@Autowired
 	private PlantPhotoServices photoServ;
 
@@ -78,33 +78,26 @@ public class PlantController {
 		return plantServ.indexByUsername(username);
 	}
 
-	
-	
 //	------------------------------- PLANT PHOTO CONTROLLERS --------------------------
-	
-	
-	
+
 	@GetMapping("photos")
-	public List<PlantPhoto> indexPhotos(HttpServletResponse res){
-		
+	public List<PlantPhoto> indexPhotos(HttpServletResponse res) {
+
 		return photoServ.index();
 	}
-	
-	
+
 	@GetMapping("photos/{id}")
-	public List<PlantPhoto> getPhotosByUserPlantId(@PathVariable("id") int userPlantId, HttpServletResponse res){
-		
-		
+	public List<PlantPhoto> getPhotosByUserPlantId(@PathVariable("id") int userPlantId, HttpServletResponse res) {
+
 		return photoServ.findByUserPlantId(userPlantId);
 	}
-	
+
 	@GetMapping("photos/users/{username}")
-	public List<PlantPhoto> getPhototsByUsername(@PathVariable()String username, 
-			
-			HttpServletResponse res){
+	public List<PlantPhoto> getPhototsByUsername(@PathVariable() String username,
+
+			HttpServletResponse res) {
 		return photoServ.findByUsername(username);
-		
+
 	}
-	
-	
+
 }

@@ -6,28 +6,28 @@ import { Plant } from 'src/app/models/plant';
 @Component({
   selector: 'app-plant',
   templateUrl: './plant.component.html',
-  styleUrls: ['./plant.component.css']
+  styleUrls: ['./plant.component.css'],
 })
 export class PlantComponent implements OnInit {
-title: string = 'Plants';
+  title: string = 'Plants';
 
-selected: Plant | null = null;
+  selected: Plant | null = null;
 
-newPlant: Plant = new Plant();
+  newPlant: Plant = new Plant();
 
-editPlant: Plant | null = null;
+  editPlant: Plant | null = null;
 
-deactivatePlant: Plant | null = null;
+  deactivatePlant: Plant | null = null;
 
-plants: Plant[] = [];
+  plants: Plant[] = [];
 
-plantCount: Plant[] = [];
+  plantCount: Plant[] = [];
 
   constructor(
     private plantSvc: PlantService,
     private route: ActivatedRoute,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     if (!this.selected && this.route.snapshot.paramMap.get('id')) {
@@ -80,15 +80,15 @@ plantCount: Plant[] = [];
 
   updatePlant(plant: Plant) {
     this.plantSvc.update(plant).subscribe(
-    (data) => {
-      this.reload();
-      this.editPlant = null;
-      if (this.selected) {
-        this.selected = Object.assign({}, plant);
-      }
-    },
-    (err) => console.error(err)
-  );
+      (data) => {
+        this.reload();
+        this.editPlant = null;
+        if (this.selected) {
+          this.selected = Object.assign({}, plant);
+        }
+      },
+      (err) => console.error(err)
+    );
   }
   deactivate(plant: Plant) {
     this.plantSvc.deactivate(plant).subscribe(
@@ -100,18 +100,10 @@ plantCount: Plant[] = [];
         }
       },
       (err) => console.error(err)
-
-
-
     );
   }
-
-
-
-
-
-
-
-
+  displayAddForm(){
+    this.selected = null;
+  }
 
 }
