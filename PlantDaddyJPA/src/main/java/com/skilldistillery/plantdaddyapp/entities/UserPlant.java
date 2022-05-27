@@ -9,10 +9,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 //+---------------------+---------------+------+-----+---------+----------------+
 //| Field               | Type          | Null | Key | Default | Extra          |
@@ -30,58 +32,51 @@ import javax.persistence.Table;
 //| active              | tinyint(4)    | NO   |     | 1       |                |
 //+---------------------+---------------+------+-----+---------+----------------+
 
-
 @Entity
-@Table(name="user_plant")
+@Table(name = "user_plant")
 public class UserPlant {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-	@Column(name="height_inches")
+
+	@Column(name = "height_inches")
 	private double height;
-	
-	@Column(name="spread_inches")
+
+	@Column(name = "spread_inches")
 	private double spread;
-	
+
 	private String nickname;
-	
-	@Column(name="pot_diameter_inches")
+
+	@Column(name = "pot_diameter_inches")
 	private double potDiameter;
-	
-	@Column(name="image_Url")
+
+	@Column(name = "image_Url")
 	private String imageUrl;
-	
-	@Column(name="home_location")
+
+	@Column(name = "home_location")
 	private String homeLocation;
-	
+
 	private String description;
-	
+
 	private boolean active;
-	
-	
+
 	@ManyToOne
-	@JoinColumn(name="user_id")
+	@JoinColumn(name = "user_id")
 	private User user;
-	
-	
+
 	@ManyToOne
-	@JoinColumn(name="plant_id")
+	@JoinColumn(name = "plant_id")
 	private Plant plant;
 	
-	@OneToMany(mappedBy="userPlant")
+	@JsonIgnore
+	@OneToMany(mappedBy = "userPlant")
 	private List<Todo> todos;
-	
-	
-	@OneToMany(mappedBy="userPlant")
+
+	@OneToMany(mappedBy = "userPlant")
+	@JsonIgnore
 	private List<PlantPhoto> photos;
-	
-	
-	
-	
-	 
-	
+
 	public UserPlant() {
 		super();
 	}
@@ -153,9 +148,6 @@ public class UserPlant {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-	
-	
-	
 
 	public User getUser() {
 		return user;
@@ -173,8 +165,6 @@ public class UserPlant {
 		this.plant = plant;
 	}
 
-
-
 	public List<PlantPhoto> getPhotos() {
 		return photos;
 	}
@@ -190,7 +180,6 @@ public class UserPlant {
 	public void setTodos(List<Todo> todos) {
 		this.todos = todos;
 	}
-	
 
 	@Override
 	public String toString() {
@@ -220,8 +209,5 @@ public class UserPlant {
 				&& Double.doubleToLongBits(potDiameter) == Double.doubleToLongBits(other.potDiameter)
 				&& Double.doubleToLongBits(spread) == Double.doubleToLongBits(other.spread);
 	}
-	
-	
-	
-	
+
 }

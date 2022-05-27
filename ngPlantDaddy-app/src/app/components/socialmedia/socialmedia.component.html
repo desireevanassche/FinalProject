@@ -138,14 +138,15 @@
     </tr>
   </thead>
 
-
   <tbody>
     <tr *ngFor="let post of posts">
-      <td class='title' (click)="displayPost(post)">{{post.title}}</td>
-      <td class='title' (click)="displayPost(post)">{{post.content}}</td>
-      <td class='title' (click)="displayPost(post)">{{post.createDate}}</td>
+      <td class="title" (click)="displayPost(post)">{{ post.title }}</td>
+      <td class="title" (click)="displayPost(post)">{{ post.content }}</td>
+      <td class="title" (click)="displayPost(post)">{{ post.createDate }}</td>
 
-      <td><button class="btn btn-danger"(click)="disablePost(post)">X</button></td>
+      <td>
+        <button class="btn btn-danger" (click)="disablePost(post)">X</button>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -159,16 +160,15 @@
     </tr>
   </thead>
 
-
-
   <tbody>
-    <tr *ngFor="let post of allPosts" name="displayAllPosts" >
-      <td class='title' (click)="displayPost(post)">{{post.title}}</td>
-      <td class='content' (click)="displayPost(post)">{{post.content}}</td>
-      <td class='createDate' (click)="displayPost(post)">{{post.createDate}}</td>
+    <tr *ngFor="let post of allPosts" name="displayAllPosts">
+      <td class="title" (click)="displayPost(post)">{{ post.title }}</td>
+      <td class="content" (click)="displayPost(post)">{{ post.content }}</td>
+      <td class="createDate" (click)="displayPost(post)">
+        {{ post.createDate }}
+      </td>
 
       <!-- <td><button class="btn btn-danger"(click)="disablePost(post)">X</button></td> -->
     </tr>
   </tbody>
 </table>
-

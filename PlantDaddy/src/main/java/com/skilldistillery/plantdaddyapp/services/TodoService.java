@@ -8,13 +8,13 @@ public interface TodoService {
 
 	public Set<Todo> index(String username);
 
-	public Todo show(String username, Integer todoId);
+	public Todo show(String username, int todoId);
 
 	public Todo create(String username, Todo todo);
 
-	public Todo update(String username, Integer todoId, Todo todo);
+	public Todo update(String username, int todoId, Todo todo);
 
-	public boolean destroy(String username, Integer todoId);
+	public boolean destroy(String username, int todoId);
 
 
 }
