@@ -33,6 +33,7 @@ public class Address {
 	@Column(name="area_code")
 	private String areaCode;
 	
+	@JsonIgnore
 	@OneToOne(mappedBy="address")
 	private Store store;
 

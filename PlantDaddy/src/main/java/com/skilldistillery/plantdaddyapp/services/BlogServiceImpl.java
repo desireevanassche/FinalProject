@@ -1,6 +1,5 @@
 package com.skilldistillery.plantdaddyapp.services;
 
-import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.plantdaddyapp.entities.Blog;
-import com.skilldistillery.plantdaddyapp.entities.Todo;
 import com.skilldistillery.plantdaddyapp.entities.User;
 import com.skilldistillery.plantdaddyapp.repositories.BlogRepository;
 import com.skilldistillery.plantdaddyapp.repositories.UserRepository;
