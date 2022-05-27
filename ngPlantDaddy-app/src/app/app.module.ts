@@ -17,6 +17,7 @@ import { BlogComponent } from './components/blog/blog.component';
 import { PlantComponent } from './components/plant/plant.component';
 import { SearchfilterPipe } from './pipes/searchfilter.pipe';
 import { AccountComponent } from './components/account/account.component';
+import { TodoComponent } from './components/todo/todo.component';
 
 
 
@@ -33,7 +34,8 @@ import { AccountComponent } from './components/account/account.component';
     BlogComponent,
     PlantComponent,
     SearchfilterPipe,
-    AccountComponent
+    AccountComponent,
+    TodoComponent
   ],
   imports: [
     BrowserModule,

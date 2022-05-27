@@ -113,7 +113,7 @@ public class SocialMediaController {
 	
 	
 	// TESTED IN POSTMAN AND PASSES http://localhost:8095/api/comments/1
-	@GetMapping("comments/{postId}")
+	@GetMapping("users/posts/comments/{postId}")
 	public List<Comment> indexComments(@PathVariable("postId")int postId,
 			HttpServletResponse res){
 		
@@ -122,7 +122,7 @@ public class SocialMediaController {
 	
 	
 	// TESTED IN POSTMAN AND PASSES http://localhost:8095/api/posts/1/comments
-	@PostMapping("posts/{postId}/comments/{commentId}")
+	@PostMapping("users/posts/{postId}/comments/{commentId}")
 	public Comment createComment(@PathVariable("postId") int postId, 
 			@PathVariable("commentId")int inReplyToId,
 			@RequestBody Comment comment,

@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from 'src/app/models/post';
 import { PostService } from 'src/app/services/post.service';
 import { Topic } from 'src/app/models/topic';
+import { CommentService } from 'src/app/services/comment.service';
 
 @Component({
   selector: 'app-socialmedia',
@@ -18,17 +19,30 @@ export class SocialmediaComponent implements OnInit {
 
   editPost: Post | null = null;
 
-
+  postId : number | null = null;
 
   posts: Post[] = [];
 
   allPosts : Post [] =[];
 
+  comments : Comment[] = [];
+
+  allComments: Comment[] = [];
+
+  newComment: Comment = new Comment();
+
   topics: Topic[] = [];
+
+  topic: Topic | null = null;
+
+
+
 
   selected: Post | null = null;
 
   display:boolean = false;
+
+
 
   currentUserId:number | null = 0;
 
@@ -39,7 +53,8 @@ export class SocialmediaComponent implements OnInit {
     private router: Router,
     private postSvc: PostService,
     private topicSvc: TopicService,
-    private authServ: AuthService
+    private authServ: AuthService,
+    private commentSvc: CommentService
   ) {}
 
   ngOnInit(): void {
@@ -55,11 +70,13 @@ export class SocialmediaComponent implements OnInit {
     this.reload();
   }
 
+
   reload() {
     this.postSvc.indexPosts().subscribe({
       next: (data) => {
         this.posts = data;
         this.displayAllPosts();
+
         console.log(data);
 
         this.topicSvc.indexTopics().subscribe({
@@ -170,8 +187,16 @@ displayAllPosts(){
 }
 
 
-editPostCheck(){
+// displayAllComments(postId:number){
 
-}
+//   this.commentSvc.indexComments(postId).subscribe(
+//     (data)=> {
+//       this.allComments = data;
+//     },
+//     (err) => {
+//       console.log(err);
+//     }
+//   )
+// }
 
 }

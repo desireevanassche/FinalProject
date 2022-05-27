@@ -1,5 +1,6 @@
 import { Topic } from "./topic";
 import { User } from "./user";
+import { Comment } from "./comment";
 
 
 export class Post {
@@ -13,6 +14,7 @@ export class Post {
   active: boolean | null;
   topic: Topic;
   user: User;
+  comments : Comment[] |null;
 
 
 constructor(
@@ -24,8 +26,8 @@ constructor(
   updateDate: string = "",
   active: boolean = true,
   topic : Topic = new Topic(),
-  user : User = new User()
-
+  user : User = new User(),
+  comments: Comment [] = []
 
 ){
 
@@ -38,6 +40,7 @@ this.updateDate =updateDate;
 this.active = active;
 this.topic = topic;
 this.user = user;
+this.comments = comments;
 
 
 
