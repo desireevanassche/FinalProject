@@ -1,4 +1,189 @@
-<section class="vh-100" id="registrationForm" style="background-color: #eee">
+<div class="container-fluid">
+  <div class="headernav">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-xs-9 col-sm-5 col-md-3 selectpost">
+          <div class="dropdown">
+            <a data-toggle="dropdown" href="#">My Posts</a>
+            <b class="caret"></b>
+            <ul class="dropdown-menu" role="menu" *ngFor="let post of posts">
+              <li role="presentation">
+                <a name="post.title" tabindex="-1" href="#">{{ post.title }}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-4 search hidden-xs hidden-sm col-md-3">
+          <div class="wrap">
+            <form action="#" method="post" class="form">
+              <div class="pull-left txt">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Search Posts"
+                />
+              </div>
+              <div class="pull-right">
+                <button class="btn btn-default" type="button">
+                  <i class="fa fa-search"></i>
+                </button>
+              </div>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-xs-12 col-sm-5 col-md-4 avt">
+          <div class="stnt pull-left">
+            <form action="03_new_topic.html" method="post" class="form">
+              <button
+                class="btn btn-primary"
+                (click)="displayCreateForm(); display = display"
+              >
+                Create New Post
+              </button>
+            </form>
+          </div>
+          <div class="env pull-left"><i class="fa fa-envelope"></i></div>
+
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <section class="content">
+    <div class="container">
+      <div class="row" *ngIf="!display">
+        <div class="col-lg-8 col-md-8" *ngIf="!selected">
+          <!-- ALL POST -->
+          <div class="post" *ngFor="let post of allPosts">
+            <div class="wrap-ut pull-left">
+              <div class="posttext pull-left" (click)="displayPost(post)">
+                <h2>{{ post.title }}</h2>
+                <p>{{ post.content }}</p>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+            <div class="postinfo pull-left"></div>
+            <div class="clearfix"></div>
+          </div>
+          <!-- ALL  POSTS -->
+        </div>
+
+        <!-- ---------  Single Post View -------------- -->
+        <div class="col-lg-8 col-md-8" *ngIf="selected">
+          <div class="post" *ngIf="selected">
+            <div class="wrap-ut pull-left">
+              <div class="posttext pull-left">
+                <h2>{{ selected.title }}</h2>
+                <p>{{ selected.content }}</p>
+              </div>
+            </div>
+            <div class="postinfo pull-left">
+              <div>
+                <button
+                  (click)="displayPosts()"
+                  type="button"
+                  class="btn btn-primary btn-lg"
+                >
+                  Return to forum
+                </button>
+                <div *ngIf="selected.user.id == currentUserId">
+                <button
+                  (click)="editPost = selected"
+                  type="button"
+                  class="btn btn-primary btn-lg"
+                >
+                  Edit Post
+                </button>
+                <button
+
+                  type="button"
+                  class="btn btn-primary btn-lg"
+                >
+                  Deactivate
+                </button>
+              </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+        <!-- ---------  Single Post View -------------- -->
+
+
+
+        <!-- ---------  EDIT Post View -------------- -->
+        <div class="col-lg-8 col-md-8" >
+          <div class="post" >
+            <div class="wrap-ut pull-left">
+              <div class="posttext pull-left">
+                <section>
+                  <div *ngIf="editPost ">
+                    <form>
+                      Title: <input type="text" name="title" [(ngModel)]="editPost.title">
+                      Content: <input type="text" name="content" [(ngModel)]="editPost.content">
+                      Image Url: <input type="text" name="imageUrl" [(ngModel)]="editPost.imageUrl">
+
+                      <button (click)="updatePost(editPost, editPost.id)">Save</button>
+                      <button (click)="editPost = null">Cancel</button>
+
+                    </form>
+                  </div>
+                </section>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- ---------  EDIT Post View -------------- -->
+
+        <div *ngIf="selected && !editPost">
+          <p>{{ selected.id }}</p>
+          <p>{{ selected.title }}</p>
+          <p>{{ selected.imageUrl }}</p>
+          <p>{{ selected.createDate }}</p>
+
+          <button (click)="displayTable()">Back</button>
+        </div>
+
+
+        <!--------------------- SIDE BAR FOR CATEGORIES SECTION ----------->
+        <div class="col-lg-4 col-md-4">
+          <div class="sidebarblock">
+            <h3>Topics</h3>
+            <div class="divline"></div>
+            <div class="blocktxt">
+              <ul class="cats" *ngFor="let topic of topics">
+                <li>
+                  <a href="#"
+                    >{{ topic.description }}
+                    <span class="badge pull-right"
+                      ># of posts on topic here</span
+                    ></a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="sidebarblock"></div>
+
+          <!-- -->
+          <div class="sidebarblock"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<section
+  class="vh-100"
+  id="registrationForm"
+  style="background-color: #eee"
+  *ngIf="display"
+>
   <div class="container h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-lg-12 col-xl-11">
@@ -66,7 +251,7 @@
 
                   <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                     <button
-                      (click)="addPost(newPost)"
+                      (click)="addPost(newPost); display = !display"
                       type="button"
                       class="btn btn-primary btn-lg"
                     >
@@ -98,30 +283,11 @@
 //--------- Display single post & option to edit --------------------------------------------------------------------
 //-------add logic to only allow original poster to edit ---------------------------------------------------------->
 
- <div *ngIf="selected && !editPost">
-  <p>{{selected.id}}</p>
-  <p>{{selected.title}}</p>
-  <p>{{selected.imageUrl}}</p>
-  <p>{{selected.createDate}}</p>
 
-  <button (click)="displayTable()">Back</button>
-</div>
 
 <!--------- Edit post form NOT HERE _ MOVE TO PROFILE  ------------------------------------------------------------------------------------ -->
 
-<!-- <section>
-  <div *ngIf="editPost">
-    <form>
-      Title: <input type="text" name="title" [(ngModel)]="editPost.title">
-      Content: <input type="text" name="content" [(ngModel)]="editPost.content">
-      Image Url: <input type="text" name="imageUrl" [(ngModel)]="editPost.imageUrl">
 
-      <button (click)="updatePost(editPost, editPost.id)">Save</button>
-      <button (click)="editPost = null">Cancel</button>
-
-    </form>
-  </div>
-</section> -->
 
 <!------ END Edit Post Form ---------------------------------------------------------------------------->
 
@@ -150,7 +316,7 @@
   </tbody>
 </table> -->
 
-<table *ngIf="!selected" class="table table-striped table-hover">
+<!-- <table *ngIf="!selected" class="table table-striped table-hover">
   <thead class="table-light">
     <tr>
       <th>Title</th>
@@ -168,4 +334,4 @@
       </td>
     </tr>
   </tbody>
-</table>
+</table> -->
