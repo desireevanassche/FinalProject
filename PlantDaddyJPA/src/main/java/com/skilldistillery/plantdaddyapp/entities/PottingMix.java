@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity(name = "potting_mix")
 public class PottingMix {
 
@@ -53,10 +55,12 @@ public class PottingMix {
 
 	private Boolean active;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy="pottingMixes")
 	private List<Plant> plants;
 	
