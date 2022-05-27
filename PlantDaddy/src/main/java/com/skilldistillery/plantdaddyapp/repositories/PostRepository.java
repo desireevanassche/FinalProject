@@ -13,5 +13,5 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
 	Post findByUser_UsernameAndId(String username, int postId);
 	 
 	
-	
+	// search by keyword title description
 }

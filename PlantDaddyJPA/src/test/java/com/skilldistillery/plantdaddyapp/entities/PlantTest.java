@@ -51,8 +51,8 @@ class PlantTest {
 	void test() {
 		assertNotNull(plant);
 		assertEquals("Snake Plant", plant.getCommonName()); 
-		assertEquals("Dracaena trifasciata", plant.getBotanicalName());
-		assertEquals("https://h2.commercev3.net/cdn.brecks.com/images/800/76621A.jpg", plant.getImageUrl());
+		assertEquals("Sansevieria trifasciata", plant.getBotanicalName());
+		assertEquals("https://live.staticflickr.com/65535/52097469117_4e2fa16bde_z.jpg", plant.getImageUrl());
 		
 		
 		

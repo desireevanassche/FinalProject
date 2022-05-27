@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.plantdaddyapp.entities.Plant;
+import com.skilldistillery.plantdaddyapp.entities.PlantPhoto;
+import com.skilldistillery.plantdaddyapp.services.PlantPhotoServices;
 import com.skilldistillery.plantdaddyapp.services.PlantService;
 
 @RestController
@@ -24,7 +26,10 @@ import com.skilldistillery.plantdaddyapp.services.PlantService;
 public class PlantController {
 
 	@Autowired
-	PlantService plantServ;
+	private PlantService plantServ;
+	
+	@Autowired
+	private PlantPhotoServices photoServ;
 
 	@GetMapping("plants")
 	public List<Plant> index() {
@@ -79,13 +84,27 @@ public class PlantController {
 	
 	
 	
+	@GetMapping("photos")
+	public List<PlantPhoto> indexPhotos(HttpServletResponse res){
+		
+		return photoServ.index();
+	}
 	
 	
+	@GetMapping("photos/{id}")
+	public List<PlantPhoto> getPhotosByUserPlantId(@PathVariable("id") int userPlantId, HttpServletResponse res){
+		
+		
+		return photoServ.findByUserPlantId(userPlantId);
+	}
 	
-	
-	
-	
-	
+	@GetMapping("photos/users/{username}")
+	public List<PlantPhoto> getPhototsByUsername(@PathVariable()String username, 
+			
+			HttpServletResponse res){
+		return photoServ.findByUsername(username);
+		
+	}
 	
 	
 }
