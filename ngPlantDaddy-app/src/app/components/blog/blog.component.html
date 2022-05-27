@@ -17,4 +17,28 @@
   </tbody>
 </table>
 
+<div *ngIf="selected && !editBlog">
 
+  <img [src]="selected.imageUrl">
+  <p>{{selected.title}}</p>
+  <p>{{selected.createdAt}}</p>
+  <p>{{selected.content}}</p>
+
+  <button (click)="displayTable()">Back</button>
+</div>
+
+<!--------- Edit post form ------------------------------------------------------------------------------------ -->
+
+<!-- <section>
+  <div *ngIf="editPost">
+    <form>
+      Title: <input type="text" name="title" [(ngModel)]="editPost.title">
+      Content: <input type="text" name="content" [(ngModel)]="editPost.content">
+      Image Url: <input type="text" name="imageUrl" [(ngModel)]="editPost.imageUrl">
+
+      <button (click)="updatePost(editPost, editPost.id)">Save</button>
+      <button (click)="editPost = null">Cancel</button>
+
+    </form>
+  </div>
+</section> -->
