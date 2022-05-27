@@ -15,9 +15,8 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /* +----------------+--------------+------+-----+---------+----------------+
 | Field           | Type         | Null | Key | Default | Extra          |
@@ -50,13 +49,13 @@ public class Comment {
 	
 	@JoinColumn(name="post_id")
 	private Post post;
-	
+	 
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="in_reply_to_id")
 	private Comment comment;
 	
-	@JsonIgnore
+	@JsonIgnoreProperties({"comment"})
 	@OneToMany(mappedBy="comment")
 	private List<Comment> comments;
 	

@@ -9,9 +9,9 @@ public interface CommentService {
 	
 	public List<Comment> findAllByPostId(int postId);
 	
-	public Comment createComment(Comment comment, int postId, String username);
+	public Comment createComment(Comment comment,int inReplyToId, int postId, String username);
 	
-	public boolean deleteComment(int postId, int commentId, String username);
+	public Comment disablePost(String username, Comment comment, int postId, int commentId);
 	
 	
 	

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -133,8 +134,47 @@ public class SocialMediaController {
 	
 	
 	
+	// TESTED IN POSTMAN AND PASSES http://localhost:8095/api/posts/1/comments
+	@PostMapping("posts/{postId}/comments/{commentId}")
+	public Comment createComment(@PathVariable("postId") int postId, 
+			@PathVariable("commentId")int inReplyToId,
+			@RequestBody Comment comment,
+			Principal principal,
+			HttpServletResponse res) {
+	
+		comment = comServ.createComment(comment,inReplyToId, postId, principal.getName());
+		
+		if(comment != null) {
+			res.setStatus(201);
+		}
+		
+		return comment;	
+	}
 	
 	
+//	@PutMapping("posts/{postId}/comments/{commentId}")
+//	public Comment disableComment
+	
+	
+	
+	
+//	@DeleteMapping("posts/{postId}/comments/{commentId}")
+//	public void deleteComment(@PathVariable("postId") int postId,
+//	@PathVariable("commentId") int commentId,
+//	HttpServletResponse res,
+//	Principal principal) {
+//boolean deleted = comServ.deleteComment(postId, commentId, principal.getName());
+//try {
+//	if(deleted == true) {
+//		res.setStatus(200);
+//	}
+//} catch (Exception e) {
+//	e.printStackTrace();
+//	res.setStatus(404);
+//}
+//
+//		
+//	}
 	
 	
 	
