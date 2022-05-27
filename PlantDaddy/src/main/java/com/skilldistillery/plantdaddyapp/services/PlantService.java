@@ -6,20 +6,20 @@ import com.skilldistillery.plantdaddyapp.entities.Plant;
 
 public interface PlantService {
 
-	List<Plant> index();
+	public List<Plant> index();
 
-	Plant findById(int id);
+	public Plant findById(int id);
 
-	Plant addPlant(Plant plant, String username);
+	public Plant addPlant(Plant plant, String username);
 
-	Plant updatePlant(Plant plant, int id, String username);
-	
-	Plant deactivate(Plant plant, int id, String username);
+	public Plant updatePlant(Plant plant, int id, String username);
 
-	List<Plant> listPlantByKeyword(String keyword);
+	public Plant deactivate(Plant plant, int id, String username);
 
-	List<Plant> listPlantByDifficulty(String keyword);
+	public List<Plant> listPlantByKeyword(String keyword);
 
-	List<Plant> indexByUsername(String name);
+	public List<Plant> listPlantByDifficulty(String keyword);
+
+	public List<Plant> indexByUsername(String name);
 
 }
