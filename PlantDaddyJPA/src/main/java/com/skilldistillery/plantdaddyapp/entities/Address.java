@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -18,8 +17,7 @@ public class Address {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	
+	private int id;
 	
 	private String street;
 	
@@ -37,7 +35,7 @@ public class Address {
 	@OneToOne(mappedBy="address")
 	private Store store;
 
-	
+	@JsonIgnore
 	@OneToOne(mappedBy="address")
 	private User user;
 	  
@@ -46,11 +44,11 @@ public class Address {
 		super();
 	}
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

@@ -18,7 +18,7 @@ public class Store {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private int id;
 	
 	private String name;
 
@@ -67,11 +67,11 @@ public class Store {
 	
 	// -------------------GETTERS & SETTERS --------------------------
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

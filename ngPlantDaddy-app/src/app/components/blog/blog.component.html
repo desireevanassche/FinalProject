@@ -1,0 +1,20 @@
+<table *ngIf="!selected" class="table table-striped table-hover">
+  <thead class="table-light">
+    <tr>
+      <th>Title</th>
+      <th>Content</th>
+      <th>Date Created</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let blog of blogs" name="displayAllBlogs" >
+      <img [src]="blog.imageUrl">
+      <td class='title' (click)="displayBlog(blog)">{{blog.title}}</td>
+      <td class='content' (click)="displayBlog(blog)">{{blog.content}}</td>
+
+    </tr>
+  </tbody>
+</table>
+
+
