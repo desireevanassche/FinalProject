@@ -88,7 +88,7 @@ public class PostServiceImpl implements PostService {
 	 
 		if(existing != null) {
 			
-			existing.setActive(post.getActive());
+			existing.setActive(false);
 			postRepo.saveAndFlush(existing);
 		} 
 		

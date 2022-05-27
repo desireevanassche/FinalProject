@@ -18,6 +18,8 @@ export class SocialmediaComponent implements OnInit {
 
   editPost: Post | null = null;
 
+
+
   posts: Post[] = [];
 
   allPosts : Post [] =[];
@@ -114,13 +116,15 @@ this.display = true;
       (err) => console.error(err)
     );
   }
-  disablePost(post: Post) {
-    this.postSvc.disablePost(post).subscribe(
+  disablePost(id: number, disablePost:Post) {
+    this.postSvc.disablePost(id, disablePost).subscribe(
       (data) => {
+        console.log(id),disablePost;
+
         this.reload();
         this.editPost = null;
         if (this.selected) {
-          this.selected = Object.assign({}, post);
+          this.selected.id = Object.assign({}, id, disablePost);
         }
       },
       (err) => console.error(err)

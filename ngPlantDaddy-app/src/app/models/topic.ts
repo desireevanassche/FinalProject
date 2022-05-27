@@ -1,6 +1,7 @@
 export class Topic {
 
   id: number;
+  name: string;
   description: string | null;
   imageUrl: string | null;
 
@@ -8,6 +9,7 @@ export class Topic {
 
 constructor(
   id: number = 0,
+  name: string ="",
   description: string = "",
   imageUrl: string = "",
 
@@ -16,6 +18,7 @@ constructor(
 ){
 
 this.id = id;
+this.name =name;
 this.description = description;
 this.imageUrl = imageUrl
 
