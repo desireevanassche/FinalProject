@@ -14,6 +14,7 @@
       <td>Botanical Name</td>
       <td>Care Difficulty</td>
       <td>Description</td>
+      <td>View Details</td>
       <td>Image</td>
     </tr>
   </thead>
@@ -24,6 +25,7 @@
       <td>{{plant.botanicalName}}</td>
       <td>{{plant.careDifficulty}}</td>
       <td>{{plant.description}}</td>
+      <td><button (click)="setPlant(plant)">Details</button></td>
       <td>
         <img id="image" [src]="plant.imageUrl" class="img-thumbnail" />
       </td>
@@ -31,6 +33,8 @@
   </tbody>
 </table>
 
+
+<div *ngIf="!selected">
 <form>
 Common Name: <input type="text" name="commonName" [(ngModel)]="newPlant.commonName">
 Botanical Name: <input type="text" name="botanicalName" [(ngModel)]="newPlant.botanicalName">
@@ -39,3 +43,34 @@ Description: <input type="text" name="description" [(ngModel)]="newPlant.descrip
 Image: <input type="text" name="imageUrl" [(ngModel)]="newPlant.imageUrl">
 <input type="submit" name="submit" value="Add Plant" (click)="addPlant()">
 </form>
+</div>
+
+<div *ngIf="selected">
+  <img [src]="selected.imageUrl"/>
+  <p>{{selected.id}}</p>
+  <p>{{selected.commonName}}</p>
+  <p>{{selected.botanicalName}}</p>
+  <p>{{selected.careDifficulty}}</p>
+  <p>{{selected.description}}</p>
+  <button (click)="setEditPlant()">Edit</button>
+  <button (click)="selected = null">Back</button>
+  </div>
+
+  <div *ngIf="editPlant">
+    <form>
+      Common Name: <input type="text" name="common name" [(ngModel)]="editPlant.commonName">
+      <br>
+      Botanical Name: <input type="text" name="botanical name" [(ngModel)]="editPlant.botanicalName">
+      <br>
+      Care Difficulty: <input type="text" name="care difficulty" [(ngModel)]="editPlant.careDifficulty">
+      <br>
+      Description: <input type="text" name="description" [(ngModel)]="editPlant.description">
+      <br>
+      Image URL: <input type="text" name="image url" [(ngModel)]="editPlant.imageUrl">
+      <br>
+      <button (click)="updatePlant(editPlant)">Save</button>
+      <br>
+      <button (click)="editPlant = null">Cancel</button>
+      <br>
+    </form>
+  </div>
