@@ -86,7 +86,7 @@ export class PostService {
   //--------------   DISABLE POST ----------------
 
   public disablePost(id : number, disablePost : Post ){
-    return this.http.put<Post> (this.url3 + "/" +id, disablePost, this.getHttpOptions())
+    return this.http.put<Post> (this.url3 + "/" + id, disablePost, this.getHttpOptions())
     .pipe(
       catchError((err:any)=>{
         console.log(err);
