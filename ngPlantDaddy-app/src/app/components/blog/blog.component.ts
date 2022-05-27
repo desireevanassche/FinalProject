@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Blog } from 'src/app/models/blog';
@@ -17,7 +18,7 @@ export class BlogComponent implements OnInit {
 
   posts: Blog[] = [];
 
-  allBlog : Blog [] =[];
+  allBlog : Blog [] = [];
 
   blogs: Blog[] = [];
 
@@ -29,7 +30,8 @@ export class BlogComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private blogSvc: BlogService
+    private blogSvc: BlogService,
+
   ) { }
 
   ngOnInit(): void {
