@@ -144,7 +144,8 @@ public class SocialMediaController {
 //	------------------- HASHTAG CONTROLLERS ------------------
 	
 	
-	@GetMapping("hashtag")
+	// TESTED IN POSTMAN AND PASSES http://localhost:8095/api/hashtags
+	@GetMapping("hashtags")
 	public List<Hashtag> indexHashtag(Principal principal,
 			HttpServletResponse res){
 		
