@@ -1,3 +1,5 @@
+import { PlantComponent } from './components/plant/plant.component';
+import { AccountComponent } from './components/account/account.component';
 import { SocialmediaComponent } from './components/socialmedia/socialmedia.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -14,7 +16,11 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'socialmedia', component: SocialmediaComponent },
-  { path: 'blog', component: BlogComponent }
+  { path: 'blog', component: BlogComponent },
+  { path: 'account', component: AccountComponent },
+  { path: 'plant', component: PlantComponent },
+
+
 ];
 
 @NgModule({

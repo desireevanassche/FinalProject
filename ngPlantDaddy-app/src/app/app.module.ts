@@ -16,6 +16,7 @@ import { DatePipe } from '@angular/common';
 import { BlogComponent } from './components/blog/blog.component';
 import { PlantComponent } from './components/plant/plant.component';
 import { SearchfilterPipe } from './pipes/searchfilter.pipe';
+import { AccountComponent } from './components/account/account.component';
 
 
 
@@ -31,7 +32,8 @@ import { SearchfilterPipe } from './pipes/searchfilter.pipe';
     SocialmediaComponent,
     BlogComponent,
     PlantComponent,
-    SearchfilterPipe
+    SearchfilterPipe,
+    AccountComponent
   ],
   imports: [
     BrowserModule,
