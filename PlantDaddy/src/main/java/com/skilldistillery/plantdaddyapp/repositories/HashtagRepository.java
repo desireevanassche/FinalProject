@@ -6,6 +6,6 @@ import com.skilldistillery.plantdaddyapp.entities.Hashtag;
 
 public interface HashtagRepository extends JpaRepository<Hashtag, Integer> {
 	
-	
+	// search by keyword
 
 }

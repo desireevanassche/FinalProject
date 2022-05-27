@@ -21,6 +21,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 /*+---------------+---------------+------+-----+---------+----------------+
 | Field         | Type          | Null | Key | Default | Extra          |
 +---------------+---------------+------+-----+---------+----------------+
@@ -46,9 +48,9 @@ public class PlantPhoto {
 	@Column(name="image_url") 
 	private String imageUrl;
 
-	//user_plant_id
-
 	
+
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="user_plant_id")
 	private UserPlant userPlant;
