@@ -23,6 +23,8 @@ export class BlogComponent implements OnInit {
 
   selected: Blog | null = null;
 
+  searchValue: string = "";
+
 
   constructor(
     private route: ActivatedRoute,
