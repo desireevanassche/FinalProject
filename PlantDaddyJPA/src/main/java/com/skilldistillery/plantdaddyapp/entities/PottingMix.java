@@ -55,7 +55,6 @@ public class PottingMix {
 
 	private Boolean active;
 	
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;

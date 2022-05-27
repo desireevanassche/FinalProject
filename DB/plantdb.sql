@@ -577,7 +577,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `plantdb`;
-INSERT INTO `comment` (`id`, `post_id`, `in_reply_to_id`, `content`, `create_date`, `active`) VALUES (1, 1, 1, 'Our first comment', '2022-05-24 12:00:00', 1);
+INSERT INTO `comment` (`id`, `post_id`, `in_reply_to_id`, `content`, `create_date`, `active`) VALUES (1, 1, NULL, 'Our first comment', '2022-05-24 12:00:00', 1);
+INSERT INTO `comment` (`id`, `post_id`, `in_reply_to_id`, `content`, `create_date`, `active`) VALUES (2, 1, 1, 'Reply to comment', '2022-05-24 12:05:01', 1);
 
 COMMIT;
 
