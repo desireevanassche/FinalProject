@@ -2,8 +2,8 @@
 export class Blog {
   id: number;
   userId: number;
-  title: string| null;
-  content: string | null;
+  title: string;
+  content: string;
   createdAt: string | null;
   updateDate: string | null;
   active: boolean | null;

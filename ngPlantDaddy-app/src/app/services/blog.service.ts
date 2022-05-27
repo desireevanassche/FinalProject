@@ -14,6 +14,8 @@ export class BlogService {
   private url = environment.baseUrl + "api/blogs";
   // private url2 = environment.baseUrl + "api/blogs/search";
 
+  blogs : Blog[] = [];
+
   constructor(private http : HttpClient, private datePipe : DatePipe, private auth : AuthService) { }
 
   getHttpOptions() {
