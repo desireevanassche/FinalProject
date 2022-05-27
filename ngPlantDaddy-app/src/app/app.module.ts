@@ -14,6 +14,7 @@ import { AuthService } from './services/auth.service';
 import { SocialmediaComponent } from './components/socialmedia/socialmedia.component';
 import { DatePipe } from '@angular/common';
 import { BlogComponent } from './components/blog/blog.component';
+import { PlantComponent } from './components/plant/plant.component';
 
 
 
@@ -27,7 +28,8 @@ import { BlogComponent } from './components/blog/blog.component';
     RegisterComponent,
     NavbarComponent,
     SocialmediaComponent,
-    BlogComponent
+    BlogComponent,
+    PlantComponent
 
 
   ],
