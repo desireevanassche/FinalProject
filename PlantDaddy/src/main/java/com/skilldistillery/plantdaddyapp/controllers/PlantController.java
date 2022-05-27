@@ -73,4 +73,19 @@ public class PlantController {
 		return plantServ.indexByUsername(username);
 	}
 
+	
+	
+//	------------------------------- PLANT PHOTO CONTROLLERS --------------------------
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
