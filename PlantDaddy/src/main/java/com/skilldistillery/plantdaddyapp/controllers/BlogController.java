@@ -30,8 +30,8 @@ public class BlogController {
 	BlogService blogServ; 
 	
 	@GetMapping("blogs")
-	public List<Blog> index(Principal principal) {
-		return blogServ.allBlogArticles(principal.getName());
+	public List<Blog> index() {
+		return blogServ.allBlogArticles();
 	}
 	
 	@GetMapping("blogs/{id}")
@@ -60,6 +60,12 @@ public class BlogController {
 		} else {
 			resp.setStatus(404);
 		}
+	}
+	
+	@PutMapping("blogs/disable/{id}")
+	public Blog disable(HttpServletResponse resp, @RequestBody Blog blog,  @PathVariable int id, Principal principal) {
+		return blogServ.deactivate(blog, id, principal.getName());
+
 	}
 	
 	@GetMapping("blogs/title/search/{keyword}")

@@ -17,6 +17,12 @@
       <li class="nav-item" *ngIf="loggedIn()">
         <a class=" nav-link"  [routerLink]="['/socialmedia']" >Social</a>
       </li>
+      <li class="nav-item" *ngIf="!loggedIn()">
+        <a class=" nav-link"  [routerLink]="['/blog']" >Blog</a>
+      </li>
+      <li class="nav-item" *ngIf="loggedIn()">
+        <a class=" nav-link"  [routerLink]="['/blog']" >Blog</a>
+      </li>
 
 
 

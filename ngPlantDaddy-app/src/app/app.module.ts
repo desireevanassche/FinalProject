@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from './services/auth.service';
 import { SocialmediaComponent } from './components/socialmedia/socialmedia.component';
 import { DatePipe } from '@angular/common';
+import { BlogComponent } from './components/blog/blog.component';
 
 
 
@@ -25,7 +26,8 @@ import { DatePipe } from '@angular/common';
     LogoutComponent,
     RegisterComponent,
     NavbarComponent,
-    SocialmediaComponent
+    SocialmediaComponent,
+    BlogComponent
 
 
   ],

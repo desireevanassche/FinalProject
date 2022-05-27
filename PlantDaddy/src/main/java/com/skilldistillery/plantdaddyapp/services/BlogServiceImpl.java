@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.plantdaddyapp.entities.Blog;
+import com.skilldistillery.plantdaddyapp.entities.Plant;
 import com.skilldistillery.plantdaddyapp.entities.Todo;
 import com.skilldistillery.plantdaddyapp.entities.User;
 import com.skilldistillery.plantdaddyapp.repositories.BlogRepository;
@@ -22,10 +23,9 @@ public class BlogServiceImpl implements BlogService {
 	@Autowired
 	UserRepository userRepo;
 
-	private String username = "admin";
 
 	@Override
-	public List<Blog> allBlogArticles(String keyword) {
+	public List<Blog> allBlogArticles() {
 		return blogRepo.findAll();
 	}
 
@@ -56,7 +56,7 @@ public class BlogServiceImpl implements BlogService {
 
 	@Override
 	public boolean deleteBlogArticleById(String username, int id) {
-	
+
 		Optional<Blog> op = blogRepo.findById(id);
 		if (op.isPresent()) {
 			Blog result = op.get();
@@ -92,4 +92,15 @@ public class BlogServiceImpl implements BlogService {
 
 		return null;
 	}
+
+	@Override
+	public Blog deactivate(Blog blog, int id, String username) {
+		Blog deactivate = blogRepo.findById(id).get();
+		if (deactivate != null) {
+			deactivate.setActive(false);
+		}
+		blogRepo.saveAndFlush(deactivate);
+		return deactivate;
+	}
+	
 }
