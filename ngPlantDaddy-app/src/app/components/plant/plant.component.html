@@ -1,1 +1,41 @@
 <h1>{{title}}</h1>
+
+<br>
+<br>
+
+
+<h2>Plant List</h2>
+
+<table class="table table-striped" *ngIf="!selected">
+  <thead align="center">
+    <tr>
+      <td>ID</td>
+      <td>Common Name</td>
+      <td>Botanical Name</td>
+      <td>Care Difficulty</td>
+      <td>Description</td>
+      <td>Image</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let plant of plants">
+      <td>{{plant.id}}</td>
+      <td>{{plant.commonName}}</td>
+      <td>{{plant.botanicalName}}</td>
+      <td>{{plant.careDifficulty}}</td>
+      <td>{{plant.description}}</td>
+      <td>
+        <img id="image" [src]="plant.imageUrl" class="img-thumbnail" />
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<form>
+Common Name: <input type="text" name="commonName" [(ngModel)]="newPlant.commonName">
+Botanical Name: <input type="text" name="botanicalName" [(ngModel)]="newPlant.botanicalName">
+Care Difficulty: <input type="text" name="careDifficulty" [(ngModel)]="newPlant.careDifficulty">
+Description: <input type="text" name="description" [(ngModel)]="newPlant.description">
+Image: <input type="text" name="imageUrl" [(ngModel)]="newPlant.imageUrl">
+<input type="submit" name="submit" value="Add Plant" (click)="addPlant()">
+</form>

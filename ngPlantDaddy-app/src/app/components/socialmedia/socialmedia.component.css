@@ -2,10 +2,159 @@ body{
   margin: 0 0;
 }
 
+
+.headernav {
+  height: auto;
+
+  border-bottom: 1px solid #c9cccd;
+}
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.row {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.selectpost {
+  line-height: 69px;
+  font-family: 'Open Sans Semibold', sans-serif;
+  font-size: 16px;
+  color: #363838;
+}
+.dropdown {
+  position: relative;
+}
+
+a {
+  color: #363838;
+}
+b, strong {
+  font-weight: 700;
+}
+.caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  border-top: 4px solid;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+}
+
+.headernav .search {
+  color: #363838;
+  font-size: 14px;
+  font-family: 'Open Sans Light', sans-serif;
+  margin-top: 16px;
+  height: 38px;
+}
+
+.headernav .search .wrap {
+  background-color: #f3f5f9;
+  border-radius: 3px;
+}
+.pull-left {
+  float: left!important;
+}
+.pull-right {
+  float: right!important;
+}
+
+.headernav .search input {
+  border: none;
+  box-shadow: none;
+  background-color: #f3f5f9;
+  color: #363838;
+  font-size: 14px;
+  padding: 8px 19px;
+  height: 38px;
+}
+
+.headernav .search button {
+  border: solid 1px #697683;
+  box-shadow: none;
+  background-color: #697683;
+  color: #ffffff;
+  font-size: 18px;
+}
+.fa {
+  display: inline-block;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.fa-search:before {
+  content: "\f002";
+}
+
+.content {
+  background-color: #ecf0f1;
+  border-top: solid 1px #e0e4e5;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
+  display: block;
+}
+section {
+  display: block;
+}
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.col-lg-8 {
+  width: 66.66666667%;
+}
+
+
+.avt {
+  margin-top: 16px;
+  height: 38px;
+}
+
+.col-lg-8 {
+  width: 66.66666667%;
+}
+
+.post {
+  background-color: #ffffff;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px #c9cccd;
+  margin-bottom: 20px;
+}
+
+.sidebarblock {
+  background-color: #ffffff;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px #c9cccd;
+  margin-bottom: 20px;
+}
+
+/* --------------- new content css above ----------- */
+
+
+
+
+
+
 button {
   background-color: #445824;
   border-color: #445824;
 }
+
 
 button:hover {
 background-color: #627F3B;
@@ -15,4 +164,18 @@ border-color: #627F3B;
 #registrationForm {
   padding-top: 50px;
   padding-bottom: 50px;
+}
+
+
+
+
+
+/* Row Postion and formatting */
+
+
+.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
 }

@@ -1,9 +1,10 @@
 import { Topic } from "./topic";
+import { User } from "./user";
 
 
 export class Post {
 
-  id: number | null;
+  id: number;
   title: string | null;
   content: string | null;
   imageUrl: string | null;
@@ -11,6 +12,7 @@ export class Post {
   updateDate: string | null;
   active: boolean | null;
   topic: Topic;
+  user: User;
 
 
 constructor(
@@ -21,8 +23,8 @@ constructor(
   createDate: string = "",
   updateDate: string = "",
   active: boolean = false,
-  topic : Topic = new Topic()
-
+  topic : Topic = new Topic(),
+  user : User = new User()
 
 
 ){
@@ -35,6 +37,7 @@ this.createDate = createDate;
 this.updateDate =updateDate;
 this.active = active;
 this.topic = topic;
+this.user = user;
 
 
 

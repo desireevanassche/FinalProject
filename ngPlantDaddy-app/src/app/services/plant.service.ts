@@ -11,6 +11,7 @@ import { throwError } from 'rxjs';
 })
 export class PlantService {
   private url = environment.baseUrl + 'api/plants';
+  private url2 = environment.baseUrl + 'api/users/plants';
 
   constructor(private http: HttpClient, private auth: AuthService) {}
 
@@ -38,7 +39,7 @@ export class PlantService {
         Authorization: 'Basic ' + this.auth.getCredentials(),
       },
     };
-    return this.http.post<Plant>(this.url, newPlant, httpOptions).pipe(
+    return this.http.post<Plant>(this.url2, newPlant, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('PlantService: error creating Plant');
@@ -53,7 +54,7 @@ export class PlantService {
       },
     };
     return this.http
-      .put<Plant>(this.url + updatePlant.id, updatePlant, httpOptions)
+      .put<Plant>(this.url2 + updatePlant.id, updatePlant, httpOptions)
       .pipe(
         catchError((err: any) => {
           console.log(err);
@@ -69,7 +70,7 @@ export class PlantService {
       },
     };
     return this.http
-      .put<Plant>(this.url + deactivate.id, deactivate, httpOptions)
+      .put<Plant>(this.url2 + deactivate.id, deactivate, httpOptions)
       .pipe(
         catchError((err: any) => {
           console.log(err);
