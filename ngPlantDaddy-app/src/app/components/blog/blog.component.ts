@@ -87,6 +87,11 @@ export class BlogComponent implements OnInit {
   }
 
 
+  displayTable(){
+    this.selected = null;
+  }
+
+
   show(id: number) {
     this.blogSvc.show(id).subscribe(
       (data) => {

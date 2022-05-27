@@ -62,6 +62,10 @@ export class SocialmediaComponent implements OnInit {
     });
   }
 
+  displayTable(){
+    this.selected = null;
+  }
+
   addPost(newPost: Post) {
     this.postSvc.createPost(newPost).subscribe(
       (data) => {

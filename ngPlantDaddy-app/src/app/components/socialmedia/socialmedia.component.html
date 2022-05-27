@@ -98,17 +98,16 @@
 //--------- Display single post & option to edit --------------------------------------------------------------------
 //-------add logic to only allow original poster to edit ---------------------------------------------------------->
 
-<!-- <div *ngIf="selected && !editPost">
+ <div *ngIf="selected && !editPost">
   <p>{{selected.id}}</p>
   <p>{{selected.title}}</p>
   <p>{{selected.imageUrl}}</p>
   <p>{{selected.createDate}}</p>
 
-  <button (click)="setEditPost()">Edit</button>
   <button (click)="displayTable()">Back</button>
-</div> -->
+</div>
 
-<!--------- Edit post form ------------------------------------------------------------------------------------ -->
+<!--------- Edit post form NOT HERE _ MOVE TO PROFILE  ------------------------------------------------------------------------------------ -->
 
 <!-- <section>
   <div *ngIf="editPost">
@@ -129,7 +128,7 @@
 <!------- View all Post table -------------------------------------------------------------------------->
 <!-- // logic for logged in / not? -->
 
-<table *ngIf="!selected" class="table table-striped table-hover">
+<!-- <table *ngIf="!selected" class="table table-striped table-hover">
   <thead class="table-light">
     <tr>
       <th>Title</th>
@@ -149,7 +148,7 @@
       </td>
     </tr>
   </tbody>
-</table>
+</table> -->
 
 <table *ngIf="!selected" class="table table-striped table-hover">
   <thead class="table-light">
@@ -167,8 +166,6 @@
       <td class="createDate" (click)="displayPost(post)">
         {{ post.createDate }}
       </td>
-
-      <!-- <td><button class="btn btn-danger"(click)="disablePost(post)">X</button></td> -->
     </tr>
   </tbody>
 </table>
