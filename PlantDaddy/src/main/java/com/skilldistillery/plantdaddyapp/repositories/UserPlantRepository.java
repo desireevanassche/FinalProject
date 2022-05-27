@@ -12,6 +12,6 @@ public interface UserPlantRepository extends JpaRepository<UserPlant, Integer> {
 
 	List<UserPlant> findByNicknameOrDescription(String keyword, String keyword2);
 
-	List<UserPlant> findByUser_UserPlants(String username);
+	List<UserPlant> findByUser_Username(String username);
 
 }

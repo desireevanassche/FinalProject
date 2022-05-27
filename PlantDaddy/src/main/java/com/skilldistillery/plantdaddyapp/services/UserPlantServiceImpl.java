@@ -17,7 +17,7 @@ public class UserPlantServiceImpl implements UserPlantService {
 
 	@Override
 	public List<UserPlant> index(String username) {
-		return userPlantRepo.findByUser_UserPlants(username);
+		return userPlantRepo.findByUser_Username(username);
 	}
 
 	@Override
