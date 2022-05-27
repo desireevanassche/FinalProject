@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.plantdaddyapp.entities.Comment;
+import com.skilldistillery.plantdaddyapp.entities.Hashtag;
 import com.skilldistillery.plantdaddyapp.entities.Post;
 import com.skilldistillery.plantdaddyapp.entities.Topic;
 import com.skilldistillery.plantdaddyapp.services.CommentService;
+import com.skilldistillery.plantdaddyapp.services.HashtagService;
 import com.skilldistillery.plantdaddyapp.services.PostService;
 import com.skilldistillery.plantdaddyapp.services.TopicService;
 
@@ -36,6 +37,9 @@ public class SocialMediaController {
 	
 	@Autowired 
 	private CommentService comServ;
+	
+	@Autowired
+	private HashtagService hashServ;
 	
 
 //	----------------- POST CONTROLLERS ----------------------
@@ -134,9 +138,25 @@ public class SocialMediaController {
 		return comment;	
 	}
 	
+
 	
-//	@PutMapping("posts/{postId}/comments/{commentId}")
-//	public Comment disableComment
+	
+//	------------------- HASHTAG CONTROLLERS ------------------
+	
+	
+	@GetMapping("hashtag")
+	public List<Hashtag> indexHashtag(Principal principal,
+			HttpServletResponse res){
+		
+		return hashServ.index(principal.getName());
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
