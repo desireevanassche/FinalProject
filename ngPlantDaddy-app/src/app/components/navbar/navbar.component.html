@@ -58,6 +58,24 @@
 
         </div>
       </li>
+
+      <!-- ALLOWS A USER TO VIEW ALL PLANTS WITHOUT BEING SIGNED IN -->
+      <li class="nav-item dropdown" *ngIf="!loggedIn()">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         Plant Library
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+
+          <a class="dropdown-item" [routerLink]="['/plant']">Plants By Type</a>
+          <a class="dropdown-item" [routerLink]="['/plant']">Plants By Name</a>
+          <a class="dropdown-item" [routerLink]="['/plant']">All Plants</a>
+
+
+        </div>
+      </li>
+
+
       <li class="nav-item" *ngIf="loggedIn()" >
         <a class=" nav-link" (click)="logout()" [routerLink]="['/logout']" >Logout</a>
       </li>

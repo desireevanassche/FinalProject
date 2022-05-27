@@ -24,11 +24,12 @@ export class PlantService {
     };
     return options;
   }
+
   index() {
-    return this.http.get<Plant[]>(this.url, this.getHttpOptions()).pipe(
+    return this.http.get<Plant[]>(this.url).pipe(
       catchError((err: any) => {
         console.log(err);
-        return throwError('Create post has an error- kaboom');
+        return throwError('Load post has an error- kaboom');
       })
     );
   }

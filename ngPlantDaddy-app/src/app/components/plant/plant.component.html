@@ -20,13 +20,13 @@
   </thead>
   <tbody>
     <tr *ngFor="let plant of plants">
-      <td>{{plant.id}}</td>
-      <td>{{plant.commonName}}</td>
-      <td>{{plant.botanicalName}}</td>
-      <td>{{plant.careDifficulty}}</td>
-      <td>{{plant.description}}</td>
-      <td><button (click)="setPlant(plant)">Details</button></td>
-      <td>
+      <td *ngIf="plant.active === true">{{plant.id}}</td>
+      <td *ngIf="plant.active === true">{{plant.commonName}}</td>
+      <td *ngIf="plant.active === true">{{plant.botanicalName}}</td>
+      <td *ngIf="plant.active === true">{{plant.careDifficulty}}</td>
+      <td *ngIf="plant.active === true">{{plant.description}}</td>
+      <td *ngIf="plant.active === true"><button (click)="setPlant(plant)">Details</button></td>
+      <td *ngIf="plant.active === true">
         <img id="image" [src]="plant.imageUrl" class="img-thumbnail" />
       </td>
     </tr>
@@ -34,7 +34,7 @@
 </table>
 
 
-<div *ngIf="!selected">
+<div *ngIf="!selected && currentUserId != null">
 <form>
 Common Name: <input type="text" name="commonName" [(ngModel)]="newPlant.commonName">
 Botanical Name: <input type="text" name="botanicalName" [(ngModel)]="newPlant.botanicalName">
@@ -52,8 +52,11 @@ Image: <input type="text" name="imageUrl" [(ngModel)]="newPlant.imageUrl">
   <p>{{selected.botanicalName}}</p>
   <p>{{selected.careDifficulty}}</p>
   <p>{{selected.description}}</p>
-  <button (click)="setEditPlant()">Edit</button>
-  <button (click)="deactivate(selected, selected.id)">Deactivate</button>
+  <div *ngIf="selected.user.id == currentUserId">
+    <button (click)="setEditPlant()">Edit</button>
+    <br>
+    <button (click)="deactivate(selected, selected.id)">Deactivate</button>
+  </div>
   <button (click)="selected = null">Back</button>
   </div>
 
