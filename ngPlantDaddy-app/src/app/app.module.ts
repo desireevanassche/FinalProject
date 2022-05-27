@@ -18,6 +18,7 @@ import { PlantComponent } from './components/plant/plant.component';
 import { SearchfilterPipe } from './pipes/searchfilter.pipe';
 import { AccountComponent } from './components/account/account.component';
 import { TodoComponent } from './components/todo/todo.component';
+import { UserplantComponent } from './components/userplant/userplant.component';
 
 
 
@@ -35,7 +36,8 @@ import { TodoComponent } from './components/todo/todo.component';
     PlantComponent,
     SearchfilterPipe,
     AccountComponent,
-    TodoComponent
+    TodoComponent,
+    UserplantComponent
   ],
   imports: [
     BrowserModule,
