@@ -13,6 +13,7 @@ export class PostService {
 
   private url = environment.baseUrl + "api/users/posts";
   private url2 = environment.baseUrl + "api/posts";
+  private url3 = environment.baseUrl + "api/users/posts/disable";
 
   constructor(private http : HttpClient, private datePipe : DatePipe,private auth : AuthService) { }
 
@@ -84,8 +85,8 @@ export class PostService {
 
   //--------------   DISABLE POST ----------------
 
-  public disablePost(disablePost : Post){
-    return this.http.put<Post> (this.url, disablePost, this.getHttpOptions())
+  public disablePost(id : number, disablePost : Post ){
+    return this.http.put<Post> (this.url3 + "/" +id, disablePost, this.getHttpOptions())
     .pipe(
       catchError((err:any)=>{
         console.log(err);

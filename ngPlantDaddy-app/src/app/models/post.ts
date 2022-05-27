@@ -22,7 +22,7 @@ constructor(
   imageUrl: string = "",
   createDate: string = "",
   updateDate: string = "",
-  active: boolean = false,
+  active: boolean = true,
   topic : Topic = new Topic(),
   user : User = new User()
 
