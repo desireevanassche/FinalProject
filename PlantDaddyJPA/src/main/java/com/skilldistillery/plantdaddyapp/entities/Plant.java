@@ -101,7 +101,7 @@ public class Plant {
 	inverseJoinColumns = @JoinColumn(name="potting_mix_id"))
 	private List<PottingMix> pottingMixes;
 	
-	@JsonIgnore
+	
 	@ManyToMany
 	@JoinTable(name="store_has_plant",
 	joinColumns = @JoinColumn(name="plant_id"),
