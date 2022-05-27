@@ -77,6 +77,7 @@
               <div class="posttext pull-left">
                 <h2>{{ selected.title }}</h2>
                 <p>{{ selected.content }}</p>
+                <p>Topic : {{selected.topic.name}}</p>
               </div>
             </div>
             <div class="postinfo pull-left">
@@ -97,7 +98,7 @@
                   Edit Post
                 </button>
                 <button
-
+                  (click)="disablePost(selected.id, selected)"
                   type="button"
                   class="btn btn-primary btn-lg"
                 >
@@ -108,7 +109,18 @@
             </div>
             <div class="clearfix"></div>
           </div>
+
+          <div class="view-comments">
+
+            <ul>
+              <li></li>
+
+            </ul>
+
+          </div>
+
         </div>
+
         <!-- ---------  Single Post View -------------- -->
 
 
@@ -139,14 +151,14 @@
         </div>
         <!-- ---------  EDIT Post View -------------- -->
 
-        <div *ngIf="selected && !editPost">
+        <!-- <div *ngIf="selected && !editPost">
           <p>{{ selected.id }}</p>
           <p>{{ selected.title }}</p>
           <p>{{ selected.imageUrl }}</p>
           <p>{{ selected.createDate }}</p>
 
           <button (click)="displayTable()">Back</button>
-        </div>
+        </div> -->
 
 
         <!--------------------- SIDE BAR FOR CATEGORIES SECTION ----------->

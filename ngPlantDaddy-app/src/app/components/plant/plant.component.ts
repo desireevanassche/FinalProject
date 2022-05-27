@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PlantService } from './../../services/plant.service';
 import { Component, OnInit } from '@angular/core';
@@ -23,13 +24,17 @@ export class PlantComponent implements OnInit {
 
   plantCount: Plant[] = [];
 
+  currentUserId: number | null = 0;
+
   constructor(
     private plantSvc: PlantService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private authServ: AuthService
   ) {}
 
   ngOnInit(): void {
+    this.currentUserId = parseInt(""+this.authServ.getCurrentUserId());
     if (!this.selected && this.route.snapshot.paramMap.get('id')) {
       let id = this.route.snapshot.paramMap.get('id');
       if (id) {
@@ -78,8 +83,8 @@ export class PlantComponent implements OnInit {
     );
   }
 
-  updatePlant(plant: Plant) {
-    this.plantSvc.update(plant).subscribe(
+  updatePlant(plant: Plant, id : number) {
+    this.plantSvc.update(plant, id).subscribe(
       (data) => {
         this.reload();
         this.editPlant = null;
@@ -90,20 +95,23 @@ export class PlantComponent implements OnInit {
       (err) => console.error(err)
     );
   }
-  deactivate(plant: Plant) {
-    this.plantSvc.deactivate(plant).subscribe(
+  deactivate(plant: Plant, id : number) {
+    this.plantSvc.deactivate(plant, id).subscribe(
       (data) => {
         this.reload();
         this.editPlant = null;
         if (this.selected) {
-          this.selected = Object.assign({}, plant);
+          this.selected = Object.assign({}, id, plant);
         }
       },
       (err) => console.error(err)
     );
   }
-  displayAddForm(){
-    this.selected = null;
+  setPlant(plant: Plant) {
+    this.selected = plant;
+  }
+  setEditPlant(){
+    this.editPlant = Object.assign({}, this.selected);
   }
 
 }

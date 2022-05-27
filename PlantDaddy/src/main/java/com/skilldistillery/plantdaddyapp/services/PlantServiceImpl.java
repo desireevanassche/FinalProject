@@ -6,13 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.plantdaddyapp.entities.Plant;
+import com.skilldistillery.plantdaddyapp.entities.User;
 import com.skilldistillery.plantdaddyapp.repositories.PlantRepository;
+import com.skilldistillery.plantdaddyapp.repositories.UserRepository;
 
 @Service
 public class PlantServiceImpl implements PlantService {
 
 	@Autowired
 	private PlantRepository plantRepo;
+	
+	@Autowired
+	private UserRepository userRepo;
 
 	@Override
 	public List<Plant> index() {
@@ -27,6 +32,10 @@ public class PlantServiceImpl implements PlantService {
 
 	@Override
 	public Plant addPlant(Plant plant, String username) {
+		User user = userRepo.findByUsername(username);
+		if(user != null) {
+			plant.setUser(user);
+		}
 		plant = plantRepo.saveAndFlush(plant);
 		return plant;
 	}

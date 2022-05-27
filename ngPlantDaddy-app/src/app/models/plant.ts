@@ -1,3 +1,5 @@
+import { User } from "./user";
+
 export class Plant {
 
   id : number;
@@ -9,9 +11,23 @@ export class Plant {
   waterCycle : string | null;
   waterType : string | null;
   lightRequirement : string | null;
-  active : boolean;
+  active : boolean | null;
+  user: User;
 
-  constructor(id : number = 0, commonName : string = "", description : string = "", imageUrl : string = "", botanicalName : string = "", careDifficulty : string = "", waterCycle : string = "", waterType : string = "", lightRequirement : string = "", active : boolean = true){
+  constructor( id : number = 0,
+    commonName : string = "",
+    description : string = "",
+    imageUrl : string = "",
+    botanicalName : string = "",
+    careDifficulty : string = "",
+    waterCycle : string = "",
+    waterType : string = "",
+    lightRequirement : string = "",
+    active : boolean = true,
+    user : User = new User()
+
+    ){
+
     this.id = id;
     this.commonName = commonName;
     this.description = description;
@@ -22,5 +38,6 @@ export class Plant {
     this.waterType = waterType;
     this.lightRequirement = lightRequirement;
     this.active = active;
+    this.user = user;
   }
 }
