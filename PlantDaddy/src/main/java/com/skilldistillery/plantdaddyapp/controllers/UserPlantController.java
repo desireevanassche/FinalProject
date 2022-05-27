@@ -31,7 +31,7 @@ public class UserPlantController {
 		return userPlantServ.index(principal.getName());
 	}
 
-	@GetMapping("userPlants{userPlantId}")
+	@GetMapping("userPlants/{userPlantId}")
 	public UserPlant show(HttpServletResponse res, @PathVariable int userPlantId, Principal principal) {
 		UserPlant userPlant = userPlantServ.show(principal.getName(), userPlantId);
 		if (userPlant == null) {
@@ -39,23 +39,30 @@ public class UserPlantController {
 		}
 		return userPlant;
 	}
+	@GetMapping("userPlants/search/{keyword}")
+	public List<UserPlant> findByKeyword(@PathVariable String keyword){
+		return userPlantServ.listPlantByKeyword(keyword);
+	}
 
-	@PostMapping("userplants")
+
+	@PostMapping("userPlants")
 	public UserPlant addUserPlant(@RequestBody UserPlant userPlant, HttpServletResponse res, Principal principal) {
 		UserPlant newUserPlant = userPlantServ.addPlant(userPlant, principal.getName());
 		return newUserPlant;
 	}
 
-	@PutMapping("userplants/{userPlantId}")
+	@PutMapping("userPlants/{userPlantId}")
 	public UserPlant updateUserPlant(@RequestBody UserPlant userPlant, @PathVariable int userPlantId,
 			Principal principal) {
 		return userPlantServ.updatePlant(userPlant, userPlantId, principal.getName());
 	}
 
-	@PutMapping("userplants/{userPlantId}")
-	public UserPlant deactivate(@RequestBody UserPlant userPlant, HttpServletResponse res, Principal principal) {
-		return userPlant;
+	@PutMapping("userPlants/deactivate/{userPlantId}")
+	public UserPlant deactivate(@RequestBody UserPlant userPlant, HttpServletResponse res, Principal principal,
+			@PathVariable int userPlantId) {
+		return userPlantServ.deactivate(userPlant, userPlantId, principal.getName());
 
 	}
+	
 
 }
