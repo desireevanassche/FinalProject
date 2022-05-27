@@ -1,9 +1,11 @@
-import { SocialmediaComponent } from './../socialmedia/socialmedia.component';
+import { AuthService } from 'src/app/services/auth.service';
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from 'src/app/models/post';
 import { PostService } from 'src/app/services/post.service';
-import { TopicService } from 'src/app/services/topic.service';
+import { User } from 'src/app/models/user';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-account',
@@ -20,13 +22,21 @@ export class AccountComponent implements OnInit {
   allPosts : Post [] =[];
   newPost: Post = new Post();
 
+  user: User | null = null;
+  edituser: User | null = null;
+  newUser: Post | null = null;
+
 
 
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private postSvc: PostService
+    private postSvc: PostService,
+    private userSvc: UserService,
+    private authSvc: AuthService
+
+
   ) {}
 
   ngOnInit(): void {
@@ -46,12 +56,34 @@ export class AccountComponent implements OnInit {
         this.posts = data;
         this.postSvc.indexAllPosts();
 
+        this.authSvc.getLoggedInUser().subscribe({
+          next: (userData) => {
+            this.user = userData;
+            this.userSvc.userInfo();
+          },
+        });
       },
       error: (err) => {
         console.error(err);
       },
     });
   }
+
+  // updateUser(updatedUser: User) {
+  //   this.userSvc.updateUser(updatedUser).subscribe(
+  //     (data) => {
+  //       this.reload();
+  //       this.newUser = updatedUser;
+  //       if (this.selected) {
+  //         this.selected = Object.assign({}, updatedUser);
+  //       }
+  //     },
+  //     (err) => console.error(err)
+  //   );
+  // }
+
+
+
 
   show(id: number) {
     this.postSvc.show(id).subscribe(
@@ -74,40 +106,10 @@ export class AccountComponent implements OnInit {
     this.selected = null;
   }
 
-  addPost(newPost: Post) {
-    this.postSvc.createPost(newPost).subscribe(
-      (data) => {
-        this.reload();
-        this.newPost = new Post();
-      },
-      (err) => console.error(err)
-    );
-  }
 
-  updatePost(updatedPost: Post, id: number) {
-    this.postSvc.updatePost(updatedPost, id).subscribe(
-      (data) => {
-        this.reload();
-        this.newPost = updatedPost;
-        if (this.selected) {
-          this.selected = Object.assign({}, updatedPost);
-        }
-      },
-      (err) => console.error(err)
-    );
-  }
-  // disablePost(post: Post) {
-  //   this.postSvc.disablePost(post).subscribe(
-  //     (data) => {
-  //       this.reload();
-  //       this.editPost = null;
-  //       if (this.selected) {
-  //         this.selected = Object.assign({}, post);
-  //       }
-  //     },
-  //     (err) => console.error(err)
-  //   );
-  // }
+
+
+
   displayPost(post: Post) {
     this.selected = post;
   }
