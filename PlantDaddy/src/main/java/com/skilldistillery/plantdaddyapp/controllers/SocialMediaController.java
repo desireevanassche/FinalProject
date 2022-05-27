@@ -30,7 +30,6 @@ public class SocialMediaController {
 
 	@Autowired
 	private PostService postServ;
-<<<<<<< HEAD
 	
 	@Autowired 
 	private TopicService topicServ;
@@ -38,10 +37,7 @@ public class SocialMediaController {
 	@Autowired 
 	private CommentService comServ;
 	
-	
-=======
 
->>>>>>> 44dd422a49416c9ab0dc45846f133d25eff96627
 //	----------------- POST CONTROLLERS ----------------------
 
 	// TESTED AND WORKS IN POSTMAN http://localhost:8095/api/posts
@@ -87,7 +83,7 @@ public class SocialMediaController {
 
 	}
 
-<<<<<<< HEAD
+
 //	----------------- TOPIC CONTROLLERS -----------------------
 	
 	
@@ -119,8 +115,6 @@ public class SocialMediaController {
 		
 		return comServ.findAllByPostId(postId);
 	}
-	
-	
 	
 	
 	// TESTED IN POSTMAN AND PASSES http://localhost:8095/api/posts/1/comments
@@ -165,15 +159,5 @@ public class SocialMediaController {
 //		
 //	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-=======
->>>>>>> 44dd422a49416c9ab0dc45846f133d25eff96627
+
 }
