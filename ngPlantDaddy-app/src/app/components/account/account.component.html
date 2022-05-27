@@ -20,11 +20,11 @@
   </tbody>
 </table>
 
-<!-- <div *ngIf="selected && !editPost">
-  <p>{{selected.id}}</p>
-  <p>{{selected.title}}</p>
-  <p>{{selected.imageUrl}}</p>
-  <p>{{selected.createDate}}</p>
+<div *ngIf="selected && !editPost">
+  <p>{{selected?.id}}</p>
+  <p>{{selected?.title}}</p>
+  <p>{{selected?.imageUrl}}</p>
+  <p>{{selected?.createDate}}</p>
 
   <button (click)="displayTable()">Back</button>
-</div> -->
+</div>

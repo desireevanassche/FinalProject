@@ -22,6 +22,7 @@ export class AccountComponent implements OnInit {
 
 
 
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -68,8 +69,6 @@ export class AccountComponent implements OnInit {
       }
     );
   }
-
-
 
   displayTable(){
     this.selected = null;
