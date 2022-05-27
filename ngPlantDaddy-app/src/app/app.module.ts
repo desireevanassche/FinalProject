@@ -9,11 +9,12 @@ import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { RegisterComponent } from './components/register/register.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './services/auth.service';
 import { SocialmediaComponent } from './components/socialmedia/socialmedia.component';
 import { DatePipe } from '@angular/common';
 import { BlogComponent } from './components/blog/blog.component';
+import { SearchfilterPipe } from './pipes/searchfilter.pipe';
 
 
 
@@ -27,7 +28,8 @@ import { BlogComponent } from './components/blog/blog.component';
     RegisterComponent,
     NavbarComponent,
     SocialmediaComponent,
-    BlogComponent
+    BlogComponent,
+    SearchfilterPipe
 
 
   ],
@@ -35,7 +37,8 @@ import { BlogComponent } from './components/blog/blog.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
 
 
   ],
