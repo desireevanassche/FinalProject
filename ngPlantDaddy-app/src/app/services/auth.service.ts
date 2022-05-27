@@ -30,6 +30,7 @@ export class AuthService {
         // While credentials are stored in browser localStorage, we consider
         // ourselves logged in.
         localStorage.setItem('credentials', credentials);
+        localStorage.setItem('currentUserId' , "" + newUser.id);
         return newUser;
       }),
       catchError((err: any) => {
@@ -55,6 +56,7 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('credentials');
+    localStorage.removeItem("currentUserId");
   }
 
   checkLogin(): boolean {
@@ -74,5 +76,10 @@ export class AuthService {
 
   getCredentials(): string | null {
     return localStorage.getItem('credentials');
+  }
+
+
+  getCurrentUserId(): string | null {
+    return localStorage.getItem('currentUserId');
   }
 }

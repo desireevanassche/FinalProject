@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { TopicService } from './../../services/topic.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -18,24 +19,34 @@ export class SocialmediaComponent implements OnInit {
   editPost: Post | null = null;
 
   posts: Post[] = [];
+
   allPosts : Post [] =[];
 
   topics: Topic[] = [];
 
   selected: Post | null = null;
 
+  display:boolean = false;
+
+  currentUserId:number | null = 0;
+
+
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private postSvc: PostService,
-    private topicSvc: TopicService
+    private topicSvc: TopicService,
+    private authServ: AuthService
   ) {}
 
   ngOnInit(): void {
+    this.currentUserId = parseInt(""+this.authServ.getCurrentUserId());
     if (!this.selected && this.route.snapshot.paramMap.get('id')) {
       let id = this.route.snapshot.paramMap.get('id');
       if (id) {
         this.show(parseInt(id));
+
       }
     } else {
     }
@@ -47,6 +58,8 @@ export class SocialmediaComponent implements OnInit {
       next: (data) => {
         this.posts = data;
         this.displayAllPosts();
+        console.log(data);
+
         this.topicSvc.indexTopics().subscribe({
           next: (topicData) => {
             this.topics = topicData;
@@ -64,6 +77,19 @@ export class SocialmediaComponent implements OnInit {
 
   displayTable(){
     this.selected = null;
+  }
+
+  displayPosts(){
+    this.selected = null;
+  }
+
+  displayCreateForm(){
+    this.display = true;
+  }
+
+  displayEditForm(){
+this.display = true;
+
   }
 
   addPost(newPost: Post) {
@@ -100,9 +126,11 @@ export class SocialmediaComponent implements OnInit {
       (err) => console.error(err)
     );
   }
+
   displayPost(post: Post) {
     this.selected = post;
   }
+
   show(id: number) {
     this.postSvc.show(id).subscribe(
       (data) => {
@@ -137,5 +165,9 @@ displayAllPosts(){
   )
 }
 
+
+editPostCheck(){
+
+}
 
 }
