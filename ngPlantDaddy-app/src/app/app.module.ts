@@ -1,3 +1,4 @@
+import { PostService } from 'src/app/services/post.service';
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -32,8 +33,8 @@ import { AccountComponent } from './components/account/account.component';
     SocialmediaComponent,
     BlogComponent,
     PlantComponent,
-    SearchfilterPipe,
-    AccountComponent
+    AccountComponent,
+    SearchfilterPipe
   ],
   imports: [
     BrowserModule,
@@ -46,7 +47,8 @@ import { AccountComponent } from './components/account/account.component';
   ],
   providers: [
     DatePipe,
-    AuthService
+    AuthService,
+
 
   ],
   bootstrap: [AppComponent]
