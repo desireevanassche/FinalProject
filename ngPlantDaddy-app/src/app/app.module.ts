@@ -1,4 +1,3 @@
-import { PostService } from 'src/app/services/post.service';
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -18,6 +17,8 @@ import { BlogComponent } from './components/blog/blog.component';
 import { PlantComponent } from './components/plant/plant.component';
 import { SearchfilterPipe } from './pipes/searchfilter.pipe';
 import { AccountComponent } from './components/account/account.component';
+import { TodoComponent } from './components/todo/todo.component';
+import { UserplantComponent } from './components/userplant/userplant.component';
 
 
 
@@ -33,8 +34,11 @@ import { AccountComponent } from './components/account/account.component';
     SocialmediaComponent,
     BlogComponent,
     PlantComponent,
+    SearchfilterPipe,
     AccountComponent,
-    SearchfilterPipe
+    TodoComponent,
+    UserplantComponent
+
   ],
   imports: [
     BrowserModule,
@@ -47,7 +51,7 @@ import { AccountComponent } from './components/account/account.component';
   ],
   providers: [
     DatePipe,
-    AuthService,
+    AuthService
 
 
   ],

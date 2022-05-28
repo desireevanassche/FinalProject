@@ -47,7 +47,7 @@ public class Todo {
 	@Column(name = "date_created")
 	@CreationTimestamp
 	private LocalDateTime createdAt;
-
+ 
 	@ManyToOne
 	@JsonIgnoreProperties({"todos"})
 	@JoinColumn(name = "user_plant_id")

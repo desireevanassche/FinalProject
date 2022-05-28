@@ -8,7 +8,13 @@
             <b class="caret"></b>
             <ul class="dropdown-menu" role="menu" *ngFor="let post of posts">
               <li role="presentation">
-                <a name="post.title" tabindex="-1" href="#">{{ post.title }}</a>
+                <a
+                  name="post.title"
+                  tabindex="-1"
+                  href="#"
+
+                  >{{ post.title }}</a
+                >
               </li>
             </ul>
           </div>
@@ -28,7 +34,7 @@
                   <i class="fa fa-search"></i>
                 </button>
               </div>
-              <div class="clearfix"></div>
+
             </form>
           </div>
         </div>
@@ -46,7 +52,7 @@
           </div>
           <div class="env pull-left"><i class="fa fa-envelope"></i></div>
 
-          <div class="clearfix"></div>
+
         </div>
       </div>
     </div>
@@ -58,14 +64,14 @@
           <!-- ALL POST -->
           <div class="post" *ngFor="let post of allPosts">
             <div class="wrap-ut pull-left">
-              <div class="posttext pull-left" (click)="displayPost(post)">
+              <div class="posttext pull-left" (click)="displayPost(post)" *ngIf="post.active === true">
                 <h2>{{ post.title }}</h2>
                 <p>{{ post.content }}</p>
               </div>
-              <div class="clearfix"></div>
+
             </div>
             <div class="postinfo pull-left"></div>
-            <div class="clearfix"></div>
+
           </div>
           <!-- ALL  POSTS -->
         </div>
@@ -77,7 +83,16 @@
               <div class="posttext pull-left">
                 <h2>{{ selected.title }}</h2>
                 <p>{{ selected.content }}</p>
-                <p>Topic : {{selected.topic.name}}</p>
+                <p><img class="img-thumbnail" [src]=selected.imageUrl /></p>
+                <p>{{ selected.createDate }}</p>
+                <p>Topic : {{ selected.topic.name }}</p>
+                <div *ngIf="selected.comments && selected.comments.length > 0">
+                  <ul>
+                    <li *ngFor="let comment of selected.comments">
+                      {{ comment.content }}
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
             <div class="postinfo pull-left">
@@ -90,63 +105,73 @@
                   Return to forum
                 </button>
                 <div *ngIf="selected.user.id == currentUserId">
-                <button
-                  (click)="editPost = selected"
-                  type="button"
-                  class="btn btn-primary btn-lg"
-                >
-                  Edit Post
-                </button>
-                <button
-                  (click)="disablePost(selected.id, selected)"
-                  type="button"
-                  class="btn btn-primary btn-lg"
-                >
-                  Deactivate
-                </button>
-              </div>
+                  <button
+                    (click)="editPost = selected"
+                    type="button"
+                    class="btn btn-primary btn-lg"
+                  >
+                    Edit Post
+                  </button>
+                  <button
+                    (click)="disablePost(selected.id, selected)"
+                    type="button"
+                    class="btn btn-primary btn-lg"
+                  >
+                    Deactivate
+                  </button>
+                </div>
               </div>
             </div>
-            <div class="clearfix"></div>
+
           </div>
 
           <div class="view-comments">
-
             <ul>
               <li></li>
-
             </ul>
-
           </div>
-
         </div>
 
         <!-- ---------  Single Post View -------------- -->
 
-
-
         <!-- ---------  EDIT Post View -------------- -->
-        <div class="col-lg-8 col-md-8" >
-          <div class="post" >
+        <div class="col-lg-8 col-md-8">
+          <div class="post">
             <div class="wrap-ut pull-left">
               <div class="posttext pull-left">
                 <section>
-                  <div *ngIf="editPost ">
+                  <div *ngIf="selected && editPost">
                     <form>
-                      Title: <input type="text" name="title" [(ngModel)]="editPost.title">
-                      Content: <input type="text" name="content" [(ngModel)]="editPost.content">
-                      Image Url: <input type="text" name="imageUrl" [(ngModel)]="editPost.imageUrl">
+                      Title:
+                      <input
+                        type="text"
+                        name="title"
+                        [(ngModel)]="editPost.title"
+                      />
+                      Content:
+                      <input
+                        type="text"
+                        name="content"
+                        [(ngModel)]="editPost.content"
+                      />
+                      Image Url:
+                      <input
+                        type="text"
+                        name="imageUrl"
+                        [(ngModel)]="editPost.imageUrl"
+                      />
+                      <label name="active">active?</label>
+                      <input type="text" name="active" [(ngModel)]="editPost.active"/>
 
-                      <button (click)="updatePost(editPost, editPost.id)">Save</button>
+                      <button  (click)="updatePost(editPost, editPost.id); editPost = null" >
+                        Save
+                      </button>
                       <button (click)="editPost = null">Cancel</button>
-
                     </form>
                   </div>
                 </section>
-
               </div>
             </div>
-
           </div>
         </div>
         <!-- ---------  EDIT Post View -------------- -->
@@ -159,7 +184,6 @@
 
           <button (click)="displayTable()">Back</button>
         </div> -->
-
 
         <!--------------------- SIDE BAR FOR CATEGORIES SECTION ----------->
         <div class="col-lg-4 col-md-4">
@@ -248,12 +272,12 @@
                   </div>
 
                   <div class="d-flex flex-row align-items-center mb-4">
-                    <select [(ngModel)]="newPost.topic.id" name="topic">
+                    <select [(ngModel)]="newPost.topic.id" name="topicId">
                       <option
                         *ngFor="let topic of topics"
                         value="{{ topic.id }}"
                       >
-                        {{ topic.description }}
+                        {{ topic.name }}
                       </option>
                     </select>
                     <!-- <div class="dropdown-divider"></div> -->
@@ -295,11 +319,7 @@
 //--------- Display single post & option to edit --------------------------------------------------------------------
 //-------add logic to only allow original poster to edit ---------------------------------------------------------->
 
-
-
 <!--------- Edit post form NOT HERE _ MOVE TO PROFILE  ------------------------------------------------------------------------------------ -->
-
-
 
 <!------ END Edit Post Form ---------------------------------------------------------------------------->
 

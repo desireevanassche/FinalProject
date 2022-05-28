@@ -33,6 +33,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Post {
@@ -63,7 +64,7 @@ public class Post {
 	@JoinColumn(name="user_id")
 	private User user;
 	
-	@JsonIgnore
+	@JsonIgnoreProperties({"post","comments"})
 	@OneToMany(mappedBy="post")
 	private List<Comment> comments;
 
