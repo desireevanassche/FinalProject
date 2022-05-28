@@ -85,7 +85,6 @@ export class AccountComponent implements OnInit {
 
 
 
-
   showPost(id: number) {
     this.postSvc.show(id).subscribe(
       (data) => {
