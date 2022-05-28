@@ -102,7 +102,7 @@ export class PostService {
     return this.http.get<Post>(this.url + "/" + id,this.getHttpOptions())
     .pipe(
       catchError((err:any)=>{
-        return throwError('Check this- KABOOM!')
+        return throwError('Check this- KABOOM!' + err)
       })
     )
   }
