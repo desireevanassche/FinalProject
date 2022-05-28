@@ -44,7 +44,6 @@ public class UserPlantController {
 		return userPlantServ.listPlantByKeyword(keyword);
 	}
 
-
 	@PostMapping("userPlants")
 	public UserPlant addUserPlant(@RequestBody UserPlant userPlant, HttpServletResponse res, Principal principal) {
 		UserPlant newUserPlant = userPlantServ.addPlant(userPlant, principal.getName());
