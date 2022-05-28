@@ -8,9 +8,7 @@ import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { RegisterComponent } from './components/register/register.component';
 import { BlogComponent } from './components/blog/blog.component';
-
 import { TodoComponent } from './components/todo/todo.component';
-
 import { NgModule } from '@angular/core';
 
 
@@ -26,7 +24,6 @@ const routes: Routes = [
   { path: 'plant', component: PlantComponent },
   { path: 'todo', component: TodoComponent },
   { path: 'userPlants', component : UserplantComponent}
-
 
 
 ];
