@@ -64,7 +64,7 @@ export class UserplantService {
       },
     };
     return this.http
-      .put<Userplant>(this.url2 + "/" + id, updateUserPlant, httpOptions)
+      .put<Userplant>(this.url + "/" + id, updateUserPlant, this.getHttpOptions())
       .pipe(
         catchError((err: any) => {
           console.log(err);
