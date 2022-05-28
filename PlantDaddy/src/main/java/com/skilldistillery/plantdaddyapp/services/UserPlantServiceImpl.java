@@ -30,6 +30,7 @@ public class UserPlantServiceImpl implements UserPlantService {
 	public UserPlant addPlant(UserPlant userPlant, String username) {
 		
 		User user  = userRepo.findByUsername(username);
+		System.out.println(user);
 		userPlant.setUser(user);
 		
 		

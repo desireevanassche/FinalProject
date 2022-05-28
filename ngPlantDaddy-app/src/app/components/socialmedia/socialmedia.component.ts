@@ -93,6 +93,7 @@ export class SocialmediaComponent implements OnInit {
     });
   }
 
+
   displayTable() {
     this.selected = null;
   }

@@ -1,4 +1,5 @@
 
+import { Plant } from "./plant";
 import { User } from "./user";
 
 export class Userplant {
@@ -14,8 +15,7 @@ export class Userplant {
   homeLocation:string |null;
   active: boolean | null;
   user: User
-
-  // plants: Plant[] | null;
+  plants: Plant[];
   // todos: Todo [] | null;
   // photos: Photo [] | null;
 
@@ -32,7 +32,7 @@ constructor(
   imageUrl: string = "",
   homeLocation : string ="",
   active: boolean = true,
-  // plants: Plant [],
+  plants: Plant [] = [],
   user : User = new User ()
   // todos: Todo [],
   // photos : Photo []
@@ -49,8 +49,7 @@ this.potDiameter = potDiameter,
 this.imageUrl = imageUrl;
 this.homeLocation = homeLocation;
 this.active = active;
-
-// this.plants = plants;
+this.plants = plants;
 this.user = user;
 // this.todos = todos;
 // this.photos = photos;
