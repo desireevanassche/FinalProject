@@ -1,3 +1,4 @@
+import { Userplant } from './userplant';
 export class Todo {
 
   id: number;
@@ -7,6 +8,7 @@ export class Todo {
   completedDate: string | null;
   dueDate: string | null;
   active: boolean | null;
+
 
 
 

@@ -24,9 +24,20 @@
         <a class=" nav-link"  [routerLink]="['/blog']" >Blog</a>
       </li>
 
-      <li class="nav-item" *ngIf="loggedIn()">
-        <a class=" nav-link"  [routerLink]="['/account']" >Account</a>
+      <li class="nav-item dropdown" *ngIf="loggedIn()">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Account
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+          <a class="dropdown-item" [routerLink]="['/todo']">Todos</a>
+          <a class="dropdown-item" [routerLink]="['/account']">My Account</a>
+
+
+
+        </div>
       </li>
+
 
       <li class="nav-item dropdown" *ngIf="loggedIn()">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

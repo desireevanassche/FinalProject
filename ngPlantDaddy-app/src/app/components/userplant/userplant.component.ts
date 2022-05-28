@@ -1,3 +1,5 @@
+import { Userplant } from './../../models/userplant';
+import { UserplantService } from './../../services/userplant.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserplantComponent implements OnInit {
 
-  constructor() { }
+
+
+  constructor(userPlant: UserplantService) { }
 
   ngOnInit(): void {
   }

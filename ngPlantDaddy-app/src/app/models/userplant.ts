@@ -13,13 +13,13 @@ export class Userplant {
   imageUrl : string | null;
   homeLocation:string |null;
   active: boolean | null;
-  plants: Plant[] | [];
-  users: User [] | [];
+
+
 
 
 
 constructor(
-  id: number = 0,
+ id: number = 0,
   nickname: string = "",
   description: string = "",
   height: number = 0,
@@ -28,8 +28,8 @@ constructor(
   imageUrl: string = "",
   homeLocation : string ="",
   active: boolean = true,
-  plants: Plant [],
-  users : User []
+
+
 
 ){
 
@@ -42,8 +42,8 @@ this.potDiameter = potDiameter,
 this.imageUrl = imageUrl;
 this.homeLocation = homeLocation;
 this.active = active;
-this.plants = plants;
-this.users = users;
+
+
 
 
 }

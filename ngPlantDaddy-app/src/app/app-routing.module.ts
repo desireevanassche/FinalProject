@@ -8,6 +8,7 @@ import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { RegisterComponent } from './components/register/register.component';
 import { BlogComponent } from './components/blog/blog.component';
+import { TodoComponent } from './components/todo/todo.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'blog', component: BlogComponent },
   { path: 'account', component: AccountComponent },
   { path: 'plant', component: PlantComponent },
+  { path: 'todo', component: TodoComponent },
 
 
 ];
