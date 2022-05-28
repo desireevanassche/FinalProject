@@ -39,8 +39,9 @@ public class UserPlantController {
 		}
 		return userPlant;
 	}
+
 	@GetMapping("userPlants/search/{keyword}")
-	public List<UserPlant> findByKeyword(@PathVariable String keyword){
+	public List<UserPlant> findByKeyword(@PathVariable String keyword) {
 		return userPlantServ.listPlantByKeyword(keyword);
 	}
 
@@ -62,6 +63,5 @@ public class UserPlantController {
 		return userPlantServ.deactivate(userPlant, userPlantId, principal.getName());
 
 	}
-	
 
 }
