@@ -41,6 +41,8 @@ export class SocialmediaComponent implements OnInit {
 
   currentUserId: number | null = 0;
 
+  searchValue: string = "";
+
 
 
   constructor(
