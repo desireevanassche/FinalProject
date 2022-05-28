@@ -3,8 +3,63 @@
 <br>
 <br>
 
+
+
+
 <table class="table table-striped" *ngIf="!selected">
-<thead align="center">
+  <!-- align="center" -->
+  <thead>
+    <tr>
+
+      <th scope="col" >ID</th>
+      <th scope="col" >Nickname</th>
+      <th scope="col" >Height</th>
+      <th scope="col" >Spread</th>
+      <th scope="col" >Pot Diameter</th>
+      <th scope="col" >Home Location</th>
+      <th scope="col" >Description</th>
+      <th scope="col" >View</th>
+      <th scope="col" >Image URL</th>
+    </tr>
+  </thead>
+  <tbody >
+    <tr *ngFor="let userplant of userPlants">
+
+
+        <th   scope="row" *ngIf="userplant.active === true">{{userplant.id}}</th>
+            <td>{{userplant.nickname}}</td>
+            <td>{{userplant.height}}</td>
+            <td>{{userplant.spread}}</td>
+            <td>{{userplant.potDiameter}}</td>
+            <td>{{userplant.homeLocation}}</td>
+            <td>{{userplant.description}}</td>
+            <td><button (click)="setPlant(userplant)">Details</button></td>
+            <td><img id="image" [src]="userplant.imageUrl" class="img-thumbnail" /></td>
+
+
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
+
+<table class="table table-striped" *ngIf="!selected">
+   align="center"
+<thead >
   <tr>
     <td>ID</td>
     <td>Nickname</td>
@@ -14,21 +69,26 @@
     <td>Home Location</td>
     <td>Description</td>
     <td>Image URL</td>
+
   </tr>
 </thead>
 <tbody>
+
   <tr *ngFor="let userplant of userPlants">
-    <td *ngIf="userplant.active === true">{{userplant.id}}</td>
-    <td *ngIf="userplant.active === true">{{userplant.nickname}}</td>
-    <td *ngIf="userplant.active === true">{{userplant.height}}</td>
-    <td *ngIf="userplant.active === true">{{userplant.spread}}</td>
-    <td *ngIf="userplant.active === true">{{userplant.potDiameter}}</td>
-    <td *ngIf="userplant.active === true">{{userplant.homeLocation}}</td>
-    <td *ngIf="userplant.active === true">{{userplant.description}}</td>
-    <td *ngIf="userplant.active === true"><button (click)="setPlant(userplant)">Details</button></td>
-    <td *ngIf="userplant.active === true">
+    <div *ngIf="userplant.active === true">
+    <td >{{userplant.id}}</td>
+    <td >{{userplant.nickname}}</td>
+    <td >{{userplant.height}}</td>
+    <td >{{userplant.spread}}</td>
+    <td >{{userplant.potDiameter}}</td>
+    <td >{{userplant.homeLocation}}</td>
+    <td >{{userplant.description}}</td>
+    <td ></td>
+    <td >
       <img id="image" [src]="userplant.imageUrl" class="img-thumbnail" />
     </td>
+    <button (click)="setPlant(userplant)">Details</button>
+  </div>
   </tr>
 </tbody>
-</table>
+</table>  -->

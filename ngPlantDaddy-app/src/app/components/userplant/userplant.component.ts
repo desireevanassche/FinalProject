@@ -38,6 +38,8 @@ currentUserId: number | null = 0;
 
   ngOnInit(): void {
     this.currentUserId = parseInt(""+this.authServ.getCurrentUserId());
+    console.log(this.currentUserId);
+
     if (!this.selected && this.route.snapshot.paramMap.get('id')) {
       let id = this.route.snapshot.paramMap.get('id');
       if (id) {
@@ -69,12 +71,9 @@ currentUserId: number | null = 0;
         }
       );
     }
-    displayUserPlant(plant: Userplant) {
-      this.selected = plant;
-    }
-    displayTable() {
-      this.selected = null;
-    }
+
+
+
     addUserPlant(){
       this.userPlantSvc.create(this.newUserPlant).subscribe(
         (data) => {
@@ -113,6 +112,12 @@ currentUserId: number | null = 0;
   }
   setEditUserPlant(){
     this.editUserPlant = Object.assign({}, this.selected);
+  }
+  displayUserPlant(plant: Userplant) {
+    this.selected = plant;
+  }
+  displayTable() {
+    this.selected = null;
   }
 
 }
