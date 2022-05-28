@@ -1,43 +1,69 @@
-<div>
-  <h1>
-    <img [src]="user?.imageUrl"><br>
-    {{ user?.firstName }}
-    {{ user?.lastName }}
-    {{ user?.biography }}
-    {{ user?.username }}
-    {{ user?.biography }}
-  </h1>
-</div>
+{{currentUser.firstName}} {{currentUser.lastName}}
 
-<!--------------- USER POST ------------------------------------------------>
 
-<table *ngIf="!selected" class="table table-striped table-hover">
-  <thead class="table-light">
-    <tr>
-      <th>Title</th>
-      <th>Content</th>
-      <th>Date Created</th>
-    </tr>
-  </thead>
+<div class='updateUserDiv'>
+  <div class="userListBox lightPadder" >
+    <div *ngIf="!editUser" >
 
-  <tbody>
-    <tr *ngFor="let post of posts">
-      <td class="title" (click)="displayPost(post)">{{ post.title }}</td>
-      <td class="title" (click)="displayPost(post)">{{ post.content }}</td>
-      <td class="title" (click)="displayPost(post)">{{ post.createDate }}</td>
+            Name: {{currentUser.firstName}} {{currentUser.lastName}}
 
-      <td>
+            Username: {{currentUser.username}}
 
-      </td>
-    </tr>
-  </tbody>
-</table>
+            <button class="btn btn-primary" (click)="editUser = true">Edit</button>
+      </div>
 
-<div *ngIf="selected && !editPost">
-  <p>{{ selected?.id }}</p>
-  <p>{{ selected?.title }}</p>
-  <p>{{ selected?.imageUrl }}</p>
-  <p>{{ selected?.createDate }}</p>
+      <form #createForm="ngForm">
+      <div *ngIf="editUser">
+        First Nme: <input type="text" name="firstName" [(ngModel)]="currentUser.firstName" placeholder="First name">
+        Last Name:<input type="text" name="lastName" [(ngModel)]="currentUser.lastName" placeholder="Last name"><br>
+        Username: <input type="text" name="username" [(ngModel)]="currentUser.username"><br>
 
-  <button (click)="displayTable()">Back</button>
-</div>
+        <button class="btn btn-primary" (click)="editUser=false">Cancel</button>
+        <button class="btn btn-primary" (click)="updateUser(currentUser)">Save</button>
+      </div>
+    </form>
+
+<!--
+    <div>
+      <h1>
+        <img [src]="user?.imageUrl"><br>
+        {{ user?.firstName }}
+        {{ user?.lastName }}
+        {{ user?.biography }}
+        {{ user?.username }}
+        {{ user?.biography }}
+      </h1>
+    </div> -->
+
+    <!--------------- USER POST ------------------------------------------------>
+
+    <table *ngIf="!selected" class="table table-striped table-hover">
+      <thead class="table-light">
+        <tr>
+          <th>Title</th>
+          <th>Content</th>
+          <th>Date Created</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let post of posts">
+          <td class="title" (click)="displayPost(post)">{{ post.title }}</td>
+          <td class="title" (click)="displayPost(post)">{{ post.content }}</td>
+          <td class="title" (click)="displayPost(post)">{{ post.createDate }}</td>
+
+          <td>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="selected && !editPost">
+      <p>{{ selected?.id }}</p>
+      <p>{{ selected?.title }}</p>
+      <p>{{ selected?.imageUrl }}</p>
+      <p>{{ selected?.createDate }}</p>
+
+      <button (click)="displayTable()">Back</button>
+    </div>
