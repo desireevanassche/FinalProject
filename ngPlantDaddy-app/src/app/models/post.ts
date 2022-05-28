@@ -6,8 +6,8 @@ import { Comment } from "./comment";
 export class Post {
 
   id: number;
-  title: string | null;
-  content: string | null;
+  title: string ;
+  content: string;
   imageUrl: string | null;
   createDate: string | null;
   updateDate: string | null;
