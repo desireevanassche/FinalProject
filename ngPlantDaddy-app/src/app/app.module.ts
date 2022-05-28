@@ -23,6 +23,7 @@ import { UserplantComponent } from './components/userplant/userplant.component';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +38,8 @@ import { UserplantComponent } from './components/userplant/userplant.component';
     SearchfilterPipe,
     AccountComponent,
     TodoComponent,
-    UserplantComponent
+    UserplantComponent,
+
 
   ],
   imports: [
