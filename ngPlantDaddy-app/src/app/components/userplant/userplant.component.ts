@@ -20,6 +20,7 @@ editUserPlant: Userplant | null = null;
 
 userPlants: Userplant [] = [];
 
+currentUserId: number | null = 0;
 
 
 
@@ -34,6 +35,7 @@ userPlants: Userplant [] = [];
   ) { }
 
   ngOnInit(): void {
+    this.currentUserId = parseInt(""+this.authServ.getCurrentUserId());
     if (!this.selected && this.route.snapshot.paramMap.get('id')) {
       let id = this.route.snapshot.paramMap.get('id');
       if (id) {

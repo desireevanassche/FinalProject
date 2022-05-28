@@ -10,8 +10,8 @@ import { AuthService } from './auth.service';
 })
 export class UserplantService {
 
-  private baseUrl = environment.baseUrl + 'api/userPlants';
-  private url2 = this.baseUrl + 'api/search';
+  private url = environment.baseUrl + 'api/userPlants';
+  private url2 = this.url + '/search';
 
   constructor(private http: HttpClient, private auth: AuthService) { }
 
@@ -26,7 +26,7 @@ export class UserplantService {
   }
 
   public indexTopics() {
-    return this.http.get<Userplant[]>(this.baseUrl).pipe(
+    return this.http.get<Userplant[]>(this.url).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(() => {
@@ -36,9 +36,10 @@ export class UserplantService {
     );
   }
   public indexUserPlants() {
-    return this.http.get<Userplant[]>(this.baseUrl).pipe(
+    return this.http.get<Userplant[]>(this.url).pipe(
       catchError((err: any) => {
         console.log(err);
+
         return throwError(() => {
           new Error('index user plants has an error- KABOOM!');
         });
@@ -48,7 +49,7 @@ export class UserplantService {
   }
 
   public create(newUserPlant: Userplant) {
-    return this.http.post<Userplant>(this.baseUrl, newUserPlant, this.getHttpOptions()).pipe(
+    return this.http.post<Userplant>(this.url, newUserPlant, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('UserPlantService: error creating Plant');
@@ -73,7 +74,7 @@ export class UserplantService {
   }
 public deactivate(deactivate: Userplant, id : number) {
   return this.http
-      .put<Userplant>(this.baseUrl + "/deactivate/" + id, deactivate, this.getHttpOptions())
+      .put<Userplant>(this.url + "/deactivate/" + id, deactivate, this.getHttpOptions())
       .pipe(
         catchError((err: any) => {
           console.log(err);
@@ -82,7 +83,7 @@ public deactivate(deactivate: Userplant, id : number) {
       );
 }
 show(id: number) {
-  return this.http.get<Userplant>(this.baseUrl + "/" + id, this.getHttpOptions()).pipe(
+  return this.http.get<Userplant>(this.url + "/" + id, this.getHttpOptions()).pipe(
     catchError((err: any) => {
       console.log(err);
       return throwError('PlantService: error retrieving plant list');
