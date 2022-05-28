@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.plantdaddyapp.entities.Todo;
 import com.skilldistillery.plantdaddyapp.entities.User;
+import com.skilldistillery.plantdaddyapp.entities.UserPlant;
 import com.skilldistillery.plantdaddyapp.repositories.TodoRepository;
+import com.skilldistillery.plantdaddyapp.repositories.UserPlantRepository;
 import com.skilldistillery.plantdaddyapp.repositories.UserRepository;
 
 @Service
@@ -17,7 +19,11 @@ public class TodoServiceImpl implements TodoService {
 	@Autowired
 	private TodoRepository todoRepo;
 	
-	@Autowired UserRepository userRepo; 
+	@Autowired 
+	private UserRepository userRepo; 
+	
+	@Autowired
+	private UserPlantRepository plantRepo;
 
 	@Override
 	public Set<Todo> index(String username) {
@@ -39,15 +45,19 @@ public class TodoServiceImpl implements TodoService {
 	}
 	
 	@Override
-	public Todo create(String username, Todo todo) {
+	public Todo create(String username, Todo todo, int userPlantId) {
+		System.out.println("inside impl: " + todo);
+		
 		User user = userRepo.findByUsername(username);
-		System.out.println(user);
-		if (user != null) {
-			todo.getUserPlant().setUser(user);
+		Optional<UserPlant> plantOp = plantRepo.findById(userPlantId);
+		System.out.println(plantOp);
+		if (plantOp.isPresent() &&	user != null) {
+		todo.setUserPlant(plantOp.get());
 		}
 		return todoRepo.saveAndFlush(todo);
 	}
 
+	
 	@Override
 	public Todo update(String username, int todoId, Todo todo) {
 		Optional<Todo> op = todoRepo.findById(todoId);

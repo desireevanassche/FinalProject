@@ -54,7 +54,7 @@ public class Todo {
 	private UserPlant userPlant;
 
 	public Todo() {
-		super();
+		super(); 
 	}
 
 	public int getId() {
@@ -67,7 +67,7 @@ public class Todo {
 
 	public String getName() {
 		return name;
-	}
+	} 
 
 	public void setName(String name) {
 		this.name = name;

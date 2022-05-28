@@ -11,6 +11,7 @@ import { BlogComponent } from './components/blog/blog.component';
 import { TodoComponent } from './components/todo/todo.component';
 import { NgModule } from '@angular/core';
 
+
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent },

@@ -55,9 +55,12 @@
     <label for="inputEmail4" class="form-label">Task</label>
     <input type="text" name="name" [(ngModel)]="newTodo.name"/>
 
+    <label for="inputEmail4" class="form-label">User Plant Id</label>
+    <input type="number" name="name" [(ngModel)]="newTodo.userPlants.id"/>
+
 <br>
 
-<button class="btn btn-primary" (click)="addTodo(newTodo)"  type="submit" >Add Task</button>
+<button class="btn btn-primary" (click)="addTodo(newTodo, newTodo.userPlants.id)"  type="submit" >Add Task</button>
 
   </div>
   </form>
