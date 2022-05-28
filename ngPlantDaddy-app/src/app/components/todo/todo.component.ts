@@ -90,7 +90,14 @@ export class TodoComponent implements OnInit {
   }
 
 
+  updateTodo(todoId: number, updatedTodo: Todo){
+    this.todoService.update(todoId, updatedTodo).subscribe(
+    success =>{
 
+    }
+
+    )
+  }
 
 
   setEditTodo(){

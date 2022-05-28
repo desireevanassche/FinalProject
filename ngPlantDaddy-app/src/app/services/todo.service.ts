@@ -49,6 +49,16 @@ export class TodoService {
       );
   }
 
+  public update(todoId:number, todo: Todo){
+return this.http.put<Todo>(this.url + "/" + todoId, todo, this.getHttpOptions())
+.pipe(
+  catchError((err: any) => {
+    return throwError('Check this- KABOOM!');
+  })
+);
+
+  }
+
   public show(id: number) {
     return this.http.get<Todo>(this.url + '/' + id, this.getHttpOptions()).pipe(
       catchError((err: any) => {
