@@ -15,8 +15,8 @@
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="text" id="form3Example1c" class="form-control" />
-                      <label class="form-label" for="form3Example1c">Your Name</label>
+                      <input [(ngModel)]="newUser.firstName" type="text" name="firstName" class="form-control" />
+                      <label class="form-label" name="firstName"> First Name</label>
                     </div>
                   </div>
 
@@ -31,8 +31,8 @@
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input [(ngModel)]="newUser.email" type="text" name="username" class="form-control" />
-                      <label class="form-label" name="username"> Email</label>
+                      <input [(ngModel)]="newUser.email" type="text" name="email" class="form-control" />
+                      <label class="form-label" name="email"> Email</label>
                     </div>
                   </div>
 
@@ -43,14 +43,6 @@
                       <label class="form-label" name="password">Password</label>
                     </div>
                   </div>
-
-                  <!-- <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-key fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <input [(ngModel)}]="newUser.password" type="password" id="form3Example4cd" class="form-control" />
-                      <label class="form-label" for="form3Example4cd">Repeat your password</label>
-                    </div>
-                  </div> -->
 
                   <div class="form-check d-flex justify-content-right mb-5">
                     <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" />

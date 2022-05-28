@@ -38,6 +38,7 @@ import { UserplantComponent } from './components/userplant/userplant.component';
     AccountComponent,
     TodoComponent,
     UserplantComponent
+
   ],
   imports: [
     BrowserModule,
@@ -51,6 +52,7 @@ import { UserplantComponent } from './components/userplant/userplant.component';
   providers: [
     DatePipe,
     AuthService
+
 
   ],
   bootstrap: [AppComponent]

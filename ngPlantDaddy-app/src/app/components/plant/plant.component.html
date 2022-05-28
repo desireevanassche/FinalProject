@@ -14,23 +14,27 @@
       <td>Botanical Name</td>
       <td>Care Difficulty</td>
       <td>Description</td>
+      <td>View Details</td>
       <td>Image</td>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let plant of plants">
-      <td>{{plant.id}}</td>
-      <td>{{plant.commonName}}</td>
-      <td>{{plant.botanicalName}}</td>
-      <td>{{plant.careDifficulty}}</td>
-      <td>{{plant.description}}</td>
-      <td>
+      <td *ngIf="plant.active === true">{{plant.id}}</td>
+      <td *ngIf="plant.active === true">{{plant.commonName}}</td>
+      <td *ngIf="plant.active === true">{{plant.botanicalName}}</td>
+      <td *ngIf="plant.active === true">{{plant.careDifficulty}}</td>
+      <td *ngIf="plant.active === true">{{plant.description}}</td>
+      <td *ngIf="plant.active === true"><button (click)="setPlant(plant)">Details</button></td>
+      <td *ngIf="plant.active === true">
         <img id="image" [src]="plant.imageUrl" class="img-thumbnail" />
       </td>
     </tr>
   </tbody>
 </table>
 
+
+<div *ngIf="!selected && currentUserId != null">
 <form>
 Common Name: <input type="text" name="commonName" [(ngModel)]="newPlant.commonName">
 Botanical Name: <input type="text" name="botanicalName" [(ngModel)]="newPlant.botanicalName">
@@ -39,3 +43,38 @@ Description: <input type="text" name="description" [(ngModel)]="newPlant.descrip
 Image: <input type="text" name="imageUrl" [(ngModel)]="newPlant.imageUrl">
 <input type="submit" name="submit" value="Add Plant" (click)="addPlant()">
 </form>
+</div>
+
+<div *ngIf="selected">
+  <img [src]="selected.imageUrl"/>
+  <p>{{selected.id}}</p>
+  <p>{{selected.commonName}}</p>
+  <p>{{selected.botanicalName}}</p>
+  <p>{{selected.careDifficulty}}</p>
+  <p>{{selected.description}}</p>
+  <div *ngIf="selected.user.id == currentUserId">
+    <button (click)="setEditPlant()">Edit</button>
+    <br>
+    <button (click)="deactivate(selected, selected.id); selected = null">Deactivate</button>
+  </div>
+  <button (click)="selected = null">Back</button>
+  </div>
+
+  <div *ngIf="editPlant">
+    <form>
+      Common Name: <input type="text" name="common name" [(ngModel)]="editPlant.commonName">
+      <br>
+      Botanical Name: <input type="text" name="botanical name" [(ngModel)]="editPlant.botanicalName">
+      <br>
+      Care Difficulty: <input type="text" name="care difficulty" [(ngModel)]="editPlant.careDifficulty">
+      <br>
+      Description: <input type="text" name="description" [(ngModel)]="editPlant.description">
+      <br>
+      Image URL: <input type="text" name="image url" [(ngModel)]="editPlant.imageUrl">
+      <br>
+      <button (click)="updatePlant(editPlant, editPlant.id)">Save</button>
+      <br>
+      <button (click)="editPlant = null">Cancel</button>
+      <br>
+    </form>
+  </div>

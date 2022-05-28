@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Store {
 
@@ -30,6 +32,7 @@ public class Store {
 	@JoinColumn(name="address_id")
 	private Address address;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy="stores")
 	private List<Plant> plants;
 
