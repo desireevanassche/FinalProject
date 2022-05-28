@@ -29,7 +29,10 @@ public class TodoController {
 
 	@GetMapping("todos")
 	public Set<Todo> index(Principal principal) {
-		return todoServ.index(principal.getName());
+	
+		Set<Todo>results= todoServ.index(principal.getName());
+		System.out.println(results);
+		 return results;
 	}
 
 	@GetMapping("todos/{tid}")

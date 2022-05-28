@@ -37,7 +37,7 @@ public class PlantPhoto {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private int id;
 
 
 	@Column(name = "date_created")
@@ -62,13 +62,13 @@ public class PlantPhoto {
 
 	
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
 
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
