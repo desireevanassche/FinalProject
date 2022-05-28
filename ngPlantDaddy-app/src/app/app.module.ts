@@ -19,6 +19,8 @@ import { SearchfilterPipe } from './pipes/searchfilter.pipe';
 import { AccountComponent } from './components/account/account.component';
 import { TodoComponent } from './components/todo/todo.component';
 import { UserplantComponent } from './components/userplant/userplant.component';
+import { SearchPlantsPipe } from './pipes/search-plants.pipe';
+import { SearchPostsPipe } from './pipes/search-posts.pipe';
 
 
 
@@ -37,7 +39,9 @@ import { UserplantComponent } from './components/userplant/userplant.component';
     SearchfilterPipe,
     AccountComponent,
     TodoComponent,
-    UserplantComponent
+    UserplantComponent,
+    SearchPlantsPipe,
+    SearchPostsPipe
 
   ],
   imports: [

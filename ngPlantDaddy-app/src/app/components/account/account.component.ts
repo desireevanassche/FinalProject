@@ -83,6 +83,35 @@ export class AccountComponent implements OnInit {
     this.selected = post;
   }
 
+  updatePost(updatedPost: Post, id: number) {
+    this.postSvc.updatePost(updatedPost, id).subscribe(
+      (data) => {
+        this.reload();
+        this.newPost = updatedPost;
+        if (this.selected) {
+          this.selected = Object.assign({}, updatedPost);
+        }
+      },
+      (err) => console.error(err)
+    );
+  }
+
+  disablePost(id: number, disablePost: Post) {
+    this.postSvc.disablePost(id, disablePost).subscribe(
+      (data) => {
+        console.log(id), disablePost;
+
+        this.reload();
+        this.editPost = null;
+        if (this.selected) {
+          this.selected.id = Object.assign({}, id, disablePost);
+
+        }
+      },
+      (err) => console.error(err)
+    );
+  }
+
 
 
   showPost(id: number) {
