@@ -31,21 +31,56 @@ export class UserService {
     return this.http.get<User>(this.url,this.getHttpOptions() )
     .pipe(
       catchError((err:any) => {
-        return throwError("User has an error- KABOOM!")
+        return throwError("Error Retireieving Used Data- KABOOM!")
       })
     );
     }
 
-    public updateUser(updateUser : User){
-      return this.http.put (this.url, updateUser,this.getHttpOptions())
-      .pipe(
-        catchError((err : any)=>{
 
+  update(user: User): Observable<User> {
+
+    console.log(user);
+    return this.http.put<User>(this.url, user, this.getHttpOptions()).pipe(
+
+      catchError( (err: any) => {
+        console.error('User update error');
+        console.error(err);
+        return throwError(
+          () => new Error(
+            'MEOW error updating user' + err )
+        );
+      })
+    );
+  }
+
+  index(): Observable<User[]> {
+    return this.http.get<User[]>(this.url).pipe(
+        catchError((err: any) => {
           console.log(err);
-          return throwError("Error updating user- KABOOM");
+          return throwError(
+            () =>
+            new Error('Error retrieving list of users ' + err)
+          );
         })
       );
-    }
+  }
+
+  show(userId: number): Observable<User> {
+    return this.http.get<User>(`${this.url}/${userId}`).pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            () => new Error(
+            'error user: ' + err
+            )
+          );
+        })
+      );
+  }
+
+
+
+
 
 
 }

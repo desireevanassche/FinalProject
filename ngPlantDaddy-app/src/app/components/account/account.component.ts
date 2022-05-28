@@ -22,10 +22,11 @@ export class AccountComponent implements OnInit {
   allPosts : Post [] =[];
   newPost: Post = new Post();
 
-  user: User | null = null;
-  edituser: User | null = null;
-  newUser: Post | null = null;
-
+  currentUserId: number = 0;
+  users: User[] = [];
+  currentUser: User = new User();
+  editedUser: User | null = new User();
+  editUser: boolean = false;
 
 
 
@@ -39,11 +40,14 @@ export class AccountComponent implements OnInit {
 
   ) {}
 
+
+
   ngOnInit(): void {
+    this.currentUserId = parseInt(""+this.authSvc.getCurrentUserId());
     if (!this.selected && this.route.snapshot.paramMap.get('id')) {
       let id = this.route.snapshot.paramMap.get('id');
       if (id) {
-        this.show(parseInt(id));
+        this.showPost(parseInt(id));
       }
     } else {
     }
@@ -55,11 +59,12 @@ export class AccountComponent implements OnInit {
       next: (data) => {
         this.posts = data;
         this.postSvc.indexAllPosts();
-
-        this.authSvc.getLoggedInUser().subscribe({
-          next: (userData) => {
-            this.user = userData;
-            this.userSvc.userInfo();
+        this.userSvc.show(this.currentUser.id).subscribe(
+          { // OBJECT
+            next: (user) => {
+              this.getUser();
+              this.editUser = false;
+              this.currentUser = user;
           },
         });
       },
@@ -69,46 +74,10 @@ export class AccountComponent implements OnInit {
     });
   }
 
-  // updateUser(updatedUser: User) {
-  //   this.userSvc.updateUser(updatedUser).subscribe(
-  //     (data) => {
-  //       this.reload();
-  //       this.newUser = updatedUser;
-  //       if (this.selected) {
-  //         this.selected = Object.assign({}, updatedUser);
-  //       }
-  //     },
-  //     (err) => console.error(err)
-  //   );
-  // }
-
-
-
-
-  show(id: number) {
-    this.postSvc.show(id).subscribe(
-      (data) => {
-        this.selected = data;
-        if (!this.selected) {
-          this.router.navigateByUrl('/notFound');
-        }
-      },
-      (err) => {
-        console.log(err);
-        if (!this.selected) {
-          this.router.navigateByUrl('/notFound');
-        }
-      }
-    );
-  }
 
   displayTable(){
     this.selected = null;
   }
-
-
-
-
 
   displayPost(post: Post) {
     this.selected = post;
@@ -116,6 +85,50 @@ export class AccountComponent implements OnInit {
 
 
 
+  showPost(id: number) {
+    this.postSvc.show(id).subscribe(
+      (data) => {
+        this.selected = data;
+        if (!this.selected) {
+          this.router.navigateByUrl('/notFound');
+        }
+      });
+    }
+
+
+  getUser() {
+    const username = this.authSvc.getLoggedInUser();
+    if(username !== null) {
+    this.authSvc.getLoggedInUser().subscribe ({
+        next: (user: User) => {
+          this.currentUser = user;
+
+        },
+        error: (err: any) => {
+          console.error('Error retreiving userinfo' + err);
+
+        }
+      });
+    }
+  }
+
+
+
+  updateUser(user: User) {
+    this.userSvc.update(user).subscribe({
+      next: (userUpdated) => {
+        this.editedUser = null;
+        if(user.username != null) {
+          this.currentUser = userUpdated;
+        }
+
+      },
+      error: (err) => {
+        console.error('Error updating user ' + err);
+
+      }
+    });
+  }
 
 
 }
