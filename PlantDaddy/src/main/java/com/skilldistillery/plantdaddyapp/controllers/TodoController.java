@@ -44,9 +44,14 @@ public class TodoController {
 		return todo;
 	}
 
-	@PostMapping("todos")
-	public Todo create(@RequestBody Todo todo, Principal principal) {
-		return todoServ.create(principal.getName(), todo);
+	@PostMapping("todos/{userPlantId}")
+	public Todo create(@RequestBody Todo todo, Principal principal,
+			@PathVariable("userPlantId") int userPlantId,
+			HttpServletResponse res) {
+		
+		System.out.println(todo);
+		
+		return todoServ.create(principal.getName(), todo, userPlantId);
 	}
 
 	@PutMapping("todos/{tid}")

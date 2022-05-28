@@ -18,6 +18,7 @@ export class PostService {
   constructor(private http : HttpClient, private datePipe : DatePipe,private auth : AuthService) { }
 
 
+
   getHttpOptions() {
     let options = {
       headers: {
@@ -47,6 +48,7 @@ export class PostService {
     catchError((err:any) => {
       return throwError("index posts has an error- KABOOM!")
     })
+
   );
   }
 

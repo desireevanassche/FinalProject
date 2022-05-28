@@ -6,15 +6,21 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.plantdaddyapp.entities.User;
 import com.skilldistillery.plantdaddyapp.entities.UserPlant;
 import com.skilldistillery.plantdaddyapp.repositories.UserPlantRepository;
+import com.skilldistillery.plantdaddyapp.repositories.UserRepository;
 
 @Service
 public class UserPlantServiceImpl implements UserPlantService {
 
 	@Autowired
 	private UserPlantRepository userPlantRepo;
+	
+	@Autowired UserRepository userRepo;
+	 
 
+	
 	@Override
 	public List<UserPlant> index(String username) {
 		return userPlantRepo.findByUser_Username(username);
@@ -22,8 +28,12 @@ public class UserPlantServiceImpl implements UserPlantService {
 
 	@Override
 	public UserPlant addPlant(UserPlant userPlant, String username) {
-		userPlant = userPlantRepo.saveAndFlush(userPlant);
-		return userPlant;
+		
+		User user  = userRepo.findByUsername(username);
+		userPlant.setUser(user);
+		
+		
+		return userPlantRepo.saveAndFlush(userPlant);
 	}
 
 	@Override
