@@ -19,13 +19,13 @@ export class SocialmediaComponent implements OnInit {
 
   editPost: Post | null = null;
 
-  postId : number | null = null;
+  postId: number | null = null;
 
   posts: Post[] = [];
 
-  allPosts : Post [] =[];
+  allPosts: Post[] = [];
 
-  comments : Comment[] = [];
+  comments: Comment[] = [];
 
   allComments: Comment[] = [];
 
@@ -35,16 +35,11 @@ export class SocialmediaComponent implements OnInit {
 
   topic: Topic | null = null;
 
-
-
-
   selected: Post | null = null;
 
-  display:boolean = false;
+  display: boolean = false;
 
-
-
-  currentUserId:number | null = 0;
+  currentUserId: number | null = 0;
 
 
 
@@ -57,19 +52,19 @@ export class SocialmediaComponent implements OnInit {
     private commentSvc: CommentService
   ) {}
 
+
+
   ngOnInit(): void {
-    this.currentUserId = parseInt(""+this.authServ.getCurrentUserId());
+    this.currentUserId = parseInt('' + this.authServ.getCurrentUserId());
     if (!this.selected && this.route.snapshot.paramMap.get('id')) {
       let id = this.route.snapshot.paramMap.get('id');
       if (id) {
         this.show(parseInt(id));
-
       }
     } else {
     }
     this.reload();
   }
-
 
   reload() {
     this.postSvc.indexPosts().subscribe({
@@ -77,11 +72,12 @@ export class SocialmediaComponent implements OnInit {
         this.posts = data;
         this.displayAllPosts();
 
-        console.log(data);
+       ;
 
         this.topicSvc.indexTopics().subscribe({
           next: (topicData) => {
             this.topics = topicData;
+
           },
           error: (fail) => {
             console.log(fail);
@@ -94,21 +90,20 @@ export class SocialmediaComponent implements OnInit {
     });
   }
 
-  displayTable(){
+  displayTable() {
     this.selected = null;
   }
 
-  displayPosts(){
+  displayPosts() {
     this.selected = null;
   }
 
-  displayCreateForm(){
+  displayCreateForm() {
     this.display = true;
   }
 
-  displayEditForm(){
-this.display = true;
-
+  displayEditForm() {
+    this.display = true;
   }
 
   addPost(newPost: Post) {
@@ -133,10 +128,10 @@ this.display = true;
       (err) => console.error(err)
     );
   }
-  disablePost(id: number, disablePost:Post) {
+  disablePost(id: number, disablePost: Post) {
     this.postSvc.disablePost(id, disablePost).subscribe(
       (data) => {
-        console.log(id),disablePost;
+        console.log(id), disablePost;
 
         this.reload();
         this.editPost = null;
@@ -169,34 +164,32 @@ this.display = true;
     );
   }
 
-displayAllPosts(){
-  this.postSvc.indexAllPosts().subscribe(
-    (data) => {
-       this.allPosts = data;
-      // if (!this.allPosts) {
-      //   this.router.navigateByUrl('/notFound');
-      // }
-    },
-    (err) => {
-      console.log(err);
-      // if (!this.allPosts) {
-      //   this.router.navigateByUrl('/notFound');
-      // }
-    }
-  )
-}
+  displayAllPosts() {
+    this.postSvc.indexAllPosts().subscribe(
+      (data) => {
+        this.allPosts = data;
+        // if (!this.allPosts) {
+        //   this.router.navigateByUrl('/notFound');
+        // }
+      },
+      (err) => {
+        console.log(err);
+        // if (!this.allPosts) {
+        //   this.router.navigateByUrl('/notFound');
+        // }
+      }
+    );
+  }
 
+  // displayAllComments(postId:number){
 
-// displayAllComments(postId:number){
-
-//   this.commentSvc.indexComments(postId).subscribe(
-//     (data)=> {
-//       this.allComments = data;
-//     },
-//     (err) => {
-//       console.log(err);
-//     }
-//   )
-// }
-
+  //   this.commentSvc.indexComments(postId).subscribe(
+  //     (data)=> {
+  //       this.allComments = data;
+  //     },
+  //     (err) => {
+  //       console.log(err);
+  //     }
+  //   )
+  // }
 }

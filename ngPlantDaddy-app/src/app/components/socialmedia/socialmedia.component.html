@@ -8,7 +8,13 @@
             <b class="caret"></b>
             <ul class="dropdown-menu" role="menu" *ngFor="let post of posts">
               <li role="presentation">
-                <a name="post.title" tabindex="-1" href="#">{{ post.title }}</a>
+                <a
+                  name="post.title"
+                  tabindex="-1"
+                  href="#"
+
+                  >{{ post.title }}</a
+                >
               </li>
             </ul>
           </div>
@@ -28,7 +34,7 @@
                   <i class="fa fa-search"></i>
                 </button>
               </div>
-              <div class="clearfix"></div>
+
             </form>
           </div>
         </div>
@@ -46,7 +52,7 @@
           </div>
           <div class="env pull-left"><i class="fa fa-envelope"></i></div>
 
-          <div class="clearfix"></div>
+
         </div>
       </div>
     </div>
@@ -58,14 +64,14 @@
           <!-- ALL POST -->
           <div class="post" *ngFor="let post of allPosts">
             <div class="wrap-ut pull-left">
-              <div class="posttext pull-left" (click)="displayPost(post)">
+              <div class="posttext pull-left" (click)="displayPost(post)" *ngIf="post.active === true">
                 <h2>{{ post.title }}</h2>
                 <p>{{ post.content }}</p>
               </div>
-              <div class="clearfix"></div>
+
             </div>
             <div class="postinfo pull-left"></div>
-            <div class="clearfix"></div>
+
           </div>
           <!-- ALL  POSTS -->
         </div>
@@ -77,6 +83,8 @@
               <div class="posttext pull-left">
                 <h2>{{ selected.title }}</h2>
                 <p>{{ selected.content }}</p>
+                <p><img class="img-thumbnail" [src]=selected.imageUrl /></p>
+                <p>{{ selected.createDate }}</p>
                 <p>Topic : {{ selected.topic.name }}</p>
                 <div *ngIf="selected.comments && selected.comments.length > 0">
                   <ul>
@@ -114,7 +122,7 @@
                 </div>
               </div>
             </div>
-            <div class="clearfix"></div>
+
           </div>
 
           <div class="view-comments">
@@ -132,7 +140,7 @@
             <div class="wrap-ut pull-left">
               <div class="posttext pull-left">
                 <section>
-                  <div *ngIf="editPost">
+                  <div *ngIf="selected && editPost">
                     <form>
                       Title:
                       <input
@@ -152,8 +160,10 @@
                         name="imageUrl"
                         [(ngModel)]="editPost.imageUrl"
                       />
+                      <label name="active">active?</label>
+                      <input type="text" name="active" [(ngModel)]="editPost.active"/>
 
-                      <button (click)="updatePost(editPost, editPost.id)">
+                      <button  (click)="updatePost(editPost, editPost.id); editPost = null" >
                         Save
                       </button>
                       <button (click)="editPost = null">Cancel</button>
@@ -265,8 +275,10 @@
                     <select [(ngModel)]="newPost.topic.id" name="topicId">
                       <option
                         *ngFor="let topic of topics"
-                        value="{{ newPost.topic.id }}"
-                      >{{topic.name}}</option>
+                        value="{{ topic.id }}"
+                      >
+                        {{ topic.name }}
+                      </option>
                     </select>
                     <!-- <div class="dropdown-divider"></div> -->
                     <!-- <a class="dropdown-item" >General</a>
