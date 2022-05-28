@@ -1,1 +1,34 @@
-<p>userplant works!</p>
+<h1>{{title}}</h1>
+
+<br>
+<br>
+
+<table class="table table-striped" *ngIf="!selected">
+<thead align="center">
+  <tr>
+    <td>ID</td>
+    <td>Nickname</td>
+    <td>Height</td>
+    <td>Spread</td>
+    <td>Pot Diameter</td>
+    <td>Home Location</td>
+    <td>Description</td>
+    <td>Image URL</td>
+  </tr>
+</thead>
+<tbody>
+  <tr *ngFor="let userplant of userPlants">
+    <td *ngIf="userplant.active === true">{{userplant.id}}</td>
+    <td *ngIf="userplant.active === true">{{userplant.nickname}}</td>
+    <td *ngIf="userplant.active === true">{{userplant.height}}</td>
+    <td *ngIf="userplant.active === true">{{userplant.spread}}</td>
+    <td *ngIf="userplant.active === true">{{userplant.potDiameter}}</td>
+    <td *ngIf="userplant.active === true">{{userplant.homeLocation}}</td>
+    <td *ngIf="userplant.active === true">{{userplant.description}}</td>
+    <td *ngIf="userplant.active === true"><button (click)="setPlant(userplant)">Details</button></td>
+    <td *ngIf="userplant.active === true">
+      <img id="image" [src]="userplant.imageUrl" class="img-thumbnail" />
+    </td>
+  </tr>
+</tbody>
+</table>

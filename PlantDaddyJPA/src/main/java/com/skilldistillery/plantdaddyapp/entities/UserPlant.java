@@ -14,7 +14,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 //+---------------------+---------------+------+-----+---------+----------------+
 //| Field               | Type          | Null | Key | Default | Extra          |
@@ -38,7 +37,7 @@ public class UserPlant {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private int id;
 
 	@Column(name = "height_inches")
 	private double height;
@@ -81,7 +80,7 @@ public class UserPlant {
 		super();
 	}
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 

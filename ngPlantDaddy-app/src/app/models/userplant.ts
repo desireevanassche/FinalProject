@@ -1,10 +1,11 @@
 import { Plant } from "./plant";
+import { Todo } from "./todo";
 import { User } from "./user";
 
 export class Userplant {
 
 
-  id: number;
+  id : number;
   nickname: string | null;
   description: string | null;
   height: number | null;
@@ -14,6 +15,10 @@ export class Userplant {
   homeLocation:string |null;
   active: boolean | null;
 
+  // plants: Plant[] | null;
+  // user: User | null;
+  // todos: Todo [] | null;
+  // photos: Photo [] | null;
 
 
 
@@ -28,7 +33,10 @@ constructor(
   imageUrl: string = "",
   homeLocation : string ="",
   active: boolean = true,
-
+  // plants: Plant [],
+  // user : User,
+  // todos: Todo [],
+  // photos : Photo []
 
 
 ){
@@ -43,6 +51,10 @@ this.imageUrl = imageUrl;
 this.homeLocation = homeLocation;
 this.active = active;
 
+// this.plants = plants;
+// this.user = user;
+// this.todos = todos;
+// this.photos = photos;
 
 
 
