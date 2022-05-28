@@ -55,7 +55,7 @@ Image: <input type="text" name="imageUrl" [(ngModel)]="newPlant.imageUrl">
   <div *ngIf="selected.user.id == currentUserId">
     <button (click)="setEditPlant()">Edit</button>
     <br>
-    <button (click)="deactivate(selected, selected.id)">Deactivate</button>
+    <button (click)="deactivate(selected, selected.id); selected = null">Deactivate</button>
   </div>
   <button (click)="selected = null">Back</button>
   </div>
