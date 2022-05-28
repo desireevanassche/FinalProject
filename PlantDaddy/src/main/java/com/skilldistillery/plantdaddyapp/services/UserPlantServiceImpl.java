@@ -16,11 +16,10 @@ public class UserPlantServiceImpl implements UserPlantService {
 
 	@Autowired
 	private UserPlantRepository userPlantRepo;
-	
-	@Autowired UserRepository userRepo;
-	 
 
-	
+	@Autowired
+	UserRepository userRepo;
+
 	@Override
 	public List<UserPlant> index(String username) {
 		return userPlantRepo.findByUser_Username(username);
@@ -28,11 +27,11 @@ public class UserPlantServiceImpl implements UserPlantService {
 
 	@Override
 	public UserPlant addPlant(UserPlant userPlant, String username) {
-		
-		User user  = userRepo.findByUsername(username);
+
+		User user = userRepo.findByUsername(username);
+		System.out.println(user);
 		userPlant.setUser(user);
-		
-		
+
 		return userPlantRepo.saveAndFlush(userPlant);
 	}
 
@@ -71,15 +70,13 @@ public class UserPlantServiceImpl implements UserPlantService {
 	@Override
 	public UserPlant show(String username, int userPlantId) {
 		Optional<UserPlant> op = userPlantRepo.findById(userPlantId);
-		if(op.isPresent()) {
+		if (op.isPresent()) {
 			UserPlant result = op.get();
-			if(result.getUser().getUsername().equals(username)) {
+			if (result.getUser().getUsername().equals(username)) {
 				return result;
 			}
 		}
 		return null;
 	}
-
-	
 
 }

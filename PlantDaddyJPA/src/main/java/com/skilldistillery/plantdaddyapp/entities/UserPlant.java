@@ -67,7 +67,7 @@ public class UserPlant {
 	@ManyToOne
 	@JoinColumn(name = "plant_id")
 	private Plant plant;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "userPlant")
 	private List<Todo> todos;

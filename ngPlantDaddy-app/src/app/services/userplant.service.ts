@@ -25,18 +25,18 @@ export class UserplantService {
     return options;
   }
 
-  public indexTopics() {
-    return this.http.get<Userplant[]>(this.url).pipe(
-      catchError((err: any) => {
-        console.log(err);
-        return throwError(() => {
-          new Error('index posts has an error- KABOOM!');
-        });
-      })
-    );
-  }
+  // public indexTopics() {
+  //   return this.http.get<Userplant[]>(this.url, this.getHttpOptions()).pipe(
+  //     catchError((err: any) => {
+  //       console.log(err);
+  //       return throwError(() => {
+  //         new Error('index posts has an error- KABOOM!');
+  //       });
+  //     })
+  //   );
+  // }
   public indexUserPlants() {
-    return this.http.get<Userplant[]>(this.url).pipe(
+    return this.http.get<Userplant[]>(this.url, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
 
@@ -64,7 +64,7 @@ export class UserplantService {
       },
     };
     return this.http
-      .put<Userplant>(this.url2 + "/" + id, updateUserPlant, httpOptions)
+      .put<Userplant>(this.url + "/" + id, updateUserPlant, this.getHttpOptions())
       .pipe(
         catchError((err: any) => {
           console.log(err);

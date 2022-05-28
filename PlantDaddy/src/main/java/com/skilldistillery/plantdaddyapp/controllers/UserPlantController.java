@@ -39,11 +39,11 @@ public class UserPlantController {
 		}
 		return userPlant;
 	}
+
 	@GetMapping("userPlants/search/{keyword}")
-	public List<UserPlant> findByKeyword(@PathVariable String keyword){
+	public List<UserPlant> findByKeyword(@PathVariable String keyword) {
 		return userPlantServ.listPlantByKeyword(keyword);
 	}
-
 
 	@PostMapping("userPlants")
 	public UserPlant addUserPlant(@RequestBody UserPlant userPlant, HttpServletResponse res, Principal principal) {
@@ -63,6 +63,5 @@ public class UserPlantController {
 		return userPlantServ.deactivate(userPlant, userPlantId, principal.getName());
 
 	}
-	
 
 }
