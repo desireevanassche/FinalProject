@@ -518,6 +518,8 @@ USE `plantdb`;
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `area_code`) VALUES (1, '1805 Nelson Rd', NULL, 'Longmont', 'Colorado', '80501');
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `area_code`) VALUES (2, '1234 Fake St', NULL, 'Denver', 'Colorado', '80023');
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `area_code`) VALUES (3, '5678 Fake St', NULL, 'Denver', 'Colorado', '80023');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `area_code`) VALUES (4, '91011 Fake St', NULL, 'Denver', 'Colorado', '80023');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `area_code`) VALUES (5, '121314 Fake St', NULL, 'Denver', 'Colorado', '80023');
 
 COMMIT;
 
@@ -529,7 +531,8 @@ START TRANSACTION;
 USE `plantdb`;
 INSERT INTO `user` (`id`, `address_id`, `username`, `password`, `enabled`, `first_name`, `last_name`, `email`, `image_url`, `biography`, `role`) VALUES (1, 1, 'admin', '$2a$10$XR0stvrxAeiPsPSh0hHruesmB0UETSkbRPjK3fRxibq0DvQ/eoQbm', 1, 'admin', 'admin', 'admin@admin.com', 'https://freesvg.org/img/abstract-user-flat-4.png', 'Look at me, I am the captian now', 'ROLE_ADMIN');
 INSERT INTO `user` (`id`, `address_id`, `username`, `password`, `enabled`, `first_name`, `last_name`, `email`, `image_url`, `biography`, `role`) VALUES (2, 2, 'friend', 'friend', 1, 'friend', 'friend', 'friend@friend.com', 'https://freesvg.org/img/abstract-user-flat-4.png', 'I am friend', 'ROLE_ADMIN');
-INSERT INTO `user` (`id`, `address_id`, `username`, `password`, `enabled`, `first_name`, `last_name`, `email`, `image_url`, `biography`, `role`) VALUES (3, 3, 'zack', 'zack', 1, 'zack', 'zack', 'zack@zack.com', 'https://freesvg.org/img/abstract-user-flat-4.png', 'Hello, I am Zack!', 'ROLE_ADMIN');
+INSERT INTO `user` (`id`, `address_id`, `username`, `password`, `enabled`, `first_name`, `last_name`, `email`, `image_url`, `biography`, `role`) VALUES (3, 3, 'zack', 'zack', 1, 'Zack', 'Gaddy', 'zack.e.gaddy@gmail.com', 'https://media-exp1.licdn.com/dms/image/C4E03AQGTAYsof7KOkg/profile-displayphoto-shrink_400_400/0/1651503160336?e=1659571200&v=beta&t=GkS9SxHh5B_KQ0xKXyglP8x6qIzjyCAMS_k4J7R0bHM', 'Hello, I am Zack!', 'ROLE_ADMIN');
+INSERT INTO `user` (`id`, `address_id`, `username`, `password`, `enabled`, `first_name`, `last_name`, `email`, `image_url`, `biography`, `role`) VALUES (4, 4, 'lpaladini', 'password', 1, 'Lucas', 'Paladini', 'lpaladini@me.com', 'https://freesvg.org/img/abstract-user-flat-4.png', 'Hello, I am Lucas!', 'ROLE_ADMIN');
 
 COMMIT;
 
