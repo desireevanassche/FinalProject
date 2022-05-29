@@ -19,9 +19,13 @@ import { SearchfilterPipe } from './pipes/searchfilter.pipe';
 import { AccountComponent } from './components/account/account.component';
 import { TodoComponent } from './components/todo/todo.component';
 import { UserplantComponent } from './components/userplant/userplant.component';
-import { SearchPlantsPipe } from './pipes/search-plants.pipe';
-import { SearchPostsPipe } from './pipes/search-posts.pipe';
+import { SearchPlantsPipe } from './pipes/searchplants.pipe';
+import { SearchPostsPipe } from './pipes/searchposts.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 
@@ -44,7 +48,8 @@ import { FilterPipe } from './pipes/filter.pipe';
     UserplantComponent,
     SearchPlantsPipe,
     SearchPostsPipe,
-    FilterPipe,
+    FilterPipe
+
 
 
   ],
@@ -53,7 +58,10 @@ import { FilterPipe } from './pipes/filter.pipe';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule,
+    CarouselModule,
+    BrowserAnimationsModule
 
 
   ],

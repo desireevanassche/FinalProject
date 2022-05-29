@@ -207,7 +207,6 @@
           <p>{{ selected.title }}</p>
           <p>{{ selected.imageUrl }}</p>
           <p>{{ selected.createDate }}</p>
-
           <button (click)="displayTable()">Back</button>
         </div> -->
 
@@ -341,7 +340,6 @@
   </div>
 </section>
 <!--------------END ADD POST FORM ----------------------------------------------------------------------------------
-
 //--------- Display single post & option to edit --------------------------------------------------------------------
 //-------add logic to only allow original poster to edit ---------------------------------------------------------->
 
@@ -360,13 +358,11 @@
       <th>Date Created</th>
     </tr>
   </thead>
-
   <tbody>
     <tr *ngFor="let post of posts">
       <td class="title" (click)="displayPost(post)">{{ post.title }}</td>
       <td class="title" (click)="displayPost(post)">{{ post.content }}</td>
       <td class="title" (click)="displayPost(post)">{{ post.createDate }}</td>
-
       <td>
         <button class="btn btn-danger" (click)="disablePost(post)">X</button>
       </td>
@@ -382,7 +378,6 @@
       <th>Date Created</th>
     </tr>
   </thead>
-
   <tbody>
     <tr *ngFor="let post of allPosts" name="displayAllPosts">
       <td class="title" (click)="displayPost(post)">{{ post.title }}</td>
