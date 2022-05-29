@@ -1,0 +1,23 @@
+#tableImg{
+  height: 200px;
+  width: 200px;
+}
+td, th {
+  vertical-align: middle;
+}
+thead{
+  font-weight: bold;
+}
+.card{
+  align-items: center;
+  float: left;
+  margin: 10px;
+  background-color: black;
+  color: white;
+
+}
+.card-img-top{
+  width: 17rem;
+  height: 15rem;
+  margin-top: 5px;
+}

@@ -1,13 +1,28 @@
-<h1>{{title}}</h1>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+
+
+<h1>Total plants in {{title}}: {{getNumOfPlants()}}</h1>
 
 <br>
 <br>
 
 
 <h2>Plant List</h2>
-<p>search </p>
-  <input type="text" id="search" [(ngModel)] ="searchValue"/>
-
+<br>
+  Search:  <input type="text" id="search" [(ngModel)] ="searchValue"/>
+<br>
+<br>
+<br>
 <table class="table table-striped" *ngIf="!selected">
   <thead align="center">
     <tr>
@@ -35,15 +50,24 @@
   </tbody>
 </table>
 
+<div *ngIf="!isNumber(currentUserId)">
+  <button (click)="displayAddForm = true">Add A Plant?</button>
+</div>
 
-<div *ngIf="!selected">
-<form *ngIf="!isNumber(currentUserId)">
-Common Name: <input type="text" name="commonName" [(ngModel)]="newPlant.commonName">
-Botanical Name: <input type="text" name="botanicalName" [(ngModel)]="newPlant.botanicalName">
-Care Difficulty: <input type="text" name="careDifficulty" [(ngModel)]="newPlant.careDifficulty">
-Description: <input type="text" name="description" [(ngModel)]="newPlant.description">
-Image: <input type="text" name="imageUrl" [(ngModel)]="newPlant.imageUrl">
-<input type="submit" name="submit" value="Add Plant" (click)="addPlant()">
+<div *ngIf="!selected && displayAddForm == true">
+<form class="addForm" *ngIf="!isNumber(currentUserId)">
+Common Name: <input type="text" name="commonName" [(ngModel)]="newPlant.commonName" required>
+<br>
+Botanical Name: <input required="true" type="text" name="botanicalName" [(ngModel)]="newPlant.botanicalName" required>
+<br>
+Care Difficulty: <input type="text" name="careDifficulty" [(ngModel)]="newPlant.careDifficulty" required>
+<br>
+Description: <input type="text" name="description" [(ngModel)]="newPlant.description" required>
+<br>
+Image: <input type="text" name="imageUrl" [(ngModel)]="newPlant.imageUrl" required>
+<br>
+<input type="submit" name="submit" value="Add Plant" (click)="addPlant(); displayAddForm = false">
+<input type="submit" name="submit" value="Cancel" (click)="displayAddForm = false">
 </form>
 </div>
 
@@ -61,6 +85,7 @@ Image: <input type="text" name="imageUrl" [(ngModel)]="newPlant.imageUrl">
   </div>
   <button (click)="selected = null">Back</button>
   </div>
+
 
   <div *ngIf="editPlant">
     <form>
@@ -80,3 +105,6 @@ Image: <input type="text" name="imageUrl" [(ngModel)]="newPlant.imageUrl">
       <br>
     </form>
   </div>
+
+</body>
+</html>
