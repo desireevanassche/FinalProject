@@ -1,13 +1,15 @@
-<h1>{{title}}</h1>
+<h1>Total plants in {{title}}: {{getNumOfPlants()}}</h1>
 
 <br>
 <br>
 
 
 <h2>Plant List</h2>
-<p>search </p>
-  <input type="text" id="search" [(ngModel)] ="searchValue"/>
-
+<br>
+  Search:  <input type="text" id="search" [(ngModel)] ="searchValue"/>
+<br>
+<br>
+<br>
 <table class="table table-striped" *ngIf="!selected">
   <thead align="center">
     <tr>
@@ -39,10 +41,15 @@
 <div *ngIf="!selected">
 <form *ngIf="!isNumber(currentUserId)">
 Common Name: <input type="text" name="commonName" [(ngModel)]="newPlant.commonName">
+<br>
 Botanical Name: <input type="text" name="botanicalName" [(ngModel)]="newPlant.botanicalName">
+<br>
 Care Difficulty: <input type="text" name="careDifficulty" [(ngModel)]="newPlant.careDifficulty">
+<br>
 Description: <input type="text" name="description" [(ngModel)]="newPlant.description">
+<br>
 Image: <input type="text" name="imageUrl" [(ngModel)]="newPlant.imageUrl">
+<br>
 <input type="submit" name="submit" value="Add Plant" (click)="addPlant()">
 </form>
 </div>

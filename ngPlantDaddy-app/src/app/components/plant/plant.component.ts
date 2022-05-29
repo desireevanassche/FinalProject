@@ -10,7 +10,7 @@ import { Plant } from 'src/app/models/plant';
   styleUrls: ['./plant.component.css'],
 })
 export class PlantComponent implements OnInit {
-  title: string = 'Plants';
+  title: string = 'Plant Library';
 
   selected: Plant | null = null;
 
@@ -120,6 +120,10 @@ export class PlantComponent implements OnInit {
 
   isNumber(id: number){
     return Number.isNaN(id);
+  }
+
+  getNumOfPlants() {
+    return this.plants.length;
   }
 
 }
