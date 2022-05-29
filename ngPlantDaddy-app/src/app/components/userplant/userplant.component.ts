@@ -1,3 +1,4 @@
+import { TodoService } from './../../services/todo.service';
 import { PlantService } from './../../services/plant.service';
 
 import { UserplantService } from './../../services/userplant.service';
@@ -6,6 +7,7 @@ import { Userplant } from 'src/app/models/userplant';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { Plant } from 'src/app/models/plant';
+import { Todo } from 'src/app/models/todo';
 
 @Component({
   selector: 'app-userplant',
@@ -29,12 +31,30 @@ export class UserplantComponent implements OnInit {
 
   plant: Plant | null = null;
 
+  todo: Todo = new Todo();
+
+  todos : Todo [] = [];
+
+  editTodo : Todo | null = null;
+
+  selectedTodo : Todo | null = null;
+
+  display: boolean = false;
+
+  newTodo : Todo = new Todo ();
+
+  displayTodos : boolean = false;
+
   constructor(
     private userPlantSvc: UserplantService,
     private route: ActivatedRoute,
     private router: Router,
     private authServ: AuthService,
-    private plantSvc: PlantService
+    private plantSvc: PlantService,
+    private todoService: TodoService,
+
+
+
   ) {}
 
   ngOnInit(): void {
@@ -49,6 +69,8 @@ export class UserplantComponent implements OnInit {
     } else {
     }
     this.reload();
+    this.displayTodo;
+    this.reloadTodos();
   }
   reload() {
     this.userPlantSvc.indexUserPlants().subscribe({
@@ -58,6 +80,7 @@ export class UserplantComponent implements OnInit {
 
         this.plantSvc.index().subscribe({
           next: (plantData) => {
+
             this.plants = plantData;
           },
           error: (fail) => {
@@ -70,6 +93,9 @@ export class UserplantComponent implements OnInit {
       },
     });
   }
+
+
+
 
   show(id: number) {
     this.userPlantSvc.show(id).subscribe(
@@ -97,6 +123,14 @@ export class UserplantComponent implements OnInit {
       (err) => console.error(err)
     );
   }
+
+  // getCurrentUserPlantId (selected : Userplant) {
+  //   if(this.selected){
+  //     this.todo.userPlants.id =  selected.id
+  //     console.log("selected id is : " + selected.id);
+  //   console.log("Inside getcurrentuserplantid, id is:" + this.todo.userPlants.id);
+  //   }
+  //  }
 
   updateUserPlant(userPlant: Userplant, id: number) {
     this.userPlantSvc.update(userPlant, id).subscribe(
@@ -144,4 +178,102 @@ export class UserplantComponent implements OnInit {
       }
     );
   }
+
+
+
+  reloadTodos(){
+    this.todoService.index().subscribe({
+      next: (data) => {
+
+        this.todos = data;
+      },
+      error: (err) => {
+        console.log(err + " error inside reload todos index in todo comp.ts");
+
+      }
+    })
+  }
+
+  displayTodo = (todo: Todo) => {
+    this.selectedTodo = todo;
+    console.log(todo);
+
+  }
+
+
+
+  addTodo(todo : Todo, userPlantId : number){
+    this.todoService.create(todo,userPlantId).subscribe(
+    success=>{
+      this.newTodo = new Todo();
+      this.reloadTodos();
+    },
+    error => console.log("Adding Oberservable got an error")
+    );
+    }
+
+
+
+
+  updateTodo( id : number, updatedTodo : Todo){
+    this.todoService.update(id, updatedTodo).subscribe({
+      next:(data)=>{
+        this.reloadTodos();
+        this.newTodo = updatedTodo;
+      },
+      error: (err)=>{
+        console.log(err + " this is an error inside update todo in todo comp.ts");
+
+      }
+    })
+  }
+
+  deleteTodo(id:number) {
+    this.todoService.deleteTodo(id).subscribe({
+      next:(data) =>{
+      this.reloadTodos();
+      },
+      error:(err)=>{
+        console.log(err + " This error is inside the delete todo comp.ts");
+
+      }
+    })
+  }
+
+
+
+
+  setEditTodo = (todo : Todo) =>{
+this.editTodo = Object.assign({}, todo)
+  }
+
+
+
+
+  displayPlantsTodos(id : number) {
+    this.todoService.getAllUserPlantTodos(id).subscribe({
+      next:(data)=>{
+      this.todos = data;
+      },
+      error :(err)=>{
+        console.log(err + "this error is inside the get all user todos id method in user comp.ts");
+
+      }
+    })
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

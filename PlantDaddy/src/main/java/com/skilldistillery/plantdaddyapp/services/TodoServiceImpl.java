@@ -1,5 +1,6 @@
 package com.skilldistillery.plantdaddyapp.services;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -85,6 +86,16 @@ public class TodoServiceImpl implements TodoService {
 			}
 		}
 		return false;
+	}
+
+
+	@Override
+	public List<Todo> showTodosByUserPlantd(int userPlantId, String username) {
+			System.out.println(userPlantId);
+			
+			List<Todo> resultsList = todoRepo.findByUserPlant_Id(userPlantId);
+				System.out.println(resultsList);
+		return  resultsList;
 	}
 	
 
