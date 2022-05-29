@@ -1,3 +1,16 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+
+
 <h1>Total plants in {{title}}: {{getNumOfPlants()}}</h1>
 
 <br>
@@ -37,20 +50,21 @@
   </tbody>
 </table>
 
+<button (click)="displayAddForm = true">Add A Plant?</button>
 
-<div *ngIf="!selected">
-<form *ngIf="!isNumber(currentUserId)">
-Common Name: <input type="text" name="commonName" [(ngModel)]="newPlant.commonName">
+<div *ngIf="!selected && displayAddForm == true">
+<form class="addForm" *ngIf="!isNumber(currentUserId)">
+Common Name: <input type="text" name="commonName" [(ngModel)]="newPlant.commonName" required>
 <br>
-Botanical Name: <input type="text" name="botanicalName" [(ngModel)]="newPlant.botanicalName">
+Botanical Name: <input required="true" type="text" name="botanicalName" [(ngModel)]="newPlant.botanicalName" required>
 <br>
-Care Difficulty: <input type="text" name="careDifficulty" [(ngModel)]="newPlant.careDifficulty">
+Care Difficulty: <input type="text" name="careDifficulty" [(ngModel)]="newPlant.careDifficulty" required>
 <br>
-Description: <input type="text" name="description" [(ngModel)]="newPlant.description">
+Description: <input type="text" name="description" [(ngModel)]="newPlant.description" required>
 <br>
-Image: <input type="text" name="imageUrl" [(ngModel)]="newPlant.imageUrl">
+Image: <input type="text" name="imageUrl" [(ngModel)]="newPlant.imageUrl" required>
 <br>
-<input type="submit" name="submit" value="Add Plant" (click)="addPlant()">
+<input type="submit" name="submit" value="Add Plant" (click)="addPlant(); displayAddForm = false">
 </form>
 </div>
 
@@ -68,6 +82,7 @@ Image: <input type="text" name="imageUrl" [(ngModel)]="newPlant.imageUrl">
   </div>
   <button (click)="selected = null">Back</button>
   </div>
+
 
   <div *ngIf="editPlant">
     <form>
@@ -87,3 +102,6 @@ Image: <input type="text" name="imageUrl" [(ngModel)]="newPlant.imageUrl">
       <br>
     </form>
   </div>
+
+</body>
+</html>

@@ -28,6 +28,8 @@ export class PlantComponent implements OnInit {
 
   searchValue: string = "";
 
+  displayAddForm: boolean = false;
+
   constructor(
     private plantSvc: PlantService,
     private route: ActivatedRoute,
@@ -125,5 +127,11 @@ export class PlantComponent implements OnInit {
   getNumOfPlants() {
     return this.plants.length;
   }
+
+
+
+
+
+
 
 }
