@@ -18,6 +18,7 @@ newTodo : Todo = new Todo ();
 todos : Todo[] = [];
 editTodo : Todo | null = null;
 selected : Todo | null = null;
+currentUserId: number | null = 0;
 
   constructor(
     private todoService: TodoService,
@@ -26,6 +27,20 @@ selected : Todo | null = null;
        private authServ: AuthService) { }
 
   ngOnInit(): void {
+
+    this.currentUserId = parseInt('' + this.authServ.getCurrentUserId());
+    console.log(this.currentUserId);
+
+    if (!this.selected && this.currentRoute.snapshot.paramMap.get('id')) {
+      let id = this.currentRoute.snapshot.paramMap.get("id");
+      if(id){
+        // this.showTodo(parseInt(id))
+      }
+    } else if(!this.selected && this.currentRoute.snapshot.paramMap.get('')) {
+      this.router.navigateByUrl("**")
+    }
+
+
     this.displayTodo;
     this.reloadTodos();
 

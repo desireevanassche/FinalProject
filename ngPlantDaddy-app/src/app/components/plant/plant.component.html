@@ -1,16 +1,4 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-
-
-
 <h1>Total plants in {{title}}: {{getNumOfPlants()}}</h1>
 
 <br>
@@ -51,20 +39,22 @@
 </table>
 
 <div *ngIf="!isNumber(currentUserId)">
-  <button (click)="displayAddForm = true">Add A Plant?</button>
+  <div *ngIf="displayAddForm == false">
+    <button (click)="displayAddForm = true">Add A Plant?</button>
+  </div>
 </div>
 
 <div *ngIf="!selected && displayAddForm == true">
 <form class="addForm" *ngIf="!isNumber(currentUserId)">
-Common Name: <input type="text" name="commonName" [(ngModel)]="newPlant.commonName" required>
+Common Name: <input type="text" name="commonName" class="form-control" required [(ngModel)]="newPlant.commonName"/>
 <br>
-Botanical Name: <input required="true" type="text" name="botanicalName" [(ngModel)]="newPlant.botanicalName" required>
+Botanical Name: <input required="true" type="text" name="botanicalName" class="form-control" required [(ngModel)]="newPlant.botanicalName">
 <br>
-Care Difficulty: <input type="text" name="careDifficulty" [(ngModel)]="newPlant.careDifficulty" required>
+Care Difficulty: <input type="text" name="careDifficulty" class="form-control" required [(ngModel)]="newPlant.careDifficulty" required>
 <br>
-Description: <input type="text" name="description" [(ngModel)]="newPlant.description" required>
+Description: <input type="text" name="description" class="form-control" required [(ngModel)]="newPlant.description">
 <br>
-Image: <input type="text" name="imageUrl" [(ngModel)]="newPlant.imageUrl" required>
+Image: <input type="text" name="imageUrl" class="form-control" required [(ngModel)]="newPlant.imageUrl">
 <br>
 <input type="submit" name="submit" value="Add Plant" (click)="addPlant(); displayAddForm = false">
 <input type="submit" name="submit" value="Cancel" (click)="displayAddForm = false">
@@ -89,7 +79,7 @@ Image: <input type="text" name="imageUrl" [(ngModel)]="newPlant.imageUrl" requir
 
   <div *ngIf="editPlant">
     <form>
-      Common Name: <input type="text" name="common name" [(ngModel)]="editPlant.commonName">
+      Common Name: <input type="text" name="common name" class="form-control" [(ngModel)]="editPlant.commonName">
       <br>
       Botanical Name: <input type="text" name="botanical name" [(ngModel)]="editPlant.botanicalName">
       <br>
@@ -106,5 +96,4 @@ Image: <input type="text" name="imageUrl" [(ngModel)]="newPlant.imageUrl" requir
     </form>
   </div>
 
-</body>
-</html>
+
