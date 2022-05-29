@@ -37,6 +37,9 @@
   </tbody>
 </table>
 
+
+
+
 <div *ngIf="!selected && currentUserId != null">
   <form>
     Nickname:
@@ -153,6 +156,13 @@
   </form>
 </div>
 
+
+
+
+
+
+
+
 <!--
 
 
@@ -192,7 +202,10 @@
 </tbody>
 </table>  -->
 
-<div *ngIf="!selected">
+
+<!-- CARD FOR USER PLANT -->
+
+<!-- <div *ngIf="!selected">
 <div *ngFor="let userplant of userPlants" class="card" style="width: 18rem;">
   <img [src]="userplant.imageUrl" class="card-img-top">
   <div class="card-body">
@@ -201,4 +214,4 @@
     <button class="btn btn-primary" (click)="setPlant(userplant)">Details</button>
   </div>
 </div>
-</div>
+</div> -->
