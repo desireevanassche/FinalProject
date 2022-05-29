@@ -255,6 +255,7 @@ CREATE TABLE IF NOT EXISTS `todo` (
   `date_created` DATETIME NULL,
   `due_date` DATE NULL,
   `completion_date` DATETIME NULL,
+  `completed` TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   INDEX `fk_todo_user_garden1_idx` (`user_plant_id` ASC),
   CONSTRAINT `fk_todo_user_garden1`
@@ -612,7 +613,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `plantdb`;
-INSERT INTO `todo` (`id`, `user_plant_id`, `name`, `description`, `date_created`, `due_date`, `completion_date`) VALUES (1, 1, 'Water Todd', 'water Todd', '2202-05-24 12:00:00', '2022-05-30', '2202-05-24 12:01:01');
+INSERT INTO `todo` (`id`, `user_plant_id`, `name`, `description`, `date_created`, `due_date`, `completion_date`, `completed`) VALUES (1, 1, 'Water Todd', 'water Todd', '2202-05-24 12:00:00', '2022-05-30', '2202-05-24 12:01:01', 1);
 
 COMMIT;
 
