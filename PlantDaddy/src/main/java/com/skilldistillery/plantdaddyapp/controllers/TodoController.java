@@ -54,11 +54,17 @@ public class TodoController {
 		return todoServ.create(principal.getName(), todo, userPlantId);
 	}
 
+	
 	@PutMapping("todos/{tid}")
-	public Todo update(@RequestBody Todo todo, @PathVariable("tid") int todoId, Principal principal) {
+	public Todo update(@PathVariable("tid") int todoId,
+			@RequestBody Todo todo,
+			Principal principal,
+			HttpServletResponse res) {
+		System.out.println(todoId);
 		return todoServ.update(principal.getName(), todoId, todo);
 	}
 
+	
 	@DeleteMapping("todos/{tid}")
 	public void destroy(HttpServletResponse resp, @PathVariable("tid") int todoId, Principal principal) {
 		if (todoServ.destroy(principal.getName(), todoId)) {
