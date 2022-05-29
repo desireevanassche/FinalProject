@@ -50,7 +50,9 @@
   </tbody>
 </table>
 
-<button (click)="displayAddForm = true">Add A Plant?</button>
+<div *ngIf="!isNumber(currentUserId)">
+  <button (click)="displayAddForm = true">Add A Plant?</button>
+</div>
 
 <div *ngIf="!selected && displayAddForm == true">
 <form class="addForm" *ngIf="!isNumber(currentUserId)">
@@ -65,6 +67,7 @@ Description: <input type="text" name="description" [(ngModel)]="newPlant.descrip
 Image: <input type="text" name="imageUrl" [(ngModel)]="newPlant.imageUrl" required>
 <br>
 <input type="submit" name="submit" value="Add Plant" (click)="addPlant(); displayAddForm = false">
+<input type="submit" name="submit" value="Cancel" (click)="displayAddForm = false">
 </form>
 </div>
 
