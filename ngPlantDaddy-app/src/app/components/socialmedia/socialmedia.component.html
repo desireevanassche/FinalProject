@@ -1,3 +1,22 @@
+
+<div class = "container">
+  <p>search </p>
+  <input type="text" id="search" [(ngModel)] ="searchValue"/>
+    <table *ngIf="!selected" class="table table-striped table-hover">
+
+    <tr class = "table-row" *ngFor="let post of allPosts | searchPosts:searchValue" >
+
+      <img [src]="post.imageUrl" height="300px" width="auto">
+      <td class='title' (click)="displayPost(post)">{{post.title}}</td>
+      <td class='content' (click)="displayPost(post)">{{post.content}}</td>
+
+    </tr>
+</table>
+</div>
+
+
+
+
 <div class="container-fluid">
   <div class="headernav">
     <div class="container">
@@ -58,21 +77,28 @@
     </div>
   </div>
   <section class="content">
+
     <div class="container">
+
+
+
+
       <div class="row" *ngIf="!display">
+
+
         <div class="col-lg-8 col-md-8" *ngIf="!selected">
           <!-- ALL POST -->
-          <div class="post" *ngFor="let post of allPosts">
+          <ul class="post" *ngFor="let post of allPosts | searchPosts:searchValue">
             <div class="wrap-ut pull-left">
               <div class="posttext pull-left" (click)="displayPost(post)" *ngIf="post.active === true">
-                <h2>{{ post.title }}</h2>
-                <p>{{ post.content }}</p>
+                <li>{{ post.title }}</li>
+                <li>{{ post.content }}</li>
               </div>
 
             </div>
             <div class="postinfo pull-left"></div>
 
-          </div>
+          </ul>
           <!-- ALL  POSTS -->
         </div>
 

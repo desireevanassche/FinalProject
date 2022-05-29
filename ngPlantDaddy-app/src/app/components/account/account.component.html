@@ -1,39 +1,45 @@
-{{currentUser.firstName}} {{currentUser.lastName}}
+{{ currentUser.firstName }} {{ currentUser.lastName }}
 
+<div class="updateUserDiv">
+  <div class="userListBox lightPadder">
+    <div *ngIf="!editUser">
+      Name: {{ currentUser.firstName }} {{ currentUser.lastName }}
 
-<div class='updateUserDiv'>
-  <div class="userListBox lightPadder" >
-    <div *ngIf="!editUser" >
+      Username: {{ currentUser.username }}
 
-            Name: {{currentUser.firstName}} {{currentUser.lastName}}
+      <button class="btn btn-primary" (click)="editUser = true">Edit</button>
+    </div>
 
-            Username: {{currentUser.username}}
-
-            <button class="btn btn-primary" (click)="editUser = true">Edit</button>
-      </div>
-
-      <form #createForm="ngForm">
+    <form #createForm="ngForm">
       <div *ngIf="editUser">
-        First Nme: <input type="text" name="firstName" [(ngModel)]="currentUser.firstName" placeholder="First name">
-        Last Name:<input type="text" name="lastName" [(ngModel)]="currentUser.lastName" placeholder="Last name"><br>
-        Username: <input type="text" name="username" [(ngModel)]="currentUser.username"><br>
+        First Nme:
+        <input
+          type="text"
+          name="firstName"
+          [(ngModel)]="currentUser.firstName"
+          placeholder="First name"
+        />
+        Last Name:<input
+          type="text"
+          name="lastName"
+          [(ngModel)]="currentUser.lastName"
+          placeholder="Last name"
+        /><br />
+        Username:
+        <input
+          type="text"
+          name="username"
+          [(ngModel)]="currentUser.username"
+        /><br />
 
-        <button class="btn btn-primary" (click)="editUser=false">Cancel</button>
-        <button class="btn btn-primary" (click)="updateUser(currentUser)">Save</button>
+        <button class="btn btn-primary" (click)="editUser = false">
+          Cancel
+        </button>
+        <button class="btn btn-primary" (click)="updateUser(currentUser)">
+          Save
+        </button>
       </div>
     </form>
-
-<!--
-    <div>
-      <h1>
-        <img [src]="user?.imageUrl"><br>
-        {{ user?.firstName }}
-        {{ user?.lastName }}
-        {{ user?.biography }}
-        {{ user?.username }}
-        {{ user?.biography }}
-      </h1>
-    </div> -->
 
     <!--------------- USER POST ------------------------------------------------>
 
@@ -46,24 +52,78 @@
         </tr>
       </thead>
 
-      <tbody>
-        <tr *ngFor="let post of posts">
+      <tbody >
+        <tr *ngFor="let post of posts" >
+         <div *ngIf="post.active === true">
           <td class="title" (click)="displayPost(post)">{{ post.title }}</td>
           <td class="title" (click)="displayPost(post)">{{ post.content }}</td>
-          <td class="title" (click)="displayPost(post)">{{ post.createDate }}</td>
-
-          <td>
-
+          <td class="title" (click)="displayPost(post)">
+            {{ post.createDate }}
           </td>
+        </div>
+
         </tr>
       </tbody>
     </table>
 
     <div *ngIf="selected && !editPost">
-      <p>{{ selected?.id }}</p>
-      <p>{{ selected?.title }}</p>
-      <p>{{ selected?.imageUrl }}</p>
-      <p>{{ selected?.createDate }}</p>
+      <p>{{ selected.id }}</p>
+      <p>{{ selected.title }}</p>
+      <p>{{ selected.imageUrl }}</p>
+      <p>{{ selected.createDate }}</p>
 
       <button (click)="displayTable()">Back</button>
+       <button
+(click)="editPost = selected" type="button" class="btn btn-primary btn-lg">
+          Edit
+        </button>
+         <button
+          (click)="disablePost(selected.id, selected); displayTable()"
+          type="button"
+          class="btn btn-primary btn-lg"
+        >
+          Remove
+        </button>
+      </div>
     </div>
+  </div>
+
+  <div class="col-lg-8 col-md-8">
+    <div class="post">
+      <div class="wrap-ut pull-left">
+        <div class="posttext pull-left">
+          <section>
+            <div *ngIf="selected && editPost">
+              <form>
+                Title:
+                <input
+                  type="text"
+                  name="title"
+                  [(ngModel)]="editPost.title"
+                />
+                Content:
+                <input
+                  type="text"
+                  name="content"
+                  [(ngModel)]="editPost.content"
+                />
+                Image Url:
+                <input
+                  type="text"
+                  name="imageUrl"
+                  [(ngModel)]="editPost.imageUrl"
+                />
+                <label name="active">active?</label>
+                <input type="text" name="active" [(ngModel)]="editPost.active"/>
+
+                <button  (click)="updatePost(editPost, editPost.id); editPost = null" >
+                  Save
+                </button>
+                <button (click)="editPost = null">Cancel</button>
+              </form>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>

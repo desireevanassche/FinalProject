@@ -15,6 +15,7 @@ export class TodoService {
   private url = environment.baseUrl + 'api/todos';
 
 
+
   getHttpOptions() {
     let options = {
       headers: {
@@ -26,9 +27,7 @@ export class TodoService {
   }
 
   public index() {
-    return this.http
-      .get<Todo[]>(this.url, this.getHttpOptions())
-
+    return this.http.get<Todo[]>(this.url, this.getHttpOptions())
       .pipe(
         catchError((err: any) => {
           return throwError('Check this- KABOOM!');
@@ -37,11 +36,7 @@ export class TodoService {
   }
 
   public create(todo: Todo, userPlantId : number) {
-    console.log(todo, userPlantId);
-
-    return this.http
-      .post<Todo>(this.url + "/" + userPlantId,todo, this.getHttpOptions())
-
+    return this.http.post<Todo>(this.url + "/" + userPlantId,todo, this.getHttpOptions())
       .pipe(
         catchError((err: any) => {
           return throwError('Check this- KABOOM!');
@@ -49,18 +44,28 @@ export class TodoService {
       );
   }
 
-  public update(todoId:number, todo: Todo){
-return this.http.put<Todo>(this.url + "/" + todoId, todo, this.getHttpOptions())
-.pipe(
-  catchError((err: any) => {
-    return throwError('Check this- KABOOM!');
-  })
-);
-
+  public update(todoId : number, todo:Todo){
+    return this.http.put<Todo>(this.url + "/" + todoId ,todo, this.getHttpOptions())
+    .pipe(
+      catchError((err: any) => {
+        return throwError('Check this- KABOOM!');
+      })
+    );
   }
 
-  public show(id: number) {
-    return this.http.get<Todo>(this.url + '/' + id, this.getHttpOptions()).pipe(
+
+  public deleteTodo(todoId : number){
+    return this.http.delete<Todo>(this.url + "/" + todoId, this.getHttpOptions())
+    .pipe(
+      catchError((err: any) => {
+        return throwError('Check this- KABOOM!');
+      })
+    );
+  }
+
+
+  public show(todoId: number) {
+    return this.http.get<Todo>(this.url + '/' + todoId, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         return throwError('Check this- KABOOM!');
       })

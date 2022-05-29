@@ -1,58 +1,131 @@
-<h1>{{title}}</h1>
+<h1>{{ title }}</h1>
 
-<br>
-<br>
-
-
-
+<br />
+<br />
 
 <table class="table table-striped" *ngIf="!selected">
   <!-- align="center" -->
   <thead>
     <tr>
-
-      <th scope="col" >ID</th>
-      <th scope="col" >Nickname</th>
-      <th scope="col" >Height</th>
-      <th scope="col" >Spread</th>
-      <th scope="col" >Pot Diameter</th>
-      <th scope="col" >Home Location</th>
-      <th scope="col" >Description</th>
-      <th scope="col" >View</th>
-      <th scope="col" >Image URL</th>
+      <th scope="col">ID</th>
+      <th scope="col">Nickname</th>
+      <th scope="col">Height</th>
+      <th scope="col">Spread</th>
+      <th scope="col">Pot Diameter</th>
+      <th scope="col">Home Location</th>
+      <th scope="col">Description</th>
+      <th scope="col">View</th>
+      <th scope="col">Image URL</th>
     </tr>
   </thead>
-  <tbody >
+  <tbody>
     <tr *ngFor="let userplant of userPlants">
-
-
-        <th   scope="row" *ngIf="userplant.active === true">{{userplant.id}}</th>
-            <td>{{userplant.nickname}}</td>
-            <td>{{userplant.height}}</td>
-            <td>{{userplant.spread}}</td>
-            <td>{{userplant.potDiameter}}</td>
-            <td>{{userplant.homeLocation}}</td>
-            <td>{{userplant.description}}</td>
-            <td><button (click)="setPlant(userplant)">Details</button></td>
-            <td><img id="image" [src]="userplant.imageUrl" class="img-thumbnail" /></td>
-
-
+      <th scope="row" *ngIf="userplant.active === true">{{ userplant.id }}</th>
+      <td *ngIf="userplant.active === true">{{ userplant.nickname }}</td>
+      <td *ngIf="userplant.active === true">{{ userplant.height }}</td>
+      <td *ngIf="userplant.active === true">{{ userplant.spread }}</td>
+      <td *ngIf="userplant.active === true">{{ userplant.potDiameter }}</td>
+      <td *ngIf="userplant.active === true">{{ userplant.homeLocation }}</td>
+      <td *ngIf="userplant.active === true">{{ userplant.description }}</td>
+      <td *ngIf="userplant.active === true"><button (click)="setPlant(userplant)">Details</button></td>
+      <td *ngIf="userplant.active === true">
+        <img id="image" [src]="userplant.imageUrl" class="img-thumbnail" />
+      </td>
     </tr>
   </tbody>
 </table>
 
+<div *ngIf="!selected && currentUserId != null">
+  <form>
+    Nickname:
+    <input type="text" name="nickname" [(ngModel)]="newUserPlant.nickname" />
+    Height:
+    <input type="number" name="height" [(ngModel)]="newUserPlant.height" />
+    Spread:
+    <input type="number" name="spread" [(ngModel)]="newUserPlant.spread" /> Pot
+    Diameter:
+    <input
+      type="number"
+      name="pot diameter"
+      [(ngModel)]="newUserPlant.potDiameter"
+    />
+    Home Location:
+    <input
+      type="text"
+      name="home location"
+      [(ngModel)]="newUserPlant.homeLocation"
+    />
+    Description:
+    <input
+      type="text"
+      name="description"
+      [(ngModel)]="newUserPlant.description"
+    />
+    Image:
+    <input type="text" name="imageUrl" [(ngModel)]="newUserPlant.imageUrl" />
+    <div class="d-flex flex-row align-items-center mb-4">
+      <select [(ngModel)]="newUserPlant.plant.id" name="plantId">
+        <option *ngFor="let plant of plants" value="{{ plant.id }}">
+          {{ plant.commonName }}
+        </option>
+      </select>
+    </div>
+    <input
+      type="submit"
+      name="submit"
+      value="Add Plant"
+      (click)="addUserPlant(newUserPlant)"
+    />
+  </form>
+</div>
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
+<div *ngIf="selected">
+  <img [src]="selected.imageUrl"/>
+  <p>{{selected.id}}</p>
+  <p>{{selected.nickname}}</p>
+  <p>{{selected.height}}</p>
+  <p>{{selected.spread}}</p>
+  <p>{{selected.potDiameter}}</p>
+  <p>{{selected.homeLocation}}</p>
+  <p>{{selected.description}}</p>
+  <div *ngIf="selected.user.id == currentUserId">
+    <button (click)="setEditUserPlant()">Edit</button>
+    <br>
+    <button (click)="deactivateUserPlant(selected, selected.id); selected = null">Deactivate</button>
+  </div>
+  <button (click)="selected = null">Back</button>
+  </div>
 
-
-
-
-
-
-
-
-
-
+  <div *ngIf="editUserPlant">
+    <form>
+      Nickname: <input type="text" name="nick name" [(ngModel)]="editUserPlant.nickname">
+      <br>
+      Spread: <input type="number" name="spread" [(ngModel)]="editUserPlant.spread">
+      <br>
+      Height: <input type="number" name="height" [(ngModel)]="editUserPlant.height">
+      <br>
+      Pot Diameter:<input type="number" name="potDiameter" [(ngModel)]="editUserPlant.potDiameter">
+      <br>
+      Home Location: <input type="text" name="home location" [(ngModel)]="editUserPlant.homeLocation">
+      <br>
+      Description: <input type="text" name="description" [(ngModel)]="editUserPlant.description">
+      <br>
+      Image URL: <input type="text" name="image url" [(ngModel)]="editUserPlant.imageUrl">
+      <br>
+      <button (click)="updateUserPlant(editUserPlant, editUserPlant.id)">Save</button>
+      <br>
+      <button (click)="editUserPlant = null">Cancel</button>
+      <br>
+    </form>
+  </div>
 
 <!--
 
