@@ -26,6 +26,8 @@ export class PlantComponent implements OnInit {
 
   currentUserId: number = 0;
 
+  searchValue: string = "";
+
   constructor(
     private plantSvc: PlantService,
     private route: ActivatedRoute,
