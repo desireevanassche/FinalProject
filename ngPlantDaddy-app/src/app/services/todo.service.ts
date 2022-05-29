@@ -13,6 +13,7 @@ export class TodoService {
   constructor(private http: HttpClient, private auth: AuthService) {}
 
   private url = environment.baseUrl + 'api/todos';
+  private url2 = environment.baseUrl + 'api/todos/userplants';
 
 
 
@@ -69,6 +70,15 @@ export class TodoService {
       catchError((err: any) => {
         return throwError('Check this- KABOOM!');
       })
+    );
+  }
+
+  public getAllUserPlantTodos(userPlantId : number){
+    return this.http.get<Todo[]>(this.url2 + "/" + userPlantId, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        return throwError('Check this- KABOOM!');
+      })
+
     );
   }
 }

@@ -1,6 +1,7 @@
 package com.skilldistillery.plantdaddyapp.controllers;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletResponse;
@@ -43,6 +44,22 @@ public class TodoController {
 		}
 		return todo;
 	}
+	
+	@GetMapping("todos/userplants/{uPId}")
+	public List<Todo> allUserPlantTodos(@PathVariable("uPId") int userPlantId,
+			HttpServletResponse res,
+			Principal principal){
+		
+		System.out.println(userPlantId);
+		if(userPlantId != 0) {
+			List<Todo> userPlantTodos = todoServ.showTodosByUserPlantd(userPlantId, principal.getName());
+			return userPlantTodos;
+		}
+		
+		return null;
+	}
+	
+	
 
 	@PostMapping("todos/{userPlantId}")
 	public Todo create(@RequestBody Todo todo, Principal principal,
