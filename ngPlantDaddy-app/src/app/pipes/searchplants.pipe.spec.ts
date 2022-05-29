@@ -1,4 +1,4 @@
-import { SearchPlantsPipe } from './search-plants.pipe';
+import { SearchPlantsPipe } from './searchplants.pipe';
 
 describe('SearchPlantsPipe', () => {
   it('create an instance', () => {
