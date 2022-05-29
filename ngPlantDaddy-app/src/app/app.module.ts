@@ -21,6 +21,7 @@ import { TodoComponent } from './components/todo/todo.component';
 import { UserplantComponent } from './components/userplant/userplant.component';
 import { SearchPlantsPipe } from './pipes/search-plants.pipe';
 import { SearchPostsPipe } from './pipes/search-posts.pipe';
+import { FilterPipe } from './pipes/filter.pipe';
 
 
 
@@ -43,6 +44,7 @@ import { SearchPostsPipe } from './pipes/search-posts.pipe';
     UserplantComponent,
     SearchPlantsPipe,
     SearchPostsPipe,
+    FilterPipe,
 
 
   ],
