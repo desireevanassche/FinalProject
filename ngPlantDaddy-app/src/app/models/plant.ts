@@ -4,10 +4,10 @@ export class Plant {
 
   id : number;
   commonName : string;
-  description : string | null;
-  imageUrl : string | null;
-  botanicalName : string | null;
-  careDifficulty : string | null;
+  description : string;
+  imageUrl : string;
+  botanicalName : string;
+  careDifficulty : string;
   waterCycle : string | null;
   waterType : string | null;
   lightRequirement : string | null;
