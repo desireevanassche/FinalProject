@@ -45,6 +45,9 @@ export class UserplantComponent implements OnInit {
 
   displayTodos : boolean = false;
 
+  displaySubmit : boolean = true;
+  plantId : number = 0;
+
   constructor(
     private userPlantSvc: UserplantService,
     private route: ActivatedRoute,
@@ -65,12 +68,13 @@ export class UserplantComponent implements OnInit {
       let id = this.route.snapshot.paramMap.get('id');
       if (id) {
         this.show(parseInt(id));
+        this.reload();
       }
     } else {
     }
     this.reload();
-    this.displayTodo;
-    this.reloadTodos();
+    // this.displayTodo;
+    // this.reloadTodos();
   }
   reload() {
     this.userPlantSvc.indexUserPlants().subscribe({
@@ -171,12 +175,24 @@ export class UserplantComponent implements OnInit {
   displayAllUserPlants() {
     this.userPlantSvc.indexUserPlants().subscribe(
       (data) => {
+
         this.userPlants = data;
+
       },
       (err) => {
         console.log(err);
       }
     );
+  }
+
+  // GO HERE TOMORROW AND CHECK THIS AGAIN
+  selectedReset(id:number){
+    this.selected = null;
+    console.log("before rest to 0" +id);
+
+    id = this.plantId;
+    console.log("After reset to 0" + id );
+
   }
 
 
@@ -193,6 +209,23 @@ export class UserplantComponent implements OnInit {
       }
     })
   }
+
+  reloadSpecificTodoList(id : number){
+    this.todoService.getAllUserPlantTodos(id).subscribe({
+      next: (data) => {
+
+        this.todos = data;
+
+      },
+      error: (err) => {
+        console.log(err + " error inside reload todos index in todo comp.ts");
+
+      }
+    })
+  }
+
+
+
 
   displayTodo = (todo: Todo) => {
     this.selectedTodo = todo;
@@ -211,6 +244,10 @@ export class UserplantComponent implements OnInit {
     error => console.log("Adding Oberservable got an error")
     );
     }
+
+
+
+
 
 
 
@@ -253,7 +290,9 @@ this.editTodo = Object.assign({}, todo)
   displayPlantsTodos(id : number) {
     this.todoService.getAllUserPlantTodos(id).subscribe({
       next:(data)=>{
-      this.todos = data;
+        this.reloadSpecificTodoList(id);
+        this.todos = data;
+        console.log(id);
       },
       error :(err)=>{
         console.log(err + "this error is inside the get all user todos id method in user comp.ts");

@@ -103,7 +103,7 @@
     <br>
   <button (click)="displayPlantsTodos(selected.id); displayTodos = true "   >Check Out {{selected.nickname}} Todos</button>
   </div>
-  <button (click)="selected = null">Back</button>
+  <button (click)="selectedReset(selected.id)">Back</button>
 
   <div *ngIf="displayTodos" >
     <div >
@@ -230,7 +230,7 @@
       <label for="task" class="form-label">Task</label>
     </div>
 
-    <form #createForm="ngForm" *ngIf="editTodo">
+    <form #createForm="ngForm" *ngIf="editTodo && displaySubmit" >
       <label for="name" class="form-label">Name: </label>
       <input type="text" name="name" [(ngModel)]="editTodo.name" />
       <br />
@@ -240,7 +240,7 @@
       <button
         class="btn btn-primary"
         type="submit"
-        (click)="updateTodo(editTodo.id, editTodo)"
+        (click)="updateTodo(editTodo.id, editTodo); displaySubmit = false"
       >
         Save Edit
       </button>
