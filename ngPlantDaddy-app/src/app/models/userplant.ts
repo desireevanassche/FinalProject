@@ -1,4 +1,3 @@
-
 import { Plant } from "./plant";
 import { Todo } from "./todo";
 import { User } from "./user";
@@ -17,6 +16,7 @@ export class Userplant {
   active: boolean | null;
   user: User;
   plant: Plant;
+  todo: Todo;
 
   // photos: Photo [] | null;
 
@@ -34,7 +34,8 @@ constructor(
   homeLocation : string ="",
   active: boolean = true,
   plant: Plant = new Plant(),
-  user : User = new User ()
+  user : User = new User (),
+  todo : Todo = new Todo()
 
   // photos : Photo []
 
@@ -52,6 +53,7 @@ this.homeLocation = homeLocation;
 this.active = active;
 this.plant = plant;
 this.user = user;
+this.todo = todo;
 
 // this.photos = photos;
 

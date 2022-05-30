@@ -56,11 +56,12 @@
   <br>
   <br>
   <br>
+
   <div *ngIf="selected.user.id == currentUserId">
     <div class="container">
       <div class="row">
         <div class="col-lg-3">
-          <button class="btn btn-primary btn-lg" (click)="selectedReset(selected.id)">Back</button>
+          <button class="btn btn-primary btn-lg" (click)="selectedReset(selected.id); displayTodos = false">Back</button>
         </div>
 
         <div class="col-lg-3">
@@ -70,23 +71,17 @@
         </div>
 
         <div class="col-lg-3">
-          <button
-            class="btn btn-primary btn-lg"
-            (click)="displayPlantsTodos(selected.id); displayTodos = true"
-          >
+          <button class="btn btn-primary btn-lg" (click)="displayPlantsTodos(selected.id); displayTodos = true">
             Check Out {{ selected.nickname }} Todos
           </button>
         </div>
 
         <div class="col-lg-3">
-          <button
-            class="btn btn-primary btn-lg"
-            (click)="
-              deactivateUserPlant(selected, selected.id); selected = null
-            "
-          >
+          <button class="btn btn-primary btn-lg"
+            (click)=" deactivateUserPlant(selected, selected.id); selected = null">
             Deactivate
           </button>
+
         </div>
       </div>
     </div>
@@ -411,55 +406,97 @@
 
 
 
+<div *ngIf="selected && displayTodos">
+  </div>
+  <div>
+    <div class="page-content page-container" id="page-content">
+      <div class="padding">
+        <div class="row">
+          <div class="col-sm-8">
+            <div class="container-fluid d-flex justify-content-center">
 
+              <div class="list list-row card" id="sortable" data-sortable-id="0" aria-dropeffect="move">
+                      <button *ngIf="displayTodos == true" class="btn btn-primary btn-lg" type="submit" (click)="display = true">Add A Todo</button>
+              <div *ngFor="let todo of todos">
+                  <div class="list-item" data-id="13" data-item-sortable-id="0" draggable="true" role="option" aria-grabbed="false">
+                    <div>
+                      <a data-abc="true"><span class="w-40 avatar gd-primary">P</span></a>
+                    </div>
+                    <div class="flex">
+                      <a class="item-author text-color" data-abc="true">{{todo.name}}</a>
+                      <div class="item-except text-muted text-sm h-1x">
+                       {{ todo.description }}
+                      </div>
+                      <div class="item-except text-muted text-sm h-1x">
+                        {{ todo.dueDate }}
+                      </div>
+                      <div class="item-except text-muted text-sm h-1x">
+                        {{ todo.active }}
+                      </div>
+                    </div>
+                    <div class="no-wrap">
+                      <div class="item-date text-muted text-sm d-none d-md-block">
+                        {{ todo.createdAt }}
+                      </div>
+                    </div>
 
+                    <div>
+                      <div class="item-action dropdown">
+                        <a data-toggle="dropdown" class="text-muted" data-abc="true">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">
+                            <circle cx="12" cy="12" r="1"></circle>
+                            <circle cx="12" cy="5" r="1"></circle>
+                            <circle cx="12" cy="19" r="1"></circle>
+                          </svg>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" role="menu">
+                          <a class="dropdown-item" data-abc="true" (click)="displayTodo(todo)">See detail</a>
+                          <a class="dropdown-item edit" data-abc="true" (click)="setEditTodo(todo)">Edit</a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item trash" data-abc="true" (click)="deleteTodo(todo.id)">Delete item</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <div *ngIf="selectedTodo">
+      <ul>
+        <li>{{ selectedTodo.id }}</li>
+        <li>{{ selectedTodo.name }}</li>
+        <li>{{ selectedTodo.description }}</li>
+        <li>{{ selectedTodo.createdAt }}</li>
+      </ul>
 
+      <!-- <button class="btn btn-primary" type="submit" (click)="setEditTodo()">EDIT</button> -->
+      <label for="task" class="form-label">Task</label>
+    </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--
-<div *ngIf="selected && editUserPlant">
-  <form>
-      Nickname:
-      <input type="text" name="nickname" [(ngModel)]="editUserPlant.nickname"/>
+    <form #createForm="ngForm" *ngIf="editTodo && displaySubmit">
+      <label for="name" class="form-label">Name: </label>
+      <input type="text" name="name" [(ngModel)]="editTodo.name" />
       <br>
-      Spread:
-      <input type="number" name="spread" [(ngModel)]="editUserPlant.spread" />
-      <br>
-      Height:
-      <input type="number" name="height" [(ngModel)]="editUserPlant.height" />
-      <br>
-      Pot Diameter:<input type="number" name="potDiameter" [(ngModel)]="editUserPlant.potDiameter"/>
-      <br>
-      Home Location:
-      <input type="text" name="home location" [(ngModel)]="editUserPlant.homeLocation"/>
-      <br>
-      Description:
-      <input type="text" name="description" [(ngModel)]="editUserPlant.description"/>
-      <br>
-      Image URL:
-      <input type="text" name="image url" [(ngModel)]="editUserPlant.imageUrl"/>
-      <br>
-      <button  class="btn btn-primary btn-lg" type="submit" name="submit" value="Cancel" (click)="updateUserPlant(editUserPlant, editUserPlant.id)">Save</button>
-      <br>
-      <button class="btn btn-primary btn-lg" type="submit" name="submit" value="Cancel" (click)="editUserPlant = null">Cancel</button>
-      <br>
-  </form>
-</div> -->
+      <label for="description" class="form-label">Description: </label>
+      <input type="text" name="description" [(ngModel)]="editTodo.description"/>
+      <button class="btn btn-primary" type="submit" (click)="updateTodo(editTodo.id, editTodo); displaySubmit = false">
+        Save Edit
+      </button>
+    </form>
 
-
+    <form *ngIf="display" #createForm="ngForm" class="row g-3">
+      <div class="col-md-6">
+        <label for="inputEmail4" class="form-label">Task</label>
+        <input type="text" name="name" [(ngModel)]="newTodo.name"/>
+        <label for="inputEmail4" class="form-label">User Plant Id</label>
+        <input type="number" name="name" [(ngModel)]="newTodo.userPlants"/>
+        <br>
+        <button class="btn btn-primary" (click)="addTodo(newTodo, newTodo.userPlants); " type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
