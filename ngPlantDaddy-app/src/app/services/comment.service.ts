@@ -37,8 +37,8 @@ export class CommentService {
     );
     }
 
-  public createComment(postId:number, commentId:number, comment: Comment){
-    return this.http.post<Comment>(this.url + "/" + postId + "/comments/" + commentId, comment, this.getHttpOptions())
+  public createCommentOnPost(postId:number, comment: Comment){
+    return this.http.post<Comment>(this.url + "/" + postId, comment, this.getHttpOptions())
     .pipe(
       catchError((err:any) => {
       return throwError("index posts has an error- KABOOM!")
@@ -47,8 +47,9 @@ export class CommentService {
     )  ;
   }
 
-  public getUserFromComment(commentId : number){
-    return this.http.get<User>(this.url2 + "/" + commentId + "/user", this.getHttpOptions())
+
+  public getUserFromComment(commentId : number, userId:number){
+    return this.http.get<User>(this.url2 + "/" + commentId + "/user/" + userId, this.getHttpOptions())
     .pipe(
       catchError((err:any) => {
       return throwError("index posts has an error- KABOOM!")

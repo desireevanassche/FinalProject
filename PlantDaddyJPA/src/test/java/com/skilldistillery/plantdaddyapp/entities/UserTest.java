@@ -157,6 +157,6 @@ class UserTest {
 		assertNotNull(user.getId());
 		assertTrue(user.getComments().size()>0); 
 		
-		
+		 
 	}
 }

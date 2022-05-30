@@ -90,6 +90,7 @@ public class User {
 	@JoinTable(name = "friend", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "friend_id"))
 	private List<User> friends;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy= "user")
 	private List<Comment> comments;
 	

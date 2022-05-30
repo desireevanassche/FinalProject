@@ -39,7 +39,7 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	@Override
-	public Comment createComment(Comment comment, int inReplyToId, int postId, String username) {
+	public Comment createCommentOnComment(Comment comment, int inReplyToId, int postId, String username) {
 
 		Post post = postRepo.findByUser_UsernameAndId(username, postId);
 
@@ -79,13 +79,33 @@ public class CommentServiceImpl implements CommentService {
 	// ("comments/{commentId}/users/{id}")
 	
 	@Override
-	public User findUserByCommentId(String username, int commentId) {
+	public User findUserByCommentId(String username, int commentId, int userId) {
+		List<Comment> existing = comRepo.findByUser_UsernameAndId(username, commentId);
+		Optional<User> op = userRepo.findById(userId);
+		if(existing != null && op.isPresent()) {
+			User user = op.get();
+			user.setComments(existing);
+			return user;
+		}
 		
-			User user = comRepo.findByCommentId(commentId); 
-		 
-		return user;
+		return null;
 	}
 
+	@Override
+	public Comment createComment(int postId, Comment comment, String username) {
+		return null;
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 //	@Override
 //	public boolean deleteComment(int postId, int commentId, String username) {
 //		boolean deleted = false;

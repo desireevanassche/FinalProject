@@ -43,7 +43,8 @@ export class SocialmediaComponent implements OnInit {
   currentUserId: number | null = 0;
 
   searchValue: string = "";
-  displayModal = false;
+  displayPostModal = false;
+  displayCommentModal = false;
 
   user: User = new User ();
 
@@ -193,8 +194,8 @@ export class SocialmediaComponent implements OnInit {
     );
   }
 
-  getUserFromComment(commentId:number) {
-    this.commentSvc.getUserFromComment(commentId).subscribe({
+  getUserFromComment(commentId:number,userId: number) {
+    this.commentSvc.getUserFromComment(commentId, userId).subscribe({
       next: (data)=>{
         this.user = data;
       },
@@ -206,7 +207,17 @@ export class SocialmediaComponent implements OnInit {
     })
   }
 
+  createCommentOnPost(postId: number, comment: Comment ){
+    this.commentSvc.createCommentOnPost(postId,comment).subscribe({
+      next : (data)=>{
+        this.newComment = data;
+      },
+      error : (err) =>{
+        console.log(err + "this error is inside creating a new comment in social component.ts");
 
+      }
+    })
+  }
 
 
 
