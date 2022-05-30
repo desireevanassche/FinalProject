@@ -493,10 +493,16 @@
       <div class="col-md-6">
         <label for="inputEmail4" class="form-label">Task</label>
         <input type="text" name="name" [(ngModel)]="newTodo.name"/>
+
+
+
         <label for="inputEmail4" class="form-label">User Plant Id</label>
-        <input type="number" name="name" [(ngModel)]="newTodo.userPlants"/>
+        <input type="number" name="userPlantId" [(ngModel)]="newTodo.userPlants.id"/>
         <br>
+
+
         <button class="btn btn-primary" (click)="addTodo(newTodo, newTodo.userPlants); " type="submit">Submit</button>
+        <button class="btn btn-primary" (click)="displayTodos = false" type="submit">Cancel</button>
       </div>
     </form>
   </div>
