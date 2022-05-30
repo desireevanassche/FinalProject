@@ -1,0 +1,14 @@
+body {
+  background-image: url("https://images.unsplash.com/photo-1516540438350-9db0f4e6552f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80");
+  height: 100%;
+}
+
+.container {
+  padding-top: 100px;
+  padding-left: 200px;
+  padding-right: 200px;
+
+
+}
+
+
