@@ -191,7 +191,7 @@ export class AccountComponent implements OnInit {
       data => {
         this.myPosts = data;
         console.log(data);
-
+        !this.selected;
         this.displayMyPosts = true;
       },
       (err)=>{
