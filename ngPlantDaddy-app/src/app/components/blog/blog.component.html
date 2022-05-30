@@ -1,12 +1,11 @@
 <div class = "container">
-  <p>search </p>
-  <input type="text" id="search" [(ngModel)] ="searchValue"/>
+  <div><p>search</p>
+  <input type="text" id="search" [(ngModel)] ="searchValue"/></div>
     <table *ngIf="!selected" class="table table-striped table-hover">
     <thead>
       <tr class = table-header>
-        <th>Title</th>
-      <th>Content</th>
-      <th>Date Created</th>
+
+
       </tr>
       </thead>
     <tr class = "table-row" *ngFor="let blog of blogs | searchfilter:searchValue" >
