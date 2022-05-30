@@ -153,6 +153,8 @@ export class SocialmediaComponent implements OnInit {
 
   displayPost(post: Post) {
     this.selected = post;
+    console.log(post);
+
   }
 
   show(id: number) {
@@ -188,6 +190,12 @@ export class SocialmediaComponent implements OnInit {
       }
     );
   }
+
+
+
+
+
+
 
   // displayAllComments(postId:number){
 

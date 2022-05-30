@@ -19,6 +19,7 @@ import com.skilldistillery.plantdaddyapp.entities.Comment;
 import com.skilldistillery.plantdaddyapp.entities.Hashtag;
 import com.skilldistillery.plantdaddyapp.entities.Post;
 import com.skilldistillery.plantdaddyapp.entities.Topic;
+import com.skilldistillery.plantdaddyapp.entities.User;
 import com.skilldistillery.plantdaddyapp.services.CommentService;
 import com.skilldistillery.plantdaddyapp.services.HashtagService;
 import com.skilldistillery.plantdaddyapp.services.PostService;
@@ -139,6 +140,14 @@ public class SocialMediaController {
 	}
 	
 
+	@GetMapping("comments/{commentId}/user")
+	public User getUserByCommentId(@PathVariable("commentId")int commentId,
+			Principal principal,
+			HttpServletResponse res) {
+		
+		return comServ.findUserByCommentId(principal.getName(), commentId);
+		
+	}
 	
 	
 //	------------------- HASHTAG CONTROLLERS ------------------

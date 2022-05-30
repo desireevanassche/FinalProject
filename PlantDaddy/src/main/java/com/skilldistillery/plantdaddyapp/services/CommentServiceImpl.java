@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.plantdaddyapp.entities.Comment;
 import com.skilldistillery.plantdaddyapp.entities.Post;
+import com.skilldistillery.plantdaddyapp.entities.User;
 import com.skilldistillery.plantdaddyapp.repositories.CommentRepository;
 import com.skilldistillery.plantdaddyapp.repositories.PostRepository;
+import com.skilldistillery.plantdaddyapp.repositories.UserRepository;
 
 @Service
 public class CommentServiceImpl implements CommentService {
@@ -20,6 +22,9 @@ public class CommentServiceImpl implements CommentService {
 	@Autowired
 	private PostRepository postRepo;
 
+	@Autowired
+	private UserRepository userRepo;
+	
 	@Override
 	public List<Comment> findAllByPostId(int postId) {
 		List<Comment> comments = null;
@@ -63,11 +68,22 @@ public class CommentServiceImpl implements CommentService {
 
 		if (existing != null && op.isPresent()) {
 			comment = op.get();
-			comment.setActive(comment.isActive());
+			comment.setActive(false);
 			comRepo.saveAndFlush(comment);
 		}
 
 		return comment;
+	}
+
+	
+	// ("comments/{commentId}/users/{id}")
+	
+	@Override
+	public User findUserByCommentId(String username, int commentId) {
+		
+			User user = comRepo.findByCommentId(commentId); 
+		 
+		return user;
 	}
 
 //	@Override

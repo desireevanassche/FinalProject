@@ -125,3 +125,8 @@ body{
   min-height: 1px;
   padding: 1rem;
 }
+
+
+.comment-for-post{
+  padding-left: 450px;
+}

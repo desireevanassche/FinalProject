@@ -146,4 +146,17 @@ class UserTest {
 		
 		
 	}
+	
+	
+	@Test
+	@DisplayName("testing relational mapping user to comments in db")
+	void test_user_relational_mapping_to_comments_in_db() {
+		
+		
+		assertNotNull(user);
+		assertNotNull(user.getId());
+		assertTrue(user.getComments().size()>0); 
+		
+		
+	}
 }
