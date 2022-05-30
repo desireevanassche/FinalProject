@@ -57,10 +57,11 @@ export class SocialmediaComponent implements OnInit {
 
 
   ngOnInit(): void {
-
-
     this.currentUserId = parseInt('' + this.authServ.getCurrentUserId());
     console.log(this.currentUserId);
+
+
+
     if (!this.selected && this.route.snapshot.paramMap.get('id')) {
       let id = this.route.snapshot.paramMap.get('id');
       if (id) {

@@ -1,4 +1,7 @@
 
+
+<!--
+
 <div class = "container">
   <p>search </p>
   <input type="text" id="search" [(ngModel)] ="searchValue"/>
@@ -86,9 +89,9 @@
       <div class="row" *ngIf="!display">
 
 
-        <div class="col-lg-8 col-md-8" *ngIf="!selected">
+        <div class="col-lg-8 col-md-8" *ngIf="!selected"> -->
           <!-- ALL POST -->
-          <ul class="post" *ngFor="let post of allPosts | searchPosts:searchValue">
+          <!-- <ul class="post" *ngFor="let post of allPosts | searchPosts:searchValue">
             <div class="wrap-ut pull-left">
               <div class="posttext pull-left" (click)="displayPost(post)" *ngIf="post.active === true">
                 <li>{{ post.title }}</li>
@@ -98,12 +101,12 @@
             </div>
             <div class="postinfo pull-left"></div>
 
-          </ul>
+          </ul> -->
           <!-- ALL  POSTS -->
-        </div>
+        <!-- </div> -->
 
         <!-- ---------  Single Post View -------------- -->
-        <div class="col-lg-8 col-md-8" *ngIf="selected">
+        <!-- <div class="col-lg-8 col-md-8" *ngIf="selected">
           <div class="post" *ngIf="selected">
             <div class="wrap-ut pull-left">
               <div class="posttext pull-left">
@@ -156,12 +159,12 @@
               <li></li>
             </ul>
           </div>
-        </div>
+        </div> -->
 
         <!-- ---------  Single Post View -------------- -->
 
         <!-- ---------  EDIT Post View -------------- -->
-        <div class="col-lg-8 col-md-8">
+        <!-- <div class="col-lg-8 col-md-8">
           <div class="post">
             <div class="wrap-ut pull-left">
               <div class="posttext pull-left">
@@ -199,7 +202,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <!-- ---------  EDIT Post View -------------- -->
 
         <!-- <div *ngIf="selected && !editPost">
@@ -211,7 +214,7 @@
         </div> -->
 
         <!--------------------- SIDE BAR FOR CATEGORIES SECTION ----------->
-        <div class="col-lg-4 col-md-4">
+        <!-- <div class="col-lg-4 col-md-4">
           <div class="sidebarblock">
             <h3>Topics</h3>
             <div class="divline"></div>
@@ -229,10 +232,10 @@
             </div>
           </div>
 
-          <div class="sidebarblock"></div>
+          <div class="sidebarblock"></div> -->
 
           <!-- -->
-          <div class="sidebarblock"></div>
+          <!-- <div class="sidebarblock"></div>
         </div>
       </div>
     </div>
@@ -304,11 +307,11 @@
                       >
                         {{ topic.name }}
                       </option>
-                    </select>
+                    </select> -->
                     <!-- <div class="dropdown-divider"></div> -->
                     <!-- <a class="dropdown-item" >General</a>
                       <a class="dropdown-item" >Trader Shop</a> -->
-                  </div>
+                  <!-- </div>
 
                   <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                     <button
@@ -318,10 +321,10 @@
                     >
                       Create Post
                     </button>
-                  </div>
+                  </div> -->
 
                   <!-- HEY YOU! ADD A DROP DOWN SOMEWHERE TO LET THE USER CHOOSE THE TOPIC THE POST FALLS UNDER -->
-                </form>
+                <!-- </form>
               </div>
               <div
                 class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2"
@@ -338,7 +341,7 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 <!--------------END ADD POST FORM ----------------------------------------------------------------------------------
 //--------- Display single post & option to edit --------------------------------------------------------------------
 //-------add logic to only allow original poster to edit ---------------------------------------------------------->
