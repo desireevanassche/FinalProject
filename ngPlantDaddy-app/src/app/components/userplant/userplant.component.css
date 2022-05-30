@@ -1,7 +1,8 @@
 
 
  body {
-  background-color: #f9f9fa
+  background-color: #f9f9fa;
+  margin: 0 0;
 }
 
 .flex {
@@ -161,7 +162,7 @@ list-item{
  background:white;
 }
 
-#tableImg{
+#image{
   height: 200px;
   width: 200px;
 }
@@ -185,3 +186,22 @@ thead{
   margin-top: 5px;
 
 } */
+
+h1{
+  text-align: center;
+}
+button {
+  background-color: #445824;
+  border-color: #445824;
+}
+
+button:hover {
+background-color: #627F3B;
+border-color: #627F3B;
+}
+
+#registrationForm {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+

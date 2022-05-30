@@ -15,7 +15,7 @@ import { Todo } from 'src/app/models/todo';
   styleUrls: ['./userplant.component.css'],
 })
 export class UserplantComponent implements OnInit {
-  title: string = 'My Garden <3';
+  title: string = 'My Garden Ɛ>';
 
   selected: Userplant | null = null;
 
@@ -24,6 +24,8 @@ export class UserplantComponent implements OnInit {
   editUserPlant: Userplant | null = null;
 
   userPlants: Userplant[] = [];
+
+  displayAddUserPlantForm: Boolean = false;
 
   currentUserId: number | null = 0;
 
@@ -121,8 +123,8 @@ export class UserplantComponent implements OnInit {
   addUserPlant(newUserPlant: Userplant) {
     this.userPlantSvc.create(newUserPlant).subscribe(
       (data) => {
-        this.reload();
         this.newUserPlant = new Userplant();
+        this.reload();
       },
       (err) => console.error(err)
     );
