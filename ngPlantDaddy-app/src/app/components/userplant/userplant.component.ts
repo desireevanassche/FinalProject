@@ -27,6 +27,8 @@ export class UserplantComponent implements OnInit {
 
   displayAddUserPlantForm: Boolean = false;
 
+  editForm: Boolean = false;
+
   currentUserId: number | null = 0;
 
   plants: Plant[] = [];
@@ -41,14 +43,17 @@ export class UserplantComponent implements OnInit {
 
   selectedTodo : Todo | null = null;
 
-  display: boolean = false;
-
   newTodo : Todo = new Todo ();
 
   displayTodos : boolean = false;
 
+  display: boolean = false;
+
   displaySubmit : boolean = true;
+
   plantId : number = 0;
+
+  todoCount: Todo[] = [];
 
   constructor(
     private userPlantSvc: UserplantService,
@@ -239,7 +244,7 @@ export class UserplantComponent implements OnInit {
 
 
   addTodo(todo : Todo, userPlantId : number){
-    this.todoService.create(todo,userPlantId).subscribe(
+    this.todoService.create(todo, userPlantId).subscribe(
     success=>{
       this.newTodo = new Todo();
       this.reloadTodos();
@@ -247,12 +252,6 @@ export class UserplantComponent implements OnInit {
     error => console.log("Adding Oberservable got an error")
     );
     }
-
-
-
-
-
-
 
 
   updateTodo( id : number, updatedTodo : Todo){
@@ -279,7 +278,6 @@ export class UserplantComponent implements OnInit {
       }
     })
   }
-
 
 
 
