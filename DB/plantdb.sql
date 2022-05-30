@@ -171,6 +171,7 @@ DROP TABLE IF EXISTS `comment` ;
 
 CREATE TABLE IF NOT EXISTS `comment` (
   `id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` INT NOT NULL,
   `post_id` INT NOT NULL,
   `in_reply_to_id` INT NULL,
   `content` TEXT NOT NULL,
@@ -179,6 +180,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
   PRIMARY KEY (`id`),
   INDEX `fk_comment_post1_idx` (`post_id` ASC),
   INDEX `fk_comment_comment1_idx` (`in_reply_to_id` ASC),
+  INDEX `fk_comment_user1_idx` (`user_id` ASC),
   CONSTRAINT `fk_comment_post1`
     FOREIGN KEY (`post_id`)
     REFERENCES `post` (`id`)
@@ -187,6 +189,11 @@ CREATE TABLE IF NOT EXISTS `comment` (
   CONSTRAINT `fk_comment_comment1`
     FOREIGN KEY (`in_reply_to_id`)
     REFERENCES `comment` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_comment_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -615,8 +622,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `plantdb`;
-INSERT INTO `comment` (`id`, `post_id`, `in_reply_to_id`, `content`, `create_date`, `active`) VALUES (1, 1, NULL, 'Our first comment', '2022-05-24 12:00:00', 1);
-INSERT INTO `comment` (`id`, `post_id`, `in_reply_to_id`, `content`, `create_date`, `active`) VALUES (2, 1, 1, 'Reply to comment', '2022-05-24 12:05:01', 1);
+INSERT INTO `comment` (`id`, `user_id`, `post_id`, `in_reply_to_id`, `content`, `create_date`, `active`) VALUES (1, 1, 1, NULL, 'Our first comment', '2022-05-24 12:00:00', 1);
+INSERT INTO `comment` (`id`, `user_id`, `post_id`, `in_reply_to_id`, `content`, `create_date`, `active`) VALUES (2, 2, 1, 1, 'Reply to comment', '2022-05-24 12:05:01', 1);
 
 COMMIT;
 

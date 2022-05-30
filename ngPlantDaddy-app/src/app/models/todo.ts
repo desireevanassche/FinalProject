@@ -1,5 +1,3 @@
-import { Userplant } from 'src/app/models/userplant';
-
 export class Todo {
 
   id: number;
@@ -9,7 +7,6 @@ export class Todo {
   completedDate: string | null;
   dueDate: string | null;
   active: boolean | null;
-  userPlants : Userplant;
 
 
 
@@ -21,7 +18,6 @@ constructor(
   completedDate: string = "",
   dueDate: string ="",
   active: boolean = true,
-  userPlants : Userplant = new Userplant()
 
 ){
 
@@ -32,7 +28,6 @@ this.createdAt = createdAt;
 this.completedDate =completedDate;
 this.dueDate = dueDate;
 this.active = active;
-this.userPlants = userPlants;
 
 
 
