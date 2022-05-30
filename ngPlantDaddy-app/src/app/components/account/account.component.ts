@@ -6,6 +6,8 @@ import { Post } from 'src/app/models/post';
 import { PostService } from 'src/app/services/post.service';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
+import { Userplant } from 'src/app/models/userplant';
+import { UserplantService } from 'src/app/services/userplant.service';
 
 
 
@@ -23,6 +25,8 @@ export class AccountComponent implements OnInit {
   selected: Post | null = null;
   allPosts : Post [] =[];
   newPost: Post = new Post();
+  myPosts: Post[] = [];
+
 
   currentUserId: number = 0;
   users: User[] = [];
@@ -30,6 +34,9 @@ export class AccountComponent implements OnInit {
   editedUser: User | null = new User();
   editUser: boolean = false;
 
+  displayFeed :boolean = true;
+  displayMyPosts : boolean = true;
+  displayEditForm: boolean = true;
 
 
   constructor(
@@ -37,7 +44,8 @@ export class AccountComponent implements OnInit {
     private router: Router,
     private postSvc: PostService,
     private userSvc: UserService,
-    private authSvc: AuthService
+    private authSvc: AuthService,
+    private userPlantServ: UserplantService
 
 
   ) {}
@@ -54,19 +62,31 @@ export class AccountComponent implements OnInit {
     } else {
     }
     this.reload();
+
   }
 
   reload() {
     this.postSvc.indexPosts().subscribe({
       next: (data) => {
         this.posts = data;
-        this.postSvc.indexAllPosts();
+        this.displayAllPosts();
+
+
         this.userSvc.show(this.currentUser.id).subscribe(
           { // OBJECT
             next: (user) => {
               this.getUser();
               this.editUser = false;
               this.currentUser = user;
+
+              // this.userPlantServ.indexUserPlants().subscribe({
+              //   next: (dataPlant) => {
+              //     this.
+              //   }
+              // })
+
+
+
           },
         });
       },
@@ -161,6 +181,42 @@ export class AccountComponent implements OnInit {
     });
   }
 
+  displayAllFeed(){
+   this.displayFeed = true;
+
+  }
+
+  displayCurrentUserPosts(){
+    this.postSvc.indexPosts().subscribe(
+      data => {
+        this.myPosts = data;
+        console.log(data);
+
+        this.displayMyPosts = true;
+      },
+      (err)=>{
+        console.log(err + "This error is inside displayCurrentUserPosts");
+      }
+    )
+  }
+
+
+
+  displayAllPosts() {
+    this.postSvc.indexAllPosts().subscribe(
+      (data) => {
+
+        this.allPosts = data;
+        console.log(this.allPosts);
+
+
+      },
+      (err) => {
+        console.log(err);
+
+      }
+    );
+  }
 
 }
 
