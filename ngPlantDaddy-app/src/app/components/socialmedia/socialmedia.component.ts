@@ -6,6 +6,7 @@ import { Post } from 'src/app/models/post';
 import { PostService } from 'src/app/services/post.service';
 import { Topic } from 'src/app/models/topic';
 import { CommentService } from 'src/app/services/comment.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-socialmedia',
@@ -44,6 +45,7 @@ export class SocialmediaComponent implements OnInit {
   searchValue: string = "";
   displayModal = false;
 
+  user: User = new User ();
 
 
   constructor(
@@ -191,7 +193,18 @@ export class SocialmediaComponent implements OnInit {
     );
   }
 
+  getUserFromComment(commentId:number) {
+    this.commentSvc.getUserFromComment(commentId).subscribe({
+      next: (data)=>{
+        this.user = data;
+      },
+      error : (err)=>{
+        console.log(err + "error existing inside social component getting user info");
 
+      }
+
+    })
+  }
 
 
 

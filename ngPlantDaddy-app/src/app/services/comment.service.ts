@@ -1,3 +1,4 @@
+import { User } from 'src/app/models/user';
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -12,6 +13,7 @@ export class CommentService {
 
 
   private url = environment.baseUrl + "api/users/posts";
+  private url2 = environment.baseUrl + "comments"
 
 
   constructor(private http : HttpClient, private datePipe : DatePipe,private auth : AuthService) { }
@@ -44,6 +46,17 @@ export class CommentService {
 
     )  ;
   }
+
+  public getUserFromComment(commentId : number){
+    return this.http.get<User>(this.url2 + "/" + commentId + "/user", this.getHttpOptions())
+    .pipe(
+      catchError((err:any) => {
+      return throwError("index posts has an error- KABOOM!")
+    })
+
+    )  ;
+  }
+
 
 
 }
