@@ -4,6 +4,8 @@
       <div class="row">
           <div class="col-12 grid-margin">
               <div class="profile-header">
+
+
                   <div class="cover">
                       <div class="gray-shade"></div>
                       <figure>
@@ -13,11 +15,11 @@
                       <br>
                       <div class="cover-body d-flex justify-content-between align-items-center">
                           <div>
-                              <img class="profile-pic" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="profile">
+                              <img [src]="currentUser.imageUrl" class="profile-pic"  alt="profile">
                               <span class="profile-name">{{currentUser.firstName}} {{currentUser.lastName}}</span>
                           </div>
                           <div class="d-none d-md-block">
-                              <button class="btn btn-primary btn-icon-text btn-edit-profile">
+                              <button class="btn btn-primary btn-icon-text btn-edit-profile" (click)="editUser = true">
                                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit btn-icon-prepend">
                                       <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                                       <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
@@ -26,21 +28,23 @@
                           </div>
                       </div>
                   </div>
+
+
                   <div class="header-links">
                       <ul class="links d-flex align-items-center mt-3 mt-md-0">
                           <li class="header-link-item d-flex align-items-center active">
                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-columns mr-1 icon-md">
                                   <path d="M12 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7m0-18H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7m0-18v18"></path>
                               </svg>
-                              <a class="pt-1px d-none d-md-block" href="#">Timeline</a>
+                              <a class="pt-1px d-none d-md-block" >Timeline</a>
                           </li>
-                          <li class="header-link-item ml-3 pl-3 border-left d-flex align-items-center">
+                          <!-- <li class="header-link-item ml-3 pl-3 border-left d-flex align-items-center">
                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user mr-1 icon-md">
                                   <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                   <circle cx="12" cy="7" r="4"></circle>
                               </svg>
                               <a class="pt-1px d-none d-md-block" href="#">About</a>
-                          </li>
+                          </li> -->
                           <li class="header-link-item ml-3 pl-3 border-left d-flex align-items-center">
                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users mr-1 icon-md">
                                   <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
@@ -48,7 +52,7 @@
                                   <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
                                   <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                               </svg>
-                              <a class="pt-1px d-none d-md-block" href="#">Friends <span class="text-muted tx-12">3,765</span></a>
+                              <a class="pt-1px d-none d-md-block" >Friends <span class="text-muted tx-12">3,765</span></a>
                           </li>
                           <li class="header-link-item ml-3 pl-3 border-left d-flex align-items-center">
                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-image mr-1 icon-md">
@@ -56,22 +60,34 @@
                                   <circle cx="8.5" cy="8.5" r="1.5"></circle>
                                   <polyline points="21 15 16 10 5 21"></polyline>
                               </svg>
-                              <a class="pt-1px d-none d-md-block" href="#">Photos</a>
+                              <a class="pt-1px d-none d-md-block" >Photos</a>
                           </li>
                           <li class="header-link-item ml-3 pl-3 border-left d-flex align-items-center">
                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-video mr-1 icon-md">
                                   <polygon points="23 7 16 12 23 17 23 7"></polygon>
                                   <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
                               </svg>
-                              <a class="pt-1px d-none d-md-block" href="#">Videos</a>
+                              <a class="pt-1px d-none d-md-block" >Videos</a>
                           </li>
                       </ul>
                   </div>
               </div>
           </div>
       </div>
+
       <div class="row profile-body">
           <!-- left wrapper start -->
+
+
+
+
+
+<!-- ----------------------------------------------------------------- SIDEBAR CARD FOR DISPLAING ABOUT INFO- LEFT SIDE ---------------------------------------------------------- -->
+
+
+
+
+
           <div class="d-none d-md-block col-md-4 col-xl-3 left-wrapper">
               <div class="card rounded">
                   <div class="card-body">
@@ -79,48 +95,39 @@
                           <h6 class="card-title mb-0">About</h6>
                           <div class="dropdown">
                               <button class="btn p-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal icon-lg text-muted pb-3px">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal icon-lg text-muted pb-3px">
                                       <circle cx="12" cy="12" r="1"></circle>
                                       <circle cx="19" cy="12" r="1"></circle>
                                       <circle cx="5" cy="12" r="1"></circle>
                                   </svg>
                               </button>
                               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                  <a class="dropdown-item d-flex align-items-center" href="#">
+                                  <a class="dropdown-item d-flex align-items-center" (click)="editUser= true" >
                                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 icon-sm mr-2">
                                           <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
-                                      </svg> <span class="">Edit</span></a>
-                                  <a class="dropdown-item d-flex align-items-center" href="#">
-                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-git-branch icon-sm mr-2">
-                                          <line x1="6" y1="3" x2="6" y2="15"></line>
-                                          <circle cx="18" cy="6" r="3"></circle>
-                                          <circle cx="6" cy="18" r="3"></circle>
-                                          <path d="M18 9a9 9 0 0 1-9 9"></path>
-                                      </svg> <span class="">Update</span></a>
-                                  <a class="dropdown-item d-flex align-items-center" href="#">
-                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye icon-sm mr-2">
-                                          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                          <circle cx="12" cy="12" r="3"></circle>
-                                      </svg> <span class="">View all</span></a>
+                                      </svg> <span class=""  >Edit Profile</span></a>
+
+
                               </div>
                           </div>
                       </div>
-                      <p>Hi! I'm Amiah the Senior UI Designer at Vibrant. We hope you enjoy the design and quality of Social.</p>
+                      <p>{{currentUser.biography}}</p>
                       <div class="mt-3">
                           <label class="tx-11 font-weight-bold mb-0 text-uppercase">Joined:</label>
-                          <p class="text-muted">November 15, 2015</p>
+                          <p class="text-muted">May 28, 2022</p>
                       </div>
                       <div class="mt-3">
                           <label class="tx-11 font-weight-bold mb-0 text-uppercase">Lives:</label>
-                          <p class="text-muted">New York, USA</p>
+                          <p class="text-muted">Denver, Colorado</p>
                       </div>
                       <div class="mt-3">
                           <label class="tx-11 font-weight-bold mb-0 text-uppercase">Email:</label>
-                          <p class="text-muted">me@nobleui.com</p>
+                          <p class="text-muted">{{currentUser.email}}</p>
                       </div>
                       <div class="mt-3">
                           <label class="tx-11 font-weight-bold mb-0 text-uppercase">Website:</label>
-                          <p class="text-muted">www.nobleui.com</p>
+                          <p class="text-muted">www.PlantDaddy.com</p>
                       </div>
                       <div class="mt-3 d-flex social-links">
                           <a href="javascript:;" class="btn d-flex align-items-center justify-content-center border mr-2 btn-icon github">
@@ -143,12 +150,70 @@
                       </div>
                   </div>
               </div>
-          </div>
+
+              <!-- -------------------------------------------------  SIDEBAR  CARD FOR DISPLAYING ABOUT ^ ------------------------------------------------------------  -->
+
+
+              <br>
+
+              <!-- -------------------------------------------------   SIDEBAR CARD FOR DISPLAYING POSTS  V ------------------------------------------------------------  -->
+
+              <div class="card rounded">
+                <div class="card-body">
+                    <div class="d-flex align-items-center justify-content-between mb-2">
+                        <h6 class="card-title mb-0"> My Posts</h6>
+                      <hr>
+                    </div>
+                    <!-- <p>{{currentUser.biography}}</p> -->
+
+                    <div class="mt-3 card-hover" >
+                      <div  *ngFor="let post of posts" >
+                        <div *ngIf="post.active === true">
+                        <label class="tx-11 font-weight-bold mb-0 text-uppercase"(click)="displayPost(post)">{{post.title}}</label>
+                        <p class="text-muted">{{post.createDate}}2</p>
+                      </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            </div>
           <!-- left wrapper end -->
           <!-- middle wrapper start -->
           <div class="col-md-8 col-xl-6 middle-wrapper">
-              <div class="row">
-                  <div class="col-md-12 grid-margin">
+              <div class="row" *ngIf="!editUser">
+
+
+                  <!-- ----------------------------------------------------------------- NEW POST ------------------------------------------------------------- -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                  <div class="col-md-12 grid-margin"  >
                       <div class="card rounded">
                           <div class="card-header">
                               <div class="d-flex align-items-center justify-content-between">
@@ -197,6 +262,9 @@
                                   </div>
                               </div>
                           </div>
+
+                            <!-- ------------------------- POST DESCRIPTION BELOW! --------------------------- -->
+
                           <div class="card-body">
                               <p class="mb-3 tx-14">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus minima delectus nemo unde quae recusandae assumenda.</p>
                               <img class="img-fluid" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
@@ -227,6 +295,9 @@
                           </div>
                       </div>
                   </div>
+
+
+
                   <div class="col-md-12">
                       <div class="card rounded">
                           <div class="card-header">
@@ -307,6 +378,198 @@
                       </div>
                   </div>
               </div>
+
+
+
+              <!-- ------------------------------------------------------- EDIT USER INFORMATION  BELOW ---------------------------------------------------- -->
+
+<!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"> -->
+<div class="container updateUserDiv"  >
+  <div class="row flex-lg-nowrap">
+
+
+    <!-- <div class="col-12"> -->
+      <div class="col-md-12 grid-margin" *ngIf="editUser" >
+      <div class="row">
+        <div class="col mb-3">
+          <div class="card">
+            <div class="card-body">
+              <div class="e-profile">
+                <div class="row">
+                  <div class="col-12 col-sm-auto mb-3">
+                    <div class="mx-auto" style="width: 140px;">
+                      <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
+                        <img [src]="currentUser.imageUrl" style="height: 130px;" >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                    <div class="text-center text-sm-left mb-2 mb-sm-0">
+                      <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap"> {{currentUser.firstName}} {{currentUser.lastName}}</h4>
+                      <p class="mb-0">@{{currentUser.username}}</p>
+                      <div class="text-muted"><small>Last seen 2 hours ago</small></div>
+                      <div class="mt-2">
+                        <button class="btn btn-primary" type="button">
+                          <i class="fa fa-fw fa-camera"></i>
+                          <span>Change Photo</span>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="text-center text-sm-right">
+                      <span class="badge badge-secondary">{{currentUser.role}}</span>
+                      <div class="text-muted"><small> insert todays date</small></div>
+                    </div>
+                  </div>
+                </div>
+                <ul class="nav nav-tabs">
+                  <li class="nav-item"><a  class="active nav-link">My Info</a></li>
+                </ul>
+                <div class="tab-content pt-3">
+                  <div class="tab-pane active">
+                    <form #createForm="ngForm" class="form" novalidate="">
+                      <div class="row">
+                        <div class="col">
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label>First Name</label>
+                                <input class="form-control " type="text" name="firstName" [(ngModel)]="currentUser.firstName" value="{{currentUser.firstName}}">
+                              </div>
+                            </div>
+                            <div class="col">
+                              <div class="form-group">
+                                <label>Username</label>
+                                <input class="form-control" type="text" name="username" [(ngModel)]="currentUser.username" value="{{currentUser.username}}">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label>Email</label>
+                                <input class="form-control" type="text" name="email"  [(ngModel)]="currentUser.email"  value="{{currentUser.email}}" >
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label>Profile Picture</label>
+                                <input class="form-control" name="imageUrl" [(ngModel)]="currentUser.imageUrl" type="text" >
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col mb-3">
+                              <div class="form-group">
+                                <label>My Bio</label>
+                                <textarea class="form-control" rows="5" name="biography" [(ngModel)]="currentUser.biography" ></textarea>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <!-- <div class="col-12 col-sm-6 mb-3">
+                          <div class="mb-2"><b>Change Password</b></div>
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label>Current Password</label>
+                                <input class="form-control"  type="password" placeholder="••••••">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label>New Password</label>
+
+                                <input class="form-control" name="password" [(ngModel)]="currentUser.password" type="password" >
+
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label>Confirm <span class="d-none d-xl-inline">Password</span></label>
+                                <input class="form-control" name="password" [(ngModel)]="currentUser.password" type="password" ></div>
+                            </div>
+                          </div>
+                        </div> -->
+                        <div class="col-12 col-sm-5 offset-sm-1 mb-3">
+                          <div class="mb-2"><b>Keeping in Touch</b></div>
+                          <div class="row">
+                            <div class="col">
+                              <label>Email Notifications</label>
+                              <div class="custom-controls-stacked px-2">
+                                <div class="custom-control custom-checkbox">
+                                  <input type="checkbox" class="custom-control-input" id="notifications-blog" checked="">
+                                  <label class="custom-control-label" for="notifications-blog">Blog posts</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                  <input type="checkbox" class="custom-control-input" id="notifications-news" checked="">
+                                  <label class="custom-control-label" for="notifications-news">Newsletter</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                  <input type="checkbox" class="custom-control-input" id="notifications-offers" checked="">
+                                  <label class="custom-control-label" for="notifications-offers">Personal Offers</label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col d-flex justify-content-end">
+                          <button class="btn btn-primary" (click)="updateUser(currentUser); editUser = false" type="submit">Save Changes</button>
+                        </div>
+                        <div class="col d-flex justify-content-end">
+                          <button class="btn btn-primary" (click)="updateUser(currentUser); editUser = false" type="submit">Save Changes</button>
+                        </div>
+                      </div>
+                    </form>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+  </div>
+  </div>
+
+
+
+  <!-- ------------------------------------------------------- EDIT USER INFORMATION  ABOVE ------------------------------------------------- -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           </div>
           <!-- middle wrapper end -->
           <!-- right wrapper start -->
@@ -485,29 +748,24 @@
   </div>
   </div>
 
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+<!--
 
 <div class="updateUserDiv">
   <div class="userListBox lightPadder">
     <div *ngIf="!editUser">
-      <!-- Name: {{ currentUser.firstName }} {{ currentUser.lastName }}
+      Name: {{ currentUser.firstName }} {{ currentUser.lastName }}
 
-      Username: {{ currentUser.username }} -->
+      Username: {{ currentUser.username }}
 
       <button class="btn btn-primary" (click)="editUser = true">Edit</button>
     </div>
@@ -547,11 +805,11 @@
           Save
         </button>
       </div>
-    </form>
+    </form> -->
 
     <!--------------- USER POST ------------------------------------------------>
 
-    <table *ngIf="!selected" class="table table-striped table-hover">
+    <!-- <table *ngIf="!selected" class="table table-striped table-hover">
       <thead class="table-light">
         <tr>
           <th>Title</th>
@@ -634,4 +892,4 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->

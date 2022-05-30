@@ -5,16 +5,18 @@ body{
 .profile-page .profile-header {
   box-shadow: 0 0 10px 0 rgba(183, 192, 206, 0.2);
   border: 1px solid #f2f4f9;
+
 }
 
 .profile-page .profile-header .cover {
   position: relative;
-  border-radius: .25rem .25rem 0 0;
+  border-radius: 5% !important;
 }
 
 
 .profile-page .profile-header .cover figure {
   margin-bottom: 0;
+
 }
 
 @media (max-width: 767px) {
@@ -67,6 +69,7 @@ body{
   z-index: 2;
   width: 100%;
   padding: 0 20px;
+
 }
 
 .profile-page .profile-header .cover .cover-body .profile-pic {
@@ -194,7 +197,7 @@ img {
   -ms-box-shadow: 0 0 10px 0 rgba(183, 192, 206, 0.2);
 }
 .rounded {
-  border-radius: 0.25rem !important;
+  border-radius: 2% !important;
 }
 .card {
   position: relative;
