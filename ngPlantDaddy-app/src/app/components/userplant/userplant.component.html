@@ -37,26 +37,32 @@
   </tbody>
 </table>
 
-<div *ngIf="selected">
-  <img class="selectedImage" [src]="selected.imageUrl" />
-  <p>{{ selected.id }}</p>
-  <p>{{ selected.nickname }}</p>
-  <p>{{ selected.height }}</p>
-  <p>{{ selected.spread }}</p>
-  <p>{{ selected.potDiameter }}</p>
-  <p>{{ selected.homeLocation }}</p>
-  <p>{{ selected.description }}</p>
+<div class="selectedPlant" *ngIf="selected">
+  <br>
+  <br>
+  <br>
+  <img class="selectedImage" [src]="selected.imageUrl"/>
+  <br>
+  <br>
+  <ul class="list-group">
+    <li class="list-group-item">ID: {{ selected.id }}</li>
+    <li class="list-group-item">Nickname: {{ selected.nickname }}</li>
+    <li class="list-group-item">Height: {{ selected.height }} inches</li>
+    <li class="list-group-item">Spread: {{ selected.spread }} inches</li>
+    <li class="list-group-item">Pot Diameter: {{ selected.potDiameter }} inches</li>
+    <li class="list-group-item">Location:{{ selected.homeLocation }}</li>
+    <p class="list-group-item">{{ selected.description }}</p>
+  </ul>
+  <br>
+  <br>
+  <br>
   <div *ngIf="selected.user.id == currentUserId">
     <div class="container">
       <div class="row">
         <div class="col-lg-3">
-          <button
-            class="btn btn-primary btn-lg"
-            (click)="selectedReset(selected.id)"
-          >
-            Back
-          </button>
+          <button class="btn btn-primary btn-lg" (click)="selectedReset(selected.id)">Back</button>
         </div>
+
         <div class="col-lg-3">
           <button class="btn btn-primary btn-lg" (click)="setEditUserPlant()">
             Edit

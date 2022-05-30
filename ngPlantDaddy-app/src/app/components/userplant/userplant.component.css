@@ -207,4 +207,6 @@ border-color: #627F3B;
   width: 20rem;
   height: 20rem;
 }
-
+.selectedPlant{
+  text-align: center;
+}
