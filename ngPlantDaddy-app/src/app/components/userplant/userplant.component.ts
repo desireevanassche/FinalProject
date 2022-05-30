@@ -27,6 +27,8 @@ export class UserplantComponent implements OnInit {
 
   displayAddUserPlantForm: Boolean = false;
 
+  editForm: Boolean = false;
+
   currentUserId: number | null = 0;
 
   plants: Plant[] = [];
