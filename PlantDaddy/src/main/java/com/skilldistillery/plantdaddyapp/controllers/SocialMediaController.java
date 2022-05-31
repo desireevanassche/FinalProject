@@ -19,6 +19,7 @@ import com.skilldistillery.plantdaddyapp.entities.Comment;
 import com.skilldistillery.plantdaddyapp.entities.Hashtag;
 import com.skilldistillery.plantdaddyapp.entities.Post;
 import com.skilldistillery.plantdaddyapp.entities.Topic;
+import com.skilldistillery.plantdaddyapp.entities.User;
 import com.skilldistillery.plantdaddyapp.services.CommentService;
 import com.skilldistillery.plantdaddyapp.services.HashtagService;
 import com.skilldistillery.plantdaddyapp.services.PostService;
@@ -123,13 +124,13 @@ public class SocialMediaController {
 	
 	// TESTED IN POSTMAN AND PASSES http://localhost:8095/api/posts/1/comments
 	@PostMapping("users/posts/{postId}/comments/{commentId}")
-	public Comment createComment(@PathVariable("postId") int postId, 
+	public Comment createCommentOnComment(@PathVariable("postId") int postId, 
 			@PathVariable("commentId")int inReplyToId,
 			@RequestBody Comment comment,
 			Principal principal,
 			HttpServletResponse res) {
 	
-		comment = comServ.createComment(comment,inReplyToId, postId, principal.getName());
+		comment = comServ.createCommentOnComment(comment,inReplyToId, postId, principal.getName());
 		
 		if(comment != null) {
 			res.setStatus(201);
@@ -139,6 +140,26 @@ public class SocialMediaController {
 	}
 	
 
+	@GetMapping("comments/{commentId}/user/{userId}")
+	public User getUserByCommentId(@PathVariable("commentId")int commentId,
+			@PathVariable("userId")int userId,
+			Principal principal,
+			HttpServletResponse res) {
+		
+		return comServ.findUserByCommentId(principal.getName(), commentId, userId);
+		
+	}
+	
+	
+	@PostMapping("posts/{postId}/comment")
+	public Comment addCommentToPost(@PathVariable("postId")int postId,
+			@RequestBody Comment comment,
+			HttpServletResponse res,
+			Principal principal ) {
+		System.out.println(comment);
+		return comServ.createComment(postId, comment, principal.getName());
+	}
+	
 	
 	
 //	------------------- HASHTAG CONTROLLERS ------------------

@@ -6,6 +6,7 @@ import { Post } from 'src/app/models/post';
 import { PostService } from 'src/app/services/post.service';
 import { Topic } from 'src/app/models/topic';
 import { CommentService } from 'src/app/services/comment.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-socialmedia',
@@ -42,7 +43,10 @@ export class SocialmediaComponent implements OnInit {
   currentUserId: number | null = 0;
 
   searchValue: string = "";
+  displayPostModal = false;
+  displayCommentModal = false;
 
+  user: User = new User ();
 
 
   constructor(
@@ -152,6 +156,8 @@ export class SocialmediaComponent implements OnInit {
 
   displayPost(post: Post) {
     this.selected = post;
+    console.log(post);
+
   }
 
   show(id: number) {
@@ -187,6 +193,48 @@ export class SocialmediaComponent implements OnInit {
       }
     );
   }
+
+  getUserFromComment(commentId:number,userId: number) {
+    this.commentSvc.getUserFromComment(commentId, userId).subscribe({
+      next: (data)=>{
+        this.user = data;
+      },
+      error : (err)=>{
+        console.log(err + "error existing inside social component getting user info");
+      }
+    })
+  }
+
+  createCommentOnPost(postId: number, comment: Comment ){
+    this.commentSvc.createCommentOnPost(postId,comment).subscribe({
+
+      next : (data)=>{
+        console.log(this.currentUserId);
+
+        this.newComment = new Comment();
+        console.log(this.newComment);
+
+      },
+      error : (err) =>{
+        console.log(err + "this error is inside creating a new comment in social component.ts");
+
+      }
+    })
+  }
+
+  createCommentOnComment(postId : number, commentId : number,comment : Comment ){
+    this.commentSvc.createCommentOnComment(postId, commentId, comment ).subscribe({
+      next : (data)=>{
+        this.newComment = data;
+      },
+      error : (err) =>{
+        console.log(err + "this error is inside creating a new comment on a comment in social component.ts");
+
+      }
+    })
+  }
+
+
 
   // displayAllComments(postId:number){
 
