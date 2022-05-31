@@ -74,14 +74,29 @@ public class PlantGrowthServiceImpl implements PlantGrowthService {
 	}
 
 	@Override
-	public PlantGrowth addGrowth(int growthId, int userPlantId, String uesrname) {
-		// TODO Auto-generated method stub
-		return null;
+	public PlantGrowth addGrowth(int userPlantId, String username, PlantGrowth growth) {
+		
+User user = userRepo.findByUsername(username);
+		
+		if(user!=null) {
+			
+			 Optional<UserPlant> plantOp = plantRepo.findById(userPlantId);
+			 
+			 if(plantOp.isPresent()) {
+				 UserPlant plant = plantOp.get();
+				 plant.setUser(user);
+				 growth.setUserPlant(plant);
+				 
+			 }
+		}
+		return growRepo.saveAndFlush(growth); 
 	}
 
+	
 	@Override
 	public boolean deleteGrowth(int growthId, int userPlantId, String username) {
-		// TODO Auto-generated method stub
+		
+		
 		return false;
 	}
 	

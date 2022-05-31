@@ -11,7 +11,7 @@ public interface PlantGrowthService {
 	
 	public PlantGrowth findGrowthById(int userPlantId, int growthId, String username);
 	
-	public PlantGrowth addGrowth(int growthId, int userPlantId, String uesrname);
+	public PlantGrowth addGrowth(int userPlantId, String uesrname, PlantGrowth growth);
 	
 	public boolean deleteGrowth( int growthId, int userPlantId, String username);
 	

@@ -71,6 +71,8 @@ public class UserPlantController {
 	}
 	
 	
+	
+	
 	@GetMapping("userPlants/{userPlantId}/growth")
 	public List<PlantGrowth> indexGrowthByUserPlant(@PathVariable("userPlantId") int userPlantId,
 			Principal principal,
@@ -92,7 +94,22 @@ public class UserPlantController {
 	}
 	
 	
+	@PostMapping("userPlants/{userPlantId}/growth")
+	public PlantGrowth addPlanthGrowth(@PathVariable("userPlantId")int userPlantId,
+			PlantGrowth growth,
+			Principal principal,
+			HttpServletResponse res) {
+		
+		PlantGrowth newGrowth = growthServ.addGrowth(userPlantId, principal.getName(), growth);
+	
+	return newGrowth;
+	
+	}
 	
 	
-
+	
+	
+	
+	
+	
 }
