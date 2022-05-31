@@ -4,19 +4,27 @@
 <div class = "container">
   <div><p>search</p>
   <input type="text" id="search" [(ngModel)] ="searchValue"/></div>
-    <table *ngIf="!selected" class="table table-striped table-hover">
-    <thead>
-      <tr class = table-header>
 
 
-      </tr>
-      </thead>
-    <tr class = "table-row" *ngFor="let blog of blogs | searchfilter:searchValue" >
-      <img [src]="blog.imageUrl">
-      <td class='title' (click)="displayBlog(blog)">{{blog.title}}</td>
-      <td class='content' (click)="displayBlog(blog)">{{blog.content}}</td>
 
-    </tr>
+
+  <table class="table" *ngIf="!selected">
+    <tbody>
+
+     <tr class = "table-row" *ngFor="let blog of blogs | searchfilter:searchValue" >
+       <div class="blogCard">
+
+        <td> <img [src]="blog.imageUrl" height="300px"> </td>
+
+        <td>
+        <ul>
+          <li (click)="displayBlog(blog)"><h4>{{blog.title}}</h4></li>
+          <li (click)="displayBlog(blog)">{{blog.content}}</li>
+    </ul>
+  </td>
+    </div>
+  </tr>
+</tbody>
 </table>
 </div>
 
@@ -24,25 +32,53 @@
 
   <img [src]="selected.imageUrl">
   <p>{{selected.title}}</p>
-  <p>{{selected.createdAt}}</p>
   <p>{{selected.content}}</p>
 
   <button (click)="displayTable()">Back</button>
+
+  <div *ngIf="currentUserId === 1">
+    <button (click)="setEditBlog()">Edit</button></div>
 </div>
 
-<!--------- Edit post form ------------------------------------------------------------------------------------ -->
+<!--------- Edit Blog form ------------------------------------------------------------------------------------ -->
 
-<!-- <section>
-  <div *ngIf="editPost">
+<section>
+  <div *ngIf="editBlog">
     <form>
-      Title: <input type="text" name="title" [(ngModel)]="editPost.title">
-      Content: <input type="text" name="content" [(ngModel)]="editPost.content">
-      Image Url: <input type="text" name="imageUrl" [(ngModel)]="editPost.imageUrl">
+      Title: <input type="text" name="title" [(ngModel)]="editBlog.title">
+      Content: <input type="text" name="content" [(ngModel)]="editBlog.content">
+      Image Url: <input type="text" name="imageUrl" [(ngModel)]="editBlog.imageUrl">
 
-      <button (click)="updatePost(editPost, editPost.id)">Save</button>
-      <button (click)="editPost = null">Cancel</button>
+      <button (click)="updateBlog(editBlog, editBlog.id); editBlog = null">Save</button>
+      <button (click)="editBlog = null">Cancel</button>
 
     </form>
   </div>
-</section> -->
+</section>
 </body>
+
+<!------------------- NEW BLOG ------------------------------------------ -->
+
+<div *ngIf="!isNumber(currentUserId)">
+
+
+  <div *ngIf="currentUserId === 1">
+    <button (click)="displayAddForm = true">Add A Blog Post </button>
+  </div>
+</div>
+
+<div *ngIf="!selected && displayAddForm == true">
+
+  <form class="addForm" name="addForm" *ngIf="!isNumber(currentUserId)">
+
+  Title <input type="text" name="title" class="form-control" [(ngModel)]="newBlog.title">
+  <br>
+  Content <input type="text" name="content" class="form-control" [(ngModel)]="newBlog.content">
+  <br>
+  Image Url  <input type="text" name="imageUrl" class="form-control" [(ngModel)]="newBlog.imageUrl">
+  <br>
+  <input type="submit" name="submit" value="addBlog" (click)="addBlog(newBlog); displayAddForm = false">
+
+  <input type="submit" name="submit" value="Cancel" (click)="displayAddForm = false">
+  </form>
+  </div>
