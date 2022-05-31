@@ -10,8 +10,10 @@ public interface TodoService {
 	public Set<Todo> index(String username);
 
 	public Todo show(String username, int todoId);
-	
+
 	public List<Todo> showTodosByUserPlantd(int userPlantId, String username);
+
+//	public Todo create(Todo todo, int userplantId);
 
 	public Todo create(String username, Todo todo, int userPlantId);
 

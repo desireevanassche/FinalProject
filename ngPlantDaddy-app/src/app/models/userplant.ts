@@ -16,7 +16,6 @@ export class Userplant {
   active: boolean | null;
   user: User;
   plant: Plant;
-  todo: Todo;
 
   // photos: Photo [] | null;
 
@@ -35,7 +34,6 @@ constructor(
   active: boolean = true,
   plant: Plant = new Plant(),
   user : User = new User (),
-  todo : Todo = new Todo()
 
   // photos : Photo []
 
@@ -53,7 +51,6 @@ this.homeLocation = homeLocation;
 this.active = active;
 this.plant = plant;
 this.user = user;
-this.todo = todo;
 
 // this.photos = photos;
 
