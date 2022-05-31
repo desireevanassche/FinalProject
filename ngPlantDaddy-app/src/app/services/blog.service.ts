@@ -95,7 +95,7 @@ public createBlog(newBlog : Blog){
     }
 
  // SHOW ALL BLOG POST WITH LOGIN REQUIRED -----------------
- // ----------------  SHOW ALL POST WITH LOGIN NEEDED ---------------
+
  public indexBlog(){
   return this.http.get<Blog[]>(this.url,this.getHttpOptions() )
   .pipe(

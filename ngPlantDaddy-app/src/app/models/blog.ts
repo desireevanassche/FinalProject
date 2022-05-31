@@ -16,7 +16,7 @@ export class Blog {
     content: string =  "",
     createdAt: string =  "",
     updateDate: string = "",
-    active: boolean =  false,
+    active: boolean =  true,
     imageUrl : string = ""
   ) {
 
