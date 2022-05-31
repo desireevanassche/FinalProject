@@ -516,7 +516,8 @@
     <input type="number" name="userPlantId" [(ngModel)]="newTodo.userplant.id"/>
 
 
-    <button class="btn btn-primary" (click)="addTodo(newTodo, newTodo.userPlants); " type="submit">Submit</button>
+
+    <button class="btn btn-primary" (click)="addTodo(newTodo, selected.id); " type="submit">Submit</button>
     <button class="btn btn-primary" (click)="displayAddTodoForm = false" type="submit">Cancel</button>
   </div>
 </form>

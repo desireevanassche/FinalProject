@@ -69,7 +69,10 @@ public class TodoServiceImpl implements TodoService {
 		Optional<UserPlant> plantOp = plantRepo.findById(userPlantId);
 		System.out.println(plantOp);
 		if (plantOp.isPresent()) {
-			todo.setUserPlant(plantOp.get());
+			UserPlant userPlant = plantOp.get();
+			userPlant.setUser(user);
+			todo.setUserPlant(userPlant);
+			
 		}
 		
 		return todoRepo.saveAndFlush(todo);

@@ -70,7 +70,7 @@ public class TodoController {
 //	
 	@PostMapping("todos/userplants/{userPlantId}")
 	public Todo create(@RequestBody Todo todo, Principal principal,
-			@PathVariable("userPlantId") int userPlantId,
+			@PathVariable("") int userPlantId,
 			HttpServletResponse res) {
 		
 		System.out.println(todo);
