@@ -36,8 +36,16 @@ export class TodoService {
       );
   }
 
+  // public create(todo: Todo) {
+  //   return this.http.post<Todo>(this.url,todo, this.getHttpOptions())
+  //     .pipe(
+  //       catchError((err: any) => {
+  //         return throwError('Check this- KABOOM!');
+  //       })
+  //     );
+  // }
   public create(todo: Todo, userPlantId : number) {
-    return this.http.post<Todo>(this.url + "/" + userPlantId,todo, this.getHttpOptions())
+    return this.http.post<Todo>(this.url,todo, this.getHttpOptions())
       .pipe(
         catchError((err: any) => {
           return throwError('Check this- KABOOM!');
