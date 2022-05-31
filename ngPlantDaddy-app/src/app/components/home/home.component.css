@@ -40,6 +40,7 @@ header, nav, section, article, aside, footer, hgroup {
   -moz-osx-font-smoothing: grayscale;
 } */
 
+
 a {
   text-decoration: none !important;
 }
@@ -55,12 +56,12 @@ ul {
   margin-bottom: 0px;
 }
 
-p {
+/* p {
   font-size: 15px;
   line-height: 28px;
   color: #b12020;
   font-family: 'Josefin Sans', sans-serif;
-}
+} */
 
 img {
   width: 100%;
