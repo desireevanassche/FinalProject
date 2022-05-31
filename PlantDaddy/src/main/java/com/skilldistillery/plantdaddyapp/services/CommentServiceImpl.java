@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.plantdaddyapp.entities.Comment;
 import com.skilldistillery.plantdaddyapp.entities.Post;
+import com.skilldistillery.plantdaddyapp.entities.User;
 import com.skilldistillery.plantdaddyapp.repositories.CommentRepository;
 import com.skilldistillery.plantdaddyapp.repositories.PostRepository;
+import com.skilldistillery.plantdaddyapp.repositories.UserRepository;
 
 @Service
 public class CommentServiceImpl implements CommentService {
@@ -20,6 +22,9 @@ public class CommentServiceImpl implements CommentService {
 	@Autowired
 	private PostRepository postRepo;
 
+	@Autowired
+	private UserRepository userRepo;
+	
 	@Override
 	public List<Comment> findAllByPostId(int postId) {
 		List<Comment> comments = null;
@@ -34,15 +39,18 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	@Override
-	public Comment createComment(Comment comment, int inReplyToId, int postId, String username) {
-
+	public Comment createCommentOnComment(Comment comment, int inReplyToId, int postId, String username) {
+		
+		
 		Post post = postRepo.findByUser_UsernameAndId(username, postId);
 
 		if (post != null && inReplyToId > 0) {
 			Optional<Comment> op = comRepo.findById(inReplyToId);
 			if (op.isPresent()) {
+				
 				Comment newComment = op.get();
 				comment.setComment(newComment);
+				
 			}
 			 
 		}
@@ -60,16 +68,59 @@ public class CommentServiceImpl implements CommentService {
 
 		Post existing = postRepo.findByUser_UsernameAndId(username, postId);
 		Optional<Comment> op = comRepo.findById(commentId);
-
 		if (existing != null && op.isPresent()) {
 			comment = op.get();
-			comment.setActive(comment.isActive());
+			comment.setActive(false);
 			comRepo.saveAndFlush(comment);
 		}
-
 		return comment;
 	}
 
+	// ("comments/{commentId}/users/{id}")
+	
+	@Override
+	public User findUserByCommentId(String username, int commentId, int userId) {
+		List<Comment> existing = comRepo.findByUser_UsernameAndId(username, commentId);
+		Optional<User> op = userRepo.findById(userId);
+		if(existing != null && op.isPresent()) {
+			User user = op.get();
+			user.setComments(existing);
+			return user;
+		}
+		
+		return null;
+	}
+
+	@Override
+	public Comment createComment(int postId, Comment comment, String username) {
+		User user = userRepo.findByUsername(username);
+		System.out.println(user);
+		Post post = null;
+		if(user != null) {
+			
+			Optional<Post> op= postRepo.findById(postId);
+			if(op.isPresent()) {
+			post = op.get();
+			
+			comment.setPost(post);
+			comment.setUser(user);
+				
+			}
+		}
+		
+		return comRepo.saveAndFlush(comment);
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 //	@Override
 //	public boolean deleteComment(int postId, int commentId, String username) {
 //		boolean deleted = false;
