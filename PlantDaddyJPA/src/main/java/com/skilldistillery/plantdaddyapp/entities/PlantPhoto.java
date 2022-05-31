@@ -97,9 +97,6 @@ public class PlantPhoto {
 	}
 
 	
-	
-
-
 	public UserPlant getUserPlant() {
 		return userPlant;
 	}

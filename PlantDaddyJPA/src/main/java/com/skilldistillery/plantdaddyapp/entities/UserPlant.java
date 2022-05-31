@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 //+---------------------+---------------+------+-----+---------+----------------+
 //| Field               | Type          | Null | Key | Default | Extra          |
@@ -75,13 +76,23 @@ public class UserPlant {
 	@OneToMany(mappedBy = "userPlant")
 	@JsonIgnore
 	private List<PlantPhoto> photos;
+	
+//	@JsonIgnoreProperties({"userPlant"})
+	@OneToMany(mappedBy= "userPlant")
+	private List<PlantGrowth> growthData;
 
 	public UserPlant() {
 		super();
 	}
+	
+	
+	
 
 	public int getId() {
 		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public double getHeight() {
@@ -166,6 +177,16 @@ public class UserPlant {
 	
 	
 	
+
+	public List<PlantGrowth> getGrowthData() {
+		return growthData;
+	}
+
+	public void setGrowthData(List<PlantGrowth> growthData) {
+		this.growthData = growthData;
+	}
+
+
 
 	public List<PlantPhoto> getPhotos() {
 		return photos;
