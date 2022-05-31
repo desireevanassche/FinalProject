@@ -1,3 +1,4 @@
+import { User } from 'src/app/models/user';
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -12,6 +13,8 @@ export class CommentService {
 
 
   private url = environment.baseUrl + "api/users/posts";
+  private url2 = environment.baseUrl + "comment"
+  private url3 = environment.baseUrl + "api/posts"
 
 
   constructor(private http : HttpClient, private datePipe : DatePipe,private auth : AuthService) { }
@@ -35,7 +38,21 @@ export class CommentService {
     );
     }
 
-  public createComment(postId:number, commentId:number, comment: Comment){
+  public createCommentOnPost(postId:number, comment: Comment){
+
+
+    return this.http.post<Comment>(this.url3 + "/" + postId + "/comment", comment, this.getHttpOptions())
+    .pipe(
+      catchError((err:any) => {
+        console.log(err);
+
+      return throwError("commenting on a post has an error- KABOOM!")
+    })
+
+    )  ;
+  }
+
+  public createCommentOnComment(postId:number, commentId:number, comment : Comment){
     return this.http.post<Comment>(this.url + "/" + postId + "/comments/" + commentId, comment, this.getHttpOptions())
     .pipe(
       catchError((err:any) => {
@@ -43,7 +60,24 @@ export class CommentService {
     })
 
     )  ;
+
   }
+
+
+
+
+
+
+  public getUserFromComment(commentId : number, userId:number){
+    return this.http.get<User>(this.url2 + "/" + commentId + "/user/" + userId, this.getHttpOptions())
+    .pipe(
+      catchError((err:any) => {
+      return throwError("index posts has an error- KABOOM!")
+    })
+
+    )  ;
+  }
+
 
 
 }

@@ -89,7 +89,11 @@ public class User {
 	@OneToMany
 	@JoinTable(name = "friend", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "friend_id"))
 	private List<User> friends;
-
+	
+	@JsonIgnore
+	@OneToMany(mappedBy= "user")
+	private List<Comment> comments;
+	
 	public User() {
 		super();
 	}
@@ -196,6 +200,17 @@ public class User {
 
 	public void setBlogs(List<Blog> blogs) {
 		this.blogs = blogs;
+	}
+	
+	
+	
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 
 	@Override

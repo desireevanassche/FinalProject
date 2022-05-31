@@ -60,6 +60,9 @@ public class Comment {
 	private List<Comment> comments;
 	
 		
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
 
 	public Comment() {
 		super();
@@ -100,6 +103,14 @@ public class Comment {
 	
 	
 	
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	public Post getPost() {
 		return post;

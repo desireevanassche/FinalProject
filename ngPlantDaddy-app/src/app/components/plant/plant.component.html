@@ -1,50 +1,67 @@
+<body>
+  <br>
+  <br>
+  <br>
 
-<h1>Total plants in {{title}}: {{getNumOfPlants()}}</h1>
+  <div class="header">
 
-<br>
-<br>
+  <section class="library-banner">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="section-heading text-center">
+
+            <h4>Total Plants in {{title}}: {{getNumOfPlants()}}</h4>
+          </div>
+        </div>
 
 
-<h2>Plant List</h2>
-<br>
-  Search:  <input type="text" id="search" [(ngModel)] ="searchValue"/>
-<br>
-<br>
-<br>
-<table class="table table-striped" *ngIf="!selected">
-  <thead align="center">
-    <tr>
-      <td>ID</td>
-      <td>Common Name</td>
-      <td>Botanical Name</td>
-      <td>Care Difficulty</td>
-      <td>Description</td>
-      <td>View Details</td>
-      <td>Image</td>
-    </tr>
-  </thead>
+          <div class="search">
+            <input type="text" id="search" [(ngModel)] ="searchValue" placeholder="Search our Library"/>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="!isNumber(currentUserId)">
+        <div *ngIf="displayAddForm == false">
+          <button (click)="displayAddForm = true">Add A Plant?</button>
+        </div>
+      </div>
+
+  </section>
+</div>
+
+
+
+<table class="table" *ngIf="!selected">
+
   <tbody>
+
     <tr *ngFor="let plant of plants | searchPlants:searchValue ">
-      <td *ngIf="plant.active === true">{{plant.id}}</td>
-      <td *ngIf="plant.active === true">{{plant.commonName}}</td>
-      <td *ngIf="plant.active === true">{{plant.botanicalName}}</td>
-      <td *ngIf="plant.active === true">{{plant.careDifficulty}}</td>
-      <td *ngIf="plant.active === true">{{plant.description}}</td>
-      <td *ngIf="plant.active === true"><button (click)="setPlant(plant)">Details</button></td>
+      <div class="plantCard">
+
       <td *ngIf="plant.active === true">
-        <img id="image" [src]="plant.imageUrl" class="img-thumbnail" />
+        <img id="image" [src]="plant.imageUrl" class="img-thumbnail" height="200px"/>
       </td>
+      <td>
+      <ul>
+          <li *ngIf="plant.active === true"><h4>{{plant.commonName}}</h4></li>
+          <li *ngIf="plant.active === true">{{plant.botanicalName}}</li>
+          <li *ngIf="plant.active === true">Care Level: {{plant.careDifficulty}}</li>
+          <li *ngIf="plant.active === true"><button (click)="setPlant(plant)">Details</button></li>
+        </ul>
+      </td>
+      <!-- <td *ngIf="plant.active === true">{{plant.botanicalName}}</td> -->
+
+      <!-- <td *ngIf="plant.active === true">{{plant.description}}</td> -->
+    </div>
     </tr>
   </tbody>
 </table>
 <br>
 <br>
 
-<div *ngIf="!isNumber(currentUserId)">
-  <div *ngIf="displayAddForm == false">
-    <button (click)="displayAddForm = true">Add A Plant?</button>
-  </div>
-</div>
+
 
 <div *ngIf="!selected && displayAddForm == true">
 <form class="addForm" *ngIf="!isNumber(currentUserId)">
@@ -63,22 +80,34 @@ Image: <input type="text" name="imageUrl" class="form-control" required [(ngMode
 </form>
 </div>
 
+
+<!-------------------- SINGLE PLANT SELECTED  ------------------------------------------------------>
+
+<div class="singlePlant">
 <div *ngIf="selected">
-  <img [src]="selected.imageUrl"/>
-  <p>{{selected.id}}</p>
-  <p>{{selected.commonName}}</p>
-  <p>{{selected.botanicalName}}</p>
-  <p>{{selected.careDifficulty}}</p>
-  <p>{{selected.description}}</p>
+  <div> <img [src]="selected.imageUrl"/></div>
+
+  <div class="textbox">
+ <h3>{{selected.commonName}}</h3>
+  <h4>{{selected.botanicalName}}</h4>
+  <p>Care Level: {{selected.careDifficulty}}<br>
+  {{selected.description}}</p>
   <div *ngIf="selected.user.id == currentUserId">
     <button (click)="setEditPlant()">Edit</button>
-    <br>
     <button (click)="deactivate(selected, selected.id); selected = null">Deactivate</button>
-  </div>
-  <button (click)="selected = null">Back</button>
+    <br>
+    <button (click)="trackGrowth(selected); selected = null">Track Growth</button>
+    <button (click)="selected = null">Back</button>
+
   </div>
 
+  </div>
 
+</div>
+</div>
+
+
+<!------------------------------- PLANT EDIT SELECTED  ------------------------------------------------------------->
   <div *ngIf="editPlant">
     <form>
       Common Name: <input type="text" name="common name" class="form-control" [(ngModel)]="editPlant.commonName">
@@ -97,5 +126,11 @@ Image: <input type="text" name="imageUrl" class="form-control" required [(ngMode
       <br>
     </form>
   </div>
+
+
+
+
+
+</body>
 
 
