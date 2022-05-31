@@ -68,9 +68,12 @@ public class BlogServiceImpl implements BlogService {
 
 	@Override
 	public Blog create(String username, Blog blog) {
+		System.out.println(blog);
+		System.out.println(username);
 		User user = userRepo.findByUsername(username);
-		if (user != null && user.getUsername().equals("admin")) {
-			blog.getUser().setUsername(username);
+		if (user != null ) {
+			blog.setUser(user);
+
 		}
 		return blogRepo.saveAndFlush(blog);
 	}

@@ -63,6 +63,7 @@ tr {
 
 .img-thumbnail {
   height: 300px;
+  width: 300px;
 }
 
 ul li {
@@ -77,7 +78,7 @@ td li {
   padding-left: 0 !important;
 }
 
-.plantCard{
+.plantCard {
   border: 1.5px solid black;
   border-radius: 10px;
   box-shadow: 1px 1px 1px 1px #CCCCCC;
