@@ -63,6 +63,7 @@ tr {
 
 .img-thumbnail {
   height: 300px;
+  width: 300px;
 }
 
 ul li {
