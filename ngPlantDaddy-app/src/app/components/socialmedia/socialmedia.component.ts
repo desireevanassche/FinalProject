@@ -101,6 +101,17 @@ export class SocialmediaComponent implements OnInit {
   }
 
 
+  reloadComments(postId : number){
+    this.commentSvc.indexComments(postId).subscribe({
+      next : (data)=>{
+        this.comments = data;
+      },
+      error: (err) => {
+        console.error(err);
+   } });
+  }
+
+
   displayTable() {
     this.selected = null;
   }
@@ -209,10 +220,12 @@ export class SocialmediaComponent implements OnInit {
     this.commentSvc.createCommentOnPost(postId,comment).subscribe({
 
       next : (data)=>{
-        console.log(this.currentUserId);
+
+
 
         this.newComment = new Comment();
         console.log(this.newComment);
+
 
       },
       error : (err) =>{
