@@ -6,8 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.plantdaddyapp.entities.PlantGrowth;
 import com.skilldistillery.plantdaddyapp.entities.User;
 import com.skilldistillery.plantdaddyapp.entities.UserPlant;
+import com.skilldistillery.plantdaddyapp.repositories.PlantGrowthRepository;
 import com.skilldistillery.plantdaddyapp.repositories.UserPlantRepository;
 import com.skilldistillery.plantdaddyapp.repositories.UserRepository;
 
@@ -18,7 +20,12 @@ public class UserPlantServiceImpl implements UserPlantService {
 	private UserPlantRepository userPlantRepo;
 
 	@Autowired
-	UserRepository userRepo;
+	private UserRepository userRepo;
+	
+	@Autowired
+	private PlantGrowthRepository growRepo;
+	
+	
 
 	@Override
 	public List<UserPlant> index(String username) {
@@ -38,7 +45,24 @@ public class UserPlantServiceImpl implements UserPlantService {
 	@Override
 	public UserPlant updatePlant(UserPlant userPlant, int plantid, String username) {
 		UserPlant managed = userPlantRepo.findByUser_UsernameAndId(username, plantid);
+		
+		PlantGrowth plantGrowth = new PlantGrowth();
+		
+		
+		
 		if (managed != null) {
+			
+			plantGrowth.setHeight(managed.getHeight());
+			plantGrowth.setSpread(managed.getSpread());
+			plantGrowth.setPotDiameter(managed.getPotDiameter());
+			plantGrowth.setUserPlant(managed);
+			PlantGrowth persistedGrowth = growRepo.saveAndFlush(plantGrowth);
+			
+			
+			managed.addPlantGrowth(plantGrowth);
+			System.out.println(persistedGrowth);
+			
+			
 			managed.setHeight(userPlant.getHeight());
 			managed.setSpread(userPlant.getSpread());
 			managed.setNickname(userPlant.getNickname());

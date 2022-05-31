@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -34,6 +36,7 @@ public class PlantGrowth {
 		@Column(name="pot_diameter")
 		private double potDiameter;
 	
+		@CreationTimestamp
 		@Column(name="create_date")
 		private LocalDateTime createDate;
 		

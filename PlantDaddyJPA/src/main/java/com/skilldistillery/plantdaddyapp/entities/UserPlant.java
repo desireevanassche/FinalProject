@@ -1,5 +1,6 @@
 package com.skilldistillery.plantdaddyapp.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,7 +15,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 //+---------------------+---------------+------+-----+---------+----------------+
 //| Field               | Type          | Null | Key | Default | Extra          |
@@ -84,6 +84,17 @@ public class UserPlant {
 		super();
 	}
 	
+	public void addPlantGrowth(PlantGrowth growth) {
+		if(growthData == null) {
+			growthData = new ArrayList<>();
+			
+		}
+		
+		if(!growthData.contains(growth)) {
+			growthData.add(growth);
+			growth.setUserPlant(this);
+		}
+	}
 	
 	
 
