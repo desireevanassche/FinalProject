@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -26,15 +27,25 @@ export class BlogComponent implements OnInit {
 
   searchValue: string = "";
 
+  currentUserId: number = 0;
+
+  displayAddForm: boolean = false;
+
+  displayEditForm: boolean = false;
+
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private blogSvc: BlogService,
+    private authServ: AuthService
 
   ) { }
 
   ngOnInit(): void {
+    this.currentUserId = parseInt(""+this.authServ.getCurrentUserId());
+    console.log(this.currentUserId);
+
     if (!this.selected && this.route.snapshot.paramMap.get('id')) {
       let id = this.route.snapshot.paramMap.get('id');
       if (id) {
@@ -52,12 +63,13 @@ export class BlogComponent implements OnInit {
       );
   }
 
-  addBlog(newBlog: Blog) {
-    this.blogSvc.createBlog(newBlog).subscribe(
+  addBlog(blog: Blog) {
+    this.blogSvc.createBlog(blog).subscribe(
       (data) => {
         this.reload();
         this.newBlog = new Blog();
       },
+
       (err) => console.error(err)
     );
   }
@@ -74,6 +86,8 @@ export class BlogComponent implements OnInit {
       (err) => console.error(err)
     );
   }
+
+
   disableBlog(blog: Blog) {
     this.blogSvc.deleteBlog(blog).subscribe(
       (data) => {
@@ -126,6 +140,14 @@ displayAllBlogs(){
 
     }
   )
+}
+
+isNumber(id: number){
+  return Number.isNaN(id);
+}
+
+setEditBlog(){
+  this.editBlog = Object.assign({}, this.selected);
 }
 
 
