@@ -506,6 +506,28 @@ CREATE TABLE IF NOT EXISTS `hashtag_has_blog` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `growth_snapshot`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `growth_snapshot` ;
+
+CREATE TABLE IF NOT EXISTS `growth_snapshot` (
+  `growth_id` INT NOT NULL AUTO_INCREMENT,
+  `user_plant_id` INT NOT NULL,
+  `height_inches` DOUBLE NULL,
+  `spread_inches` DOUBLE NULL,
+  `pot_diameter` DOUBLE NULL,
+  `create_date` DATETIME NULL,
+  PRIMARY KEY (`growth_id`),
+  INDEX `fk_growth_snapshot_user_plant1_idx` (`user_plant_id` ASC),
+  CONSTRAINT `fk_growth_snapshot_user_plant1`
+    FOREIGN KEY (`user_plant_id`)
+    REFERENCES `user_plant` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 SET SQL_MODE = '';
 DROP USER IF EXISTS admin@localhost;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
@@ -777,6 +799,16 @@ COMMIT;
 START TRANSACTION;
 USE `plantdb`;
 INSERT INTO `hashtag_has_blog` (`hasttag_id`, `blog_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `growth_snapshot`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `plantdb`;
+INSERT INTO `growth_snapshot` (`growth_id`, `user_plant_id`, `height_inches`, `spread_inches`, `pot_diameter`, `create_date`) VALUES (1, 1, 6, 6, 5, '2022-05-24 12:00:00');
 
 COMMIT;
 
