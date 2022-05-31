@@ -151,6 +151,17 @@ public class SocialMediaController {
 	}
 	
 	
+	@PostMapping("posts/{postId}/comment")
+	public Comment addCommentToPost(@PathVariable("postId")int postId,
+			@RequestBody Comment comment,
+			HttpServletResponse res,
+			Principal principal ) {
+		System.out.println(comment);
+		return comServ.createComment(postId, comment, principal.getName());
+	}
+	
+	
+	
 //	------------------- HASHTAG CONTROLLERS ------------------
 	
 	

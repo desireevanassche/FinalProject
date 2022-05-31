@@ -40,14 +40,17 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	public Comment createCommentOnComment(Comment comment, int inReplyToId, int postId, String username) {
-
+		
+		
 		Post post = postRepo.findByUser_UsernameAndId(username, postId);
 
 		if (post != null && inReplyToId > 0) {
 			Optional<Comment> op = comRepo.findById(inReplyToId);
 			if (op.isPresent()) {
+				
 				Comment newComment = op.get();
 				comment.setComment(newComment);
+				
 			}
 			 
 		}
@@ -65,17 +68,14 @@ public class CommentServiceImpl implements CommentService {
 
 		Post existing = postRepo.findByUser_UsernameAndId(username, postId);
 		Optional<Comment> op = comRepo.findById(commentId);
-
 		if (existing != null && op.isPresent()) {
 			comment = op.get();
 			comment.setActive(false);
 			comRepo.saveAndFlush(comment);
 		}
-
 		return comment;
 	}
 
-	
 	// ("comments/{commentId}/users/{id}")
 	
 	@Override
@@ -93,7 +93,22 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	public Comment createComment(int postId, Comment comment, String username) {
-		return null;
+		User user = userRepo.findByUsername(username);
+		System.out.println(user);
+		Post post = null;
+		if(user != null) {
+			
+			Optional<Post> op= postRepo.findById(postId);
+			if(op.isPresent()) {
+			post = op.get();
+			
+			comment.setPost(post);
+			comment.setUser(user);
+				
+			}
+		}
+		
+		return comRepo.saveAndFlush(comment);
 	}
 
 	

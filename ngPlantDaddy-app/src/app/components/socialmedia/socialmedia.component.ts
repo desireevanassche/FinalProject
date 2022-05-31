@@ -201,19 +201,34 @@ export class SocialmediaComponent implements OnInit {
       },
       error : (err)=>{
         console.log(err + "error existing inside social component getting user info");
-
       }
-
     })
   }
 
   createCommentOnPost(postId: number, comment: Comment ){
     this.commentSvc.createCommentOnPost(postId,comment).subscribe({
+
+      next : (data)=>{
+        console.log(this.currentUserId);
+
+        this.newComment = new Comment();
+        console.log(this.newComment);
+
+      },
+      error : (err) =>{
+        console.log(err + "this error is inside creating a new comment in social component.ts");
+
+      }
+    })
+  }
+
+  createCommentOnComment(postId : number, commentId : number,comment : Comment ){
+    this.commentSvc.createCommentOnComment(postId, commentId, comment ).subscribe({
       next : (data)=>{
         this.newComment = data;
       },
       error : (err) =>{
-        console.log(err + "this error is inside creating a new comment in social component.ts");
+        console.log(err + "this error is inside creating a new comment on a comment in social component.ts");
 
       }
     })
