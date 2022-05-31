@@ -20,6 +20,7 @@
 
 
 
+
               <!-- Inner sidebar body -->
               <div class="inner-sidebar-body p-0">
                   <div class="p-3 h-100" data-simplebar="init">
@@ -124,13 +125,11 @@
                             class="dropdown-menu"
                             aria-labelledby="dropdownMenuButton2"
                           >
-
-                          <!-- -------------------- -->
-
-                          <div *ngIf="post.user.id == currentUserId">
                             <a
                               class="dropdown-item d-flex align-items-center"
-
+                              *ngIf="post.user.id == currentUserId"
+                               href="javascript:void(0)"  (click)="displayEditModal = true; editPost = post"
+                                data-toggle="modal" data-target="#editModal"
                             >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -150,28 +149,6 @@
                               </svg>
                               <span class="">Edit Post</span></a
                             >
-
-                            <a class="dropdown-item d-flex align-items-center">
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                class="feather feather-edit-2 icon-sm mr-2"
-                              >
-                                <path
-                                  d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"
-                                ></path>
-                              </svg>
-                              <span class="">Deactivate Post</span></a
-                            >
-                          </div>
-                            <!-- -------------- -->
                             <a class="dropdown-item d-flex align-items-center">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -222,20 +199,24 @@
                               </svg>
                               <span class="">Share</span></a
                             >
-
-                            <!-- --- COPY LINY DROP DOWN BELOW -->
-
-                            <!-- <a class="dropdown-item d-flex align-items-center" href="#">
-                                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy icon-sm mr-2">
-                                                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                                  </svg> <span class="">Copy link</span></a> -->
                           </div>
                         </div>
                       </div>
                     </div>
-                      <div class="card-body ">
+
+
+
+
+
+
+
+
+
+
+
+
+
+                      <div class="card-body "   >
                           <div class="media forum-item" (click)="displayPost(post)" *ngIf="post.active === true"
                           data-toggle="collapse" data-target=".forum-content">
                               <!-- <a><img [src]="post.user.imageUrl" class="mr-3 rounded-circle" width="50" alt="User" /></a> -->
@@ -304,7 +285,8 @@
                                 d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
                               ></path>
                             </svg>
-                            <p class="d-none d-md-block ml-2" (click)="displayCommentModal = true; selected" data-toggle="modal" data-target="#threadModal" >Comment</p>
+                            <a href="javascript:void(0)" class="text-muted small" (click)="displayCommentModal = true; selected = post; reloadComments(post.id)"
+                            data-toggle="modal" data-target="#commentModal" >Comment</a>
                           </a>
                           <a
                             href="javascript:;"
@@ -348,13 +330,90 @@
               </div>
               <!-- /Forum List -->
 
-              <!-- Forum Detail    selected detail below  -->
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <!-- Forum Detail    selected detail below  -->
+              <div  *ngIf="selected">
               <div class="inner-main-body p-2 p-sm-3 collapse forum-content" >
                   <a  class="btn btn-light btn-sm mb-3 has-icon" data-toggle="collapse" data-target=".forum-content">
                     <i class="fa fa-arrow-left mr-2"></i>Back</a>
 
-                    <div  *ngIf="selected">
+
+
                       <div class="card-header">
                         <div class="d-flex align-items-center justify-content-between">
                           <div class="d-flex align-items-center">
@@ -364,10 +423,8 @@
                               alt=""
                             />
                             <div class="ml-2">
-                              <p>
-                                {{ post.user.username }}
-                              </p>
-                              <p class="tx-11 text-muted">{{ post.createDate }}</p>
+                              <a href="javascript:void(0)" class="text-primary">{{selected.user.username}}</a>
+                              <p class="tx-11 text-muted">{{ selected.createDate }}</p>
                             </div>
                           </div>
                           <div class="dropdown">
@@ -402,7 +459,7 @@
                             >
                               <a
                                 class="dropdown-item d-flex align-items-center"
-                                *ngIf="post.user.id == currentUserId"
+                                *ngIf="selected.user.id == currentUserId"
                               >
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
@@ -420,34 +477,150 @@
                                     d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"
                                   ></path>
                                 </svg>
-                                <span class="">Edit Post</span></a
+                                <span class="" (click)="displayEditModal" >Edit Post</span></a
                               >
 
-
+                              <a class="dropdown-item d-flex align-items-center">
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="24"
+                                  height="24"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  stroke-width="2"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  class="feather feather-share-2 icon-sm mr-2"
+                                >
+                                  <circle cx="18" cy="5" r="3"></circle>
+                                  <circle cx="6" cy="12" r="3"></circle>
+                                  <circle cx="18" cy="19" r="3"></circle>
+                                  <line
+                                    x1="8.59"
+                                    y1="13.51"
+                                    x2="15.42"
+                                    y2="17.49"
+                                  ></line>
+                                  <line
+                                    x1="15.41"
+                                    y1="6.51"
+                                    x2="8.59"
+                                    y2="10.49"
+                                  ></line>
+                                </svg>
+                                <span class="">Share</span></a
+                              >
                             </div>
                           </div>
                         </div>
                       </div>
 
 
+
+
+
+
+
+
+
                   <div class="card mb-2" >
                       <div class="card-body">
                           <div class="media forum-item">
                               <a href="javascript:void(0)" class="card-link">
-                                  <img [src]="selected.user.imageUrl" class="rounded-circle" width="50" alt="User" />
 
                               </a>
                               <div class="media-body ml-3">
-                                  <a href="javascript:void(0)" class="text-primary">{{selected.user.username}}</a>
+                                <h6><a  data-toggle="collapse" data-target=".forum-content"  class="text-body">{{selected.title}}</a></h6>
+                                <a  class="text-muted small">{{selected.topic.name}}</a>
+                                <br>
+                                <br>
+                                <br>
+                                <p class="text-black">
+                                    {{selected.content}}
+                                </p>
                                   <!-- <small class="text-muted ml-2">1 hour ago</small> -->
                                   <div class="mt-3 font-size-sm">
-                                      <p>{{selected.content}}</p>
                                       <a><img [src]="selected.imageUrl" class="mr-3 rounded-square" width="350" alt="User" /></a>
 
                                   </div>
-                                  <button class="btn btn-xs text-muted has-icon"><i class="fa fa-heart" aria-hidden="true"></i>Like</button>
-                                  <a href="javascript:void(0)" class="text-muted small" (click)="displayCommentModal = true;"
-                                  data-toggle="modal" data-target="#commentModal" >Comment</a>
+
+
+
+
+                                 <div class="card-footer">
+                        <div class="d-flex post-actions" >
+                          <a
+                            href="javascript:;"
+                            class="d-flex align-items-center text-muted mr-4"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              class="feather feather-heart icon-md"
+                            >
+                              <path
+                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                              ></path>
+                            </svg>
+                            <p class="d-none d-md-block ml-2">Like</p>
+                          </a>
+                          <a
+                            href="javascript:;"
+                            class="d-flex align-items-center text-muted mr-4"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              class="feather feather-message-square icon-md"
+                            >
+                              <path
+                                d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                              ></path>
+                            </svg>
+                            <a href="javascript:void(0)" class="text-muted small" (click)="displayCommentModal = true; reloadComments(selected.id)"
+                            data-toggle="modal" data-target="#commentModal" >Comment</a>
+                          </a>
+                          <a
+                            href="javascript:;"
+                            class="d-flex align-items-center text-muted"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              class="feather feather-share icon-md"
+                            >
+                              <path
+                                d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"
+                              ></path>
+                              <polyline points="16 6 12 2 8 6"></polyline>
+                              <line x1="12" y1="2" x2="12" y2="15"></line>
+                            </svg>
+                            <p class="d-none d-md-block ml-2">Share</p>
+                          </a>
+                        </div>
+                      </div>
 
                               </div>
                               <hr>
@@ -455,7 +628,7 @@
                       </div>
                   </div>
                   <br>
-                  <div *ngIf="selected.comments && selected.comments.length > 0" class = "comment-for-post">
+                  <div *ngIf="selected.comments && selected.comments.length > 0" >
                   <div *ngFor="let comment of selected.comments">
                   <div class="card mb-8" >
                       <div class="card-body">
@@ -468,11 +641,15 @@
                                   <a href="javascript:void(0)" class="text-primary"> {{comment.user.username}} </a>
                                   <!-- <small class="text-muted ml-2">1 hour ago</small> -->
                                   <div class="mt-3 font-size-sm">
+
                                       <p>{{comment.content}}</p>
 
                                   </div>
                                   <button class="btn btn-xs text-muted has-icon"><i class="fa fa-heart" aria-hidden="true"></i>Like</button>
-                                  <a href="javascript:void(0)" class="text-muted small">Reply</a>
+                                  <a href="javascript:void(0)" class="text-muted small" (click)="displayReplyModal = true;
+                                  commentId = comment.id;
+                                  postId = selected.id "
+                              data-toggle="modal" data-target="#replyModal" >Reply</a>
                               </div>
                               <hr>
                           </div>
@@ -481,6 +658,39 @@
                   <br>
                 </div>
               </div>
+
+
+
+              <div  class = "comment-for-post" *ngIf="selected.comments.selectedReply && selected.comments.selectedReply.length > 5" >
+                <div *ngFor="let reply of selected.comments.selectedReply">
+                <div class="card mb-8" >
+                    <div class="card-body">
+                        <div class="media forum-item">
+                            <a href="javascript:void(0)" class="card-link">
+                                <img [src]="reply.user.imageUrl" class="rounded-circle" width="50" alt="" />
+
+                            </a>
+                            <div class="media-body ml-3">
+                                <a href="javascript:void(0)" class="text-primary"> {{reply.user.username}} </a>
+                                <!-- <small class="text-muted ml-2">1 hour ago</small> -->
+                                <div class="mt-3 font-size-sm">
+                                    <p>{{reply.content}}</p>
+
+
+                                </div>
+                                <button class="btn btn-xs text-muted has-icon"><i class="fa fa-heart" aria-hidden="true"></i>Like</button>
+                                <a href="javascript:void(0)" class="text-muted small" (click)="displayReplyModal = true"
+
+                          data-toggle="modal" data-target="#replyModal" >Reply</a>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+                <br>
+              </div>
+            </div>
+
               </div>
             </div>
               <!-- /Forum Detail -->
@@ -489,6 +699,15 @@
           </div>
           <!-- /Inner main -->
       </div>
+
+
+
+
+
+
+
+
+
 
       <!-- New Discussion Post Modal -->
       <div class="modal fade" id="threadModal" tabindex="-1" role="dialog" *ngIf="displayPostModal === true;">
@@ -586,11 +805,152 @@
                          <textarea class="form-control" rows="5" name="content" [(ngModel)]="newComment.content" ></textarea>
                           </div>
 
+
+
+
+
+
                       </div>
                       <div class="modal-footer">
                           <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
-                          <button type="button" class="btn btn-primary" (click)="createCommentOnPost(selected.id, newComment);
-                          reloadComments(selected.id)"  data-dismiss="modal" >Post Comment</button>
+                          <button type="button" class="btn btn-primary" (click)="createCommentOnPost(selected.id, newComment)"  data-dismiss="modal" >Post Comment</button>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+
+
+
+
+<!-- -----------v--------------v---------------v------- REPLY TO COMMENT MODAL -------v---------------v---------v------  -->
+
+
+
+
+
+      <div class="modal fade" id="replyModal" tabindex="-1" role="dialog" *ngIf="displayReplyModal === true">
+          <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                  <form>
+                      <div class="modal-header d-flex align-items-center bg-primary text-white">
+                          <h6 class="modal-title mb-0" id="replyModalLabel">New Reply</h6>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">×</span>
+                          </button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="row">
+
+                          <div class="form-group">
+                              <label for="createDate">Today's Date</label>
+                              <input type="date" class="form-control col-3" name="createDate"  [(ngModel)]="newComment.createDate" autofocus="" />
+                          </div>
+
+                        </div>
+                          <textarea class="form-control summernote" style="display: none;"></textarea>
+                          <div class="form-group">
+                              <label for="commentContent">Reply Content</label>
+                         <textarea class="form-control" rows="5" name="content" [(ngModel)]="newComment.content" ></textarea>
+                          </div>
+
+
+
+
+
+
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+                          <button type="button" class="btn btn-primary" (click)="createCommentOnComment(postId,
+                          commentId ,newComment)"  data-dismiss="modal" >Post Reply</button>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+
+
+
+
+
+<!-- ---------------v-----------------------v----------------- edit post modal ----------------------v----------------v--------------------- -->
+
+
+
+
+
+
+      <div class="modal fade" id="editModal" tabindex="-1" role="dialog" *ngIf="editPost && displayEditModal === true">
+          <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                  <form>
+                      <div class="modal-header d-flex align-items-center bg-primary text-white">
+                          <h6 class="modal-title mb-0" id="replyModalLabel">Edit Post</h6>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">×</span>
+                          </button>
+                      </div>
+
+                      <div class="modal-body">
+
+                        <div class="col-lg-8">
+                          <div class="card">
+                            <div class="card-body">
+                              <div class="row mb-3">
+                                <div class="col-sm-3">
+                                  <h6 class="mb-0">Post Title</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                  <input type="text" class="form-control" name="title" [(ngModel)]="editPost.title" value="editPost.title">
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label for="commentContent">Post Content</label>
+                              <textarea class="form-control" rows="5" name="content" [(ngModel)]="editPost.content" value="editPost.content" ></textarea>
+                              </div>
+                              <div class="row mb-3">
+                                <div class="col-sm-3">
+                                  <h6 class="mb-0">Image Url</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                  <input type="text" class="form-control" name="imageUrl" [(ngModel)]="editPost.imageUrl" value="editPost.imageUrl">
+                                </div>
+                              </div>
+                              <div class="row mb-3">
+                                <div class="col-sm-3">
+                                  <h6 class="mb-0">Date</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                  <input type="date" class="form-control" name="updateDate" [(ngModel)]="editPost.updateDate" value="editPost.createDate">
+                                </div>
+                              </div>
+                              <div class="row mb-3">
+                                <div class="col-sm-3">
+                                  <h6 class="mb-0">Active  </h6>
+                                </div>
+                                <div class=" checkbox">
+                                  <input type="checkbox" class="checkbox" name="active" [(ngModel)]="editPost.active" value="editPost.active">
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-sm-3"></div>
+
+                              </div>
+                            </div>
+                          </div>
+                          </div>
+                          </div>
+
+
+
+
+
+
+
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+                          <button type="button" class="btn btn-primary" (click)="updatePost(editPost, editPost.id)"  data-dismiss="modal" >Post Reply</button>
                       </div>
                   </form>
               </div>
@@ -598,5 +958,6 @@
       </div>
   </div>
 </div>
+
 
 

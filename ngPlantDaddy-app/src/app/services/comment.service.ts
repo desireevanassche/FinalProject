@@ -53,6 +53,9 @@ export class CommentService {
   }
 
   public createCommentOnComment(postId:number, commentId:number, comment : Comment){
+    console.log(commentId);
+    console.log(postId);
+
     return this.http.post<Comment>(this.url + "/" + postId + "/comments/" + commentId, comment, this.getHttpOptions())
     .pipe(
       catchError((err:any) => {
