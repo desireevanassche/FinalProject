@@ -65,6 +65,16 @@ currentUserId: number | null = 0;
   }
 
 
+  // addTodo(todo : Todo){
+  //   this.todoService.create(todo).subscribe(
+  //   success=>{
+  //     this.newTodo = new Todo();
+  //     this.reloadTodos();
+  //   },
+  //   error => console.log("Adding Oberservable got an error")
+  //   );
+  //   }
+
   addTodo(todo : Todo, userPlantId : number){
     this.todoService.create(todo,userPlantId).subscribe(
     success=>{

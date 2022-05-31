@@ -37,7 +37,7 @@
   </tbody>
 </table>
 
-<div class="selectedPlant" *ngIf="selected">
+<div class="selectedPlant" *ngIf="selected && editForm == false">
   <br>
   <br>
   <br>
@@ -56,42 +56,39 @@
   <br>
   <br>
   <br>
+
+
   <div *ngIf="selected.user.id == currentUserId">
     <div class="container">
       <div class="row">
         <div class="col-lg-3">
-          <button class="btn btn-primary btn-lg" (click)="selectedReset(selected.id)">Back</button>
+          <button class="btn btn-primary btn-lg" (click)="selectedReset(selected.id); displayTodos = false; editTodoForm = false; displayAddTodoForm = false">Back</button>
         </div>
 
         <div class="col-lg-3">
-          <button class="btn btn-primary btn-lg" (click)="setEditUserPlant()">
+          <button class="btn btn-primary btn-lg" (click)="setEditUserPlant(); editForm = true">
             Edit
           </button>
         </div>
 
         <div class="col-lg-3">
-          <button
-            class="btn btn-primary btn-lg"
-            (click)="displayPlantsTodos(selected.id); displayTodos = true"
-          >
+          <button class="btn btn-primary btn-lg" (click)="displayPlantsTodos(selected.id); displayTodos = true">
             Check Out {{ selected.nickname }} Todos
           </button>
         </div>
 
         <div class="col-lg-3">
-          <button
-            class="btn btn-primary btn-lg"
-            (click)="
-              deactivateUserPlant(selected, selected.id); selected = null
-            "
-          >
+          <button class="btn btn-primary btn-lg"
+            (click)=" deactivateUserPlant(selected, selected.id); selected = null; displayAddTodoForm = false; editTodoForm = false">
             Deactivate
           </button>
+
         </div>
       </div>
     </div>
   </div>
 </div>
+
 
 
 
@@ -324,6 +321,8 @@
   </div>
 
   <div *ngIf="!selected && displayAddUserPlantForm == true">
+
+
     <section
       class="vh-100"
       id="registrationForm"
@@ -342,7 +341,6 @@
 
                     <form class="mx-1 mx-md-4">
                       <div class="d-flex flex-row align-items-center mb-4">
-                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                         <div class="form-outline flex-fill mb-0">
                           <input
                             [(ngModel)]="newUserPlant.nickname"
@@ -357,7 +355,6 @@
                       </div>
 
                       <div class="d-flex flex-row align-items-center mb-4">
-                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                         <div class="form-outline flex-fill mb-0">
                           <input
                             [(ngModel)]="newUserPlant.height"
@@ -370,7 +367,6 @@
                       </div>
 
                       <div class="d-flex flex-row align-items-center mb-4">
-                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                         <div class="form-outline flex-fill mb-0">
                           <input
                             [(ngModel)]="newUserPlant.spread"
@@ -383,7 +379,6 @@
                       </div>
 
                       <div class="d-flex flex-row align-items-center mb-4">
-                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                         <div class="form-outline flex-fill mb-0">
                           <input
                             [(ngModel)]="newUserPlant.potDiameter"
@@ -398,7 +393,6 @@
                       </div>
 
                       <div class="d-flex flex-row align-items-center mb-4">
-                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                         <div class="form-outline flex-fill mb-0">
                           <input
                             [(ngModel)]="newUserPlant.homeLocation"
@@ -413,16 +407,27 @@
                       </div>
 
                       <div class="d-flex flex-row align-items-center mb-4">
-                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                         <div class="form-outline flex-fill mb-0">
-                          <!-- <input [(ngModel)]="newUserPlant.description" type="text" name="description" class="form-control" /> -->
+                          <input
+                            [(ngModel)]="newUserPlant.imageUrl"
+                            type="text"
+                            name="imageUrl"
+                            class="form-control"
+                          />
+                          <label class="form-label" name="imageUrl"
+                            >Image URL</label
+                          >
+                        </div>
+                      </div>
+
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <div class="form-outline flex-fill mb-0">
                           <textarea
                             class="form-control"
                             rows="2"
                             name="description"
                             [(ngModel)]="newUserPlant.description"
                           ></textarea>
-                          <!-- <input [(ngModel)]="newUserPlant.description" type="text" name="description" class="form-control" /> -->
                           <label class="form-label" name="description"
                             >Description</label
                           >
@@ -430,7 +435,6 @@
                       </div>
 
                       <div class="d-flex flex-row align-items-center mb-4">
-                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                         <div class="form-outline flex-fill mb-0">
                           <label class="form-label" name="description"
                             >Plant Type:</label
@@ -454,7 +458,7 @@
                         class="d-flex justify-content-center mx-4 mb-3 mb-lg-4"
                       >
                         <button
-                          (click)="addUserPlant(newUserPlant)"
+                          (click)="addUserPlant(newUserPlant); displayAddUserPlantForm = false"
                           type="button"
                           class="btn btn-primary btn-lg"
                         >
@@ -492,5 +496,283 @@
           </div>
         </div>
       </div>
+</section>
+</div>
+
+
+<br>
+<br>
+<br>
+<br>
+
+
+<div *ngIf="selected && editForm == true">
+<section class="vh-100" id="registrationForm" style="background-color: #eee">
+      <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-lg-12 col-xl-11">
+            <div class="card text-black" style="border-radius: 25px">
+              <div class="card-body p-md-5">
+                <div class="row justify-content-center">
+                  <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                    <p
+                      class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4"
+                    ></p>
+
+                    <form class="mx-1 mx-md-4">
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <div class="form-outline flex-fill mb-0">
+                          <input name="nick name" [(ngModel)]="editUserPlant.nickname"
+                            type="text"
+                            class="form-control"
+                          />
+                          <label class="form-label" name="nickname">
+                            Nickname</label
+                          >
+                        </div>
+                      </div>
+
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <div class="form-outline flex-fill mb-0">
+                          <input
+                            [(ngModel)]="editUserPlant.height"
+                            type="number"
+                            name="height"
+                            class="form-control"
+                          />
+                          <label class="form-label" name="height">Height</label>
+                        </div>
+                      </div>
+
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <div class="form-outline flex-fill mb-0">
+                          <input
+                            [(ngModel)]="editUserPlant.spread"
+                            type="number"
+                            name="spread"
+                            class="form-control"
+                          />
+                          <label class="form-label" name="spread">Spread</label>
+                        </div>
+                      </div>
+
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <div class="form-outline flex-fill mb-0">
+                          <input
+                            [(ngModel)]="editUserPlant.potDiameter"
+                            type="number"
+                            name="potDiameter"
+                            class="form-control"
+                          />
+                          <label class="form-label" name="potDiameter"
+                            >Pot Diameter</label
+                          >
+                        </div>
+                      </div>
+
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <div class="form-outline flex-fill mb-0">
+                          <input
+                            [(ngModel)]="editUserPlant.homeLocation"
+                            type="text"
+                            name="homeLocation"
+                            class="form-control"
+                          />
+                          <label class="form-label" name="homeLocation"
+                            >Home Location</label
+                          >
+                        </div>
+                      </div>
+
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <div class="form-outline flex-fill mb-0">
+                          <textarea
+                            class="form-control"
+                            rows="2"
+                            name="description"
+                            [(ngModel)]="editUserPlant.description"
+                          ></textarea>
+                          <label class="form-label" name="description"
+                            >Description</label
+                          >
+                        </div>
+                      </div>
+
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <div class="form-outline flex-fill mb-0">
+                          <input type="text" class="form-control" rows="2" name="imageUrl"
+                            [(ngModel)]="editUserPlant.imageUrl"/>
+                          <label class="form-label" name="imageUrl"
+                            >Image URL</label
+                          >
+                        </div>
+                      </div>
+
+                      <div
+                        class="d-flex justify-content-center mx-4 mb-3 mb-lg-4"
+                      >
+                        <button
+                          (click)="updateUserPlant(editUserPlant, editUserPlant.id)"
+                          type="button"
+                          class="btn btn-primary btn-lg">
+                          Update Plant
+                        </button>
+                      </div>
+
+                      <div
+                        class="d-flex justify-content-center mx-4 mb-3 mb-lg-4"
+                      >
+                        <button
+                          class="btn btn-primary btn-lg"
+                          type="submit"
+                          name="submit"
+                          value="Cancel"
+                          (click)="editForm = false">
+                          Cancel
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                  <div
+                    class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2"
+                  >
+                    <img
+                      src="https://live.staticflickr.com/65535/52101246520_8a9e9ea24c_z.jpg"
+                      class="img-fluid"
+                      alt="Plant Daddy"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
+</div>
+
+
+
+<div *ngIf="selected && displayTodos == true">
+  <div class="page-content page-container" id="page-content">
+    <div class="padding">
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="container-fluid d-flex justify-content-center">
+
+            <div class="list list-row card" id="sortable" data-sortable-id="0" aria-dropeffect="move">
+                    <button *ngIf="displayTodos == true" class="btn btn-primary btn-lg" type="submit" (click)="displayAddTodoForm = true">Add A Todo</button>
+            <div *ngFor="let todo of todos">
+                <div class="list-item" data-id="13" data-item-sortable-id="0" draggable="true" role="option" aria-grabbed="false">
+                  <div>
+                    <a data-abc="true"><span class="w-40 avatar gd-primary">P</span></a>
+                  </div>
+                  <div class="flex">
+                    <a class="item-author text-color" data-abc="true">{{todo.name}}</a>
+                    <div class="item-except text-muted text-sm h-1x">
+                     {{ todo.description }}
+                    </div>
+                    <div class="item-except text-muted text-sm h-1x">
+                      {{ todo.dueDate }}
+                    </div>
+                    <div class="item-except text-muted text-sm h-1x">
+                      {{ todo.active }}
+                    </div>
+                  </div>
+                  <div class="no-wrap">
+                    <div class="item-date text-muted text-sm d-none d-md-block">
+                      {{ todo.createdAt }}
+                    </div>
+                  </div>
+
+                  <div>
+                    <div class="item-action dropdown">
+                      <a data-toggle="dropdown" class="text-muted" data-abc="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">
+                          <circle cx="12" cy="12" r="1"></circle>
+                          <circle cx="12" cy="5" r="1"></circle>
+                          <circle cx="12" cy="19" r="1"></circle>
+                        </svg>
+                      </a>
+                      <div class="dropdown-menu dropdown-menu-right" role="menu">
+                        <a class="dropdown-item" data-abc="true" (click)="displayTodo(todo)">See detail</a>
+                        <a class="dropdown-item edit" data-abc="true" (click)="setEditTodo(); editTodoForm = true">Edit</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item trash" data-abc="true" (click)="deleteTodo(todo.id)">Delete item</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+<button class="btn btn-primary" (click)="displayTodos = false" type="submit">Cancel</button>
+</div>
+
+
+<!-- <div *ngIf="editTodoForm == true">
+  <ul>
+    <li>{{ selectedTodo.id }}</li>
+    <li>{{ selectedTodo.name }}</li>
+    <li>{{ selectedTodo.description }}</li>
+    <li>{{ selectedTodo.createdAt }}</li>
+  </ul>
+
+   <button class="btn btn-primary" type="submit" (click)="setEditTodo()">EDIT</button>
+  <label for="task" class="form-label">Task</label>
+</div> -->
+
+<form *ngIf="selected && editTodoForm == true">
+  <label for="name" class="form-label">Name: </label>
+  <input type="text" name="name" [(ngModel)]="editTodo.name" />
+  <br>
+  <label for="description" class="form-label">Description: </label>
+  <input type="text" name="description" [(ngModel)]="editTodo.description"/>
+  <button class="btn btn-primary" type="submit" (click)="updateTodo(editTodo.id, editTodo); editTodoForm = false">
+    Save Edit
+  </button>
+  <button class="btn btn-primary" type="submit" (click)="editTodoForm = false">Cancel</button>
+</form>
+
+
+<form *ngIf="displayAddTodoForm == true" class="row g-3">
+  <div class="col-md-6">
+
+    <label class="form-label">Task</label>
+    <input type="text" name="name" [(ngModel)]="newTodo.name"/>
+
+    <input type="number" name="userPlantId" [(ngModel)]="newTodo.userplant.id"/>
+
+
+    <button class="btn btn-primary" (click)="addTodo(newTodo, newTodo.userPlants); " type="submit">Submit</button>
+    <button class="btn btn-primary" (click)="displayAddTodoForm = false" type="submit">Cancel</button>
+  </div>
+</form>
+
+
+
+<!-- <div class="d-flex flex-row align-items-center mb-4">
+  <div class="form-outline flex-fill mb-0">
+    <label class="form-label" name="description"
+      >Plant Type:</label
+    >
+    <select
+      name="plantId"
+      class="form-select"
+      [(ngModel)]="newUserPlant.plant.id"
+    >
+      <option
+        *ngFor="let plant of plants"
+        value="{{ plant.id }}"
+      >
+        {{ plant.commonName }}
+      </option>
+    </select>
+  </div>
+</div> -->
+
+

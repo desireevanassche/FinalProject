@@ -1,4 +1,3 @@
-
 import { Plant } from "./plant";
 import { Todo } from "./todo";
 import { User } from "./user";
@@ -34,7 +33,7 @@ constructor(
   homeLocation : string ="",
   active: boolean = true,
   plant: Plant = new Plant(),
-  user : User = new User ()
+  user : User = new User (),
 
   // photos : Photo []
 
