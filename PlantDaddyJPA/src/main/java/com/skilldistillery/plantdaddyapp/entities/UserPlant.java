@@ -163,6 +163,9 @@ public class UserPlant {
 	public void setPlant(Plant plant) {
 		this.plant = plant;
 	}
+	
+	
+	
 
 	public List<PlantPhoto> getPhotos() {
 		return photos;
