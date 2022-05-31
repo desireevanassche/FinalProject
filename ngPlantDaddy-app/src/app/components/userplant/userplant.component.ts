@@ -263,7 +263,7 @@ export class UserplantComponent implements OnInit {
     this.todoService.create(todo, userPlantId).subscribe(
     (data)=>{
       this.newTodo = new Todo();
-      this.reloadTodos();
+      this.displayPlantsTodos(userPlantId);
     },
     error => console.log("Adding Oberservable got an error")
     );
@@ -285,8 +285,12 @@ export class UserplantComponent implements OnInit {
   updateTodo( id : number, updatedTodo : Todo){
     this.todoService.update(id, updatedTodo).subscribe({
       next:(data)=>{
-        this.reloadTodos();
-        this.newTodo = updatedTodo;
+        this.updateTodo = null;
+
+        if (this.selectedTodo) {
+          this.selectedTodo = Object.assign({}, updatedTodo);
+        }
+        this.displayPlantsTodos(id);
       },
       error: (err)=>{
         console.log(err + " this is an error inside update todo in todo comp.ts");
@@ -298,7 +302,7 @@ export class UserplantComponent implements OnInit {
   deleteTodo(id:number) {
     this.todoService.deleteTodo(id).subscribe({
       next:(data) =>{
-      this.reloadTodos();
+      this.displayPlantsTodos(id);
       },
       error:(err)=>{
         console.log(err + " This error is inside the delete todo comp.ts");
@@ -310,10 +314,19 @@ export class UserplantComponent implements OnInit {
 
 
   setEditTodo = () =>{
-this.editTodo = Object.assign({}, this.selectedTodo);
+    this.editTodo = Object.assign({}, this.selectedTodo);
   }
 
+  // displayTodo = (todo: Todo) => {
+  //   this.selectedTodo = todo;
+  //   console.log(todo);
 
+  // }
+
+
+  // setEditUserPlant() {
+  //   this.editUserPlant = Object.assign({}, this.selected);
+  // }
 
   displayPlantsTodos(id : number) {
     this.todoService.getAllUserPlantTodos(id).subscribe({
