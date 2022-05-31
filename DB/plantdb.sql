@@ -592,6 +592,8 @@ COMMIT;
 START TRANSACTION;
 USE `plantdb`;
 INSERT INTO `user_plant` (`id`, `user_id`, `plant_id`, `height_inches`, `spread_inches`, `nickname`, `pot_diameter_inches`, `image_url`, `home_location`, `description`, `active`) VALUES (1, 1, 1, 6, 6, 'Todd', 4, 'https://www.bybrittanygoldwyn.com/wp-content/uploads/2021/03/Sans-Trifasciata-Snake-Plant-6.jpg', 'Living room', 'My happy boi', 1);
+INSERT INTO `user_plant` (`id`, `user_id`, `plant_id`, `height_inches`, `spread_inches`, `nickname`, `pot_diameter_inches`, `image_url`, `home_location`, `description`, `active`) VALUES (2, 1, 7, 4, 4, 'Larry', 3, 'https://www.gardendesign.com/pictures/images/275x295Exact_16x0/site_3/chinese-evergreen-plant-aglaonema-shutterstock-com_15962.jpg', 'Bed Room', 'My other happy boi', 1);
+INSERT INTO `user_plant` (`id`, `user_id`, `plant_id`, `height_inches`, `spread_inches`, `nickname`, `pot_diameter_inches`, `image_url`, `home_location`, `description`, `active`) VALUES (3, 1, 3, 3, 2, 'Phil', 3, 'https://www.almanac.com/sites/default/files/styles/large/public/image_nodes/aloe-vera-white-pot_sunwand24-ss_edit.jpg?itok=6dE5RWDP', 'Bathroom', 'The bathroom boi', 1);
 
 COMMIT;
 
@@ -602,7 +604,18 @@ COMMIT;
 START TRANSACTION;
 USE `plantdb`;
 INSERT INTO `topic` (`id`, `name`, `description`, `image_url`) VALUES (1, 'Indoor', 'Indoor Plant', 'https://media.allure.com/photos/5fdcf516563e46c7d11ee93f/master/pass/AllureBeginnerHouseplants.jpg');
-INSERT INTO `topic` (`id`, `name`, `description`, `image_url`) VALUES (2, 'Health', 'Healthy Boi', 'http://westchestertreelife.com/wp-content/uploads/2015/06/Healthy-Plant-WestchesterTreeLife.jpg');
+INSERT INTO `topic` (`id`, `name`, `description`, `image_url`) VALUES (2, 'Plant Health', 'Plant Health', 'http://westchestertreelife.com/wp-content/uploads/2015/06/Healthy-Plant-WestchesterTreeLife.jpg');
+INSERT INTO `topic` (`id`, `name`, `description`, `image_url`) VALUES (3, 'Outdoor', 'Outdoor Plant', NULL);
+INSERT INTO `topic` (`id`, `name`, `description`, `image_url`) VALUES (4, 'General', 'General', NULL);
+INSERT INTO `topic` (`id`, `name`, `description`, `image_url`) VALUES (5, 'Wanted', 'Wanted', NULL);
+INSERT INTO `topic` (`id`, `name`, `description`, `image_url`) VALUES (6, 'For Trade', 'For Trade', NULL);
+INSERT INTO `topic` (`id`, `name`, `description`, `image_url`) VALUES (7, 'Pests', 'Pests', NULL);
+INSERT INTO `topic` (`id`, `name`, `description`, `image_url`) VALUES (8, 'Nutrients', 'Nutrients', NULL);
+INSERT INTO `topic` (`id`, `name`, `description`, `image_url`) VALUES (9, 'Plant History', 'Plant History', NULL);
+INSERT INTO `topic` (`id`, `name`, `description`, `image_url`) VALUES (10, 'Potting', 'Potting', NULL);
+INSERT INTO `topic` (`id`, `name`, `description`, `image_url`) VALUES (11, 'Watering', 'Watering', NULL);
+INSERT INTO `topic` (`id`, `name`, `description`, `image_url`) VALUES (12, 'Gardening', 'Gardening', NULL);
+INSERT INTO `topic` (`id`, `name`, `description`, `image_url`) VALUES (13, 'Seeds', 'Seeds', NULL);
 
 COMMIT;
 
@@ -643,7 +656,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `plantdb`;
-INSERT INTO `blog` (`id`, `user_id`, `title`, `content`, `image_url`, `create_date`, `update_date`, `active`) VALUES (1, 1, 'Our First Blog', 'This is a blog, about plants, posted by an admin', 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/house-plants-1629187361.jpg?crop=0.288xw:0.577xh;0.0465xw,0.205xh&resize=640:*', '2022-05-24 12:00:00', '2022-05-24 12:00:01', 1);
+INSERT INTO `blog` (`id`, `user_id`, `title`, `content`, `image_url`, `create_date`, `update_date`, `active`) VALUES (1, 1, 'Welcome to Plant Daddy :)', 'Hello and welcome to Plant Daddy! We are a group of developers with a green thumb and a passion for watching our babies grow. Together we built this application for fellow plant enthusiast to come together and share their passion. Whether it’s helping develop our library of plants, or sharing posts for all to see and learn. Members of our community can come together and all become plant daddies.', 'http://www.goodnet.org/photos/620x0/29079_hd.jpg  \n', '2022-05-24 12:00:00', '2022-05-24 12:00:01', 1);
 
 COMMIT;
 
