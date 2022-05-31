@@ -90,7 +90,239 @@
 </div>
 
 
-<div *ngIf="!selected && displayAddUserPlantForm == true">
+
+
+
+
+  <div *ngIf="displayTodos">
+    <div>
+      <div class="page-content page-container" id="page-content">
+        <div class="padding">
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="container-fluid d-flex justify-content-center">
+                <div
+                  class="list list-row card"
+                  id="sortable"
+                  data-sortable-id="0"
+                  aria-dropeffect="move"
+                >
+                  <button
+                    class="btn btn-primary"
+                    type="submit"
+                    (click)="display = true"
+                  >
+                    Add A Todo
+                  </button>
+
+                  <div *ngFor="let todo of todos">
+                    <div
+                      class="list-item"
+                      data-id="13"
+                      data-item-sortable-id="0"
+                      draggable="true"
+                      role="option"
+                      aria-grabbed="false"
+                    >
+                      <div>
+                        <a data-abc="true"
+                          ><span class="w-40 avatar gd-primary">P</span></a
+                        >
+                      </div>
+                      <div class="flex">
+                        <a class="item-author text-color" data-abc="true">{{
+                          todo.name
+                        }}</a>
+                        <div class="item-except text-muted text-sm h-1x">
+                          {{ todo.description }}
+                        </div>
+                        <div class="item-except text-muted text-sm h-1x">
+                          {{ todo.dueDate }}
+                        </div>
+                        <div class="item-except text-muted text-sm h-1x">
+                          {{ todo.active }}
+                        </div>
+                      </div>
+
+                      <div class="no-wrap">
+                        <div
+                          class="item-date text-muted text-sm d-none d-md-block"
+                        >
+                          {{ todo.createdAt }}
+                        </div>
+                      </div>
+
+                      <div>
+                        <div class="item-action dropdown">
+                          <a
+                            data-toggle="dropdown"
+                            class="text-muted"
+                            data-abc="true"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              class="feather feather-more-vertical"
+                            >
+                              <circle cx="12" cy="12" r="1"></circle>
+                              <circle cx="12" cy="5" r="1"></circle>
+                              <circle cx="12" cy="19" r="1"></circle>
+                            </svg>
+                          </a>
+                          <div
+                            class="dropdown-menu dropdown-menu-right bg-black"
+                            role="menu"
+                          >
+                            <a
+                              class="dropdown-item"
+                              data-abc="true"
+                              (click)="displayTodo(todo)"
+                              >See detail
+                            </a>
+                            <a
+                              class="dropdown-item edit"
+                              data-abc="true"
+                              (click)="setEditTodo(todo)"
+                              >Edit</a
+                            >
+                            <div class="dropdown-divider"></div>
+                            <a
+                              class="dropdown-item trash"
+                              data-abc="true"
+                              (click)="deleteTodo(todo.id)"
+                              >Delete item</a
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="selectedTodo">
+        <ul>
+          <li>{{ selectedTodo.id }}</li>
+          <li>{{ selectedTodo.name }}</li>
+          <li>{{ selectedTodo.description }}</li>
+          <li>{{ selectedTodo.createdAt }}</li>
+        </ul>
+
+        <!-- <button class="btn btn-primary" type="submit" (click)="setEditTodo()">EDIT</button> -->
+        <label for="task" class="form-label">Task</label>
+      </div>
+
+      <form #createForm="ngForm" *ngIf="editTodo && displaySubmit">
+        <label for="name" class="form-label">Name: </label>
+        <input type="text" name="name" [(ngModel)]="editTodo.name" />
+        <br />
+        <label for="description" class="form-label">Description: </label>
+        <input
+          type="text"
+          name="description"
+          [(ngModel)]="editTodo.description"
+        />
+
+        <button
+          class="btn btn-primary"
+          type="submit"
+          (click)="updateTodo(editTodo.id, editTodo); displaySubmit = false"
+        >
+          Save Edit
+        </button>
+      </form>
+
+      <form *ngIf="display" #createForm="ngForm" class="row g-3">
+        <div class="col-md-6">
+          <label for="inputEmail4" class="form-label">Task</label>
+          <input type="text" name="name" [(ngModel)]="newTodo.name" />
+
+          <label for="inputEmail4" class="form-label">User Plant Id</label>
+          <input
+            type="number"
+            name="name"
+            [(ngModel)]="newTodo.userPlants.id"
+          />
+
+          <br />
+
+          <button
+            class="btn btn-primary"
+            (click)="addTodo(newTodo, newTodo.userPlants.id); display = false"
+            type="submit"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div *ngIf="editUserPlant">
+      <form>
+        Nickname:
+        <input
+          type="text"
+          name="nick name"
+          [(ngModel)]="editUserPlant.nickname"
+        />
+        <br />
+        Spread:
+        <input type="number" name="spread" [(ngModel)]="editUserPlant.spread" />
+        <br />
+        Height:
+        <input type="number" name="height" [(ngModel)]="editUserPlant.height" />
+        <br />
+        Pot Diameter:<input
+          type="number"
+          name="potDiameter"
+          [(ngModel)]="editUserPlant.potDiameter"
+        />
+        <br />
+        Home Location:
+        <input
+          type="text"
+          name="home location"
+          [(ngModel)]="editUserPlant.homeLocation"
+        />
+        <br />
+        Description:
+        <input
+          type="text"
+          name="description"
+          [(ngModel)]="editUserPlant.description"
+        />
+        <br />
+        Image URL:
+        <input
+          type="text"
+          name="image url"
+          [(ngModel)]="editUserPlant.imageUrl"
+        />
+        <br />
+        <button (click)="updateUserPlant(editUserPlant, editUserPlant.id)">
+          Save
+        </button>
+        <br />
+        <button (click)="editUserPlant = null">Cancel</button>
+        <br />
+      </form>
+    </div>
+  </div>
+
+  <div *ngIf="!selected && displayAddUserPlantForm == true">
+
+
     <section
       class="vh-100"
       id="registrationForm"

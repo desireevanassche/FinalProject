@@ -3,6 +3,43 @@ img {
   width: auto;
   }
 
+* {
+  font-size: 18px;
+  line-height: 28px;
+  color: black;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+li {
+  padding-top: 15px;
+  font-size: 16px;
+  padding-left: 40px;
+}
+
+a:hover {
+  font-size: 20px;
+  color: #BBCBB7;
+}
+
+
+
+img[alt*="profile"] {
+  border-radius: 50%;
+  height: 30px;
+}
+
+.profileCard {
+float: right !important;
+padding-right: 20px;
+justify-content: center;
+padding-top:10px;
+}
+
+.profileCard li{
+  list-style: none;
+
+}
+
 
 
 
