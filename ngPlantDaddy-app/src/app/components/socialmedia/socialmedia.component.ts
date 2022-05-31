@@ -30,7 +30,10 @@ export class SocialmediaComponent implements OnInit {
 
   allComments: Comment[] = [];
 
+  selectedReply : Comment | null = null;
+
   newComment: Comment = new Comment();
+  newReply: Comment = new Comment();
 
   topics: Topic[] = [];
 
@@ -44,7 +47,9 @@ export class SocialmediaComponent implements OnInit {
 
   searchValue: string = "";
   displayPostModal = false;
-  displayCommentModal = false;
+  displayCommentModal = true;
+  displayReplyModal = true;
+  displayEditModal = true
 
   user: User = new User ();
 
@@ -98,6 +103,18 @@ export class SocialmediaComponent implements OnInit {
         console.error(err);
       },
     });
+  }
+
+
+  reloadComments(postId : number){
+    this.commentSvc.indexComments(postId).subscribe({
+      next : (data)=>{
+        this.comments = data;
+
+      },
+      error: (err) => {
+        console.error(err);
+   } });
   }
 
 
@@ -209,10 +226,11 @@ export class SocialmediaComponent implements OnInit {
     this.commentSvc.createCommentOnPost(postId,comment).subscribe({
 
       next : (data)=>{
-        console.log(this.currentUserId);
 
         this.newComment = new Comment();
         console.log(this.newComment);
+        this.reloadComments(postId);
+
 
       },
       error : (err) =>{
@@ -223,9 +241,16 @@ export class SocialmediaComponent implements OnInit {
   }
 
   createCommentOnComment(postId : number, commentId : number,comment : Comment ){
+    console.log(postId);
+    console.log(commentId);
+
+
     this.commentSvc.createCommentOnComment(postId, commentId, comment ).subscribe({
       next : (data)=>{
-        this.newComment = data;
+        console.log(comment);
+
+        this.newComment = new Comment ();
+        this.reloadComments(postId);
       },
       error : (err) =>{
         console.log(err + "this error is inside creating a new comment on a comment in social component.ts");
