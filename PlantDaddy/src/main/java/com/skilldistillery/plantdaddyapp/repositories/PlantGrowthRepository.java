@@ -10,6 +10,6 @@ public interface PlantGrowthRepository extends JpaRepository<PlantGrowth, Intege
 
 	public List<PlantGrowth> findByUserPlant_Id(int userPlantId);
 	
-	PlantGrowth findByUser_UsernameAndId(String username, int plantGrowth);
+	PlantGrowth findByUserPlant_User_UsernameAndId(String username, int plantGrowth);
 	
 }

@@ -77,7 +77,6 @@ public class UserPlant {
 	@JsonIgnore
 	private List<PlantPhoto> photos;
 	
-//	@JsonIgnoreProperties({"userPlant"})
 	@OneToMany(mappedBy= "userPlant")
 	private List<PlantGrowth> growthData;
 

@@ -92,11 +92,19 @@ public class PlantGrowthServiceImpl implements PlantGrowthService {
 	
 	
 	
-	
-	
-	
-	
-	
+	@Override
+	public PlantGrowth updateGrowth( String username, int growthId, PlantGrowth growth) {
+		
+		PlantGrowth managed = growRepo.findByUserPlant_User_UsernameAndId(username, growthId);
+		
+		if(managed != null) {
+			managed.setHeight(growth.getHeight());
+			managed.setSpread(growth.getSpread());
+			managed.setPotDiameter(growth.getPotDiameter());
+			growRepo.saveAndFlush(managed);
+		}
+		return managed;
+	}
 	
 	
 
@@ -104,7 +112,7 @@ public class PlantGrowthServiceImpl implements PlantGrowthService {
 	public boolean deleteGrowth(int growthId, int userPlantId, String username) {
 		boolean deleted = false;
 
-		PlantGrowth existing = growRepo.findByUser_UsernameAndId(username, growthId);
+		PlantGrowth existing = growRepo.findByUserPlant_User_UsernameAndId(username, growthId);
 
 		if (existing != null) {
 			growRepo.delete(existing);
@@ -114,5 +122,7 @@ public class PlantGrowthServiceImpl implements PlantGrowthService {
 
 		return deleted;
 	}
+
+	
 
 }

@@ -74,7 +74,7 @@ public class UserPlantServiceImpl implements UserPlantService {
 			UserPlant result = op.get();
 			if (result.getUser().getUsername().equals(username)) {
 				return result;
-			}
+			} 
 		}
 		return null;
 	}
