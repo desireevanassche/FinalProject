@@ -20,12 +20,12 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active" *ngIf="loggedIn()">
         <a class="nav-link" [routerLink]="['/home']"
-          >Home Base <span class="sr-only">(current)</span></a
+          >HOME <span class="sr-only">(current)</span></a
         >
       </li>
 
       <li class="nav-item" *ngIf="!loggedIn()">
-        <a class="nav-link" [routerLink]="['/login']">Login</a>
+        <a class="nav-link" [routerLink]="['/login']">LOGIN</a>
       </li>
 
       <li class="nav-item dropdown" *ngIf="loggedIn()">
@@ -38,7 +38,7 @@
           aria-haspopup="true"
           aria-expanded="false"
         >
-         Community
+         COMMUNITY
         </a>
 
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -52,7 +52,7 @@
         <a class="nav-link" [routerLink]="['/socialmedia']">Social</a>
       </li> -->
        <li class="nav-item" *ngIf="!loggedIn()">
-        <a class="nav-link" [routerLink]="['/blog']">Blog</a>
+        <a class="nav-link" [routerLink]="['/blog']">BLOG</a>
       </li>
 
       <!-- <li class="nav-item" *ngIf="loggedIn()">
@@ -69,7 +69,7 @@
           aria-haspopup="true"
           aria-expanded="false"
         >
-          My Garden
+          MY GARDEN
         </a>
 
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -90,7 +90,7 @@
           aria-haspopup="true"
           aria-expanded="false"
         >
-          Plant Library
+          PLANTS
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" [routerLink]="['/plant']">All Plants</a>
@@ -112,7 +112,7 @@
           aria-haspopup="true"
           aria-expanded="false"
         >
-          Plant Library
+          PLANTS
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" [routerLink]="['/plant']">Plants By Type</a>
@@ -122,19 +122,23 @@
       </li>
 
       <li class="nav-item" *ngIf="loggedIn()">
-        <a class="nav-link" (click)="logout()" [routerLink]="['/logout']">Logout</a>
+        <a class="nav-link" (click)="logout()" [routerLink]="['/logout']">LOGOUT</a>
       </li>
+
     </ul>
-    <!-- <form class="form-inline my-2 my-lg-0">
-      <input
-        class="form-control mr-sm-2"
-        type="search"
-        placeholder="Search"
-        aria-label="Search"
-      />
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-        Search
-      </button>
-    </form> -->
+<ul class="profileCard">
+      <div class="profileCard">
+      <li class="nav-item active" *ngIf="loggedIn()" id="userInfo">
+        <a class="nav-link" [routerLink]="['/account']">
+          <img
+                  [src]="currentUser.imageUrl"
+                  class="profile-pic"
+                  alt="profile"
+                />
+          {{currentUser.username}} </a
+          >
+        </li> </div>
+      </ul>
+
   </div>
 </nav>
