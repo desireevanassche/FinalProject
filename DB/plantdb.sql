@@ -103,6 +103,8 @@ CREATE TABLE IF NOT EXISTS `user_plant` (
   `home_location` VARCHAR(500) NULL,
   `description` TEXT NULL,
   `active` TINYINT NOT NULL DEFAULT 1,
+  `growth_description` TEXT NULL,
+  `growth_image` VARCHAR(1000) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_plant_inventory_user1_idx` (`user_id` ASC),
   INDEX `fk_user_plant_plant1_idx` (`plant_id` ASC),
@@ -519,6 +521,8 @@ CREATE TABLE IF NOT EXISTS `growth_snapshot` (
   `spread_inches` DOUBLE NULL,
   `pot_diameter` DOUBLE NULL,
   `create_date` DATETIME NULL,
+  `growth_description` TEXT NULL,
+  `growth_image` VARCHAR(1000) NULL,
   PRIMARY KEY (`growth_id`),
   INDEX `fk_growth_snapshot_user_plant1_idx` (`user_plant_id` ASC),
   CONSTRAINT `fk_growth_snapshot_user_plant1`
@@ -613,9 +617,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `plantdb`;
-INSERT INTO `user_plant` (`id`, `user_id`, `plant_id`, `height_inches`, `spread_inches`, `nickname`, `pot_diameter_inches`, `image_url`, `home_location`, `description`, `active`) VALUES (1, 1, 1, 6, 6, 'Todd', 4, 'https://www.bybrittanygoldwyn.com/wp-content/uploads/2021/03/Sans-Trifasciata-Snake-Plant-6.jpg', 'Living room', 'My happy boi', 1);
-INSERT INTO `user_plant` (`id`, `user_id`, `plant_id`, `height_inches`, `spread_inches`, `nickname`, `pot_diameter_inches`, `image_url`, `home_location`, `description`, `active`) VALUES (2, 1, 7, 4, 4, 'Larry', 3, 'https://www.gardendesign.com/pictures/images/275x295Exact_16x0/site_3/chinese-evergreen-plant-aglaonema-shutterstock-com_15962.jpg', 'Bed Room', 'My other happy boi', 1);
-INSERT INTO `user_plant` (`id`, `user_id`, `plant_id`, `height_inches`, `spread_inches`, `nickname`, `pot_diameter_inches`, `image_url`, `home_location`, `description`, `active`) VALUES (3, 1, 3, 3, 2, 'Phil', 3, 'https://www.almanac.com/sites/default/files/styles/large/public/image_nodes/aloe-vera-white-pot_sunwand24-ss_edit.jpg?itok=6dE5RWDP', 'Bathroom', 'The bathroom boi', 1);
+INSERT INTO `user_plant` (`id`, `user_id`, `plant_id`, `height_inches`, `spread_inches`, `nickname`, `pot_diameter_inches`, `image_url`, `home_location`, `description`, `active`, `growth_description`, `growth_image`) VALUES (1, 1, 1, 6, 6, 'Todd', 4, 'https://www.bybrittanygoldwyn.com/wp-content/uploads/2021/03/Sans-Trifasciata-Snake-Plant-6.jpg', 'Living room', 'My happy boi', 1, 'Todd grew about an inch', 'https://cdn.shopify.com/s/files/1/0114/6735/8272/products/Snake_Plant_Variegated_Black_Pot_Compressed.jpg?v=1610578004');
+INSERT INTO `user_plant` (`id`, `user_id`, `plant_id`, `height_inches`, `spread_inches`, `nickname`, `pot_diameter_inches`, `image_url`, `home_location`, `description`, `active`, `growth_description`, `growth_image`) VALUES (2, 1, 7, 4, 4, 'Larry', 3, 'https://www.gardendesign.com/pictures/images/275x295Exact_16x0/site_3/chinese-evergreen-plant-aglaonema-shutterstock-com_15962.jpg', 'Bed Room', 'My other happy boi', 1, NULL, NULL);
+INSERT INTO `user_plant` (`id`, `user_id`, `plant_id`, `height_inches`, `spread_inches`, `nickname`, `pot_diameter_inches`, `image_url`, `home_location`, `description`, `active`, `growth_description`, `growth_image`) VALUES (3, 1, 3, 3, 2, 'Phil', 3, 'https://www.almanac.com/sites/default/files/styles/large/public/image_nodes/aloe-vera-white-pot_sunwand24-ss_edit.jpg?itok=6dE5RWDP', 'Bathroom', 'The bathroom boi', 1, NULL, NULL);
 
 COMMIT;
 
@@ -808,7 +812,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `plantdb`;
-INSERT INTO `growth_snapshot` (`growth_id`, `user_plant_id`, `height_inches`, `spread_inches`, `pot_diameter`, `create_date`) VALUES (1, 1, 6, 6, 5, '2022-05-24 12:00:00');
+INSERT INTO `growth_snapshot` (`growth_id`, `user_plant_id`, `height_inches`, `spread_inches`, `pot_diameter`, `create_date`, `growth_description`, `growth_image`) VALUES (1, 1, 6, 6, 5, '2022-05-24 12:00:00', 'Todd grew about an inch', 'https://cdn.shopify.com/s/files/1/0114/6735/8272/products/Snake_Plant_Variegated_Black_Pot_Compressed.jpg?v=1610578004');
 
 COMMIT;
 
