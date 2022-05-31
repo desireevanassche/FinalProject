@@ -628,7 +628,7 @@
                       </div>
                   </div>
                   <br>
-                  <div *ngIf="selected.comments && selected.comments.length > 0" >
+                  <div *ngIf="selected.comments && selected.comments.length > 0" class = "comment-for-post" >
                   <div *ngFor="let comment of selected.comments">
                   <div class="card mb-8" >
                       <div class="card-body">
@@ -661,7 +661,7 @@
 
 
 
-              <div  class = "comment-for-post" *ngIf="selected.comments.selectedReply && selected.comments.selectedReply.length > 5" >
+              <div   *ngIf="selected.comments.selectedReply && selected.comments.selectedReply.length > 5"  class = "reply-for-post">
                 <div *ngFor="let reply of selected.comments.selectedReply">
                 <div class="card mb-8" >
                     <div class="card-body">
@@ -754,16 +754,16 @@
                               <a class="dropdown-item" >Trader Shop</a> -->
                          </div>
 
-                         <div class="form-group">
+                         <!-- <div class="form-group">
                           <label for="threadTitle">Image Url</label>
                      <input class="form-control" rows="5" name="imageUrl" [(ngModel)]="newPost.imageUrl" />
-                      </div>
+                      </div> -->
 
 
-                          <!-- <div class="custom-file form-control-sm mt-3 form-group" style="max-width: 300px;">
+                         <div class="custom-file form-control-sm mt-3 form-group" style="max-width: 300px;">
                               <input type="file" class="custom-file-input" id="customFile" multiple="" />
                               <label class="custom-file-label" for="customFile" name="imageUrl" [(ngModel)]="newPost.imageUrl" >Attachment</label>
-                          </div> -->
+                          </div>
                       </div>
                       <div class="modal-footer">
                           <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
