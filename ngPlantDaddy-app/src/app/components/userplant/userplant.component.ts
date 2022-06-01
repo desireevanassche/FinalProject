@@ -394,7 +394,7 @@ export class UserplantComponent implements OnInit {
   let today = new Date();
   let weekly = new Date(today);
   weekly.setDate(weekly.getDate() + 7);
-  return weekly;
+  return weekly.toISOString();
 
   }
 
@@ -402,14 +402,14 @@ export class UserplantComponent implements OnInit {
     let today = new Date();
     let twoWeeks = new Date(today);
     twoWeeks.setDate(twoWeeks.getDate() + 14);
-    return twoWeeks;
+    return twoWeeks.toISOString();
 }
 
   monthly() {
     let today = new Date();
     let monthly = new Date(today);
     monthly.setDate(monthly.getDate() + 30);
-    return monthly;
+    return monthly.toISOString();
   }
 
 
@@ -429,15 +429,24 @@ export class UserplantComponent implements OnInit {
       this.selectedWater = todo;
     }
 
+    reloadWaterCycle(){
 
-    // displayTodo = (todo: Todo) => {
-    //   this.selectedTodo = todo;
-    //   console.log(todo);
-
-    // }
+    }
 
 
+  // reloadSpecificTodoList(id : number){
+  //   this.todoService.getAllUserPlantTodos(id).subscribe({
+  //     next: (data) => {
 
+  //       this.todos = data;
+
+  //     },
+  //     error: (err) => {
+  //       console.log(err + " error inside reload todos index in todo comp.ts");
+
+  //     }
+  //   })
+  // }
 
 
 }

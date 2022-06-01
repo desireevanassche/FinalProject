@@ -42,7 +42,7 @@ public class Todo {
 	private LocalDate dueDate;
 
 	@Column(name = "completion_date")
-	private String completeDate;
+	private LocalDate completeDate;
 
 	@Column(name = "date_created")
 	@CreationTimestamp
@@ -91,11 +91,11 @@ public class Todo {
 		this.dueDate = dueDate;
 	}
 
-	public String getCompleteDate() {
+	public LocalDate getCompleteDate() {
 		return completeDate;
 	}
 
-	public void setCompleteDate(String completeDate) {
+	public void setCompleteDate(LocalDate completeDate) {
 		this.completeDate = completeDate;
 	}
 

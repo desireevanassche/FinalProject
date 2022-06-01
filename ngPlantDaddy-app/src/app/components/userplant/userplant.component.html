@@ -447,7 +447,7 @@
 
 
 
-<div *ngIf="selected && displayTodos == true;">
+<div *ngIf="selected && displayTodos == true">
   <div class="page-content page-container" id="page-content">
     <div class="padding">
       <div class="row">
@@ -552,66 +552,36 @@
 </form>
 
 
-<!-- <div class="d-flex flex-row align-items-center mb-4">
-  <div class="form-outline flex-fill mb-0">
-    <label class="form-label" name="description"
-      >Plant Type:</label
-    >
-    <select
-      name="plantId"
-      class="form-select"
-      [(ngModel)]="newUserPlant.plant.id"
-    >
-      <option
-        *ngFor="let plant of plants"
-        value="{{ plant.id }}"
-      >
-        {{ plant.commonName }}
-      </option>
-    </select>
-  </div>
-</div> -->
-
 <form *ngIf="displayAddWater == true" class="row g-3">
   <div class="col-md-6">
 
-    <select name="name" class="form-select" [(ngModel)]="newTodo.name">
+    <select name="name" class="form-select" [(ngModel)]="newWater.name">
     <option value="water schedule">Water Schedule</option>
   </select>
 
   <label class="form-label">Start Date</label>
-  <input type="date" name="dueDate" [(ngModel)]="newTodo.dueDate">
+  <input type="date" name="dueDate" [(ngModel)]="newWater.dueDate">
 
   <select
-    name="completedAt" class="form-select" [(ngModel)]="newTodo.completedAt">
-      <option [value]="weekly()">Weekly</option>
-      <option [value]="biWeekly()">Bi-Weekly</option>
-      <option [value]="monthly()">Monthly</option>
+    name="completedAt" class="form-select" [(ngModel)]="newWater.completeDate">
+      <option type="date" [value]="weekly()">Weekly</option>
+      <option type="date"  [value]="biWeekly()">Bi-Weekly</option>
+      <option type="date"  [value]="monthly()">Monthly</option>
     </select>
 
 
-
-    <button class="btn btn-primary" (click)="addTodo(newTodo, selected.id);" type="submit">Submit</button>
+    <button class="btn btn-primary" (click)="addWater(newWater, selected.id); displayAddWater = true; displayWater(newWater)" type="submit">Submit</button>
     <button class="btn btn-primary" (click)="displayAddWater = false" type="submit">Cancel</button>
   </div>
 </form>
 
-<!-- <form *ngIf="displayAddTodoForm == true" class="row g-3">
-  <div class="col-md-6">
-
-    <label class="form-label">Task</label>
-    <input type="text" name="name" [(ngModel)]="newTodo.name"/>
 
 
-    <label class="form-label">Due Date</label>
-    <input type="date" name="dueDate" [(ngModel)]="newTodo.dueDate">
+<div *ngIf="displayAddWater == true && selectedWater">
+<p>{{selectedWater.name}}</p>
+<p>{{selectedWater.dueDate}}</p>
+<p>{{selectedWater.completeDate}}</p>
+</div>
 
-    <input type="number" name="userPlantId" [(ngModel)]="newTodo.userplant.id"/>
 
-
-
-    <button class="btn btn-primary" (click)="addTodo(newTodo, selected.id); " type="submit">Submit</button>
-    <button class="btn btn-primary" (click)="displayAddTodoForm = false" type="submit">Cancel</button>
-  </div>
-</form> -->
 </body>

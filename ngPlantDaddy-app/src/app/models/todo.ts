@@ -5,7 +5,7 @@ export class Todo {
   name: string | null;
   description: string | null;
   createdAt: string | null;
-  completedDate: string | null;
+  completeDate: string | null;
   dueDate: string | null;
   active: boolean | null;
   userplant: Userplant;
@@ -17,7 +17,7 @@ constructor(
   name: string = "",
   description: string = "",
   createdAt: string = "",
-  completedDate: string = "",
+  completeDate: string = "",
   dueDate: string ="",
   active: boolean = true,
   userplant : Userplant = new Userplant()
@@ -28,7 +28,7 @@ this.id = id;
 this.name = name;
 this.description = description;
 this.createdAt = createdAt;
-this.completedDate =completedDate;
+this.completeDate =completeDate;
 this.dueDate = dueDate;
 this.active = active;
 this.userplant = userplant;
