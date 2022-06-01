@@ -34,6 +34,7 @@
 </div>
 
 <div *ngIf="selected && !editBlog">
+  <div class="single-blog-card">
 
   <img [src]="selected.imageUrl">
   <p>{{selected.title}}</p>
@@ -43,6 +44,7 @@
 
   <div *ngIf="currentUserId === 1">
     <button (click)="setEditBlog()">Edit</button></div>
+</div>
 </div>
 
 <!--------- Edit Blog form ------------------------------------------------------------------------------------ -->
@@ -86,8 +88,8 @@
     <input type="submit" name="submit" value="Cancel" (click)="displayAddForm = false">
   </form>
 </div>
-
 </div>
+
 
 <nav id="sidebar">
   <div class="side-nav">
@@ -153,10 +155,12 @@
           </div>
 
           <div *ngIf="!isNumber(currentUserId)">
-            <div *ngIf="displayAddForm == false">
-              <button (click)="displayAddForm = true">Add A Plant?</button>
+
+
+            <div *ngIf="currentUserId === 1">
+              <button (click)="displayAddForm = true">Add A Blog Post </button>
             </div>
-            </div>
+          </div>
             </div>
             </div>
             </div>
