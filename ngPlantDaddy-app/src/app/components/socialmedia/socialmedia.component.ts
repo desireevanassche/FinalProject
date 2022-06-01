@@ -131,6 +131,10 @@ export class SocialmediaComponent implements OnInit {
     this.display = true;
   }
 
+  setEditForm(){
+    this.editPost = Object.assign({}, this.selected);
+  }
+
   addPost(newPost: Post) {
     this.postSvc.createPost(newPost).subscribe(
       (data) => {
