@@ -1,3 +1,5 @@
+import { OrderByPipe } from './pipes/orderBy.pipe';
+import { orderBy } from 'lodash';
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -71,11 +73,7 @@ import { WatercyclefilterPipe } from './pipes/watercyclefilter.pipe';
     FilterDatePipe,
     WatertypefilterPipe,
     WatercyclefilterPipe,
-
-
-
-
-
+    OrderByPipe
 
 
   ],
