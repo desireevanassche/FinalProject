@@ -282,14 +282,14 @@ export class SocialmediaComponent implements OnInit {
       }
 
       public getMostRecentCommentedUser(comments: Comment[]){
-          console.log(comments);
+          // console.log(comments);
 
 
           let commentIndex = comments.length -1;
-         console.log("this is last :" + commentIndex);
+        //  console.log("this is last :" + commentIndex);
 
            let lastComment =  comments[commentIndex]
-            console.log(lastComment);
+            // console.log(lastComment);
 
         return lastComment;
       }

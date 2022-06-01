@@ -27,7 +27,7 @@
                           <div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div>
                           <div class="simplebar-mask">
                               <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
-                                  <div class="simplebar-content-wrapper" style="height: 100%; overflow: hidden scroll;">
+                                  <div class="simplebar-content-wrapper" style="height: 100%;">
                                       <div class="simplebar-content" style="padding: 16px;">
                                           <nav class="nav nav-pills nav-gap-y-1 flex-column">
                                               <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon active">All Topics</a>
@@ -72,14 +72,19 @@
 
                 <!-- Forum List -->
 
-                <div class="inner-main-body p-2 p-sm-3 collapse forum-content show col-md-12 grid-margin">
-                  <div class="card mb-2" *ngFor=" let post of allPosts | searchPosts:searchValue | filterTopic:searchValue" >
+                <div *ngFor=" let post of allPosts | searchPosts:searchValue | filterTopic:searchValue">
 
+                  <!-- THIS MADE STUFF LOOK WEIRD  -->
+                  <!-- class="inner-main-body p-2 p-sm-3 collapse forum-content show col-md-12 grid-margin" -->
+                  <!-- THIS MADE STUFF LOOK WEIRD. WENT IN THE DIV BELOW THIS  -->
+                <div>
+                  <div class="card mb-2" *ngIf="post.active === true && !selected">
+                    <div>
                     <span class="input-icon input-icon-sm ml-auto w-auto">
-                        <input type="text" id="search" class="form-control form-control-sm bg-gray-200 border-gray-200 shadow-none mb-4 mt-4"
-                        [(ngModel)] ="searchValue" placeholder="Search forum" />
+                      <input type="text" id="search" class="form-control form-control-sm bg-gray-200 border-gray-200 shadow-none mb-4 mt-4"
+                      [(ngModel)] ="searchValue" placeholder="Search forum" />
                     </span>
-              <!-- --------- header ---------------- -->
+                    <!-- --------- header ---------------- -->
                     <div class="card-header">
                       <div class="d-flex align-items-center justify-content-between">
                         <div class="d-flex align-items-center">
@@ -150,10 +155,10 @@
                               <span class="">Edit Post</span></a
                             >
 
-                            <!-- <a
+                            <a
                               class="dropdown-item d-flex align-items-center"
                               *ngIf="post.user.id == currentUserId"
-                               href="javascript:void(0)"  (click)=" disablePost(post)"
+                               href="javascript:void(0)"  (click)=" disablePost(post.id, post)"
                                 data-toggle="modal" data-target="#editModal"
                             >
                               <svg
@@ -173,7 +178,7 @@
                                 ></path>
                               </svg>
                               <span class="">Delete Post</span></a
-                            > -->
+                            >
 
                             <a class="dropdown-item d-flex align-items-center">
                               <svg
@@ -191,7 +196,7 @@
                                 <polyline points="10 9 15 4 20 9"></polyline>
                                 <path d="M4 20h7a4 4 0 0 0 4-4V4"></path>
                               </svg>
-                              <div class="media forum-item" (click)="displayPost(post)" *ngIf="post.active === true"
+                              <div class="media forum-item" (click)="displayPost(post)"
                               data-toggle="collapse" data-target=".forum-content">Go to post</div></a
                             >
                             <a class="dropdown-item d-flex align-items-center">
@@ -229,10 +234,7 @@
                         </div>
                       </div>
                     </div>
-
-
-
-
+                  </div>
 
 
 
@@ -249,14 +251,12 @@
                               <div class="media-body">
                                   <h6><a  data-toggle="collapse" data-target=".forum-content"  class="text-body">{{post.title}}</a></h6>
                                   <a  class="text-muted small">{{post.topic.name}}</a>
-                                  <br>
-                                  <br>
-                                  <br>
+
                                   <p class="text-black">
                                       {{post.content}}
                                   </p>
                                   <a><img [src]="post.imageUrl" class="mr-3 rounded-square" width="350" alt="User" /></a>
-                                  <p class="text-muted"><a href="javascript:void(0)"> {{getMostRecentCommentedUser(post.comments).user.username}} </a> replied <span class="text-secondary font-weight-bold">13 minutes ago</span></p>
+                                  <!-- <p class="text-muted"><a href="javascript:void(0)"> {{getMostRecentCommentedUser(post.comments).user.username}} </a> replied <span class="text-secondary font-weight-bold">13 minutes ago</span></p> -->
                               </div>
 
                             </div>
@@ -267,7 +267,9 @@
 
 
                       </div>
-                      <div class="card-footer">
+
+
+                      <div class="card-footer" *ngIf="post.active === true">
                         <div class="d-flex post-actions">
                           <a
                             href="javascript:;"
@@ -338,11 +340,14 @@
                             </svg>
                             <p class="d-none d-md-block ml-2">Share</p>
                           </a>
-                          <button (click)="setEditForm(); displayEditModal = true;"
-                          data-toggle="modal" data-target="#editModal">Edit Post</button>
+                          <!-- <button (click)="setEditForm(); displayEditModal = true;"
+                          data-toggle="modal" data-target="#editModal">Edit Post</button> -->
                         </div>
                       </div>
+                      </div>
                   </div>
+                </div>
+
 
 
 
@@ -352,14 +357,13 @@
                       <li class="page-item disabled">
                           <span class="page-link has-icon"><i class="fa-solid fa-chevron-left"></i></span>
                       </li>
-                      <li class="page-item"><a class="page-link" href="javascript:void(0)">1</a></li>
-                      <li class="page-item active"><span class="page-link">2</span></li>
+                      <li class="page-item active"><a class="page-link" href="javascript:void(0)">1</a></li>
+                      <li class="page-item"><span class="page-link">2</span></li>
                       <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
                       <li class="page-item">
                           <a class="page-link has-icon" href="javascript:void(0)"><i class="material-icons">chevron_right</i></a>
                       </li>
                   </ul>
-              </div>
               <!-- /Forum List -->
 
 
@@ -439,9 +443,10 @@
 
 
               <!-- Forum Detail    selected detail below  -->
+
               <div  *ngIf="selected">
               <div class="inner-main-body p-2 p-sm-3 collapse forum-content" >
-                  <a  class="btn btn-light btn-sm mb-3 has-icon" data-toggle="collapse" data-target=".forum-content">
+                  <a  class="btn btn-light btn-sm mb-3 has-icon" data-toggle="collapse" data-target=".forum-content" (click)="selected = null">
                     <i class="fa fa-arrow-left mr-2"></i>Back</a>
 
 
@@ -835,7 +840,7 @@
                       </div>
                       <div class="modal-footer">
                           <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
-                          <button type="button" class="btn btn-primary" (click)="createCommentOnPost(selected.id, newComment)"  data-dismiss="modal" >Post Comment</button>
+                          <button type="button" class="btn btn-primary" (click)="createCommentOnPost(selected.id, newComment);"  data-dismiss="modal" >Post Comment</button>
                       </div>
                   </form>
               </div>
