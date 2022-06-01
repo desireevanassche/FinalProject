@@ -34,6 +34,7 @@ export class SocialmediaComponent implements OnInit {
   selectedReply : Comment | null = null;
 
   newComment: Comment = new Comment();
+
   newReply: Comment = new Comment();
 
 
@@ -128,6 +129,10 @@ export class SocialmediaComponent implements OnInit {
 
   displayEditForm() {
     this.display = true;
+  }
+
+  setEditForm(){
+    this.editPost = Object.assign({}, this.selected);
   }
 
   addPost(newPost: Post) {
@@ -277,14 +282,14 @@ export class SocialmediaComponent implements OnInit {
       }
 
       public getMostRecentCommentedUser(comments: Comment[]){
-          console.log(comments);
+          // console.log(comments);
 
 
           let commentIndex = comments.length -1;
-         console.log("this is last :" + commentIndex);
+        //  console.log("this is last :" + commentIndex);
 
            let lastComment =  comments[commentIndex]
-            console.log(lastComment);
+            // console.log(lastComment);
 
         return lastComment;
       }

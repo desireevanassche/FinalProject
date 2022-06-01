@@ -1,3 +1,5 @@
+import { OrderByPipe } from './pipes/orderBy.pipe';
+import { orderBy } from 'lodash';
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -33,6 +35,8 @@ import { ContactComponent } from './components/contact/contact.component';
 import { FilterLightReqPipe } from './pipes/filterlightreq.pipe';
 import { FilterTopicPipe } from './pipes/filtertopic.pipe';
 import { FilterDatePipe } from './pipes/filterdate.pipe';
+import { WatertypefilterPipe } from './pipes/watertypefilter.pipe';
+import { WatercyclefilterPipe } from './pipes/watercyclefilter.pipe';
 
 
 
@@ -67,11 +71,9 @@ import { FilterDatePipe } from './pipes/filterdate.pipe';
     FilterLightReqPipe,
     FilterTopicPipe,
     FilterDatePipe,
-
-
-
-
-
+    WatertypefilterPipe,
+    WatercyclefilterPipe,
+    OrderByPipe
 
 
   ],

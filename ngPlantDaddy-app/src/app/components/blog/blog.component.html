@@ -1,11 +1,16 @@
 <body>
 
 
-<div class = "container">
-  <div><p>search</p>
-  <input type="text" id="search" [(ngModel)] ="searchValue"/></div>
+  <div class="container d-md-flex align-items-stretch">
+    <!-- Page Content  -->
+    <div id="content" class="p-4 p-md-5 pt-5">
 
 
+
+
+
+
+    <div class = "container">
 
 
   <table class="table" *ngIf="!selected">
@@ -29,6 +34,7 @@
 </div>
 
 <div *ngIf="selected && !editBlog">
+  <div class="single-blog-card">
 
   <img [src]="selected.imageUrl">
   <p>{{selected.title}}</p>
@@ -38,6 +44,7 @@
 
   <div *ngIf="currentUserId === 1">
     <button (click)="setEditBlog()">Edit</button></div>
+</div>
 </div>
 
 <!--------- Edit Blog form ------------------------------------------------------------------------------------ -->
@@ -55,7 +62,6 @@
     </form>
   </div>
 </section>
-</body>
 
 <!------------------- NEW BLOG ------------------------------------------ -->
 
@@ -71,14 +77,95 @@
 
   <form class="addForm" name="addForm" *ngIf="!isNumber(currentUserId)">
 
-  Title <input type="text" name="title" class="form-control" [(ngModel)]="newBlog.title">
-  <br>
-  Content <input type="text" name="content" class="form-control" [(ngModel)]="newBlog.content">
-  <br>
-  Image Url  <input type="text" name="imageUrl" class="form-control" [(ngModel)]="newBlog.imageUrl">
-  <br>
-  <input type="submit" name="submit" value="addBlog" (click)="addBlog(newBlog); displayAddForm = false">
+    Title <input type="text" name="title" class="form-control" [(ngModel)]="newBlog.title">
+    <br>
+    Content <input type="text" name="content" class="form-control" [(ngModel)]="newBlog.content">
+    <br>
+    Image Url  <input type="text" name="imageUrl" class="form-control" [(ngModel)]="newBlog.imageUrl">
+    <br>
+    <input type="submit" name="submit" value="addBlog" (click)="addBlog(newBlog); displayAddForm = false">
 
-  <input type="submit" name="submit" value="Cancel" (click)="displayAddForm = false">
+    <input type="submit" name="submit" value="Cancel" (click)="displayAddForm = false">
   </form>
-  </div>
+</div>
+</div>
+
+
+<nav id="sidebar">
+  <div class="side-nav">
+  <div class="p-4 pt-5">
+    <h5>Categories</h5>
+    <ul class="list-unstyled components mb-5">
+      <li>
+        <select [(ngModel)]="searchValue"  name="filterCareDifficulty"  class="custom-select custom-select-sm w-auto mr-1">
+          <option value="" [selected]="'Care Level'">Care Level</option>
+          <option value="easy">Easy</option>
+          <option value="intermediate" >Intermediate</option>
+          <option value="difficult" >Advanced</option>
+          </select>
+      </li>
+
+      <li>
+        <select [(ngModel)]="searchValue"  name="filterLight"  class="custom-select custom-select-sm w-auto mr-1">
+          <option value="" [selected]="'Light Requirement'">Light Requirement</option>
+          <option value="Low Light">Low Light</option>
+          <option value="Partial Sun" >Partial Sun </option>
+          <option value="Full Sun" >Full Sun </option>
+          <option value="Bright Indirect">Bright Indirect </option>
+        </select>
+      </li>
+
+      <li>
+        <select [(ngModel)]="searchValue"  name="waterCycle"  class="custom-select custom-select-sm w-auto mr-1">
+          <option value="" [selected]="'Water Cycle'">Water Cycle</option>
+          <option value="Weekly">Weekly</option>
+          <option value="Bi-Weekly" >Bi-Weekly </option>
+          <option value="Monthly" >Monthly </option>
+        </select>
+      </li>
+      <li>
+        <select [(ngModel)]="searchValue"  name="waterType"  class="custom-select custom-select-sm w-auto mr-1">
+          <option value="" [selected]="'Water Type'">Water Type</option>
+          <option value="Tap">Tap</option>
+          <option value="Filtered" >Filtered </option>
+          <option value="Mineral" >Mineral </option>
+        </select>
+      </li>
+    </ul>
+    <div class="mb-5">
+      <h5>Tag Cloud</h5>
+      <div class="tagcloud" >
+        <a (click)="tagSearch('Care')" class="tag-cloud-link">Care</a>
+        <a (click)="tagSearch('Indoor')" class="tag-cloud-link">Indoor</a>
+        <a (click)="tagSearch('low light')" class="tag-cloud-link">Low Light</a>
+        <a (click)="tagSearch('bright')" class="tag-cloud-link">Bright Indirect Light</a>
+        <a (click)="tagSearch('intermediate')" class="tag-cloud-link">Intermediate Care</a>
+        <a (click)="tagSearch('advanced')" class="tag-cloud-link">Advanced Care</a>
+        <a (click)="tagSearch('tap')" class="tag-cloud-link">Tap Water</a>
+      </div>
+    </div>
+    <div class="mb-5">
+
+        <div class="form-group d-flex">
+          <div class="icon"><span class="icon-paper-plane"></span></div>
+          <div class="search">
+            <input type="text" id="search" [(ngModel)] ="searchValue" placeholder="Search our Library"/>
+          </div>
+
+          </div>
+
+          <div *ngIf="!isNumber(currentUserId)">
+
+
+            <div *ngIf="currentUserId === 1">
+              <button (click)="displayAddForm = true">Add A Blog Post </button>
+            </div>
+          </div>
+            </div>
+            </div>
+            </div>
+            </nav>
+
+
+</div>
+</body>

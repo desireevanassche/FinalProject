@@ -618,8 +618,8 @@ COMMIT;
 START TRANSACTION;
 USE `plantdb`;
 INSERT INTO `user_plant` (`id`, `user_id`, `plant_id`, `height_inches`, `spread_inches`, `nickname`, `pot_diameter_inches`, `image_url`, `home_location`, `description`, `active`, `growth_description`, `growth_image`) VALUES (1, 1, 1, 6, 6, 'Todd', 4, 'https://www.bybrittanygoldwyn.com/wp-content/uploads/2021/03/Sans-Trifasciata-Snake-Plant-6.jpg', 'Living room', 'My happy boi', 1, 'Todd grew about an inch', 'https://cdn.shopify.com/s/files/1/0114/6735/8272/products/Snake_Plant_Variegated_Black_Pot_Compressed.jpg?v=1610578004');
-INSERT INTO `user_plant` (`id`, `user_id`, `plant_id`, `height_inches`, `spread_inches`, `nickname`, `pot_diameter_inches`, `image_url`, `home_location`, `description`, `active`, `growth_description`, `growth_image`) VALUES (2, 1, 7, 4, 4, 'Larry', 3, 'https://www.gardendesign.com/pictures/images/275x295Exact_16x0/site_3/chinese-evergreen-plant-aglaonema-shutterstock-com_15962.jpg', 'Bed Room', 'My other happy boi', 1, NULL, NULL);
-INSERT INTO `user_plant` (`id`, `user_id`, `plant_id`, `height_inches`, `spread_inches`, `nickname`, `pot_diameter_inches`, `image_url`, `home_location`, `description`, `active`, `growth_description`, `growth_image`) VALUES (3, 1, 3, 3, 2, 'Phil', 3, 'https://www.almanac.com/sites/default/files/styles/large/public/image_nodes/aloe-vera-white-pot_sunwand24-ss_edit.jpg?itok=6dE5RWDP', 'Bathroom', 'The bathroom boi', 1, NULL, NULL);
+INSERT INTO `user_plant` (`id`, `user_id`, `plant_id`, `height_inches`, `spread_inches`, `nickname`, `pot_diameter_inches`, `image_url`, `home_location`, `description`, `active`, `growth_description`, `growth_image`) VALUES (2, 4, 7, 4, 4, 'Larry', 3, 'https://www.gardendesign.com/pictures/images/275x295Exact_16x0/site_3/chinese-evergreen-plant-aglaonema-shutterstock-com_15962.jpg', 'Bed Room', 'My other happy boi', 1, NULL, NULL);
+INSERT INTO `user_plant` (`id`, `user_id`, `plant_id`, `height_inches`, `spread_inches`, `nickname`, `pot_diameter_inches`, `image_url`, `home_location`, `description`, `active`, `growth_description`, `growth_image`) VALUES (3, 4, 3, 3, 2, 'Phil', 3, 'https://www.almanac.com/sites/default/files/styles/large/public/image_nodes/aloe-vera-white-pot_sunwand24-ss_edit.jpg?itok=6dE5RWDP', 'Bathroom', 'The bathroom boi', 1, NULL, NULL);
 
 COMMIT;
 
@@ -812,7 +812,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `plantdb`;
-INSERT INTO `growth_snapshot` (`growth_id`, `user_plant_id`, `height_inches`, `spread_inches`, `pot_diameter`, `create_date`, `growth_description`, `growth_image`) VALUES (1, 1, 6, 6, 5, '2022-05-24 12:00:00', 'Todd grew about an inch', 'https://cdn.shopify.com/s/files/1/0114/6735/8272/products/Snake_Plant_Variegated_Black_Pot_Compressed.jpg?v=1610578004');
+INSERT INTO `growth_snapshot` (`growth_id`, `user_plant_id`, `height_inches`, `spread_inches`, `pot_diameter`, `create_date`, `growth_description`, `growth_image`) VALUES (1, 2, 6, 6, 5, '2022-05-24 12:00:00', 'Larry grew about an inch', 'https://cdn.shopify.com/s/files/1/0114/6735/8272/products/Snake_Plant_Variegated_Black_Pot_Compressed.jpg?v=1610578004');
+INSERT INTO `growth_snapshot` (`growth_id`, `user_plant_id`, `height_inches`, `spread_inches`, `pot_diameter`, `create_date`, `growth_description`, `growth_image`) VALUES (2, 2, 8, 8, 6, '2022-06-1 12:00:00', 'Larry grew 2 more inches', 'https://www.thespruce.com/thmb/9PICtNPcU3yIk9uaeUNuKBLtFRA=/3038x3038/smart/filters:no_upscale()/how-to-determine-sunlight-levels-for-houseplants-1402652-01-a5b73a78040c41b9b87e6cd4fc33fa03.jpg');
+INSERT INTO `growth_snapshot` (`growth_id`, `user_plant_id`, `height_inches`, `spread_inches`, `pot_diameter`, `create_date`, `growth_description`, `growth_image`) VALUES (3, 3, 6, 6, 4, '2022-05-24 12:00:00', 'Phil grew an inch', 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/house-plants-1629187361.jpg?crop=0.288xw:0.577xh;0.0465xw,0.205xh&resize=640:*');
+INSERT INTO `growth_snapshot` (`growth_id`, `user_plant_id`, `height_inches`, `spread_inches`, `pot_diameter`, `create_date`, `growth_description`, `growth_image`) VALUES (4, 3, 6, 6, 5, '2022-06-1 12:00:00', 'Phil grew 2 inches', 'https://bloomscape.com/wp-content/uploads/2019/04/bloomscape_peopleplant_monstera-3_uncropped-e1582219163767.jpg?ver=136513');
 
 COMMIT;
 
