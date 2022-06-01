@@ -394,7 +394,7 @@ export class UserplantComponent implements OnInit {
   let today = new Date();
   let weekly = new Date(today);
   weekly.setDate(weekly.getDate() + 7);
-  return weekly;
+  return weekly.toISOString();
 
   }
 
@@ -402,14 +402,14 @@ export class UserplantComponent implements OnInit {
     let today = new Date();
     let twoWeeks = new Date(today);
     twoWeeks.setDate(twoWeeks.getDate() + 14);
-    return twoWeeks;
+    return twoWeeks.toISOString();
 }
 
   monthly() {
     let today = new Date();
     let monthly = new Date(today);
     monthly.setDate(monthly.getDate() + 30);
-    return monthly;
+    return monthly.toISOString();
   }
 
 
@@ -436,8 +436,27 @@ export class UserplantComponent implements OnInit {
 
     // }
 
+checkNextWaterDay(){
+  let today = new Date();
+  let next = this.selectedWater.completeDate;
+  let nextWater = new Date(next);
 
 
+}
+
+
+// let today = new Date();
+
+
+// let due = this.selectedTodo.dueDate;
+// let dueDate = new Date(due);
+
+
+// if(today > dueDate){
+//   return 'badge bg-danger';
+// } else {
+//   return 'badge bg-success';
+// }due);
 
 
 }
