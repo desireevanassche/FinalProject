@@ -34,6 +34,8 @@ export class UserplantComponent implements OnInit {
 
   currentUserId: number | null = 0;
 
+  searchValue: string = "";
+
 
   plants: Plant[] = [];
 

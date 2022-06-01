@@ -1,77 +1,63 @@
 <body>
 
+  <div class="container d-md-flex align-items-stretch">
+    <!-- Page Content  -->
+    <div id="content" class="p-4 p-md-5 pt-5">
 
 
-<h1>{{ title }}</h1>
-
-<div *ngIf="displayAddUserPlantForm == false && !selected" class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-  <button class="btn btn-primary btn-lg" (click)="displayAddUserPlantForm = true">Add a Plant to your Garden?</button>
-</div>
-
-<table class="table" *ngIf="!selected && displayAddUserPlantForm == false">
-
-  <tbody>
-    <tr *ngFor="let userplant of userPlants">
-      <div class="plantCard">
-
-          <td *ngIf="userplant.active === true">
-            <img id="image" [src]="userplant.imageUrl" class="img-thumbnail" height="100px" />
-          </td>
-
-      <ul>
-      <li *ngIf="userplant.active === true">{{ userplant.nickname }}</li>
-      <!-- <li *ngIf="userplant.active === true">{{ userplant.height }}</li>
-      <li *ngIf="userplant.active === true">{{ userplant.spread }}</li>
-      <li *ngIf="userplant.active === true">{{ userplant.potDiameter }}</li>
-      <li *ngIf="userplant.active === true">{{ userplant.homeLocation }}</li>
-      <li *ngIf="userplant.active === true">{{ userplant.description }}</li> -->
-      <li *ngIf="userplant.active === true">
-
-        <li><button class="btn btn-primary btn-lg" (click)="setPlant(userplant)">
-          Details
-        </button></li>
-
-      </ul>
+      <div class = "container" id="plants">
 
 
+        <div class="plantCards" *ngIf="!selected && displayAddUserPlantForm == false">
+            <div class="card" *ngFor="let userplant of userPlants | searchfilter:searchValue">
+
+              <img [src]="userplant.imageUrl" alt="" class="card-image" height="250" width="250px"  >
+              <!-- <ul *ngIf="userplant.active === true">
+                <li *ngIf="userplant.active === true">{{ userplant.nickname }}</li>
+
+              </ul> -->
+              <button style="position:absolute;left:0;top:0;" class="btn btn-primary btn-lg" (click)="setPlant(userplant)">
+                {{ userplant.nickname }}
+              </button>
+          </div>
+        </div>
       </div>
-    </tr>
-  </tbody>
-</table>
-
-<div class="selectedPlant" *ngIf="selected && editForm == false">
-  <br>
-  <br>
-  <br>
-  <img class="selectedImage" [src]="selected.imageUrl"/>
-  <br>
-  <br>
-  <ul class="list-group">
-    <li class="list-group-item">ID: {{ selected.id }}</li>
-    <li class="list-group-item">Nickname: {{ selected.nickname }}</li>
-    <li class="list-group-item">Height: {{ selected.height }} inches</li>
-    <li class="list-group-item">Spread: {{ selected.spread }} inches</li>
-    <li class="list-group-item">Pot Diameter: {{ selected.potDiameter }} inches</li>
-    <li class="list-group-item">Location:{{ selected.homeLocation }}</li>
-    <p class="list-group-item">{{ selected.description }}</p>
-  </ul>
-  <br>
-  <br>
-  <br>
 
 
-  <div *ngIf="selected.user.id == currentUserId">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-3">
-          <button class="btn btn-primary btn-lg" (click)="selectedReset(selected.id); displayTodos = false; editTodoForm = false; displayAddTodoForm = false; displaySelectedTodo = false">Back</button>
-        </div>
 
-        <div class="col-lg-3">
-          <button class="btn btn-primary btn-lg" (click)="setEditUserPlant(); editForm = true; displayTodos = false; displayAddTodoForm = false; displaySelectedTodo = false">
-            Edit
-          </button>
-        </div>
+        <div class="selectedPlant" *ngIf="selected && editForm == false">
+        <br>
+        <br>
+        <br>
+        <img class="selectedImage" [src]="selected.imageUrl"/>
+        <br>
+        <br>
+            <ul class="list-group">
+              <li class="list-group-item">ID: {{ selected.id }}</li>
+              <li class="list-group-item">Nickname: {{ selected.nickname }}</li>
+              <li class="list-group-item">Height: {{ selected.height }} inches</li>
+              <li class="list-group-item">Spread: {{ selected.spread }} inches</li>
+              <li class="list-group-item">Pot Diameter: {{ selected.potDiameter }} inches</li>
+              <li class="list-group-item">Location:{{ selected.homeLocation }}</li>
+              <p class="list-group-item">{{ selected.description }}</p>
+            </ul>
+            <br>
+            <br>
+            <br>
+
+
+        <div *ngIf="selected.user.id == currentUserId">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-3">
+                <button class="btn btn-primary btn-lg" (click)="selectedReset(selected.id); displayTodos = false; editTodoForm = false; displayAddTodoForm = false; displaySelectedTodo = false">Back</button>
+              </div>
+
+              <div class="col-lg-3">
+                <button class="btn btn-primary btn-lg" (click)="setEditUserPlant(); editForm = true; displayTodos = false; displayAddTodoForm = false; displaySelectedTodo = false">
+                  Edit
+                </button>
+              </div>
 
         <div class="col-lg-3">
           <button class="btn btn-primary btn-lg" (click)="displayPlantsTodos(selected.id); displayTodos = true">
@@ -100,10 +86,10 @@
 
 
 
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</div>
 
 
 
@@ -294,14 +280,8 @@
 </div>
 
 
-<br>
-<br>
-<br>
-<br>
-
-
 <div *ngIf="selected && editForm == true">
-<section class="vh-100" id="registrationForm" style="background-color: #eee">
+    <section class="vh-100" id="registrationForm" style="background-color: #eee">
       <div class="container h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col-lg-12 col-xl-11">
@@ -573,13 +553,90 @@
     <button class="btn btn-primary" (click)="addWater(newWater, selected.id); displayAddWater = true; displayWater(newWater)" type="submit">Submit</button>
     <button class="btn btn-primary" (click)="displayAddWater = false" type="submit">Cancel</button>
   </div>
-</form>
+      </form>
 
 
 
-<div *ngIf="displayAddWater == true && selectedWater">
-<p>{{selectedWater.name}}</p>
-<p>{{selectedWater.dueDate}}</p>
-<p>{{selectedWater.completeDate}}</p>
-</div>
+      <div *ngIf="displayAddWater == true && selectedWater">
+        <p>{{selectedWater.name}}</p>
+        <p>{{selectedWater.dueDate}}</p>
+        <p>{{selectedWater.completeDate}}</p>
+      </div>
+  </div>
+
+
+  <nav id="sidebar">
+  <div class="side-nav">
+  <div class="p-4 pt-5">
+    <h5>Categories</h5>
+    <ul class="list-unstyled components mb-5">
+      <li>
+        <select [(ngModel)]="searchValue"  name="filterCareDifficulty"  class="custom-select custom-select-sm w-auto mr-1">
+          <option value="" [selected]="'Care Level'">Care Level</option>
+          <option value="easy">Easy</option>
+          <option value="intermediate" >Intermediate</option>
+          <option value="difficult" >Advanced</option>
+          </select>
+      </li>
+
+      <li>
+        <select [(ngModel)]="searchValue"  name="filterLight"  class="custom-select custom-select-sm w-auto mr-1">
+          <option value="" [selected]="'Light Requirement'">Light Requirement</option>
+          <option value="Low Light">Low Light</option>
+          <option value="Partial Sun" >Partial Sun </option>
+          <option value="Full Sun" >Full Sun </option>
+          <option value="Bright Indirect">Bright Indirect </option>
+        </select>
+      </li>
+
+      <li>
+        <select [(ngModel)]="searchValue"  name="waterCycle"  class="custom-select custom-select-sm w-auto mr-1">
+          <option value="" [selected]="'Water Cycle'">Water Cycle</option>
+          <option value="Weekly">Weekly</option>
+          <option value="Bi-Weekly" >Bi-Weekly </option>
+          <option value="Monthly" >Monthly </option>
+        </select>
+      </li>
+      <li>
+        <select [(ngModel)]="searchValue"  name="waterType"  class="custom-select custom-select-sm w-auto mr-1">
+          <option value="" [selected]="'Water Type'">Water Type</option>
+          <option value="Tap">Tap</option>
+          <option value="Filtered" >Filtered </option>
+          <option value="Mineral" >Mineral </option>
+        </select>
+      </li>
+    </ul>
+    <div class="mb-5">
+      <h5>Tag Cloud</h5>
+      <!-- <div class="tagcloud" >
+        <a (click)="tagSearch('Care')" class="tag-cloud-link">Care</a>
+        <a (click)="tagSearch('Indoor')" class="tag-cloud-link">Indoor</a>
+        <a (click)="tagSearch('low light')" class="tag-cloud-link">Low Light</a>
+        <a (click)="tagSearch('bright')" class="tag-cloud-link">Bright Indirect Light</a>
+        <a (click)="tagSearch('intermediate')" class="tag-cloud-link">Intermediate Care</a>
+        <a (click)="tagSearch('advanced')" class="tag-cloud-link">Advanced Care</a>
+        <a (click)="tagSearch('tap')" class="tag-cloud-link">Tap Water</a>
+      </div> -->
+    </div>
+    <div class="mb-5">
+
+        <div class="form-group d-flex">
+          <div class="icon"><span class="icon-paper-plane"></span></div>
+          <div class="search">
+            <input type="text" id="search" [(ngModel)] ="searchValue" placeholder="Search our Library"/>
+          </div>
+
+          </div>
+<div></div>
+
+
+            </div>
+            </div>
+            </div>
+            </nav>
+            </div>
+
+
+
+
 </body>

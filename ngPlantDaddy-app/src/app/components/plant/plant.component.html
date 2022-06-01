@@ -37,7 +37,7 @@
 
         <tbody>
 
-          <tr *ngFor="let plant of plants | searchPlants:searchValue | filterLightReq:filterLight | watertypefilter:filterWaterType | watercyclefilter:filterWaterCycle">
+          <tr *ngFor="let plant of plants orderBy:'commonName' | searchPlants:searchValue | filterLightReq:filterLight | watertypefilter:filterWaterType | watercyclefilter:filterWaterCycle">
             <div class="plantCard">
 
             <td *ngIf="plant.active === true">
@@ -82,8 +82,8 @@
       <!-------------------- SINGLE PLANT SELECTED  ------------------------------------------------------>
       <!-- AND DISPLAY SINGLE + true  -->
 
-      <div class="singlePlant">
-        <div *ngIf="selected && !setEditPlant">
+      <div *ngIf="selected && !setEditPlant">
+          <div class="singlePlant">
           <div> <img [src]="selected.imageUrl"/></div>
 
           <div class="textbox">
