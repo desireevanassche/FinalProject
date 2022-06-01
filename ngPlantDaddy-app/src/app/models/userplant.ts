@@ -1,3 +1,4 @@
+import { Growthdata } from './growthdata';
 import { Plant } from "./plant";
 import { User } from "./user";
 
@@ -17,6 +18,7 @@ export class Userplant {
   active: boolean | null;
   user: User;
   plant: Plant;
+  growthData : Growthdata[] | null;
 
   // photos: Photo [] | null;
 
@@ -37,7 +39,7 @@ constructor(
   active: boolean = true,
   plant: Plant = new Plant(),
   user : User = new User (),
-
+  growthData : Growthdata[] = [],
   // photos : Photo []
 
 
@@ -56,6 +58,7 @@ this.growthImage = growthImage;
 this.active = active;
 this.plant = plant;
 this.user = user;
+this.growthData = growthData;
 
 // this.photos = photos;
 

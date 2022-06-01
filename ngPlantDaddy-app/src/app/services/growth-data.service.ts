@@ -1,3 +1,4 @@
+import { Growthdata } from './../models/growthdata';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
@@ -26,59 +27,60 @@ export class GrowthDataService {
   }
 
 
-  public indexUserPlants() {
-    return this.http.get<Userplant[]>(this.url, this.getHttpOptions()).pipe(
+  public indexGrowthData(userPlantId : number) {
+    return this.http.get<Growthdata[]>(this.url + "/" + userPlantId + "/growth", this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
 
         return throwError(() => {
-          new Error('index user plants has an error- KABOOM!');
+          new Error('index all growth details based on user plant id has an error- KABOOM!');
         });
       })
 
     );
   }
 
-  public create(newUserPlant: Userplant) {
-    return this.http.post<Userplant>(this.url, newUserPlant, this.getHttpOptions()).pipe(
-      catchError((err: any) => {
-        console.log(err);
-        return throwError('UserPlantService: error creating Plant');
-      })
-    );
-  }
-  public update(updateUserPlant: Userplant, id : number) {
-    const httpOptions = {
-      headers: {
-        'Content-type': 'application/json',
-        Authorization: 'Basic ' + this.auth.getCredentials(),
-      },
-    };
-    return this.http
-      .put<Userplant>(this.url + "/" + id, updateUserPlant, this.getHttpOptions())
-      .pipe(
-        catchError((err: any) => {
-          console.log(err);
-          return throwError('PlantService: error creating Plant');
-        })
-      );
-  }
-public deactivate(deactivate: Userplant, id : number) {
-  return this.http
-      .put<Userplant>(this.url + "/deactivate/" + id, deactivate, this.getHttpOptions())
-      .pipe(
-        catchError((err: any) => {
-          console.log(err);
-          return throwError('PlantService: error creating Plant');
-        })
-      );
-}
+//   public create(newUserPlant: Userplant) {
+//     return this.http.post<Userplant>(this.url, newUserPlant, this.getHttpOptions()).pipe(
+//       catchError((err: any) => {
+//         console.log(err);
+//         return throwError('UserPlantService: error creating Plant');
+//       })
+//     );
+//   }
+//   public update(updateUserPlant: Userplant, id : number) {
+//     const httpOptions = {
+//       headers: {
+//         'Content-type': 'application/json',
+//         Authorization: 'Basic ' + this.auth.getCredentials(),
+//       },
+//     };
+//     return this.http
+//       .put<Userplant>(this.url + "/" + id, updateUserPlant, this.getHttpOptions())
+//       .pipe(
+//         catchError((err: any) => {
+//           console.log(err);
+//           return throwError('PlantService: error creating Plant');
+//         })
+//       );
+//   }
+// public deactivate(deactivate: Userplant, id : number) {
+//   return this.http
+//       .put<Userplant>(this.url + "/deactivate/" + id, deactivate, this.getHttpOptions())
+//       .pipe(
+//         catchError((err: any) => {
+//           console.log(err);
+//           return throwError('PlantService: error creating Plant');
+//         })
+//       );
+// }
 
-show(id: number) {
-  return this.http.get<Userplant>(this.url + "/" + id, this.getHttpOptions()).pipe(
+show(userPlantId: number, growthId : number) {
+  return this.http.get<Growthdata>(this.url + "/" + userPlantId + "/growth/" + growthId, this.getHttpOptions()).pipe(
+
     catchError((err: any) => {
       console.log(err);
-      return throwError('PlantService: error retrieving plant list');
+      return throwError('Growth Serv: error retrieving a single growth detail ');
     })
   );
 }

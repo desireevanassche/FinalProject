@@ -1,5 +1,6 @@
 package com.skilldistillery.plantdaddyapp.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,13 +30,23 @@ public class PlantGrowthServiceImpl implements PlantGrowthService {
 	public List<PlantGrowth> indexGrowthByUserPlantId(int userPlantId, String username) {
 		System.out.println(userPlantId);
 		User user = userRepo.findByUsername(username);
-
+			System.out.println(user);
 		if (user != null) {
 			Optional<UserPlant> plantOp = plantRepo.findById(userPlantId);
-
+				System.out.println(plantOp);
 			if (plantOp.isPresent()) {
+				
 				UserPlant plant = plantOp.get();
-				List<PlantGrowth> growth = growRepo.findByUserPlant_Id(plant.getId());
+				System.out.println(plant.getId());
+				
+				List<PlantGrowth> growth = growRepo.findByUserPlant_Id(userPlantId);
+				
+//				if(growth == null) {
+//					List<PlantGrowth> newGrowth = new ArrayList<PlantGrowth>();
+					
+//				}
+				
+				System.out.println(growth);
 
 				return growth;
 			}

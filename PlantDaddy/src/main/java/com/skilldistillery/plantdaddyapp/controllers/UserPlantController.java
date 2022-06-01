@@ -81,6 +81,7 @@ public class UserPlantController {
 		
 		return growthServ.indexGrowthByUserPlantId(userPlantId, principal.getName());
 		
+		
 	}
 	
 	
@@ -92,6 +93,7 @@ public class UserPlantController {
 			) {
 		
 		return growthServ.findGrowthById(userPlantId, growthId, principal.getName());
+		
 	}
 	
 	
