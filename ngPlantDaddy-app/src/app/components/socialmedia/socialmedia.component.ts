@@ -111,16 +111,6 @@ export class SocialmediaComponent implements OnInit {
   }
 
 
-  reloadComments(postId : number){
-    this.commentSvc.indexComments(postId).subscribe({
-      next : (data)=>{
-        this.comments = data;
-
-      },
-      error: (err) => {
-        console.error(err);
-   } });
-  }
 
 
   displayTable() {
@@ -265,6 +255,30 @@ export class SocialmediaComponent implements OnInit {
   }
 
 
+
+
+  reloadComments(postId : number){
+    this.commentSvc.indexComments(postId).subscribe({
+      next : (data)=>{
+        this.comments = data;
+
+      },
+      error: (err) => {
+        console.error(err);
+   } });
+  }
+
+      // i want the number of comments on one post
+      public getNumOfCommentsOnPost(postId: number) {
+
+        return this.comments.length;
+
+      }
+
+
+
+
+  // displayAllComments(postId:number){
 
 
 }

@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { TodoService } from './../../services/todo.service';
 import { PlantService } from './../../services/plant.service';
 
@@ -8,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { Plant } from 'src/app/models/plant';
 import { Todo } from 'src/app/models/todo';
+import { config } from 'rxjs';
 
 @Component({
   selector: 'app-userplant',
@@ -61,6 +63,8 @@ export class UserplantComponent implements OnInit {
   editTodoForm: Boolean = false;
 
   displayAddTodoForm: Boolean = false;
+
+  displaySelectedTodo: Boolean = false;
 
   constructor(
     private userPlantSvc: UserplantService,
@@ -343,6 +347,39 @@ export class UserplantComponent implements OnInit {
   }
 
 
+  checkWarningForIndividualTodo() {
+    let today = new Date();
+    let warningDay = new Date(today);
+
+    warningDay.setDate(warningDay.getDate() - 3)
+    let dueDate = this.selectedTodo.dueDate;
+
+
+     let checkDate = new Date(dueDate);
+       if(warningDay == today){
+         return 'badge bg-warning';
+       } if(checkDate < today) {
+          return 'badge bg-danger';
+    }
+
+
+  }
+
+  checkWarning(todo: Todo) {
+    let today = new Date();
+    let warningDay = new Date(today);
+
+    warningDay.setDate(warningDay.getDate() - 3)
+    let dueDate = todo.dueDate;
+
+
+     let checkDate = new Date(dueDate);
+       if(warningDay == today){
+         return 'badge bg-warning';
+       } if(checkDate < today) {
+          return 'badge bg-danger';
+    }
+  }
 
 
 
