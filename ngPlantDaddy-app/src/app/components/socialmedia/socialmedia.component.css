@@ -189,6 +189,6 @@ img {
   padding-left: 400px;
 }
 .reply-for-post{
-  padding-left: 600px;
+  padding-left: 600px !important;
 }
 

@@ -7,6 +7,7 @@ import { PostService } from 'src/app/services/post.service';
 import { Topic } from 'src/app/models/topic';
 import { CommentService } from 'src/app/services/comment.service';
 import { User } from 'src/app/models/user';
+import { identifierName } from '@angular/compiler';
 
 @Component({
   selector: 'app-socialmedia',
@@ -269,16 +270,24 @@ export class SocialmediaComponent implements OnInit {
   }
 
       // i want the number of comments on one post
-      public getNumOfCommentsOnPost(postId: number) {
+      public getNumOfCommentsOnPost(post: Post) {
 
-        return this.comments.length;
+        return post.comments.length;
 
       }
 
+      public getMostRecentCommentedUser(comments: Comment[]){
+          console.log(comments);
 
 
+          let commentIndex = comments.length -1;
+         console.log("this is last :" + commentIndex);
 
-  // displayAllComments(postId:number){
+           let lastComment =  comments[commentIndex]
+            console.log(lastComment);
+
+        return lastComment;
+      }
 
 
 }
