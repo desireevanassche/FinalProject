@@ -1,3 +1,5 @@
+import { GrowthDataService } from './../../services/growth-data.service';
+import { Growthdata } from './../../models/growthdata';
 import { DatePipe } from '@angular/common';
 import { TodoService } from './../../services/todo.service';
 import { PlantService } from './../../services/plant.service';
@@ -9,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { Plant } from 'src/app/models/plant';
 import { Todo } from 'src/app/models/todo';
+import { single } from 'rxjs';
 
 @Component({
   selector: 'app-userplant',
@@ -40,6 +43,20 @@ export class UserplantComponent implements OnInit {
   plants: Plant[] = [];
 
   plant: Plant | null = null;
+
+
+  selectedGrowth: Growthdata | null = null;
+
+  growthData: Growthdata[]= [];
+
+  singleGrowthData: Growthdata = new Growthdata();
+
+  showGrowth: boolean = false;
+
+  leftSide : boolean = false;
+
+
+
 
 //------------------TODO----------------------
 
@@ -85,7 +102,7 @@ export class UserplantComponent implements OnInit {
     private authServ: AuthService,
     private plantSvc: PlantService,
     private todoService: TodoService,
-
+    private growthServ : GrowthDataService
 
 
   ) {}
@@ -191,13 +208,19 @@ export class UserplantComponent implements OnInit {
     );
   }
   setPlant(userplant: Userplant) {
+
+
     this.selected = userplant;
+    console.log(this.selected.growthData);
+
   }
   setEditUserPlant() {
     this.editUserPlant = Object.assign({}, this.selected);
   }
   displayUserPlant(plant: Userplant) {
     this.selected = plant;
+    console.log(this.selected);
+
   }
   displayTable() {
     this.selected = null;
@@ -226,6 +249,41 @@ export class UserplantComponent implements OnInit {
   }
 
 
+  reloadGrowthData(userPlantId: number){
+  console.log(userPlantId);
+
+
+     this.growthServ.indexGrowthData(userPlantId).subscribe({
+
+
+
+      next:(growthDataArray)=>{
+        console.log(userPlantId);
+
+        this.growthData = growthDataArray;
+        console.log(growthDataArray);
+        console.log(this.growthData);
+
+      },
+      error:(growErr)=>{
+        console.log(growErr);
+
+      }
+
+
+     })
+
+   }
+
+
+
+
+
+
+
+
+
+
 
   reloadTodos(){
     this.todoService.index().subscribe({
@@ -234,7 +292,7 @@ export class UserplantComponent implements OnInit {
         this.todos = data;
       },
       error: (err) => {
-        console.log(err + " error inside reload todos index in todo comp.ts");
+        console.log(err + " error inside reload todos index in userplant comp.ts");
 
       }
     })
@@ -256,6 +314,54 @@ export class UserplantComponent implements OnInit {
     })
   }
 
+  left: boolean = true;
+  determineLeftOrRight(){
+  if(this.left){
+    this.left = false;
+    return "timeline-2 left-2";
+  }
+  else{
+   this.left= true;
+   return "timeline-2 right-2";
+  }
+  }
+
+
+
+
+  // displayLeftSideTimeLine(selected: Userplant){
+  //   console.log(selected);
+
+  //   if(this.selected.id % 2 === 0){
+
+  //     console.log("object from left side"+this.selected.id);
+  //   this.leftSide = true;
+  //     return this.leftSide;
+  //   }
+
+
+
+  // }
+  // displayRightSideTimeLine(selected: Userplant){
+  //   if(selected.id % 2  > 0){
+  //     console.log("object from left side"+this.selected);
+
+  //     return this.selected;
+  //   }
+
+
+  // }
+
+
+
+
+
+
+  displayGrowthData(userPlant: Userplant){
+   this.selected = userPlant;
+
+
+  }
 
 
 
@@ -431,6 +537,17 @@ export class UserplantComponent implements OnInit {
     displayWater = (todo: Todo) => {
       this.selectedWater = todo;
     }
+
+
+
+
+
+
+
+
+
+
+
 
 
 

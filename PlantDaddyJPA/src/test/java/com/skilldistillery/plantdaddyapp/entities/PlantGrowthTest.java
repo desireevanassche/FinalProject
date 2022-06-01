@@ -76,7 +76,7 @@ class PlantGrowthTest {
 		
 		assertNotNull(pGrowth);
 		assertNotNull(pGrowth.getId());
-		assertEquals("Todd", pGrowth.getUserPlant().getNickname());
+		assertEquals("Larry", pGrowth.getUserPlant().getNickname());
 		
 	}
 

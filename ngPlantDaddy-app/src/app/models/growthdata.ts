@@ -6,6 +6,7 @@ export class Growthdata {
   potDiameter:number | null;
   growthDescription: string | null;
   growthImage: string | null;
+  createDate: string | null;
 
 
 
@@ -16,6 +17,7 @@ constructor(
   potDiameter:number = 0,
   growthDescription: string = "",
   growthImage: string = "",
+  createDate: string = ""
 
 )
 {
@@ -26,6 +28,7 @@ this.spread = spread;
 this.potDiameter = potDiameter,
 this.growthDescription = growthDescription;
 this.growthImage = growthImage;
+this.createDate = createDate;
 
 }
 

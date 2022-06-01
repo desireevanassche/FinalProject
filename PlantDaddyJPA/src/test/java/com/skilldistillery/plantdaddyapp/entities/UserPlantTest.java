@@ -171,7 +171,6 @@ class UserPlantTest {
 		
 		assertNotNull(uPlant);
 		assertNotNull(uPlant.getId());
-		assertTrue(uPlant.getGrowthData().size()>0);
 	}
 	
 	

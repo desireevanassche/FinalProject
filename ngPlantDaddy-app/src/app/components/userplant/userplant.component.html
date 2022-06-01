@@ -1,4 +1,4 @@
-<body>
+<body style="background-color: rgba(36, 88, 24, 0.321);">
 
   <div *ngIf="displayAddUserPlantForm == false && !selected" class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
     <button class="btn btn-primary btn-lg" (click)="displayAddUserPlantForm = true">Add a Plant to your Garden?</button>
@@ -7,6 +7,19 @@
   <div class="container d-md-flex align-items-stretch">
     <!-- Page Content  -->
     <div id="content" class="p-4 p-md-5 pt-5">
+
+
+
+<table class="table" *ngIf="!selected && displayAddUserPlantForm == false">
+
+
+  <tbody>
+    <tr *ngFor="let userplant of userPlants">
+      <div class="plantCard">
+
+          <td *ngIf="userplant.active === true">
+            <img id="image" [src]="userplant.imageUrl" class="img-thumbnail" height="100px" />
+          </td>
 
 
       <div class = "container" id="plants">
@@ -29,6 +42,35 @@
 
 
 
+<!-- ----------------------------------------------- DETAIL VIEW OF A USER PLANT --------------------------------- -->
+
+
+
+
+
+
+<div class="selectedPlant" *ngIf="selected && editForm == false">
+  <br>
+  <br>
+  <br>
+  <img class="selectedImage" [src]="selected.imageUrl"/>
+  <br>
+  <br>
+  <ul class="list-group">
+    <li class="list-group-item">ID: {{ selected.id }}</li>
+    <li class="list-group-item">Nickname: {{ selected.nickname }}</li>
+    <li class="list-group-item">Height: {{ selected.height }} inches</li>
+    <li class="list-group-item">Spread: {{ selected.spread }} inches</li>
+    <li class="list-group-item">Pot Diameter: {{ selected.potDiameter }} inches</li>
+    <li class="list-group-item">Location:{{ selected.homeLocation }}</li>
+    <p class="list-group-item">{{ selected.description }}</p>
+  </ul>
+  <br>
+  <br>
+  <br>
+
+<!--
+
         <div class="selectedPlant" *ngIf="selected && editForm == false">
         <br>
         <br>
@@ -47,7 +89,7 @@
             </ul>
             <br>
             <br>
-            <br>
+            <br> -->
 
 
         <div *ngIf="selected.user.id == currentUserId">
@@ -76,6 +118,17 @@
           </button>
         </div>
 
+        <div class="col-lg-3">
+          <button class="btn btn-primary btn-lg" (click)=" displayGrowthData(selected);
+           showGrowth =true;
+           editForm = false;
+            displayTodos = false;
+            displayAddTodoForm = false;
+             displaySelectedTodo = false">
+            Display My Plants Growth
+          </button>
+        </div>
+
 
         <br>
         <br>
@@ -94,13 +147,69 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
 
 
 
+<div id="container" *ngIf="selected && showGrowth">
+<div class="container" *ngFor="let growth of selected.growthData">
+  <div class="plantGrowth"  >
+
+    <section style="background-color: rgba(36, 88, 24, 0.321);">
+      <div class="container py-5">
+        <div class="main-timeline-2">
 
 
+          <div [ngClass]="determineLeftOrRight()">
+            <div class="card">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(135).webp" class="card-img-top"
+                alt="Responsive image">
+              <div class="card-body p-4">
+                <h4 class="fw-bold mb-4">{{selected.nickname}}</h4>
+                <h5  class="text-muted mb-4">{{selected.commonName}} </h5>
+                <h5  class="text-muted mb-4">{{selected.type}} </h5>
 
+                <p class="text-muted mb-4"><i class="far fa-clock" aria-hidden="true"></i> {{growth.createDate}}</p>
 
+                <ul>
+                  <li> Height: {{growth.height}}</li>
+                 <li> Spread: {{growth.spread}}</li>
+                  <li>Pot Diameter: {{growth.potDiameter}}</li>
+                </ul>
+
+                <p class="mb-0">{{growth.growthDescription}}</p>
+              </div>
+            </div>
+          </div>
+<!--
+          <div class="timeline-2 right-2" *ngIf="displaySideRightTimeLine(selected)">
+            <div class="card">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(129).webp" class="card-img-top"
+                alt="Responsive image">
+              <div class="card-body p-4">
+                <h4 class="fw-bold mb-4">Duis aute irure dolor</h4>
+                <p class="text-muted mb-4"><i class="far fa-clock" aria-hidden="true"></i> 2016</p>
+                <p class="mb-0">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+                  doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
+                  architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
+                  aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem
+                  sequi nesciunt.</p>
+              </div>
+            </div>
+          </div> -->
+
+        </div>
+      </div>
+    </section>
+
+  </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ----------------------------------------------DETAIL form OF PLANT -------------------------------------- -->
 
 
 
@@ -281,8 +390,18 @@
         </div>
       </div>
 </section>
+
+
+
+
 </div>
 
+
+<br>
+<br>
+<br>
+<br>
+<!-- ---------------------------------------- edit form ------------------------------------------ -->
 
 <div *ngIf="selected && editForm == true">
     <section class="vh-100" id="registrationForm" style="background-color: #eee">
@@ -300,11 +419,11 @@
                     <form class="mx-1 mx-md-4">
                       <div class="d-flex flex-row align-items-center mb-4">
                         <div class="form-outline flex-fill mb-0">
-                          <input name="nick name" [(ngModel)]="editUserPlant.nickname"
+                          <input name="nickname" [(ngModel)]="editUserPlant.nickname"
                             type="text"
                             class="form-control"
                           />
-                          <label class="form-label" name="nickname">
+                          <label class="form-label" for="nickname">
                             Nickname</label
                           >
                         </div>
@@ -429,7 +548,7 @@
     </section>
 </div>
 
-
+<!-- --------------------------- SELECTED TODO VIEW OF A PLANT ------------------------------ -->
 
 <div *ngIf="selected && displayTodos == true">
   <div class="page-content page-container" id="page-content">
