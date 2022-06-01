@@ -14,6 +14,7 @@ export class PostService {
   private url = environment.baseUrl + "api/users/posts";
   private url2 = environment.baseUrl + "api/posts";
   private url3 = environment.baseUrl + "api/users/posts/disable";
+  // private url4 = environment.baseUrl + "api/topics";
 
   constructor(private http : HttpClient, private datePipe : DatePipe,private auth : AuthService) { }
 
@@ -109,5 +110,15 @@ export class PostService {
     )
   }
 
+  //-----------------SHOW POST BY TOPIC-----------------------
+  // showAllTopics() {
+  //   return this.http.get<Topic[]>(this.url4, this.getHttpOptions())
+  //   .pipe(
+  //     catchError((err: any) => {
+  //       console.log(err);
+  //       return throwError('No topics found ');
+  //     })
+  //   );
+  // }
 
 }

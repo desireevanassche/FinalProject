@@ -26,6 +26,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { FilterLightReqPipe } from './pipes/filterlightreq.pipe';
+import { FilterTopicPipe } from './pipes/filtertopic.pipe';
+import { FilterDatePipe } from './pipes/filterdate.pipe';
 
 
 
@@ -50,7 +53,10 @@ import { GoogleMapsModule } from '@angular/google-maps';
     UserplantComponent,
     SearchPlantsPipe,
     SearchPostsPipe,
-    FilterPipe
+    FilterPipe,
+    FilterLightReqPipe,
+    FilterTopicPipe,
+    FilterDatePipe
 
 
 

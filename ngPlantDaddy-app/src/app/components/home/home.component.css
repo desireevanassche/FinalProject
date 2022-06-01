@@ -459,6 +459,11 @@ footer p a {
 
 }
 
+.card-image {
+  height: 100px !important;
+  width: auto;
+}
+
 
 
 
