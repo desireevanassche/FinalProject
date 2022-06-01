@@ -82,8 +82,22 @@
             (click)=" deactivateUserPlant(selected, selected.id); selected = null; displayAddTodoForm = false; editTodoForm = false; displaySelectedTodo = false">
             Deactivate
           </button>
-
         </div>
+
+
+        <br>
+        <br>
+        <br>
+        <br>
+
+
+          <button class="btn btn-primary btn-lg"
+            (click)="displayAddWater = true">
+            Add Water Schedule
+          </button>
+
+
+
       </div>
     </div>
   </div>
@@ -431,7 +445,7 @@
 
 
 
-<div *ngIf="selected && displayTodos == true">
+<div *ngIf="selected && displayTodos == true;">
   <div class="page-content page-container" id="page-content">
     <div class="padding">
       <div class="row">
@@ -476,7 +490,7 @@
                         <a class="dropdown-item" data-abc="true" (click)="displayTodo(todo); displaySelectedTodo = true">See detail</a>
                         <a class="dropdown-item edit" data-abc="true" (click)="setEditTodo(); editTodoForm = true">Edit</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item trash" data-abc="true" (click)="deleteTodo(todo.id)">Delete item</a>
+                        <a class="dropdown-item trash" data-abc="true" (click)="deleteTodo(todo.id); displayTodos = false">Delete item</a>
                       </div>
                     </div>
                   </div>
@@ -491,7 +505,6 @@
 <button class="btn btn-primary" (click)="displayTodos = false" type="submit">Cancel</button>
 </div>
 
-
 <div *ngIf="displaySelectedTodo == true">
   <h1><span [ngClass]="checkWarningForIndividualTodo()">{{selectedTodo.name}}</span></h1>
   <ul>
@@ -499,6 +512,7 @@
     <li>{{ selectedTodo.name }}</li>
     <li>{{ selectedTodo.description }}</li>
     <li>{{ selectedTodo.createdAt }}</li>
+    <li>{{ selectedTodo.completedAt }}</li>
   </ul>
   <button (click)="displaySelectedTodo = false">Cancel</button>
 </div>
@@ -521,6 +535,10 @@
 
     <label class="form-label">Task</label>
     <input type="text" name="name" [(ngModel)]="newTodo.name"/>
+
+
+    <label class="form-label">Due Date</label>
+    <input type="date" name="dueDate" [(ngModel)]="newTodo.dueDate">
 
     <!-- <input type="number" name="userPlantId" [(ngModel)]="newTodo.userplant.id"/> -->
 
@@ -552,4 +570,45 @@
   </div>
 </div> -->
 
+<form *ngIf="displayAddWater == true" class="row g-3">
+  <div class="col-md-6">
 
+    <select name="name" class="form-select" [(ngModel)]="newTodo.name">
+    <option value="water schedule">Water Schedule</option>
+  </select>
+
+  <label class="form-label">Start Date</label>
+  <input type="date" name="dueDate" [(ngModel)]="newTodo.dueDate">
+
+  <select
+    name="completedAt" class="form-select" [(ngModel)]="newTodo.completedAt">
+      <option [value]="weekly()">Weekly</option>
+      <option [value]="biWeekly()">Bi-Weekly</option>
+      <option [value]="monthly()">Monthly</option>
+    </select>
+
+
+
+    <button class="btn btn-primary" (click)="addTodo(newTodo, selected.id);" type="submit">Submit</button>
+    <button class="btn btn-primary" (click)="displayAddWater = false" type="submit">Cancel</button>
+  </div>
+</form>
+
+<!-- <form *ngIf="displayAddTodoForm == true" class="row g-3">
+  <div class="col-md-6">
+
+    <label class="form-label">Task</label>
+    <input type="text" name="name" [(ngModel)]="newTodo.name"/>
+
+
+    <label class="form-label">Due Date</label>
+    <input type="date" name="dueDate" [(ngModel)]="newTodo.dueDate">
+
+    <input type="number" name="userPlantId" [(ngModel)]="newTodo.userplant.id"/>
+
+
+
+    <button class="btn btn-primary" (click)="addTodo(newTodo, selected.id); " type="submit">Submit</button>
+    <button class="btn btn-primary" (click)="displayAddTodoForm = false" type="submit">Cancel</button>
+  </div>
+</form> -->
