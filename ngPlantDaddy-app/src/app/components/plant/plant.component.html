@@ -83,7 +83,7 @@
       <!-- AND DISPLAY SINGLE + true  -->
 
       <div class="singlePlant">
-        <div *ngIf="selected">
+        <div *ngIf="selected && !setEditPlant">
           <div> <img [src]="selected.imageUrl"/></div>
 
           <div class="textbox">

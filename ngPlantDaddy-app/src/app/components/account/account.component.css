@@ -13,7 +13,9 @@ a:hover {
 body{
   background-color: #f9fafb;
   background-image: url("https://live.staticflickr.com/65535/52110090727_23e65fb126_k.jpg");
-  margin-top:20px;}
+  margin-top:20px;
+
+}
 
   h1, h2, h3, h4, h5, h6 {
     margin-top: 0px;
