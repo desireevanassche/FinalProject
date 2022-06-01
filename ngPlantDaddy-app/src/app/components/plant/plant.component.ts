@@ -7,7 +7,7 @@ import { Plant } from 'src/app/models/plant';
 @Component({
   selector: 'app-plant',
   templateUrl: './plant.component.html',
-  styleUrls: ['./plant.component.css'],
+  styleUrls: ['./plant.component.css', './plant.component.sideNav.css'],
 })
 export class PlantComponent implements OnInit {
   title: string = 'Plant Library';

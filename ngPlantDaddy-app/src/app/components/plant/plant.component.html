@@ -1,263 +1,312 @@
+
 <body>
 
+  <div class="container d-md-flex align-items-stretch">
+    <!-- Page Content  -->
+    <div id="content" class="p-4 p-md-5 pt-5">
 
-  <div class="header">
 
-  <section class="library-banner">
-    <div class="container">
+      <div class="lib-header">
 
-        <div class="searchBar">
-          <div class="section-heading text-center">
+        <section class="library-banner">
+          <div class="container">
 
-            <div class="wrapper">
-              <div class="typing-demo">
-                Search our Plant Library!
-              </div>
-          </div>
+              <div class="searchBar">
+                <div class="section-heading text-center">
 
-          </div>
-        </div>
 
 
-
-      <h4>Total Plants in {{title}}: {{getNumOfPlants()}}</h4>
-
-
-
-
-
-          <div class="search">
-            <input type="text" id="search" [(ngModel)] ="searchValue" placeholder="Search our Library"/>
-          </div>
-
-          <select [(ngModel)]="searchValue"  name="filterCareDifficulty"  class="custom-select custom-select-sm w-auto mr-1">
-            <option value="" [selected]="'Care Level'">Care Level</option>
-            <option value="easy">Easy</option>
-            <option value="intermediate" >Intermediate</option>
-            <option value="difficult" >Advanced</option>
-
-          </select>
-
-          <select [(ngModel)]="searchValue"  name="filterLight"  class="custom-select custom-select-sm w-auto mr-1">
-            <option value="" [selected]="'Light Requirement'">Light Requirement</option>
-            <option value="Low Light">Low Light</option>
-            <option value="Partial Sun" >Partial Sun </option>
-            <option value="Full Sun" >Full Sun </option>
-            <option value="Bright Indirect">Bright Indirect </option>
-
-          </select>
-
-      </div>
-
-      <div *ngIf="!isNumber(currentUserId)">
-        <div *ngIf="displayAddForm == false">
-          <button (click)="displayAddForm = true">Add A Plant?</button>
-        </div>
-      </div>
-
-  </section>
-</div>
-
-
-
-<table class="table" *ngIf="!selected">
-
-  <tbody>
-
-    <tr *ngFor="let plant of plants | searchPlants:searchValue">
-      <div class="plantCard">
-
-      <td *ngIf="plant.active === true">
-        <img id="image" [src]="plant.imageUrl" class="img-thumbnail" height="200px"/>
-      </td>
-      <td>
-      <ul>
-          <li *ngIf="plant.active === true"><h4>{{plant.commonName}}</h4></li>
-          <li *ngIf="plant.active === true">{{plant.botanicalName}}</li>
-          <li *ngIf="plant.active === true">Care Level: {{plant.careDifficulty}}</li>
-          <li *ngIf="plant.active === true"><button (click)="setPlant(plant)">Details</button></li>
-        </ul>
-      </td>
-
-    </div>
-    </tr>
-  </tbody>
-</table>
-<br>
-<br>
-
-
-
-<div *ngIf="!selected && displayAddForm == true">
-<form class="addForm" *ngIf="!isNumber(currentUserId)">
-Common Name: <input type="text" name="commonName" class="form-control" required [(ngModel)]="newPlant.commonName"/>
-<br>
-Botanical Name: <input required="true" type="text" name="botanicalName" class="form-control" required [(ngModel)]="newPlant.botanicalName">
-<br>
-Care Difficulty: <input type="text" name="careDifficulty" class="form-control" required [(ngModel)]="newPlant.careDifficulty" required>
-<br>
-Description: <input type="text" name="description" class="form-control" required [(ngModel)]="newPlant.description">
-<br>
-Image: <input type="text" name="imageUrl" class="form-control" required [(ngModel)]="newPlant.imageUrl">
-<br>
-<input type="submit" name="submit" value="Add Plant" (click)="addPlant(); displayAddForm = false">
-<input type="submit" name="submit" value="Cancel" (click)="displayAddForm = false">
-</form>
-</div>
-
-
-<!-------------------- SINGLE PLANT SELECTED  ------------------------------------------------------>
-<!-- AND DISPLAY SINGLE + true  -->
-
-<div class="singlePlant">
-  <div *ngIf="selected">
-    <div> <img [src]="selected.imageUrl"/></div>
-
-    <div class="textbox">
-   <h3>{{selected.commonName}}</h3>
-    <h4>{{selected.botanicalName}}</h4>
-    <p>Care Level: {{selected.careDifficulty}}<br>
-    {{selected.description}}</p>
-    <div *ngIf="selected.user.id == currentUserId">
-      <br>
-    </div>
-    <!-- <button (click)="setEditPlant()">Edit</button> -->
-
-    <button (click)="setEditPlant()" type="button" data-toggle="modal" data-target="#editPlantModal">
-      Edit Plant
-  </button>
-
-
-    <button (click)="deactivate(selected, selected.id); selected = null">Deactivate</button><br>
-
-      <button (click)="selected = null">Back to Library</button>
-
-      <button (click)="selected" type="button" data-toggle="modal" data-target="#careCardModal">
-        Care Card
-    </button>
-
-    </div>
-
-  </div>
-  </div>
-
-
-
-  <!-----------------------------CARE CARD MODAL  --------------------------------------------------------------------------->
-
-
-      <div class="modal fade" id="careCardModal" tabindex="-1" role="dialog" *ngIf="selected" >
-
-          <div class="modal-dialog modal-lg" role="document">
-              <div class="modal-content">
-
-                      <div class="modal-header ">
-                          <h6 class="modal-title mb-0" id="careCardModalLabel"> {{selected.commonName}} Care</h6>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">×</span>
-                          </button>
-                      </div>
-
-                      <div class="modal-body">
-
-                          </div>
-
-                          <div class="d-flex flex-row align-items-center mb-4">
-
-
-                            <ul>
-                            <li>Water Every: {{selected.waterCycle}}</li>
-                            <li>With {{selected.waterType}}</li>
-                            <li>I like {{selected.lightRequirement}} sun! </li>
-
-                          </ul>
-
-                         </div>
-
-
-
-
-
-              </div>
-          </div>
-      </div>
-
-
-
-
-<!------------------------------- PLANT EDIT SELECTED  ------------------------------------------------------------->
-  <!-- <div *ngIf="editPlant">
-    <form>
-      Common Name: <input type="text" name="common name" class="form-control" [(ngModel)]="editPlant.commonName">
-      <br>
-      Botanical Name: <input type="text" name="botanical name" [(ngModel)]="editPlant.botanicalName">
-      <br>
-      Care Difficulty: <input type="text" name="care difficulty" [(ngModel)]="editPlant.careDifficulty">
-      <br>
-      Description: <input type="text" name="description" [(ngModel)]="editPlant.careDifficulty">
-      <br>
-      Image URL: <input type="text" name="image url" [(ngModel)]="editPlant.imageUrl">
-      <br>
-      <button (click)="updatePlant(editPlant, editPlant.id)">Save</button>
-      <br>
-      <button (click)="editPlant = null">Cancel</button>
-      <br>
-    </form>
-  </div> -->
-
-
-
-  <!---------------------- MODAL EDIT ------------------------------------------------------------>
-
- <div class="modal" id="editPlantModal" tabindex="-1" role="dialog" *ngIf="editPlant">
-  <div class="modal-dialog" role="document">
-      <div class="modal-content">
-          <form>
-              <div class="modal-header">
-                  <h6 class="modal-title mb-0" id="editPlantModalLabel">Edit Plant </h6>
-                  <button type="button" class="close-button" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">X</span>
-                  </button>
-              </div>
-              <div class="modal-body">
-                <div class="row">
-                  <div class="form-group">
-                      <label for="editPlantTitle">Common Name</label>
-                      <input type="text" class="form-control" name="commonName" placeholder="Enter commonName" [(ngModel)]="editPlant.commonName" autofocus="" />
-                  </div>
-                  <div class="form-group">
-                      <label for="editPlantTitle">Boranical Name</label>
-                      <input type="text" class="form-control" name="botanicalName" placeholder="Enter title" [(ngModel)]="editPlant.botanicalName" autofocus="" />
-                  </div>
-
-                  <div class="form-group">
-                      <label for="editPlantTitle">Care Difficulty </label>
-                      <input type="text" class="form-control" name="careDifficulty" placeholder="Enter title" [(ngModel)]="editPlant.careDifficulty" autofocus="" />
-                  </div>
-                  <div class="form-group">
-                      <label for="editPlantTitle">Today's Date</label>
-                      <input type="text" class="form-control" name="careDifficulty" placeholder="Enter title" [(ngModel)]="editPlant.careDifficulty" autofocus="" />
-                  </div>
-                  <div class="form-group">
-                      <label for="editPlantTitle">Today's Date</label>
-                      <input type="text" class="form-control" name="imageUrl" placeholder="Enter title" [(ngModel)]="editPlant.imageUrl" autofocus="" />
-                  </div>
-
+                  <div class="wrapper">
+                    <div class="typing-demo">
+                      Search our Plant Library!
+                    </div>
                 </div>
 
+                </div>
+              </div>
 
 
-              </div>
-              <div class="modal-footer">
-                  <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
-                  <button type="button" class="btn btn-primary" (click)="updatePlant(editPlant, editPlant.id)"  data-dismiss="modal" >Update</button>
-              </div>
-          </form>
-      </div>
-  </div>
+
+
+
+
+
+            <!-- MOVE TO HOME PAGE -->
+            <!-- <h4>Total Plants in {{title}}: {{getNumOfPlants()}}</h4> -->
 </div>
+        </section>
+      </div>
+
+
+
+      <table class="library-table" *ngIf="!selected">
+
+        <tbody>
+
+          <tr *ngFor="let plant of plants | searchPlants:searchValue">
+            <div class="plantCard">
+
+            <td *ngIf="plant.active === true">
+              <img id="image" [src]="plant.imageUrl" class="img-thumbnail" height="200px"/>
+            </td>
+            <td>
+            <ul>
+                <li *ngIf="plant.active === true"><h4>{{plant.commonName}}</h4></li>
+                <li *ngIf="plant.active === true">{{plant.botanicalName}}</li>
+                <li *ngIf="plant.active === true">Care Level: {{plant.careDifficulty}}</li>
+                <li *ngIf="plant.active === true"><button (click)="setPlant(plant)">Details</button></li>
+              </ul>
+            </td>
+
+          </div>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+
+
+
+      <div *ngIf="!selected && displayAddForm == true">
+      <form class="addForm" *ngIf="!isNumber(currentUserId)">
+      Common Name: <input type="text" name="commonName" class="form-control" required [(ngModel)]="newPlant.commonName"/>
+      <br>
+      Botanical Name: <input required="true" type="text" name="botanicalName" class="form-control" required [(ngModel)]="newPlant.botanicalName">
+      <br>
+      Care Difficulty: <input type="text" name="careDifficulty" class="form-control" required [(ngModel)]="newPlant.careDifficulty" required>
+      <br>
+      Description: <input type="text" name="description" class="form-control" required [(ngModel)]="newPlant.description">
+      <br>
+      Image: <input type="text" name="imageUrl" class="form-control" required [(ngModel)]="newPlant.imageUrl">
+      <br>
+      <input type="submit" name="submit" value="Add Plant" (click)="addPlant(); displayAddForm = false">
+      <input type="submit" name="submit" value="Cancel" (click)="displayAddForm = false">
+      </form>
+      </div>
+
+
+      <!-------------------- SINGLE PLANT SELECTED  ------------------------------------------------------>
+      <!-- AND DISPLAY SINGLE + true  -->
+
+      <div class="singlePlant">
+        <div *ngIf="selected">
+          <div> <img [src]="selected.imageUrl"/></div>
+
+          <div class="textbox">
+         <h3>{{selected.commonName}}</h3>
+          <h4>{{selected.botanicalName}}</h4>
+          <p>Care Level: {{selected.careDifficulty}}<br>
+          {{selected.description}}</p>
+          <div *ngIf="selected.user.id == currentUserId">
+            <br>
+          </div>
+          <!-- <button (click)="setEditPlant()">Edit</button> -->
+
+          <button (click)="setEditPlant()" type="button" data-toggle="modal" data-target="#editPlantModal">
+            Edit Plant
+        </button>
+
+
+          <button (click)="deactivate(selected, selected.id); selected = null">Deactivate</button><br>
+
+            <button (click)="selected = null">Back to Library</button>
+
+            <button (click)="selected" type="button" data-toggle="modal" data-target="#careCardModal">
+              Care Card
+          </button>
+
+          </div>
+
+        </div>
+        </div>
+
+
+
+        <!-----------------------------CARE CARD MODAL  --------------------------------------------------------------------------->
+
+
+            <div class="modal fade" id="careCardModal" tabindex="-1" role="dialog" *ngIf="selected" >
+
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+
+                            <div class="modal-header ">
+                                <h6 class="modal-title mb-0" id="careCardModalLabel"> {{selected.commonName}} Care</h6>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+
+                            <div class="modal-body">
+
+                                </div>
+
+                                <div class="d-flex flex-row align-items-center mb-4">
+
+
+                                  <ul>
+                                  <li>Water Every: {{selected.waterCycle}}</li>
+                                  <li>With {{selected.waterType}}</li>
+                                  <li>I like {{selected.lightRequirement}} sun! </li>
+
+                                </ul>
+
+                               </div>
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+        <!---------------------- MODAL EDIT ------------------------------------------------------------>
+
+       <div class="modal" id="editPlantModal" tabindex="-1" role="dialog" *ngIf="editPlant">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header">
+                        <h6 class="modal-title mb-0" id="editPlantModalLabel">Edit Plant </h6>
+                        <button type="button" class="close-button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">X</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="row">
+                        <div class="form-group">
+                            <label for="editPlantTitle">Common Name</label>
+                            <input type="text" class="form-control" name="commonName" placeholder="Enter commonName" [(ngModel)]="editPlant.commonName" autofocus="" />
+                        </div>
+                        <div class="form-group">
+                            <label for="editPlantTitle">Boranical Name</label>
+                            <input type="text" class="form-control" name="botanicalName" placeholder="Enter title" [(ngModel)]="editPlant.botanicalName" autofocus="" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="editPlantTitle">Care Difficulty </label>
+                            <input type="text" class="form-control" name="careDifficulty" placeholder="Enter title" [(ngModel)]="editPlant.careDifficulty" autofocus="" />
+                        </div>
+                        <div class="form-group">
+                            <label for="editPlantTitle">Today's Date</label>
+                            <input type="text" class="form-control" name="careDifficulty" placeholder="Enter title" [(ngModel)]="editPlant.careDifficulty" autofocus="" />
+                        </div>
+                        <div class="form-group">
+                            <label for="editPlantTitle">Today's Date</label>
+                            <input type="text" class="form-control" name="imageUrl" placeholder="Enter title" [(ngModel)]="editPlant.imageUrl" autofocus="" />
+                        </div>
+
+                      </div>
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" (click)="updatePlant(editPlant, editPlant.id)"  data-dismiss="modal" >Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+      </div>
+
+
+
+    </div>
+
+    <nav id="sidebar">
+      <div class="side-nav">
+      <div class="p-4 pt-5">
+        <h5>Categories</h5>
+        <ul class="list-unstyled components mb-5">
+          <li>
+            <select [(ngModel)]="searchValue"  name="filterCareDifficulty"  class="custom-select custom-select-sm w-auto mr-1">
+              <option value="" [selected]="'Care Level'">Care Level</option>
+              <option value="easy">Easy</option>
+              <option value="intermediate" >Intermediate</option>
+              <option value="difficult" >Advanced</option>
+              </select>
+          </li>
+
+          <li>
+            <select [(ngModel)]="searchValue"  name="filterLight"  class="custom-select custom-select-sm w-auto mr-1">
+              <option value="" [selected]="'Light Requirement'">Light Requirement</option>
+              <option value="Low Light">Low Light</option>
+              <option value="Partial Sun" >Partial Sun </option>
+              <option value="Full Sun" >Full Sun </option>
+              <option value="Bright Indirect">Bright Indirect </option>
+            </select>
+          </li>
+
+          <li>
+            <select [(ngModel)]="searchValue"  name="waterCycle"  class="custom-select custom-select-sm w-auto mr-1">
+              <option value="" [selected]="'Water Cycle'">Water Cycle</option>
+              <option value="Weekly">Weekly</option>
+              <option value="Bi-Weekly" >Bi-Weekly </option>
+              <option value="Monthly" >Monthly </option>
+            </select>
+          </li>
+          <li>
+            <select [(ngModel)]="searchValue"  name="waterType"  class="custom-select custom-select-sm w-auto mr-1">
+              <option value="" [selected]="'Water Type'">Water Type</option>
+              <option value="Tap">Tap</option>
+              <option value="Filtered" >Filtered </option>
+              <option value="Mineral" >Mineral </option>
+            </select>
+          </li>
+        </ul>
+        <div class="mb-5">
+          <h5>Tag Cloud</h5>
+          <div class="tagcloud" >
+            <option value="Tap" class="tag-cloud-link">Tap Water</option>
+            <a href="#" class="tag-cloud-link" value="easy" [(ngModel)]="searchValue">Easy Care</a>
+            <a href="#" class="tag-cloud-link">Water Monthly</a>
+            <a href="#" class="tag-cloud-link">Low Light</a>
+            <a href="#" class="tag-cloud-link">Bright Indirect Light</a>
+            <a href="#" class="tag-cloud-link">Intermediate Care</a>
+            <a href="#" class="tag-cloud-link">Advanced Care</a>
+            <a href="#" class="tag-cloud-link">Tap Water</a>
+          </div>
+        </div>
+        <div class="mb-5">
+
+            <div class="form-group d-flex">
+              <div class="icon"><span class="icon-paper-plane"></span></div>
+              <div class="search">
+                <input type="text" id="search" [(ngModel)] ="searchValue" placeholder="Search our Library"/>
+              </div>
+
+              </div>
+
+              <div *ngIf="!isNumber(currentUserId)">
+                <div *ngIf="displayAddForm == false">
+                  <button (click)="displayAddForm = true">Add A Plant?</button>
+                </div>
+
+            </div>
+        </div>
+      </div>
+    </div>
+    </nav>
+  </div>
+
+
+
+
 
 
 </body>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
 
 
