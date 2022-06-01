@@ -34,6 +34,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { FilterLightReqPipe } from './pipes/filterlightreq.pipe';
 import { FilterTopicPipe } from './pipes/filtertopic.pipe';
 import { FilterDatePipe } from './pipes/filterdate.pipe';
+import { FineUploaderBasic, s3 } from 'fine-uploader/lib/core/s3';
 
 
 
@@ -65,7 +66,9 @@ import { FilterDatePipe } from './pipes/filterdate.pipe';
     ContactComponent,
     FilterLightReqPipe,
     FilterTopicPipe,
-    FilterDatePipe
+    FilterDatePipe,
+
+
 
 
 
@@ -83,13 +86,16 @@ import { FilterDatePipe } from './pipes/filterdate.pipe';
     GoogleMapsModule
 
 
+
   ],
   providers: [
     DatePipe,
-    AuthService
+    AuthService,
+
 
 
   ],
   bootstrap: [AppComponent]
+
 })
 export class AppModule { }
