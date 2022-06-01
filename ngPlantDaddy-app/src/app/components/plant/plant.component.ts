@@ -25,13 +25,13 @@ export class PlantComponent implements OnInit {
   plantCount: Plant[] = [];
 
   currentUserId: number = 0;
+  displayAddForm: boolean = false;
+  displayCareCard: boolean = false;
 
   searchValue: string = "";
-
-  displayAddForm: boolean = false;
-
-
-  displayCareCard: boolean = false;
+  filterLight: string = "";
+  filterWaterType: string = "";
+  filterWaterCycle: string = "";
 
 
 
@@ -137,6 +137,10 @@ export class PlantComponent implements OnInit {
 
   getNumOfPlants() {
     return this.plants.length;
+  }
+
+  tagSearch(searchTag: string){
+  this.searchValue = searchTag;
   }
 
 

@@ -1,12 +1,20 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { Plant } from '../models/plant';
 
 @Pipe({
   name: 'filterLightReq'
 })
 export class FilterLightReqPipe implements PipeTransform {
 
-  transform(value: unknown, ...args: unknown[]): unknown {
-    return null;
-  }
+  transform(plants: Plant[], filterLight: string):  Plant[] {
 
+    if(!plants || !filterLight) {
+      return plants;
+    }
+    return plants.filter(plant =>
+    plant.lightRequirement?.toLowerCase().includes(filterLight.toLowerCase())
+
+    );
+
+    }
 }
