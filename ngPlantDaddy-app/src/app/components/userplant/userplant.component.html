@@ -8,7 +8,9 @@
   <button class="btn btn-primary btn-lg" (click)="displayAddUserPlantForm = true">Add a Plant to your Garden?</button>
 </div>
 
+
 <table class="table" *ngIf="!selected && displayAddUserPlantForm == false">
+
 
   <tbody>
     <tr *ngFor="let userplant of userPlants">
