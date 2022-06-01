@@ -66,7 +66,9 @@ import { FilterDatePipe } from './pipes/filterdate.pipe';
     ContactComponent,
     FilterLightReqPipe,
     FilterTopicPipe,
-    FilterDatePipe
+    FilterDatePipe,
+
+
 
 
 
@@ -84,13 +86,16 @@ import { FilterDatePipe } from './pipes/filterdate.pipe';
     GoogleMapsModule,
 
 
+
   ],
   providers: [
     DatePipe,
-    AuthService
+    AuthService,
+
 
 
   ],
   bootstrap: [AppComponent]
+
 })
 export class AppModule { }

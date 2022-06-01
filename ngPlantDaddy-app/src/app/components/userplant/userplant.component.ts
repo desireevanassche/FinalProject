@@ -245,6 +245,7 @@ export class UserplantComponent implements OnInit {
 
         this.todos = data;
 
+
       },
       error: (err) => {
         console.log(err + " error inside reload todos index in todo comp.ts");
@@ -418,7 +419,7 @@ export class UserplantComponent implements OnInit {
   addWater(todo : Todo, userPlantId : number){
     this.todoService.addWater(todo, userPlantId).subscribe(
     (data)=>{
-      this.newTodo = new Todo();
+      this.newWater = new Todo();
     },
     error => console.log("Adding Oberservable got an error")
     );
@@ -429,24 +430,11 @@ export class UserplantComponent implements OnInit {
       this.selectedWater = todo;
     }
 
-    reloadWaterCycle(){
-
-    }
 
 
-  // reloadSpecificTodoList(id : number){
-  //   this.todoService.getAllUserPlantTodos(id).subscribe({
-  //     next: (data) => {
 
-  //       this.todos = data;
 
-  //     },
-  //     error: (err) => {
-  //       console.log(err + " error inside reload todos index in todo comp.ts");
 
-  //     }
-  //   })
-  // }
 
 
 }

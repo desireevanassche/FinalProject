@@ -7,7 +7,7 @@ import { PostService } from 'src/app/services/post.service';
 import { Topic } from 'src/app/models/topic';
 import { CommentService } from 'src/app/services/comment.service';
 import { User } from 'src/app/models/user';
-import { identifierName } from '@angular/compiler';
+
 
 @Component({
   selector: 'app-socialmedia',
