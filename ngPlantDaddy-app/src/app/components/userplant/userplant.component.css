@@ -45,7 +45,7 @@ p {
 
 .card {
   display: flex;
-  margin-left: 10px;
+  margin: 10px 10px 10px 10px;
   border-radius: 10px;
   box-shadow: 1px 1px 1px 1px #CCCCCC;
 }

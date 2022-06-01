@@ -1,5 +1,9 @@
 <body>
 
+  <div *ngIf="displayAddUserPlantForm == false && !selected" class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+    <button class="btn btn-primary btn-lg" (click)="displayAddUserPlantForm = true">Add a Plant to your Garden?</button>
+  </div>
+
   <div class="container d-md-flex align-items-stretch">
     <!-- Page Content  -->
     <div id="content" class="p-4 p-md-5 pt-5">
