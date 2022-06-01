@@ -230,7 +230,7 @@
                                       {{post.content}}
                                   </p>
                                   <a><img [src]="post.imageUrl" class="mr-3 rounded-square" width="350" alt="User" /></a>
-                                  <p class="text-muted"><a href="javascript:void(0)">Lpaladini</a> replied <span class="text-secondary font-weight-bold">13 minutes ago</span></p>
+                                  <p class="text-muted"><a href="javascript:void(0)"> {{getMostRecentCommentedUser(post.comments).user.username}} </a> replied <span class="text-secondary font-weight-bold">13 minutes ago</span></p>
                               </div>
 
                             </div>
@@ -286,7 +286,7 @@
                               ></path>
                             </svg>
                             <a href="javascript:void(0)" class="text-muted small" (click)="displayCommentModal = true; selected = post; reloadComments(post.id)"
-                            data-toggle="modal" data-target="#commentModal" >Comment</a>
+                            data-toggle="modal" data-target="#commentModal" > {{getNumOfCommentsOnPost(post)}} Comments</a>
                           </a>
                           <a
                             href="javascript:;"
@@ -542,18 +542,13 @@
                                   <!-- <small class="text-muted ml-2">1 hour ago</small> -->
                                   <div class="mt-3 font-size-sm">
                                       <a><img [src]="selected.imageUrl" class="mr-3 rounded-square" width="350" alt="User" /></a>
-
                                   </div>
 
 
-
-
                                  <div class="card-footer">
-                        <div class="d-flex post-actions" >
-                          <a
-                            href="javascript:;"
-                            class="d-flex align-items-center text-muted mr-4"
-                          >
+                             <div class="d-flex post-actions" >
+                          <a href="javascript:;"
+                            class="d-flex align-items-center text-muted mr-4">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               width="24"
@@ -564,8 +559,8 @@
                               stroke-width="2"
                               stroke-linecap="round"
                               stroke-linejoin="round"
-                              class="feather feather-heart icon-md"
-                            >
+                              class="feather feather-heart icon-md">
+
                               <path
                                 d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
                               ></path>
@@ -586,14 +581,14 @@
                               stroke-width="2"
                               stroke-linecap="round"
                               stroke-linejoin="round"
-                              class="feather feather-message-square icon-md"
-                            >
+                              class="feather feather-message-square icon-md">
                               <path
                                 d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
                               ></path>
+
                             </svg>
-                            <a href="javascript:void(0)" class="text-muted small" (click)="displayCommentModal = true; reloadComments(selected.id)"
-                            data-toggle="modal" data-target="#commentModal" >Comment</a>
+                            <a href="javascript:void(0)" class="text-muted small" (click)="displayCommentModal = true ; reloadComments(selected.id)"
+                            data-toggle="modal" data-target="#commentModal" > {{getNumOfCommentsOnPost(selected)}} Comments </a>
                           </a>
                           <a
                             href="javascript:;"
@@ -621,10 +616,9 @@
                           </a>
                         </div>
                       </div>
-
-                              </div>
-                              <hr>
-                          </div>
+                       </div>
+                        <hr>
+                         </div>
                       </div>
                   </div>
                   <br>
@@ -635,7 +629,6 @@
                           <div class="media forum-item">
                               <a href="javascript:void(0)" class="card-link">
                                   <img [src]="comment.user.imageUrl" class="rounded-circle" width="50" alt="" />
-
                               </a>
                               <div class="media-body ml-3">
                                   <a href="javascript:void(0)" class="text-primary"> {{comment.user.username}} </a>
@@ -651,15 +644,13 @@
                                   postId = selected.id "
                               data-toggle="modal" data-target="#replyModal" >Reply</a>
                               </div>
-                              <hr>
+                            <hr>
                           </div>
-                      </div>
-                  </div>
-                  <br>
+                       </div>
+                     </div>
+                   <br>
                 </div>
               </div>
-
-
 
               <div   *ngIf="selected.comments.selectedReply && selected.comments.selectedReply.length > 5"  class = "reply-for-post">
                 <div *ngFor="let reply of selected.comments.selectedReply">
@@ -668,19 +659,15 @@
                         <div class="media forum-item">
                             <a href="javascript:void(0)" class="card-link">
                                 <img [src]="reply.user.imageUrl" class="rounded-circle" width="50" alt="" />
-
                             </a>
                             <div class="media-body ml-3">
                                 <a href="javascript:void(0)" class="text-primary"> {{reply.user.username}} </a>
                                 <!-- <small class="text-muted ml-2">1 hour ago</small> -->
                                 <div class="mt-3 font-size-sm">
                                     <p>{{reply.content}}</p>
-
-
                                 </div>
                                 <button class="btn btn-xs text-muted has-icon"><i class="fa fa-heart" aria-hidden="true"></i>Like</button>
                                 <a href="javascript:void(0)" class="text-muted small" (click)="displayReplyModal = true"
-
                           data-toggle="modal" data-target="#replyModal" >Reply</a>
                             </div>
                             <hr>
@@ -794,10 +781,10 @@
                       <div class="modal-body">
                         <div class="row">
 
-                          <div class="form-group">
+                          <!-- <div class="form-group">
                               <label for="threadTitle">Today's Date</label>
                               <input type="date" class="form-control col-3" name="createDate" placeholder="Enter title" [(ngModel)]="newComment.createDate" autofocus="" />
-                          </div>
+                          </div> -->
 
                         </div>
                           <textarea class="form-control summernote" style="display: none;"></textarea>
@@ -843,10 +830,10 @@
                       <div class="modal-body">
                         <div class="row">
 
-                          <div class="form-group">
+                          <!-- <div class="form-group">
                               <label for="createDate">Today's Date</label>
                               <input type="date" class="form-control col-3" name="createDate"  [(ngModel)]="newComment.createDate" autofocus="" />
-                          </div>
+                          </div> -->
 
                         </div>
                           <textarea class="form-control summernote" style="display: none;"></textarea>
