@@ -27,12 +27,6 @@
 
 
 
-
-
-
-
-            <!-- MOVE TO HOME PAGE -->
-            <!-- <h4>Total Plants in {{title}}: {{getNumOfPlants()}}</h4> -->
 </div>
         </section>
       </div>
@@ -43,7 +37,7 @@
 
         <tbody>
 
-          <tr *ngFor="let plant of plants | searchPlants:searchValue">
+          <tr *ngFor="let plant of plants | searchPlants:searchValue | filterLightReq:filterLight | watertypefilter:filterWaterType | watercyclefilter:filterWaterCycle">
             <div class="plantCard">
 
             <td *ngIf="plant.active === true">
@@ -236,7 +230,7 @@
           </li>
 
           <li>
-            <select [(ngModel)]="searchValue"  name="filterLight"  class="custom-select custom-select-sm w-auto mr-1">
+            <select [(ngModel)]="filterLight"  name="filterLight"  class="custom-select custom-select-sm w-auto mr-1">
               <option value="" [selected]="'Light Requirement'">Light Requirement</option>
               <option value="Low Light">Low Light</option>
               <option value="Partial Sun" >Partial Sun </option>
@@ -246,7 +240,7 @@
           </li>
 
           <li>
-            <select [(ngModel)]="searchValue"  name="waterCycle"  class="custom-select custom-select-sm w-auto mr-1">
+            <select [(ngModel)]="filterWaterCycle"  name="waterCycle"  class="custom-select custom-select-sm w-auto mr-1">
               <option value="" [selected]="'Water Cycle'">Water Cycle</option>
               <option value="Weekly">Weekly</option>
               <option value="Bi-Weekly" >Bi-Weekly </option>
@@ -254,25 +248,25 @@
             </select>
           </li>
           <li>
-            <select [(ngModel)]="searchValue"  name="waterType"  class="custom-select custom-select-sm w-auto mr-1">
+            <select [(ngModel)]="filterWaterType"  name="waterType"  class="custom-select custom-select-sm w-auto mr-1">
               <option value="" [selected]="'Water Type'">Water Type</option>
               <option value="Tap">Tap</option>
-              <option value="Filtered" >Filtered </option>
-              <option value="Mineral" >Mineral </option>
+              <option value="Filtered">Filtered </option>
+              <option value="Mineral">Mineral </option>
             </select>
           </li>
         </ul>
         <div class="mb-5">
           <h5>Tag Cloud</h5>
           <div class="tagcloud" >
-            <option value="Tap" class="tag-cloud-link">Tap Water</option>
-            <a href="#" class="tag-cloud-link" value="easy" [(ngModel)]="searchValue">Easy Care</a>
-            <a href="#" class="tag-cloud-link">Water Monthly</a>
-            <a href="#" class="tag-cloud-link">Low Light</a>
-            <a href="#" class="tag-cloud-link">Bright Indirect Light</a>
-            <a href="#" class="tag-cloud-link">Intermediate Care</a>
-            <a href="#" class="tag-cloud-link">Advanced Care</a>
-            <a href="#" class="tag-cloud-link">Tap Water</a>
+            <a (click)="tagSearch('easy')" class="tag-cloud-link">Water Type</a>
+            <a (click)="tagSearch('easy')" class="tag-cloud-link">Easy Care</a>
+            <a (click)="tagSearch('monthly')" class="tag-cloud-link">Water Monthly</a>
+            <a (click)="tagSearch('low light')" class="tag-cloud-link">Low Light</a>
+            <a (click)="tagSearch('bright')" class="tag-cloud-link">Bright Indirect Light</a>
+            <a (click)="tagSearch('intermediate')" class="tag-cloud-link">Intermediate Care</a>
+            <a (click)="tagSearch('advanced')" class="tag-cloud-link">Advanced Care</a>
+            <a (click)="tagSearch('tap')" class="tag-cloud-link">Tap Water</a>
           </div>
         </div>
         <div class="mb-5">

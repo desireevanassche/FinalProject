@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
 
 
       next: (loggedInUser) => {
-        this.router.navigateByUrl('/home');
+        // this.router.navigateByUrl('/home');
       },
       error: (fail) => {
         console.log('Login Component.logging(): login failed');
