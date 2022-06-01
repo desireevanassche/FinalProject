@@ -6,7 +6,9 @@ body{
   background-position: center;
 
 }
-
+* {
+  font-family: 'Josefin Sans', sans-serif;
+}
 td, th {
   vertical-align: middle;
 }
@@ -25,6 +27,8 @@ h1, h2, h3, h4, h5, h6 {
   color: #2a2a2a;
   font-family: 'Yeseva One', cursive;
 }
+
+    /* PLANT TABLE--------------------- */
 
 ul {
   margin-bottom: 0px;
@@ -95,17 +99,18 @@ table {
 
 }
 
-td button {
+ button {
   background-color: #BBCBB7;
   border-radius: 8px;
   border: black;
-  font-size: 12px;
+  font-size: 14px;
   justify-content: center;
   align-items: center;
-  width: 200px;
+  width: 150px;
+  margin: 5px;
 }
 
-td button:hover {
+ button:hover {
   background-color: #577050;
 
 }
@@ -183,7 +188,7 @@ input[type=text] {
   padding-left: 2.5px;
 }
 
-.singlePlant button {
+/* .singlePlant button {
   color: #BBCBB7;
   border-radius: 8px;
   border: black;
@@ -192,9 +197,168 @@ input[type=text] {
   align-items: center;
   width: 200px;
   height: 25px;
-}
-
+} */
+/*
 .singlePlant button:hover {
   background-color: #577050;
 
+} */
+
+/* The side navigation menu */
+.sidenav {
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: #111; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
 }
+
+/* The navigation menu links */
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+  transition: margin-left .5s;
+  padding: 20px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+
+.wrapper {
+  /* height: 100vh; */
+  /*This part is important for centering*/
+  display: grid;
+  place-items: center;
+}
+
+.typing-demo {
+  width: 22ch;
+  animation: typing 2s steps(22), blink .5s step-end infinite alternate;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid;
+  font-size: 2em;
+
+}
+
+@keyframes typing {
+  from {
+    width: 0
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent
+  }
+}
+
+.modal {
+  /* margin-top: 250px; */
+  /* width: 300px; */
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+div.modal-header {
+  background-color: #BBCBB7 !important;
+}
+
+div.modal-header h6{
+  font-size: 24px;
+  text-align: center;
+  width: 900px;
+}
+
+.modal {
+  border-radius: 10px;
+}
+
+div.modal-body li{
+  font-family: 'Josefin Sans', sans-serif  !important;
+
+}
+
+.modal-body {
+  max-width: 80% !important;
+  background-color: white;
+}
+
+div.modal-body h3{
+  font-family: 'Josefin Sans', sans-serif  !important;
+  font-size: 18px;
+
+}
+
+div.modal-body input[type="text"] {
+  max-width: 80% !important;
+  border: 1.5px solid black;
+  border-radius: 8px;
+}
+
+.modal-dialog {
+  max-width: 80% !important;
+  background-color: white;
+}
+
+
+.modal button {
+  background-color: #BBCBB7;
+  border-radius: 8px;
+  border: black;
+  font-size: 12px;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+}
+
+.modal .close-button {
+  background-color: #BBCBB7;
+  font-size: 12px;
+  width: 35px;
+  border: 1.5px solid white;
+  color: white;
+
+}
+
+.searchBar  {
+  background-color: white;
+  border-radius: 10px;
+  width: 600px;
+  box-shadow: 1px 1px 1px 1px #CCCCCC;
+
+}
+
+

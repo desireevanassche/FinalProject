@@ -1,5 +1,4 @@
 
-
 <div class="container">
   <div class="main-body p-0">
       <div class="inner-wrapper">
@@ -58,27 +57,28 @@
               <div class="inner-main-header">
                   <a class="nav-link nav-icon rounded-circle nav-link-faded mr-3 d-md-none"  data-toggle="inner-sidebar">
                     <i class="material-icons">arrow_forward_ios</i></a>
-                  <select class="custom-select custom-select-sm w-auto mr-1">
-                      <option selected="">Latest</option>
-                      <option value="1">Popular</option>
-                      <option value="3">Recently Updated</option>
-                      <option value="3">Recently Commented</option>
+
+                  <select [(ngModel)]="searchValue"  name="filterTopic"  class="custom-select custom-select-sm w-auto mr-1">
+                    <option value="" [selected]="'Topic'">Topic</option>
+                      <option *ngFor="let topic of topics"> {{topic.name}}</option>
+
                   </select>
+                </div>
 
-                  <span class="input-icon input-icon-sm ml-auto w-auto">
-                      <input type="text" id="search" class="form-control form-control-sm bg-gray-200 border-gray-200 shadow-none mb-4 mt-4"
-                      [(ngModel)] ="searchValue" placeholder="Search forum" />
-                  </span>
-              </div>
-              <!-- /Inner main header -->
 
-              <!-- Inner main body -->
+                <!-- /Inner main header -->
 
-              <!-- Forum List -->
+                <!-- Inner main body -->
 
-              <div class="inner-main-body p-2 p-sm-3 collapse forum-content show col-md-12 grid-margin">
-                  <div class="card mb-2" *ngFor=" let post of allPosts | searchPosts:searchValue" >
+                <!-- Forum List -->
 
+                <div class="inner-main-body p-2 p-sm-3 collapse forum-content show col-md-12 grid-margin">
+                  <div class="card mb-2" *ngFor=" let post of allPosts | searchPosts:searchValue | filterTopic:searchValue" >
+
+                    <span class="input-icon input-icon-sm ml-auto w-auto">
+                        <input type="text" id="search" class="form-control form-control-sm bg-gray-200 border-gray-200 shadow-none mb-4 mt-4"
+                        [(ngModel)] ="searchValue" placeholder="Search forum" />
+                    </span>
               <!-- --------- header ---------------- -->
                     <div class="card-header">
                       <div class="d-flex align-items-center justify-content-between">
@@ -742,6 +742,7 @@
                             Discussion Topic
                             <hr>
                             <select [(ngModel)]="newPost.topic.id" name="topicId" >
+                              <option value="" [selected]="'Topic'">Topic</option>
                               <option
                                 *ngFor="let topic of topics"
                                 value="{{ topic.id }}"

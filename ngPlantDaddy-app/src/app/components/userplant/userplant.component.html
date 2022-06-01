@@ -1,38 +1,40 @@
+<body>
+
+
+
 <h1>{{ title }}</h1>
 
 <div *ngIf="displayAddUserPlantForm == false && !selected" class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
   <button class="btn btn-primary btn-lg" (click)="displayAddUserPlantForm = true">Add a Plant to your Garden?</button>
 </div>
 
-<table class="table table-striped" *ngIf="!selected && displayAddUserPlantForm == false">
-  <thead>
-    <tr>
-      <th scope="col">Nickname</th>
-      <th scope="col">Height</th>
-      <th scope="col">Spread</th>
-      <th scope="col">Pot Diameter</th>
-      <th scope="col">Home Location</th>
-      <th scope="col">Description</th>
-      <th scope="col">View</th>
-      <th scope="col">Image URL</th>
-    </tr>
-  </thead>
+<table class="table" *ngIf="!selected && displayAddUserPlantForm == false">
+
   <tbody>
     <tr *ngFor="let userplant of userPlants">
-      <td *ngIf="userplant.active === true">{{ userplant.nickname }}</td>
-      <td *ngIf="userplant.active === true">{{ userplant.height }}</td>
-      <td *ngIf="userplant.active === true">{{ userplant.spread }}</td>
-      <td *ngIf="userplant.active === true">{{ userplant.potDiameter }}</td>
-      <td *ngIf="userplant.active === true">{{ userplant.homeLocation }}</td>
-      <td *ngIf="userplant.active === true">{{ userplant.description }}</td>
-      <td *ngIf="userplant.active === true">
-        <button class="btn btn-primary btn-lg" (click)="setPlant(userplant)">
+      <div class="plantCard">
+
+          <td *ngIf="userplant.active === true">
+            <img id="image" [src]="userplant.imageUrl" class="img-thumbnail" height="100px" />
+          </td>
+
+      <ul>
+      <li *ngIf="userplant.active === true">{{ userplant.nickname }}</li>
+      <!-- <li *ngIf="userplant.active === true">{{ userplant.height }}</li>
+      <li *ngIf="userplant.active === true">{{ userplant.spread }}</li>
+      <li *ngIf="userplant.active === true">{{ userplant.potDiameter }}</li>
+      <li *ngIf="userplant.active === true">{{ userplant.homeLocation }}</li>
+      <li *ngIf="userplant.active === true">{{ userplant.description }}</li> -->
+      <li *ngIf="userplant.active === true">
+
+        <li><button class="btn btn-primary btn-lg" (click)="setPlant(userplant)">
           Details
-        </button>
-      </td>
-      <td *ngIf="userplant.active === true">
-        <img id="image" [src]="userplant.imageUrl" class="img-thumbnail" />
-      </td>
+        </button></li>
+
+      </ul>
+
+
+      </div>
     </tr>
   </tbody>
 </table>
@@ -612,3 +614,4 @@
     <button class="btn btn-primary" (click)="displayAddTodoForm = false" type="submit">Cancel</button>
   </div>
 </form> -->
+</body>

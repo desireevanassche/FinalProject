@@ -5,6 +5,10 @@
   font-size: 18px;
 }
 
+a:hover {
+  color: white;
+}
+
 
 body{
   background-color: #f9fafb;
@@ -18,11 +22,45 @@ body{
     font-family: 'Yeseva One', cursive;
   }
 
+  section.account-banner {
+    background-image: url("https://images.unsplash.com/photo-1592150621744-aca64f48394a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1491&q=80");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    padding: 120px 0px;
+    height: 300px;
+
+
+  }
+
+
+
+
+  .forum-banner h6 {
+    color: #fff;
+    font-size: 26px;
+
+
+  }
+  .forum-banner h4 {
+    color: #fff;
+    padding: 45px 0px;
+    text-emphasis-color: #555;
+    font-size: 45px;
+  }
+
+  .forum-banner h4 em {
+    font-style: normal;
+    color: #9c9c9c;
+    font-size: 45px;
+  }
+
 
   button {
     background-color: #425D3C;
     border: 1px solid #425D3C;
     border-radius: 8px;
+    color: white;
 
   }
 
@@ -48,14 +86,15 @@ body{
 
 .profile-page .profile-header {
   box-shadow: 0 0 10px 0 rgba(183, 192, 206, 0.2);
-  border: 1px solid #f2f4f9;
-  padding-top: 50px;
+  /* padding-top: 50px; */
+  width: 100%;
 
 }
 
 .profile-page .profile-header .cover {
   position: relative;
   border-radius: 5% !important;
+
 }
 
 
@@ -104,7 +143,7 @@ body{
   width: 100%;
   height: 100%;
   z-index: 1;
-  background: linear-gradient(rgba(255, 255, 255, 0.1), #fff 99%);
+  /* background: linear-gradient(rgba(255, 255, 255, 0.1), #fff 99%); */
 }
 
 .profile-page .profile-header .cover .cover-body {
@@ -113,13 +152,29 @@ body{
   left: 0;
   z-index: 2;
   width: 100%;
-  padding: 0 20px;
+  padding: 25px 20px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 8px;
+  color: black;
+  border: 1.5px solid black;
+  border-radius: 10px;
+
+  /* margin-top: 20px; */
 
 }
+
+
 
 .profile-page .profile-header .cover .cover-body .profile-pic {
   border-radius: 50%;
   width: 100px;
+}
+
+.profile-pic {
+  border-radius: 50%;
+  height: px;
+  width: auto;
+
 }
 
 @media (max-width: 767px) {
@@ -140,8 +195,10 @@ body{
   display: flex;
   -webkit-justify-content: center;
   justify-content: center;
-  background: #fff;
-  border-radius: 0 0 .25rem .25rem;
+  background: rgb(255, 255, 255);
+  border: 1.5px solid black;
+  border-radius: 10px;
+  margin-top: 50px;
 }
 
 .profile-page .profile-header .header-links ul {
@@ -217,7 +274,6 @@ img {
 }
 .card-header {
   padding: 0.875rem 1.5rem;
-  margin-bottom: 0;
   background-color: rgba(0, 0, 0, 0);
   border-bottom: 1px solid #f2f4f9;
 }
@@ -252,6 +308,23 @@ img {
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
-  border: 1px solid #f2f4f9;
-  border-radius: 0.25rem;
+  border: 1.5px solid #000000;
+  border-radius: 8px;
+  padding: 10px;
+
+}
+
+.card-rounded .card-body {
+  background-color: white;
+  border: 1.5px solid #000000;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+div.card.rounded {
+ margin-bottom: 25px;
+}
+
+.cover .card-rounded {
+  border-bottom:  1.5px solid #000000;;
 }
