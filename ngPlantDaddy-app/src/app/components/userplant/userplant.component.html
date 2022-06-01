@@ -1,38 +1,40 @@
+<body>
+
+
+
 <h1>{{ title }}</h1>
 
 <div *ngIf="displayAddUserPlantForm == false && !selected" class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
   <button class="btn btn-primary btn-lg" (click)="displayAddUserPlantForm = true">Add a Plant to your Garden?</button>
 </div>
 
-<table class="table table-striped" *ngIf="!selected && displayAddUserPlantForm == false">
-  <thead>
-    <tr>
-      <th scope="col">Nickname</th>
-      <th scope="col">Height</th>
-      <th scope="col">Spread</th>
-      <th scope="col">Pot Diameter</th>
-      <th scope="col">Home Location</th>
-      <th scope="col">Description</th>
-      <th scope="col">View</th>
-      <th scope="col">Image URL</th>
-    </tr>
-  </thead>
+<table class="table" *ngIf="!selected && displayAddUserPlantForm == false">
+
   <tbody>
     <tr *ngFor="let userplant of userPlants">
-      <td *ngIf="userplant.active === true">{{ userplant.nickname }}</td>
-      <td *ngIf="userplant.active === true">{{ userplant.height }}</td>
-      <td *ngIf="userplant.active === true">{{ userplant.spread }}</td>
-      <td *ngIf="userplant.active === true">{{ userplant.potDiameter }}</td>
-      <td *ngIf="userplant.active === true">{{ userplant.homeLocation }}</td>
-      <td *ngIf="userplant.active === true">{{ userplant.description }}</td>
-      <td *ngIf="userplant.active === true">
-        <button class="btn btn-primary btn-lg" (click)="setPlant(userplant)">
+      <div class="plantCard">
+
+          <td *ngIf="userplant.active === true">
+            <img id="image" [src]="userplant.imageUrl" class="img-thumbnail" height="100px" />
+          </td>
+
+      <ul>
+      <li *ngIf="userplant.active === true">{{ userplant.nickname }}</li>
+      <!-- <li *ngIf="userplant.active === true">{{ userplant.height }}</li>
+      <li *ngIf="userplant.active === true">{{ userplant.spread }}</li>
+      <li *ngIf="userplant.active === true">{{ userplant.potDiameter }}</li>
+      <li *ngIf="userplant.active === true">{{ userplant.homeLocation }}</li>
+      <li *ngIf="userplant.active === true">{{ userplant.description }}</li> -->
+      <li *ngIf="userplant.active === true">
+
+        <li><button class="btn btn-primary btn-lg" (click)="setPlant(userplant)">
           Details
-        </button>
-      </td>
-      <td *ngIf="userplant.active === true">
-        <img id="image" [src]="userplant.imageUrl" class="img-thumbnail" />
-      </td>
+        </button></li>
+
+      </ul>
+
+
+      </div>
     </tr>
   </tbody>
 </table>
@@ -82,8 +84,22 @@
             (click)=" deactivateUserPlant(selected, selected.id); selected = null; displayAddTodoForm = false; editTodoForm = false; displaySelectedTodo = false">
             Deactivate
           </button>
-
         </div>
+
+
+        <br>
+        <br>
+        <br>
+        <br>
+
+
+          <button class="btn btn-primary btn-lg"
+            (click)="displayAddWater = true">
+            Add Water Schedule
+          </button>
+
+
+
       </div>
     </div>
   </div>
@@ -431,7 +447,7 @@
 
 
 
-<div *ngIf="selected && displayTodos == true">
+<div *ngIf="selected && displayTodos == true;">
   <div class="page-content page-container" id="page-content">
     <div class="padding">
       <div class="row">
@@ -476,7 +492,7 @@
                         <a class="dropdown-item" data-abc="true" (click)="displayTodo(todo); displaySelectedTodo = true">See detail</a>
                         <a class="dropdown-item edit" data-abc="true" (click)="setEditTodo(); editTodoForm = true">Edit</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item trash" data-abc="true" (click)="deleteTodo(todo.id)">Delete item</a>
+                        <a class="dropdown-item trash" data-abc="true" (click)="deleteTodo(todo.id); displayTodos = false">Delete item</a>
                       </div>
                     </div>
                   </div>
@@ -491,7 +507,6 @@
 <button class="btn btn-primary" (click)="displayTodos = false" type="submit">Cancel</button>
 </div>
 
-
 <div *ngIf="displaySelectedTodo == true">
   <h1><span [ngClass]="checkWarningForIndividualTodo()">{{selectedTodo.name}}</span></h1>
   <ul>
@@ -499,6 +514,7 @@
     <li>{{ selectedTodo.name }}</li>
     <li>{{ selectedTodo.description }}</li>
     <li>{{ selectedTodo.createdAt }}</li>
+    <li>{{ selectedTodo.completedAt }}</li>
   </ul>
   <button (click)="displaySelectedTodo = false">Cancel</button>
 </div>
@@ -521,6 +537,10 @@
 
     <label class="form-label">Task</label>
     <input type="text" name="name" [(ngModel)]="newTodo.name"/>
+
+
+    <label class="form-label">Due Date</label>
+    <input type="date" name="dueDate" [(ngModel)]="newTodo.dueDate">
 
     <!-- <input type="number" name="userPlantId" [(ngModel)]="newTodo.userplant.id"/> -->
 
@@ -552,4 +572,46 @@
   </div>
 </div> -->
 
+<form *ngIf="displayAddWater == true" class="row g-3">
+  <div class="col-md-6">
 
+    <select name="name" class="form-select" [(ngModel)]="newTodo.name">
+    <option value="water schedule">Water Schedule</option>
+  </select>
+
+  <label class="form-label">Start Date</label>
+  <input type="date" name="dueDate" [(ngModel)]="newTodo.dueDate">
+
+  <select
+    name="completedAt" class="form-select" [(ngModel)]="newTodo.completedAt">
+      <option [value]="weekly()">Weekly</option>
+      <option [value]="biWeekly()">Bi-Weekly</option>
+      <option [value]="monthly()">Monthly</option>
+    </select>
+
+
+
+    <button class="btn btn-primary" (click)="addTodo(newTodo, selected.id);" type="submit">Submit</button>
+    <button class="btn btn-primary" (click)="displayAddWater = false" type="submit">Cancel</button>
+  </div>
+</form>
+
+<!-- <form *ngIf="displayAddTodoForm == true" class="row g-3">
+  <div class="col-md-6">
+
+    <label class="form-label">Task</label>
+    <input type="text" name="name" [(ngModel)]="newTodo.name"/>
+
+
+    <label class="form-label">Due Date</label>
+    <input type="date" name="dueDate" [(ngModel)]="newTodo.dueDate">
+
+    <input type="number" name="userPlantId" [(ngModel)]="newTodo.userplant.id"/>
+
+
+
+    <button class="btn btn-primary" (click)="addTodo(newTodo, selected.id); " type="submit">Submit</button>
+    <button class="btn btn-primary" (click)="displayAddTodoForm = false" type="submit">Cancel</button>
+  </div>
+</form> -->
+</body>

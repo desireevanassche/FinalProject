@@ -13,7 +13,7 @@ export class SearchfilterPipe implements PipeTransform {
     }
     return blogs.filter(blog =>
       blog.title.toLowerCase().includes(searchValue.toLowerCase())
-    || blog.content.toLowerCase().includes(searchValue.toLowerCase()));
+    || blog.content.toLowerCase().includes(searchValue.toLowerCase())) ;
 
     }
 }

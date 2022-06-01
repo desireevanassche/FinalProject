@@ -89,4 +89,13 @@ export class TodoService {
 
     );
   }
+
+  public addWater(todo: Todo, userPlantId : number) {
+    return this.http.post<Todo>(this.url2 + "/" + userPlantId,todo, this.getHttpOptions())
+      .pipe(
+        catchError((err: any) => {
+          return throwError('Check this- KABOOM!');
+        })
+      );
+  }
 }

@@ -30,6 +30,11 @@ export class PlantComponent implements OnInit {
 
   displayAddForm: boolean = false;
 
+
+  displayCareCard: boolean = false;
+
+
+
   constructor(
     private plantSvc: PlantService,
     private route: ActivatedRoute,
@@ -72,9 +77,15 @@ export class PlantComponent implements OnInit {
       }
     );
   }
+
+
   displayPlant(plant: Plant) {
     this.selected = plant;
   }
+
+
+
+
   displayTable() {
     this.selected = null;
   }

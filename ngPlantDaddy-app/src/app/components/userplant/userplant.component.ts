@@ -9,7 +9,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { Plant } from 'src/app/models/plant';
 import { Todo } from 'src/app/models/todo';
-import { config } from 'rxjs';
 
 @Component({
   selector: 'app-userplant',
@@ -18,6 +17,8 @@ import { config } from 'rxjs';
 })
 export class UserplantComponent implements OnInit {
   title: string = 'My Garden Ɛ>';
+
+//--------------USERPLANT---------------------
 
   selected: Userplant | null = null;
 
@@ -38,7 +39,7 @@ export class UserplantComponent implements OnInit {
 
   plant: Plant | null = null;
 
-
+//------------------TODO----------------------
 
   todo: Todo = new Todo();
 
@@ -65,6 +66,15 @@ export class UserplantComponent implements OnInit {
   displayAddTodoForm: Boolean = false;
 
   displaySelectedTodo: Boolean = false;
+
+  //--------------WATER SCHEDULE-----------------
+
+  newWater: Todo = new Todo();
+
+  displayAddWater: Boolean = false;
+
+  selectedWater : Todo | null;
+
 
   constructor(
     private userPlantSvc: UserplantService,
@@ -349,45 +359,82 @@ export class UserplantComponent implements OnInit {
 
   checkWarningForIndividualTodo() {
     let today = new Date();
-    let warningDay = new Date(today);
-
-    warningDay.setDate(warningDay.getDate() - 3)
-    let dueDate = this.selectedTodo.dueDate;
 
 
-     let checkDate = new Date(dueDate);
-       if(warningDay == today){
-         return 'badge bg-warning';
-       } if(checkDate < today) {
-          return 'badge bg-danger';
+    let due = this.selectedTodo.dueDate;
+    let dueDate = new Date(due);
+
+
+    if(today > dueDate){
+      return 'badge bg-danger';
+    } else {
+      return 'badge bg-success';
     }
-
 
   }
 
   checkWarning(todo: Todo) {
     let today = new Date();
-    let warningDay = new Date(today);
 
-    warningDay.setDate(warningDay.getDate() - 3)
-    let dueDate = todo.dueDate;
+    let due = todo.dueDate;
+    let dueDate = new Date(due);
 
-
-     let checkDate = new Date(dueDate);
-       if(warningDay == today){
-         return 'badge bg-warning';
-       } if(checkDate < today) {
-          return 'badge bg-danger';
+    if(today > dueDate){
+      return 'badge bg-danger';
+    } else {
+      return 'badge bg-success';
     }
+
+
+  }
+
+
+
+  weekly(){
+  let today = new Date();
+  let weekly = new Date(today);
+  weekly.setDate(weekly.getDate() + 7);
+  return weekly;
+
+  }
+
+  biWeekly(){
+    let today = new Date();
+    let twoWeeks = new Date(today);
+    twoWeeks.setDate(twoWeeks.getDate() + 14);
+    return twoWeeks;
+}
+
+  monthly() {
+    let today = new Date();
+    let monthly = new Date(today);
+    monthly.setDate(monthly.getDate() + 30);
+    return monthly;
   }
 
 
 
 
+  addWater(todo : Todo, userPlantId : number){
+    this.todoService.addWater(todo, userPlantId).subscribe(
+    (data)=>{
+      this.newTodo = new Todo();
+    },
+    error => console.log("Adding Oberservable got an error")
+    );
+    }
 
 
+    displayWater = (todo: Todo) => {
+      this.selectedWater = todo;
+    }
 
 
+    // displayTodo = (todo: Todo) => {
+    //   this.selectedTodo = todo;
+    //   console.log(todo);
+
+    // }
 
 
 
