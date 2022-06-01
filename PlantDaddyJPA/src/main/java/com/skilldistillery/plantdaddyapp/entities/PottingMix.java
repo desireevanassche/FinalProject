@@ -14,6 +14,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity(name = "potting_mix")
@@ -49,7 +52,7 @@ public class PottingMix {
 
 	@Column(name = "image_url")
 	private String imageUrl;
-
+	@CreationTimestamp
 	@Column(name = "date_created")
 	private LocalDate dateCreated;
 
