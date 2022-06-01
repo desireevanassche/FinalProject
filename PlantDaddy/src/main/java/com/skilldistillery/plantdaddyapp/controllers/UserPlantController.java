@@ -49,7 +49,7 @@ public class UserPlantController {
 
 	@GetMapping("userPlants/search/{keyword}")
 	public List<UserPlant> findByKeyword(@PathVariable String keyword) {
-		return userPlantServ.listPlantByKeyword(keyword);
+		return userPlantServ.listPlantByKeyword(keyword); 
 	}
 
 	@PostMapping("userPlants")

@@ -56,6 +56,9 @@ public class UserPlantServiceImpl implements UserPlantService {
 			plantGrowth.setSpread(managed.getSpread());
 			plantGrowth.setPotDiameter(managed.getPotDiameter());
 			plantGrowth.setUserPlant(managed);
+			plantGrowth.setGrowthDescription(managed.getGrowthDescription());
+			plantGrowth.setGrowthImage(managed.getGrowthImage());
+			
 			PlantGrowth persistedGrowth = growRepo.saveAndFlush(plantGrowth);
 			
 			

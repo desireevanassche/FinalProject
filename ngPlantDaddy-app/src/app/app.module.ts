@@ -26,6 +26,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { GrowthDataComponent } from './components/growth-data/growth-data.component';
+import { AboutusComponent } from './components/aboutus/aboutus.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 
 
@@ -50,7 +53,10 @@ import { GoogleMapsModule } from '@angular/google-maps';
     UserplantComponent,
     SearchPlantsPipe,
     SearchPostsPipe,
-    FilterPipe
+    FilterPipe,
+    GrowthDataComponent,
+    AboutusComponent,
+    ContactComponent
 
 
 

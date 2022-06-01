@@ -35,6 +35,12 @@ public class PlantGrowth {
 	
 		@Column(name="pot_diameter")
 		private double potDiameter;
+		
+		@Column(name="growth_description")
+		private String growthDescription;
+
+		@Column(name="growth_image")
+		private String growthImage;
 	
 		@CreationTimestamp
 		@Column(name="create_date")
@@ -99,6 +105,25 @@ public class PlantGrowth {
 			this.userPlant = userPlant;
 		}
 
+		
+		
+		
+		public String getGrowthDescription() {
+			return growthDescription;
+		}
+
+		public void setGrowthDescription(String growthDescription) {
+			this.growthDescription = growthDescription;
+		}
+
+		public String getGrowthImage() {
+			return growthImage;
+		}
+
+		public void setGrowthImage(String growthImage) {
+			this.growthImage = growthImage;
+		}
+
 		@Override
 		public String toString() {
 			return "PlantGrowth [id=" + id + ", height=" + height + ", spread=" + spread + ", potDiameter="
@@ -107,7 +132,7 @@ public class PlantGrowth {
 
 		@Override
 		public int hashCode() {
-			return Objects.hash(createDate, height, id, potDiameter, spread);
+			return Objects.hash(createDate, growthDescription, growthImage, height, id, potDiameter, spread, userPlant);
 		}
 
 		@Override
@@ -120,9 +145,12 @@ public class PlantGrowth {
 				return false;
 			PlantGrowth other = (PlantGrowth) obj;
 			return Objects.equals(createDate, other.createDate)
+					&& Objects.equals(growthDescription, other.growthDescription)
+					&& Objects.equals(growthImage, other.growthImage)
 					&& Double.doubleToLongBits(height) == Double.doubleToLongBits(other.height) && id == other.id
 					&& Double.doubleToLongBits(potDiameter) == Double.doubleToLongBits(other.potDiameter)
-					&& Double.doubleToLongBits(spread) == Double.doubleToLongBits(other.spread);
+					&& Double.doubleToLongBits(spread) == Double.doubleToLongBits(other.spread)
+					&& Objects.equals(userPlant, other.userPlant);
 		}
 	
 		

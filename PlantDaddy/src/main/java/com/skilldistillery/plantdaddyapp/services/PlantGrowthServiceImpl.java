@@ -101,6 +101,9 @@ public class PlantGrowthServiceImpl implements PlantGrowthService {
 			managed.setHeight(growth.getHeight());
 			managed.setSpread(growth.getSpread());
 			managed.setPotDiameter(growth.getPotDiameter());
+			managed.setGrowthDescription(growth.getGrowthDescription());
+			managed.setGrowthImage(growth.getGrowthImage());
+			
 			growRepo.saveAndFlush(managed);
 		}
 		return managed;

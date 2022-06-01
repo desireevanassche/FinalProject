@@ -41,6 +41,7 @@
          COMMUNITY
         </a>
 
+
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" [routerLink]="['/blog']">Plant Daddy Blog</a>
           <a class="dropdown-item" [routerLink]="['/socialmedia']">Forum</a>
@@ -74,6 +75,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" [routerLink]="['/account']">My Account</a>
           <a class="dropdown-item" [routerLink]="['/userPlants']">Plants in Garden</a>
+          <a class="dropdown-item" [routerLink]="['/test']">Test Center</a>
         </div>
       </li>
 
@@ -96,6 +98,25 @@
 
         </div>
       </li>
+      <li class="nav-item dropdown" *ngIf="loggedIn()">
+        <a
+        class="nav-link dropdown-toggle"
+
+        id="navbarDropdown"
+        role="button"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+       The Team
+      </a>
+
+
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" [routerLink]="['/contact']">Contact</a>
+        <a class="dropdown-item" [routerLink]="['/about']">About Us</a>
+      </div>
+      </li>
 
       <!-- ALLOWS A USER TO VIEW ALL PLANTS WITHOUT BEING SIGNED IN -->
       <li class="nav-item dropdown" *ngIf="!loggedIn()">
@@ -111,8 +132,7 @@
           PLANTS
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" [routerLink]="['/plant']">Plants By Type</a>
-          <a class="dropdown-item" [routerLink]="['/plant']">Plants By Name</a>
+
           <a class="dropdown-item" [routerLink]="['/plant']">All Plants</a>
         </div>
       </li>
@@ -120,6 +140,8 @@
       <li class="nav-item" *ngIf="loggedIn()">
         <a class="nav-link" (click)="logout()" [routerLink]="['/logout']">LOGOUT</a>
       </li>
+
+
 
     </ul>
 <ul class="profileCard">
