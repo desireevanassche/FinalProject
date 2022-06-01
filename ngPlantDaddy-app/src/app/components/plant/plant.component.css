@@ -89,7 +89,7 @@ td li {
   background-color: white;
 
 }
-table {
+.library-table {
   width: 800px;
   border-collapse: separate;
   border-spacing: 15px;
@@ -117,7 +117,7 @@ table {
 
 /*-------------- MAIN BANNER ---------------------------------*/
 
-.header {
+.lib-header {
   padding-top: 25px;
   background-color: #577050;
   padding-bottom: 25px;
@@ -132,7 +132,7 @@ table {
 
 }
 
-.header .search {
+.lib-header .search {
   display: flex;
   justify-content: center;
   height: 50px;

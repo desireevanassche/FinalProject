@@ -22,7 +22,6 @@ import { UserplantComponent } from './components/userplant/userplant.component';
 import { SearchPlantsPipe } from './pipes/searchplants.pipe';
 import { SearchPostsPipe } from './pipes/searchposts.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GoogleMapsModule } from '@angular/google-maps';
@@ -34,6 +33,8 @@ import { ContactComponent } from './components/contact/contact.component';
 import { FilterLightReqPipe } from './pipes/filterlightreq.pipe';
 import { FilterTopicPipe } from './pipes/filtertopic.pipe';
 import { FilterDatePipe } from './pipes/filterdate.pipe';
+
+
 
 
 
@@ -70,6 +71,7 @@ import { FilterDatePipe } from './pipes/filterdate.pipe';
 
 
 
+
   ],
   imports: [
     BrowserModule,
@@ -77,10 +79,9 @@ import { FilterDatePipe } from './pipes/filterdate.pipe';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule,
     CarouselModule,
     BrowserAnimationsModule,
-    GoogleMapsModule
+    GoogleMapsModule,
 
 
   ],
