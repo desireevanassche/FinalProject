@@ -48,6 +48,7 @@ public class Todo {
 	@CreationTimestamp
 	private LocalDateTime createdAt;
 	
+	@Column(name = "completed")
 	private boolean active;
  
 	@ManyToOne
