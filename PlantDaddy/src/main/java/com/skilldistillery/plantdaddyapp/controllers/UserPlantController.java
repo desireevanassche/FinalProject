@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skilldistillery.plantdaddyapp.entities.PlantGrowth;
 import com.skilldistillery.plantdaddyapp.entities.UserPlant;
+import com.skilldistillery.plantdaddyapp.services.PlantGrowthService;
 import com.skilldistillery.plantdaddyapp.services.UserPlantService;
 
 @RestController
@@ -26,6 +28,10 @@ public class UserPlantController {
 	@Autowired
 	UserPlantService userPlantServ;
 
+	@Autowired
+	PlantGrowthService growthServ;
+	
+	
 	@GetMapping("userPlants")
 	public List<UserPlant> index(Principal principal) {
 		return userPlantServ.index(principal.getName());
@@ -63,5 +69,30 @@ public class UserPlantController {
 		return userPlantServ.deactivate(userPlant, userPlantId, principal.getName());
 
 	}
+	
+	
+	@GetMapping("userPlants/{userPlantId}/growth")
+	public List<PlantGrowth> indexGrowthByUserPlant(@PathVariable("userPlantId") int userPlantId,
+			Principal principal,
+			HttpServletResponse res){
+		
+		return growthServ.indexGrowthByUserPlantId(userPlantId, principal.getName());
+		
+	}
+	
+	
+	@GetMapping("userPlants/{userPlantId}/growth/{growthId}")
+	public PlantGrowth getPlantGrowthOfUserPlant(@PathVariable("userPlantId") int userPlantId,
+			@PathVariable("growthId")int growthId,
+			HttpServletResponse res,
+			Principal principal
+			) {
+		
+		return growthServ.findGrowthById(userPlantId, growthId, principal.getName());
+	}
+	
+	
+	
+	
 
 }

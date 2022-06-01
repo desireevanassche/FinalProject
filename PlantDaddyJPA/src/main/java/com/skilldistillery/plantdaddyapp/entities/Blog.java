@@ -35,7 +35,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Blog {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private int id;
 
 	private String title;
 
@@ -62,11 +62,11 @@ public class Blog {
 	@ManyToMany(mappedBy = "blogs")
 	private List<Hashtag> hashtags;
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

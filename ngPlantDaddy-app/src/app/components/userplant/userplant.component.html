@@ -62,11 +62,11 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-3">
-          <button class="btn btn-primary btn-lg" (click)="selectedReset(selected.id); displayTodos = false; editTodoForm = false; displayAddTodoForm = false">Back</button>
+          <button class="btn btn-primary btn-lg" (click)="selectedReset(selected.id); displayTodos = false; editTodoForm = false; displayAddTodoForm = false; displaySelectedTodo = false">Back</button>
         </div>
 
         <div class="col-lg-3">
-          <button class="btn btn-primary btn-lg" (click)="setEditUserPlant(); editForm = true; displayTodos = false; displayAddTodoForm = false">
+          <button class="btn btn-primary btn-lg" (click)="setEditUserPlant(); editForm = true; displayTodos = false; displayAddTodoForm = false; displaySelectedTodo = false">
             Edit
           </button>
         </div>
@@ -79,7 +79,7 @@
 
         <div class="col-lg-3">
           <button class="btn btn-primary btn-lg"
-            (click)=" deactivateUserPlant(selected, selected.id); selected = null; displayAddTodoForm = false; editTodoForm = false">
+            (click)=" deactivateUserPlant(selected, selected.id); selected = null; displayAddTodoForm = false; editTodoForm = false; displaySelectedTodo = false">
             Deactivate
           </button>
 
@@ -451,7 +451,7 @@
                      {{ todo.description }}
                     </div>
                     <div class="item-except text-muted text-sm h-1x">
-                      {{ todo.dueDate }}
+                      <span [ngClass]="checkWarning(todo)">{{todo.dueDate}}</span>
                     </div>
                     <div class="item-except text-muted text-sm h-1x">
                       {{ todo.active }}
@@ -473,7 +473,7 @@
                         </svg>
                       </a>
                       <div class="dropdown-menu dropdown-menu-right" role="menu">
-                        <a class="dropdown-item" data-abc="true" (click)="displayTodo(todo)">See detail</a>
+                        <a class="dropdown-item" data-abc="true" (click)="displayTodo(todo); displaySelectedTodo = true">See detail</a>
                         <a class="dropdown-item edit" data-abc="true" (click)="setEditTodo(); editTodoForm = true">Edit</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item trash" data-abc="true" (click)="deleteTodo(todo.id)">Delete item</a>
@@ -492,17 +492,16 @@
 </div>
 
 
-<!-- <div *ngIf="editTodoForm == true">
+<div *ngIf="displaySelectedTodo == true">
+  <h1><span [ngClass]="checkWarningForIndividualTodo()">{{selectedTodo.name}}</span></h1>
   <ul>
     <li>{{ selectedTodo.id }}</li>
     <li>{{ selectedTodo.name }}</li>
     <li>{{ selectedTodo.description }}</li>
     <li>{{ selectedTodo.createdAt }}</li>
   </ul>
-
-   <button class="btn btn-primary" type="submit" (click)="setEditTodo()">EDIT</button>
-  <label for="task" class="form-label">Task</label>
-</div> -->
+  <button (click)="displaySelectedTodo = false">Cancel</button>
+</div>
 
 <form *ngIf="selected && editTodoForm == true">
   <label for="name" class="form-label">Name: </label>
@@ -531,7 +530,6 @@
     <button class="btn btn-primary" (click)="displayAddTodoForm = false" type="submit">Cancel</button>
   </div>
 </form>
-
 
 
 <!-- <div class="d-flex flex-row align-items-center mb-4">

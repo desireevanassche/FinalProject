@@ -182,6 +182,9 @@ img {
 }
 
 .comment-for-post{
-  padding-left: 250px;
+  padding-left: 400px;
+}
+.reply-for-post{
+  padding-left: 600px;
 }
 
