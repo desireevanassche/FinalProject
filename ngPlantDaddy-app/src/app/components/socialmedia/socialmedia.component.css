@@ -2,7 +2,7 @@ body{
   margin-top:20px;
   color: #1a202c;
   text-align: left;
-  background-color: #e2e8f0;
+  background-color: #73a684;
 }
 .inner-wrapper {
   position: relative;
@@ -26,8 +26,8 @@ body{
 .inner-sidebar {
   left: 0;
   width: 235px;
-  border-right: 1px solid #cbd5e0;
-  background-color: #fff;
+  border-right: 1px solid #1d4a2c;
+  background-color: rgb(133, 131, 131);
   z-index: 1;
 }
 .inner-main {
@@ -58,7 +58,7 @@ body{
 }
 .inner-main-footer,
 .inner-main-header {
-  background-color: #fff;
+  background-color: #1d4a2c;
 }
 .inner-main-footer,
 .inner-sidebar-footer {
@@ -84,7 +84,7 @@ body{
 
 .nav .show>.nav-link.nav-link-faded, .nav-link.nav-link-faded.active, .nav-link.nav-link-faded:active, .nav-pills .nav-link.nav-link-faded.active, .navbar-nav .show>.nav-link.nav-link-faded {
   color: #3367b5;
-  background-color: #c9d8f0;
+  background-color: #55a570;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
@@ -102,7 +102,7 @@ body{
   border-radius: .25rem;
 }
 .nav-link {
-  color: #4a5568;
+  color: #f9fafb;
 }
 /* .card {
   box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
@@ -119,9 +119,6 @@ body{
   border: 1.5 solid rgba(0,0,0,.125);
   border-radius: .25rem;
 }
-
-
-
 /* .card-body {
   border: 1.5px solid black;
   border-radius: 10px;
@@ -167,7 +164,7 @@ body{
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;
+  background-color: rgba(75, 170, 139, 0.285);
   background-clip: border-box;
   border: 1px solid #f2f4f9;
   border-radius: 0.25rem;
