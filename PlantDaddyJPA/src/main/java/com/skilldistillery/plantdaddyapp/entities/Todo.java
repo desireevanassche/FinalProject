@@ -47,6 +47,8 @@ public class Todo {
 	@Column(name = "date_created")
 	@CreationTimestamp
 	private LocalDateTime createdAt;
+	
+	private boolean active;
  
 	@ManyToOne
 	@JsonIgnoreProperties({"todos"})
@@ -111,6 +113,16 @@ public class Todo {
 
 	public void setUserPlant(UserPlant userPlant) {
 		this.userPlant = userPlant;
+	}
+	
+	
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package com.skilldistillery.plantdaddyapp.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,7 +15,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 //+---------------------+---------------+------+-----+---------+----------------+
 //| Field               | Type          | Null | Key | Default | Extra          |
@@ -60,7 +60,14 @@ public class UserPlant {
 	private String description;
 
 	private boolean active;
+	
+	@Column(name="growth_description")
+	private String growthDescription;
 
+	@Column(name="growth_image")
+	private String growthImage;
+	
+	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
@@ -77,7 +84,6 @@ public class UserPlant {
 	@JsonIgnore
 	private List<PlantPhoto> photos;
 	
-//	@JsonIgnoreProperties({"userPlant"})
 	@OneToMany(mappedBy= "userPlant")
 	private List<PlantGrowth> growthData;
 
@@ -85,6 +91,17 @@ public class UserPlant {
 		super();
 	}
 	
+	public void addPlantGrowth(PlantGrowth growth) {
+		if(growthData == null) {
+			growthData = new ArrayList<>();
+			
+		}
+		
+		if(!growthData.contains(growth)) {
+			growthData.add(growth);
+			growth.setUserPlant(this);
+		}
+	}
 	
 	
 
@@ -203,6 +220,24 @@ public class UserPlant {
 	public void setTodos(List<Todo> todos) {
 		this.todos = todos;
 	}
+	
+	
+
+	public String getGrowthDescription() {
+		return growthDescription;
+	}
+
+	public void setGrowthDescription(String growthDescription) {
+		this.growthDescription = growthDescription;
+	}
+
+	public String getGrowthImage() {
+		return growthImage;
+	}
+
+	public void setGrowthImage(String growthImage) {
+		this.growthImage = growthImage;
+	}
 
 	@Override
 	public String toString() {
@@ -213,7 +248,8 @@ public class UserPlant {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(active, description, height, homeLocation, id, imageUrl, nickname, potDiameter, spread);
+		return Objects.hash(active, description, growthData, growthDescription, growthImage, height, homeLocation, id,
+				imageUrl, nickname, photos, plant, potDiameter, spread, todos, user);
 	}
 
 	@Override
@@ -226,11 +262,16 @@ public class UserPlant {
 			return false;
 		UserPlant other = (UserPlant) obj;
 		return active == other.active && Objects.equals(description, other.description)
+				&& Objects.equals(growthData, other.growthData)
+				&& Objects.equals(growthDescription, other.growthDescription)
+				&& Objects.equals(growthImage, other.growthImage)
 				&& Double.doubleToLongBits(height) == Double.doubleToLongBits(other.height)
-				&& Objects.equals(homeLocation, other.homeLocation) && Objects.equals(id, other.id)
+				&& Objects.equals(homeLocation, other.homeLocation) && id == other.id
 				&& Objects.equals(imageUrl, other.imageUrl) && Objects.equals(nickname, other.nickname)
+				&& Objects.equals(photos, other.photos) && Objects.equals(plant, other.plant)
 				&& Double.doubleToLongBits(potDiameter) == Double.doubleToLongBits(other.potDiameter)
-				&& Double.doubleToLongBits(spread) == Double.doubleToLongBits(other.spread);
+				&& Double.doubleToLongBits(spread) == Double.doubleToLongBits(other.spread)
+				&& Objects.equals(todos, other.todos) && Objects.equals(user, other.user);
 	}
 
 }
