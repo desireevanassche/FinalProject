@@ -35,9 +35,10 @@ export class SocialmediaComponent implements OnInit {
   newComment: Comment = new Comment();
   newReply: Comment = new Comment();
 
-  topics: Topic[] = [];
 
   topic: Topic | null = null;
+
+  topics: Topic[] = [];
 
   selected: Post | null = null;
 
@@ -45,7 +46,11 @@ export class SocialmediaComponent implements OnInit {
 
   currentUserId: number | null = 0;
 
+
+
+
   searchValue: string = "";
+  searCareValue: string = "";
   displayPostModal = false;
   displayCommentModal = true;
   displayReplyModal = true;
@@ -261,15 +266,5 @@ export class SocialmediaComponent implements OnInit {
 
 
 
-  // displayAllComments(postId:number){
 
-  //   this.commentSvc.indexComments(postId).subscribe(
-  //     (data)=> {
-  //       this.allComments = data;
-  //     },
-  //     (err) => {
-  //       console.log(err);
-  //     }
-  //   )
-  // }
 }

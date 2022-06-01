@@ -1,9 +1,12 @@
+import { Post } from "./post";
+
 export class Topic {
 
   id: number;
   name: string;
   description: string | null;
   imageUrl: string | null;
+  posts: Post[];
 
 
 
@@ -12,6 +15,7 @@ constructor(
   name: string ="",
   description: string = "",
   imageUrl: string = "",
+  posts: Post[] = []
 
 
 
@@ -20,7 +24,8 @@ constructor(
 this.id = id;
 this.name =name;
 this.description = description;
-this.imageUrl = imageUrl
+this.imageUrl = imageUrl,
+this.posts = posts;
 
 
 
