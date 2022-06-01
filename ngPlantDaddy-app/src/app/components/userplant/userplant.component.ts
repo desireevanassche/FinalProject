@@ -429,34 +429,24 @@ export class UserplantComponent implements OnInit {
       this.selectedWater = todo;
     }
 
+    reloadWaterCycle(){
 
-    // displayTodo = (todo: Todo) => {
-    //   this.selectedTodo = todo;
-    //   console.log(todo);
-
-    // }
-
-checkNextWaterDay(){
-  let today = new Date();
-  let next = this.selectedWater.completeDate;
-  let nextWater = new Date(next);
+    }
 
 
-}
+  // reloadSpecificTodoList(id : number){
+  //   this.todoService.getAllUserPlantTodos(id).subscribe({
+  //     next: (data) => {
 
+  //       this.todos = data;
 
-// let today = new Date();
+  //     },
+  //     error: (err) => {
+  //       console.log(err + " error inside reload todos index in todo comp.ts");
 
-
-// let due = this.selectedTodo.dueDate;
-// let dueDate = new Date(due);
-
-
-// if(today > dueDate){
-//   return 'badge bg-danger';
-// } else {
-//   return 'badge bg-success';
-// }due);
+  //     }
+  //   })
+  // }
 
 
 }
