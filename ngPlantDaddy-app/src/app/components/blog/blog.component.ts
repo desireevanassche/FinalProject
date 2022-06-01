@@ -8,7 +8,7 @@ import { BlogService } from './../../services/blog.service';
 @Component({
   selector: 'app-blog',
   templateUrl: './blog.component.html',
-  styleUrls: ['./blog.component.css']
+  styleUrls: ['./blog.component.css', './blog.component.sideNav.css']
 })
 export class BlogComponent implements OnInit {
   title: string = 'Blog';
@@ -150,6 +150,9 @@ setEditBlog(){
   this.editBlog = Object.assign({}, this.selected);
 }
 
+tagSearch(searchTag: string){
+  this.searchValue = searchTag;
+  }
 
 }
 
