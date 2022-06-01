@@ -1,5 +1,4 @@
 import { Plant } from "./plant";
-import { Todo } from "./todo";
 import { User } from "./user";
 
 export class Userplant {
@@ -13,6 +12,8 @@ export class Userplant {
   potDiameter:number | null;
   imageUrl : string | null;
   homeLocation:string |null;
+  growthDescription: string | null;
+  growthImage: string | null;
   active: boolean | null;
   user: User;
   plant: Plant;
@@ -31,6 +32,8 @@ constructor(
   potDiameter:number = 0,
   imageUrl: string = "",
   homeLocation : string ="",
+  growthDescription: string = "",
+  growthImage: string = "",
   active: boolean = true,
   plant: Plant = new Plant(),
   user : User = new User (),
@@ -48,6 +51,8 @@ this.spread = spread;
 this.potDiameter = potDiameter,
 this.imageUrl = imageUrl;
 this.homeLocation = homeLocation;
+this.growthDescription = growthDescription;
+this.growthImage = growthImage;
 this.active = active;
 this.plant = plant;
 this.user = user;

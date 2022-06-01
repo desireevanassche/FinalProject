@@ -1,3 +1,6 @@
+import { AboutusComponent } from './components/aboutus/aboutus.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { Growthdata } from './models/growthdata';
 import { UserplantComponent } from './components/userplant/userplant.component';
 import { PlantComponent } from './components/plant/plant.component';
 import { AccountComponent } from './components/account/account.component';
@@ -23,7 +26,10 @@ const routes: Routes = [
   { path: 'account', component: AccountComponent },
   { path: 'plant', component: PlantComponent },
   { path: 'todo', component: TodoComponent },
-  { path: 'userPlants', component : UserplantComponent}
+  { path: 'userPlants', component : UserplantComponent},
+  { path: 'test', component : Growthdata},
+  { path: 'contact', component : ContactComponent},
+  { path: 'about', component : AboutusComponent}
 
 
 ];
