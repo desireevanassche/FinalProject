@@ -220,7 +220,7 @@ export class AccountComponent implements OnInit {
 
   todaysDate(){
     let today = new Date();
-    return today;
+    return today.toLocaleDateString();
   }
 
 }

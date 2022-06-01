@@ -34,6 +34,7 @@ export class SocialmediaComponent implements OnInit {
   selectedReply : Comment | null = null;
 
   newComment: Comment = new Comment();
+
   newReply: Comment = new Comment();
 
 
