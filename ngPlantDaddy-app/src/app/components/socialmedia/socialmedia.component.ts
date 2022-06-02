@@ -42,6 +42,8 @@ export class SocialmediaComponent implements OnInit {
 
   topics: Topic[] = [];
 
+  pageSelected: Post [] =[];
+
   selected: Post | null = null;
 
   display: boolean = false;
@@ -301,6 +303,38 @@ export class SocialmediaComponent implements OnInit {
         this.searchValue = searchTag;
         }
 
+
+        tNext = (arr: any[][], index): number => {
+          if (arr.length > 5 && index + 2 < arr.length) {
+            return index + 1;
+          } else {
+            return index;
+          }
+        };
+
+        tPrev = (arr: any[][], index): number => {
+          if (arr.length > 5 && index > 0) {
+            return index - 1;
+          } else {
+            return index;
+          }
+        };
+
+        tabler = (arr: any[], obj1: any[][], num): void => {
+          let pages = (arr.length - (arr.length % num)) / num + 1;
+          console.log("pages", pages);
+          let start = 0;
+          for (let i = 0; i < pages; i++) {
+            let obj2: any[] = new Array<any>();
+            for (let j = 0; j < num; j++) {
+              if (arr[start]) {
+                obj2.push(arr[start]);
+              }
+              start++;
+            }
+            obj1.push(obj2);
+          }
+        };
 
 
 
