@@ -88,6 +88,8 @@ td li {
   border-radius: 10px;
   box-shadow: 1px 1px 1px 1px #CCCCCC;
   background-color: white;
+  /* height: 400px;
+  width: 400px;; */
 
 }
 .garden-table {
@@ -281,3 +283,76 @@ td li {
 
 
   #container { overflow-x: auto; }
+
+  div.modal-header {
+    background-color: #BBCBB7 !important;
+  }
+
+  div.modal-header h6{
+    font-size: 24px;
+    text-align: center;
+    width: 900px;
+  }
+
+  .modal {
+    border-radius: 10px;
+  }
+
+  div.modal-body li{
+    font-family: 'Josefin Sans', sans-serif  !important;
+
+  }
+
+  .modal-body {
+    max-width: 80% !important;
+    background-color: white;
+  }
+
+  div.modal-body h3{
+    font-family: 'Josefin Sans', sans-serif  !important;
+    font-size: 18px;
+
+  }
+
+  div.modal-body input[type="text"] {
+    max-width: 80% !important;
+    border: 1.5px solid black;
+    border-radius: 8px;
+  }
+
+  .modal-dialog {
+    max-width: 80% !important;
+    background-color: white;
+  }
+
+
+  .modal button {
+    background-color: #BBCBB7;
+    border-radius: 8px;
+    border: black;
+    font-size: 12px;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+  }
+
+  .modal .close-button {
+    background-color: #BBCBB7;
+    font-size: 12px;
+    width: 35px;
+    border: 1.5px solid white;
+    color: white;
+
+  }
+
+  .plantCard .img {
+    height: 300px;
+    width: auto;
+  }
+
+  .modal-body .singleImage {
+    height: 300px;
+    width: auto;
+  }
+
+
