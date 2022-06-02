@@ -153,6 +153,18 @@ tagSearch(searchTag: string){
   this.searchValue = searchTag;
   }
 
+
+blogCreated(blog: Blog){
+
+  let create = new Date();
+
+  let createDate = new Date(create);
+
+  return createDate.toDateString();
+
+}
+
+
 }
 
 

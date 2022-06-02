@@ -378,31 +378,6 @@ section.forum-banner {
 }
 
 
-/* ------ FOOTER --------------------------------*/
-
-footer.no-space {
-  margin-top: 0;
-}
-
-footer {
-  background-color: black;
-  text-align: center;
-  padding: 25px 0px;
-  margin-top: 120px;
-  margin-bottom: 0;
-}
-
-footer p {
-  color: #fff;
-  font-weight: 300;
-}
-
-footer p a {
-  color: #fff;
-  font-weight: 500;
-}
-
-
 /* ---- START LIBRARY GALLERY -------------------------------- */
 
 
@@ -420,7 +395,7 @@ footer p a {
 
 .makeChanges .card-body {
 	width: 300px;
-  height: 350px;
+  height: 300px;
 	padding-top: 50px;
 }
 
@@ -437,7 +412,7 @@ footer p a {
 
 .reviewBackground {
   background-image: url("https://live.staticflickr.com/65535/52110712751_a423e4cc2e_k.jpg");
-  height: 400px;
+  height: 575px;
   justify-content: center;
   margin-top: 0;
   margin-bottom: 0;
@@ -460,10 +435,11 @@ footer p a {
 }
 
 .card-image {
-  height: 100px !important;
-  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+  height: 200px !important;
+  width: 200px !important;
 }
-
 
 
 

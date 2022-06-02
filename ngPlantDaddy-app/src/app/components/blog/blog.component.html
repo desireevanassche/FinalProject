@@ -23,7 +23,7 @@
 
         <td>
         <ul>
-          <li>{{blog.createdAt}}</li>
+          <li>{{blogCreated()}}</li>
           <li (click)="displayBlog(blog)"><h4>{{blog.title}}</h4></li>
           <li (click)="displayBlog(blog)">{{blog.content}}</li>
     </ul>
@@ -41,7 +41,7 @@
   <p>{{selected.title}}</p>
   <p>{{selected.content}}</p>
 
-  <button (click)="displayTable()">Back</button>
+  <button class="btn btn-success" (click)="displayTable()">Back</button>
 
   <div *ngIf="currentUserId === 1">
     <button (click)="setEditBlog()">Edit</button></div>
@@ -70,7 +70,7 @@
 
 
   <div *ngIf="currentUserId === 1">
-    <button (click)="displayAddForm = true">Add A Blog Post </button>
+    <button class="btn btn-primary" (click)="displayAddForm = true">Add A Blog Post </button>
   </div>
 </div>
 
@@ -95,10 +95,10 @@
 <nav id="sidebar">
   <div class="side-nav">
   <div class="p-4 pt-5">
-    <h5>Categories</h5>
-    <ul class="list-unstyled components mb-5">
-      <li>
-        <select [(ngModel)]="searchValue"  name="filterCareDifficulty"  class="custom-select custom-select-sm w-auto mr-1">
+    <!-- <h5>Categories</h5> -->
+    <!-- <ul class="list-unstyled components mb-5"> -->
+      <!-- <li> -->
+        <!-- <select [(ngModel)]="searchValue"  name="filterCareDifficulty"  class="custom-select custom-select-sm w-auto mr-1">
           <option value="" [selected]="'Care Level'">Care Level</option>
           <option value="easy">Easy</option>
           <option value="intermediate" >Intermediate</option>
@@ -130,9 +130,10 @@
           <option value="Tap">Tap</option>
           <option value="Filtered" >Filtered </option>
           <option value="Mineral" >Mineral </option>
-        </select>
-      </li>
-    </ul>
+        </select> -->
+      <!-- </li> -->
+    <!-- </ul> -->
+
     <div class="mb-5">
       <h5>Tag Cloud</h5>
       <div class="tagcloud" >
@@ -157,9 +158,11 @@
 
           <div *ngIf="!isNumber(currentUserId)">
 
-
+<div>
+  <button class="btn btn-success" (click)="searchValue = null">Clear</button>
+</div>
             <div *ngIf="currentUserId === 1">
-              <button (click)="displayAddForm = true">Add A Blog Post </button>
+              <button class="btn btn-primary" (click)="displayAddForm = true">Add A Blog Post </button>
             </div>
           </div>
             </div>
