@@ -98,7 +98,7 @@ td li {
 }
 .card {
   display: flex;
-  margin-left: 10px;
+  margin: 10px 10px 10px 10px;
   border-radius: 10px;
   box-shadow: 1px 1px 1px 1px #CCCCCC;
 }
@@ -167,6 +167,21 @@ td li {
   padding-right: 10px;
   padding-left: 2.5px;
 }
+
+#addPlant {
+  padding: 0px 0px 0px 0px !important;
+}
+
+.addPlantForm {
+  padding:  0px 0px 0px 0px!important;
+  width: 700px;
+}
+
+div.addPlantForm {
+  padding: 0%;
+}
+
+
 
 /* -------------------GROWTH TRACKER --------------- */
 
@@ -291,6 +306,9 @@ td li {
   }
   }
 
+  .garden {
+    margin: auto
+  }
 
   #container { overflow-x: auto; }
 

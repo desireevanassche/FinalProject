@@ -6,6 +6,33 @@ body{
   background-position: center;
 
 }
+
+
+header, .full-width {
+  background-color: #BBCBB7;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  padding-right: 260px;
+ width: 770px;
+ margin-left: 75px;
+
+}
+
+.header {
+  border-radius: 10px;
+}
+
+
+
+
+.wrap {
+  width: 100%;
+  max-width: 24em;
+  margin: 0 auto;
+  padding: 0.25em 0.625em;
+}
+
+
 * {
   font-family: 'Josefin Sans', sans-serif;
 }
@@ -239,7 +266,7 @@ input[type=text] {
   top: 0;
   right: 25px;
   font-size: 36px;
-  margin-left: 50px;
+  margin-left: 0px;
 }
 
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
@@ -260,6 +287,9 @@ input[type=text] {
   /*This part is important for centering*/
   display: grid;
   place-items: center;
+  justify-content: center;
+  padding-left: auto;
+  padding-right: auto;
 }
 
 .typing-demo {
@@ -358,6 +388,8 @@ div.modal-body input[type="text"] {
   border-radius: 10px;
   width: 600px;
   box-shadow: 1px 1px 1px 1px #CCCCCC;
+  padding-left: auto;
+  padding-right: auto;
 
 }
 
