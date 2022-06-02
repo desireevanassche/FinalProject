@@ -26,7 +26,7 @@
 </details>
 
 ## About The Project
-Plant Daddy is an application that allows a user to create, read, and update a library of common house hold plants.
+Plant Daddy is an application that allows a user to create, read, and update a library of common house hold plants. Users can come together and share their knowledge of plants by adding to our library, track their own plants growth in a personal library, and share posts with the community. 
 
 
 
@@ -63,14 +63,37 @@ Once the user has created an account/logged in, the user will be presented with 
 |-----------|----------------------|--------------|---------------|---------|
 | GET       | `/api/plants`        |              | Collection of representations of all plants  | **List** or **collection** endpoint |
 | GET       | `/api/plants/1`      |              | Representation of plant `1` | **Retrieve** endpoint |
-| GET       | `/api/plants/search/elk`   |              | Representation of plant with name or description of `snake` | **Retrieve** endpoint |
+| GET       | `/api/plants/search/snake`   |              | Representation of plant with name or description of `snake` | **Retrieve** endpoint |
 | POST      | `/api/plant`     | Representation of a new plant| Description of the result of the operation | **Create** endpoint |
 | PUT       | `/api/plants/1`   | Representation of an update to plant `1` | | **Replace** endpoint |
 | PUT       | `/api/plants/disable/1`   | Representation of active status set to false for plant  `1` | | **Replace** endpoint |
 
 
+| HTTP Verb | URI                  | Request Body | Response Body | Purpose |
+|-----------|----------------------|--------------|---------------|---------|
+| GET       | `/api/userplants`        |              | Collection of representations of all user plants  | **List** or **collection** endpoint |
+| GET       | `/api/userplants/1`      |              | Representation of  user plant `1` | **Retrieve** endpoint |
+| GET       | `/api/plants/search/todd`   |              | Representation of a user plant with that name of `todd`  | **Retrieve** endpoint |
+| POST      | `/api/userplant`     | Representation of a new  user plant| Description of the result of the operation | **Create** endpoint |
+| PUT       | `/api/userplants/1`   | Representation of an update to plant `1` | | **Replace** endpoint |
+| PUT       | `/api/plants/deactivate/1`   | Representation of active status set to false for plant  `1` | | **Replace** endpoint |
 
+| HTTP Verb | URI                  | Request Body | Response Body | Purpose |
+|-----------|----------------------|--------------|---------------|---------|
+| GET       | `/api/todos`        |              | Collection of representations of all todos  | **List** or **collection** endpoint |
+| GET       | `/api/todos/1`      |              | Representation of todo `1` | **Retrieve** endpoint |
+| GET       | `/api/todos/userplants/1`   |              | Representation of the todos for user plant `1` | **Retrieve** endpoint |
+| POST      | `/api/todos/userplants/1`     | Representation of a new todo for user plant `1`| Description of the result of the operation | **Create** endpoint |
+| PUT       | `/api/todos/1`   | Representation of an update to todo `1` | | **Replace** endpoint |
+| DELETE     | `/api/todos/1`   |  | | **Delete** route |
 
+| HTTP Verb | URI                  | Request Body | Response Body | Purpose |
+|-----------|----------------------|--------------|---------------|---------|
+| GET       | `/api/posts`        |              | Collection of representations of all plants  | **List** or **collection** endpoint |
+| GET       | `/api/users/posts`      |              | Representation of plant `1` | **Retrieve** endpoint |
+| POST      | `/api/users/posts`     | Representation of a new user post| Description of the result of the operation | **Create** endpoint |
+| PUT       | `/api/users/posts/1`   | Representation of an update to user post `1` | | **Replace** endpoint |
+| PUT       | `/api/users/posts/disable/1`   | Representation of active status set to false for user post  `1` | | **Replace** endpoint |
 
 
 ## Lessons Learned
