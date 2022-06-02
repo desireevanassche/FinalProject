@@ -93,16 +93,16 @@
           {{selected.description}}</p>
           <div *ngIf="selected.user.id == currentUserId">
             <br>
+            <!-- <button (click)="setEditPlant()">Edit</button> -->
+
+            <button (click)="setEditPlant()" type="button" data-toggle="modal" data-target="#editPlantModal">
+              Edit Plant
+            </button>
+
+
+            <button (click)="deactivate(selected, selected.id); selected = null">Deactivate</button><br>
+
           </div>
-          <!-- <button (click)="setEditPlant()">Edit</button> -->
-
-          <button (click)="setEditPlant()" type="button" data-toggle="modal" data-target="#editPlantModal">
-            Edit Plant
-        </button>
-
-
-          <button (click)="deactivate(selected, selected.id); selected = null">Deactivate</button><br>
-
             <button (click)="selected = null">Back to Library</button>
 
             <button (click)="selected" type="button" data-toggle="modal" data-target="#careCardModal">

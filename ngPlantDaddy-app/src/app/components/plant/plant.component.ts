@@ -24,7 +24,7 @@ export class PlantComponent implements OnInit {
 
   plantCount: Plant[] = [];
 
-  currentUserId: number = 0;
+  currentUserId: number | null = 0;
   displayAddForm: boolean = false;
   displayCareCard: boolean = false;
 
@@ -43,13 +43,15 @@ export class PlantComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.currentUserId = parseInt(""+this.authServ.getCurrentUserId());
+    this.currentUserId = parseInt('' + this.authServ.getCurrentUserId());
     console.log(this.currentUserId);
 
     if (!this.selected && this.route.snapshot.paramMap.get('id')) {
       let id = this.route.snapshot.paramMap.get('id');
       if (id) {
         this.show(parseInt(id));
+        this.reload();
+
       }
     } else {
     }
