@@ -5,6 +5,7 @@ body{
   background-attachment: fixed;
   background-position: center;
 
+
 }
 
 
@@ -59,11 +60,6 @@ h1, h2, h3, h4, h5, h6 {
 
 ul {
   margin-bottom: 0px;
-}
-
-#registrationForm {
-  height: 800px;
-  width: 800px;
 }
 
 
@@ -229,6 +225,10 @@ input[type=text] {
   font-size: 14px;
   padding-right: 10px;
   padding-left: 2.5px;
+}
+
+.garden {
+  height: 100vh;
 }
 
 /* .singlePlant button {
