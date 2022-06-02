@@ -83,14 +83,24 @@ td li {
   padding-left: 0 !important;
 }
 
-.plantCard {
-  border: 1.5px solid black;
+.plantCards {
+  display: flex;
+  flex-wrap: wrap;
+  /* width: 100%; */
+  padding-top: 50px;
+  /* margin-right: auto;
+  margin-left: auto; */
+}
+
+.display-garden{
+  width: 100%;
+  height: 100vh;
+}
+.card {
+  display: flex;
+  margin-left: 10px;
   border-radius: 10px;
   box-shadow: 1px 1px 1px 1px #CCCCCC;
-  background-color: white;
-  /* height: 400px;
-  width: 400px;; */
-
 }
 .garden-table {
   width: 800px;

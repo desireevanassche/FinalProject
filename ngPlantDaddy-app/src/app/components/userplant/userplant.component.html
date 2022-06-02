@@ -2,47 +2,61 @@
 
 
 
-<!-- <h1>{{ title }}</h1> -->
-
 <div *ngIf="displayAddUserPlantForm == false && !selected" class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
   <button class="button-add-plant" (click)="displayAddUserPlantForm = true">Add a Plant to your Garden?</button>
 </div>
 
-<table class="garden-table" *ngIf="!selected && displayAddUserPlantForm == false">
-
-
-  <tbody>
-    <tr *ngFor="let userplant of userPlants">
-      <div class="plantCard">
-
-          <td *ngIf="userplant.active === true">
-            <img id="image" [src]="userplant.imageUrl" class="img" height="100px" />
-          </td>
-
-      <ul>
-      <!-- <li *ngIf="userplant.active === true">{{ userplant.nickname }}</li> -->
-      <li *ngIf="userplant.active === true"></li>
-      <!-- <li *ngIf="userplant.active === true">{{ userplant.height }}</li>
-      <li *ngIf="userplant.active === true">{{ userplant.spread }}</li>
-      <li *ngIf="userplant.active === true">{{ userplant.potDiameter }}</li>
-      <li *ngIf="userplant.active === true">{{ userplant.homeLocation }}</li>
-      <li *ngIf="userplant.active === true">{{ userplant.description }}</li> -->
-      <li *ngIf="userplant.active === true">
+<button (click)="displayAddUserPlantForm = true" class="btn btn-primary btn-lg" type="button" data-toggle="modal" data-target="#addPlantModal">
+  Add a Plant to Your Garden?
+</button>
 
 
 
-        <button (click)="setPlant(userplant)" type="button" data-toggle="modal" data-target="#singlePlantModal">
-          Check On {{userplant.nickname}}
-      </button>
-
-      </ul>
 
 
+<div class="container d-md-flex align-items-stretch">
+  <!-- Page Content  -->
+  <div class="display-garden">
 
+
+    <div class = "container" id="plants">
+
+
+      <div class="plantCards" *ngIf="!selected && displayAddUserPlantForm == false">
+          <div class="card" *ngFor="let userplant of userPlants | searchfilter:searchValue">
+
+            <img [src]="userplant.imageUrl" alt="" class="card-image" height="250" width="250px"  >
+
+<!--
+            <button style="position:absolute;left:0;top:0;" class="btn btn-primary btn-lg" (click)="setPlant(userplant)">
+              {{ userplant.nickname }}
+            </button> -->
+
+
+            <button (click)="setPlant(userplant)" style="position:absolute;left:0;top:0;" class="btn btn-primary btn-lg" type="button" data-toggle="modal" data-target="#singlePlantModal">
+              Check On {{userplant.nickname}}
+          </button>
+
+
+        </div>
       </div>
-    </tr>
-  </tbody>
-</table>
+    </div>
+    </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
 
 
 
@@ -586,6 +600,173 @@
 
 
 <!-- -------------------------DISPLAY ADD PLANT TO GARDEN FORM  -->
+
+
+
+<!------------------------------------------------------------------------------------------------------------->
+<!--                             ADD PLANT MODAL  addPlantModal                                      --->
+<!------------------------------------------------------------------------------------------------------------->
+
+
+<div class="modal" id="addPlantModal" tabindex="-1" role="dialog" *ngIf="!selected && displayAddUserPlantForm == true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <form>
+              <div class="modal-header">
+                  <h6 class="modal-title mb-0" id="addPlantModalLabel">Edit  {{editUserPlant.nickname}} </h6>
+                  <button type="button" class="close-button" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">X</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <div class="form-outline flex-fill mb-0">
+                        <input
+                          [(ngModel)]="newUserPlant.nickname"
+                          type="text"
+                          name="nickname"
+                          class="form-control"
+                        />
+                        <label class="form-label" name="nickname">
+                          Nickname</label
+                        >
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <div class="form-outline flex-fill mb-0">
+                        <input
+                          [(ngModel)]="newUserPlant.height"
+                          type="number"
+                          name="height"
+                          class="form-control"
+                        />
+                        <label class="form-label" name="height">Height</label>
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <div class="form-outline flex-fill mb-0">
+                        <input
+                          [(ngModel)]="newUserPlant.spread"
+                          type="number"
+                          name="spread"
+                          class="form-control"
+                        />
+                        <label class="form-label" name="spread">Spread</label>
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <div class="form-outline flex-fill mb-0">
+                        <input
+                          [(ngModel)]="newUserPlant.potDiameter"
+                          type="number"
+                          name="potDiameter"
+                          class="form-control"
+                        />
+                        <label class="form-label" name="potDiameter"
+                          >Pot Diameter</label
+                        >
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <div class="form-outline flex-fill mb-0">
+                        <input
+                          [(ngModel)]="newUserPlant.homeLocation"
+                          type="text"
+                          name="homeLocation"
+                          class="form-control"
+                        />
+                        <label class="form-label" name="homeLocation"
+                          >Home Location</label
+                        >
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <div class="form-outline flex-fill mb-0">
+                        <input
+                          [(ngModel)]="newUserPlant.imageUrl"
+                          type="text"
+                          name="imageUrl"
+                          class="form-control"
+                        />
+                        <label class="form-label" name="imageUrl"
+                          >Image URL</label
+                        >
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <div class="form-outline flex-fill mb-0">
+                        <textarea
+                          class="form-control"
+                          rows="2"
+                          name="description"
+                          [(ngModel)]="newUserPlant.description"
+                        ></textarea>
+                        <label class="form-label" name="description"
+                          >Description</label
+                        >
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <div class="form-outline flex-fill mb-0">
+                        <label class="form-label" name="description"
+                          >Plant Type:</label
+                        >
+                        <select [(ngModel)]="newUserPlant.plant.id" name="plantId" class="custom-select custom-select-sm w-auto mr-1">
+                          <option value="" [selected]="'Plants '">Plants</option>
+                          <option *ngFor="let plant of plants" value="{{plant.id}}">
+                           {{ plant.commonName }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <!-- <select [(ngModel)]="searchValue"  name="filterTopic"  class="custom-select custom-select-sm w-auto mr-1">
+                      <option value="" [selected]="'Topic'">Topic</option>
+                        <option *ngFor="let topic of topics"> {{topic.name}}</option>
+
+                    </select> -->
+
+
+
+
+                </div>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-primary" (click)="addUserPlant(newUserPlant); displayAddUserPlantForm = false; displayTable();"  data-dismiss="modal" >Add Plant</button>
+
+
+                </div>
+          </form>
+      </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- OLD -->
+
 <div *ngIf="!selected && displayAddUserPlantForm == true">
 
 
