@@ -2,7 +2,7 @@
 
 
 
-<h1>{{ title }}</h1>
+<!-- <h1>{{ title }}</h1> -->
 
 <div *ngIf="displayAddUserPlantForm == false && !selected" class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
   <button class="btn btn-primary btn-lg" (click)="displayAddUserPlantForm = true">Add a Plant to your Garden?</button>
@@ -29,11 +29,16 @@
       <li *ngIf="userplant.active === true">{{ userplant.description }}</li> -->
       <li *ngIf="userplant.active === true">
 
-        <li><button class="btn btn-primary btn-lg" (click)="setPlant(userplant)">
+        <!-- <li><button class="btn btn-primary btn-lg" (click)="setPlant(userplant)">
           Details
-        </button></li>
+        </button></li> -->
+
+        <button (click)="setPlant(userplant)" type="button" data-toggle="modal" data-target="#singlePlantModal">
+          Details
+      </button>
 
       </ul>
+
 
 
       </div>
@@ -43,7 +48,9 @@
 
 
 
-<!-- ----------------------------------------------- DETAIL VIEW OF A USER PLANT --------------------------------- -->
+<!------------------------------------------------------------------------------------------------------------->
+<!--                                   SNGLE PLANT DETAIL VIEW                                              --->
+<!------------------------------------------------------------------------------------------------------------->
 
 
 
@@ -87,9 +94,6 @@
             Deactivate
           </button>
 
-        <button (click)=" displayGrowthData(selected)"  type="button" data-toggle="modal" data-target="#displayGrowthModal">
-          DISPLAY GROWTH IN MODAL
-      </button>
 
 
         <div class="col-lg-3">
@@ -115,6 +119,247 @@
     </div>
   </div>
 </div>
+
+<!------------------------------ DISPLAY SINGLE PLANT  DETAILS MODAL  ----------------------------------------->
+
+<div class="modal fade" id="singlePlantModal" tabindex="-1" role="dialog" *ngIf="selected && editForm == false" >
+
+  <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+
+              <div class="modal-header ">
+                  <h6 class="modal-title mb-0" id="careCardModalLabel"> {{ selected.nickname }}</h6>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">×</span>
+                  </button>
+              </div>
+
+              <div class="modal-body">
+
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+
+
+                    <div><img [src]="selected.imageUrl"/></div>
+
+                    <ul class="list-group">
+                      <li class="list-group-item">ID: {{ selected.id }}</li>
+                      <li class="list-group-item">Nickname: {{ selected.nickname }}</li>
+                      <li class="list-group-item">Height: {{ selected.height }} inches</li>
+                      <li class="list-group-item">Spread: {{ selected.spread }} inches</li>
+                      <li class="list-group-item">Pot Diameter: {{ selected.potDiameter }} inches</li>
+                      <li class="list-group-item">Location:{{ selected.homeLocation }}</li>
+                      <p class="list-group-item">{{ selected.description }}</p>
+                    </ul>
+
+                 </div>
+
+
+                    <button (click)="setEditUserPlant()" type="button" data-toggle="modal" data-target="#editPlantModal">
+                    Edit
+                    </button>
+
+
+                    <button (click)="displayGrowthData(selected); showGrowth = true;" type="button" data-toggle="modal" data-target="#growthTrackerModal">
+                    Display Plants Growth
+                    </button>
+
+
+
+                    <!-- <div class="col-lg-3">
+                      <button class="btn btn-primary btn-lg" (click)=" displayGrowthData(selected);
+                       showGrowth = true;
+                       editForm = false;
+                        displayTodos = false;
+                        displayAddTodoForm = false;
+                         displaySelectedTodo = false">
+                        Display My Plants Growth
+                      </button>
+                    </div> -->
+
+                  <button class="btn btn-primary btn-lg" (click)="displayPlantsTodos(selected.id); displayTodos = true">
+                    Check Out {{ selected.nickname }} Todos
+                  </button>
+
+                  <button class="btn btn-primary btn-lg"
+                    (click)=" deactivateUserPlant(selected, selected.id); selected = null; displayAddTodoForm = false; editTodoForm = false; displaySelectedTodo = false">
+                    Deactivate
+                  </button>
+
+
+
+
+
+                  <button class="btn btn-primary btn-lg"
+                    (click)="displayAddWater = true;">
+                    Add Water Schedule
+                  </button>
+
+
+
+
+
+      </div>
+  </div>
+</div>
+
+
+<!------------------------------------------------------------------------------------------------------------->
+<!--                             EDIT USER PLANT MODAL  editPlantModal                                      --->
+<!------------------------------------------------------------------------------------------------------------->
+
+
+<div class="modal" id="editPlantModal" tabindex="-1" role="dialog" *ngIf="editUserPlant">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <form>
+              <div class="modal-header">
+                  <h6 class="modal-title mb-0" id="editPlantModalLabel">Edit  {{editUserPlant.nickanme}} </h6>
+                  <button type="button" class="close-button" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">X</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+
+                  <div class="form-group">
+                      <label for="editPlantTitle">Nickname</label>
+                      <input type="text" class="form-control" name="nickname" placeholder="Enter Nickname" [(ngModel)]="editUserPlant.nickname" autofocus="" />
+                  </div>
+                  <div class="form-group">
+                      <label for="editPlantTitle"></label>
+                      <input type="text" class="form-control" name="homeLocation" placeholder="Enter Home Location" [(ngModel)]="editUserPlant.homeLocation" autofocus="" />
+                  </div>
+                  <div class="form-group">
+                      <label for="editPlantTitle">Description </label>
+                      <input type="text" class="form-control" name="description" placeholder="Enter Description" [(ngModel)]="editUserPlant.description" autofocus="" />
+                  </div>
+
+
+
+                </div>
+
+
+
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+
+
+                  <button type="button" class="btn btn-primary" (click)="updateUserPlant(editUserPlant, editUserPlant.id)"  data-dismiss="modal" >Update</button>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+<!------------------------------------------------------------------------------------------------------------->
+<!--                GROWTH TRACKER MODAL : growthTrackerModal                                                      --->
+<!------------------------------------------------------------------------------------------------------------->
+
+
+<div class="modal fade" id="growthTrackerModal" tabindex="-1" role="dialog" *ngIf="selected && showGrowth" >
+
+  <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+
+              <div class="modal-header ">
+                  <h6 class="modal-title mb-0" id="careCardModalLabel"> {{ selected.nickname }} </h6>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">×</span>
+                  </button>
+              </div>
+
+              <div class="modal-body">
+
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+
+
+
+                    <div class="growth">
+
+                      <div>
+                        <button class="btn btn-primary btn-lg"(click)="addGrowthData(selected)"
+                        data-toggle="modal" data-target="#addGrowthDataModal"
+                        >
+                        Add Growth Data
+                      </button>
+                      </div>
+
+                      <div class="container" *ngFor="let growth of selected.growthData">
+                        <div class="plantGrowth"  >
+
+
+
+                          <section style="background-color: rgba(36, 88, 24, 0.321);">
+                            <div class="container py-5">
+
+
+                              <div class="main-timeline-2">
+
+
+                                <div [ngClass]="determineLeftOrRight()">
+                                  <div class="card">
+                                    <img [src]="growth.growthImage" class="card-img-top"
+                                      alt="Responsive image">
+                                    <div class="card-body p-4">
+
+                                      <h4 class="fw-bold mb-4">{{selected.nickname}}</h4>
+                                      <h5  class="text-muted mb-4">{{selected.commonName}} </h5>
+                                      <h5  class="text-muted mb-4">{{selected.type}} </h5>
+
+                                      <p class="text-muted mb-4"><i class="far fa-clock" aria-hidden="true"></i> {{growth.createDate}}</p>
+
+                                      <ul>
+                                        <li> Height: {{growth.height}}</li>
+                                       <li> Spread: {{growth.spread}}</li>
+                                        <li>Pot Diameter: {{growth.potDiameter}}</li>
+                                      </ul>
+
+                                      <p class="mb-0">{{growth.growthDescription}}</p>
+                                    </div>
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
+                          </section>
+
+                        </div>
+                        </div>
+                      </div>
+
+
+
+
+
+
+                 </div>
+
+
+
+
+
+      </div>
+  </div>
+</div>
+
+
+<!------------------------------------------------------------------------------------------------------------->
+<!--                                   GROWTH TRACKER                                                       --->
+<!------------------------------------------------------------------------------------------------------------->
 
 <div class="growth">
 
@@ -172,9 +417,341 @@
 
 </div>
 </div>
+
+
+<!------------------------------------------------------------------------------------------------------------->
+<!--                                  addGrowthDataModal                                                      --->
+<!------------------------------------------------------------------------------------------------------------->
+
+
+
+<div class="modal fade" id="addGrowthDataModal" tabindex="-1" role="dialog" *ngIf="addData">
+  <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+          <form>
+              <div class="modal-header d-flex align-items-center bg-primary text-white">
+                  <h6 class="modal-title mb-0" id="addGrowthDataModalLabel">Add Growth Data</h6>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">×</span>
+                  </button>
+              </div>
+
+              <div class="modal-body">
+
+                <div class="col-lg-8">
+                  <div class="card">
+                    <div class="card-body">
+
+
+                      <div class="row mb-3">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">Image</h6>
+                        </div>
+
+                        <div class="col-sm-9 text-secondary">
+                          <input type="text" class="form-control" name="imageUrl" [(ngModel)]="addData.imageUrl">
+                        </div>
+                      </div>
+
+
+                      <div class="form-group">
+                        <label for="commentContent">Description</label>
+                      <textarea class="form-control" rows="5" name="spread" [(ngModel)]="addData.growthDescription"></textarea>
+                      </div>
+
+
+                      <div class="row mb-3">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">Plant Height</h6>
+                        </div>
+                        <div class="col-sm-3 text-secondary">
+                          <input type="number" class="form-control" name="height" [(ngModel)]="addData.height">Inches
+                        </div>
+                      </div>
+                      <div class="row mb-3">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">Leaf Spread</h6>
+                        </div>
+                        <div class="col-sm-3 text-secondary">
+                          <input type="number" class="form-control" name="spread" [(ngModel)]="addData.spread"> Inches
+                        </div>
+                      </div>
+                      <div class="row mb-3">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">New Pot Size</h6>
+                        </div>
+                        <div class="col-sm-3 text-secondary">
+                          <input type="number" class="form-control" name="potDiameter" [(ngModel)]="addData.potDiameter">Inches
+                        </div>
+                      </div>
+
+
+                    </div>
+                  </div>
+                  </div>
+                   </div>
+
+
+
+
+
+
+
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-primary" (click)="updateUserPlant(addData, addData.id); displayGrowthData(addData)"
+                   data-dismiss="modal" >Add</button>
+              </div>
+          </form>
+      </div>
+  </div>
 </div>
 
-<!-- ----------------------------------------------DETAIL form OF PLANT -------------------------------------- -->
+
+
+<!-- --------------------------- SELECTED TODO VIEW OF A PLANT ------------------------------ -->
+
+<div *ngIf="selected && displayTodos == true">
+  <div class="page-content page-container" id="page-content">
+    <div class="padding">
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="container-fluid d-flex justify-content-center">
+
+            <div class="list list-row card" id="sortable" data-sortable-id="0" aria-dropeffect="move">
+                    <button *ngIf="displayTodos == true" class="btn btn-primary btn-lg" type="submit" (click)="displayAddTodoForm = true">Add A Todo</button>
+            <div *ngFor="let todo of todos">
+                <div class="list-item" data-id="13" data-item-sortable-id="0" draggable="true" role="option" aria-grabbed="false">
+                  <div>
+                    <a data-abc="true"><span class="w-40 avatar gd-primary">P</span></a>
+                  </div>
+                  <div class="flex">
+                    <a class="item-author text-color" data-abc="true">{{todo.name}}</a>
+                    <div class="item-except text-muted text-sm h-1x">
+                     {{ todo.description }}
+                    </div>
+                    <div class="item-except text-muted text-sm h-1x">
+                      <span [ngClass]="checkWarning(todo)">{{todo.dueDate}}</span>
+                    </div>
+                    <div class="item-except text-muted text-sm h-1x">
+                      {{ todo.active }}
+                    </div>
+                  </div>
+                  <div class="no-wrap">
+                    <div class="item-date text-muted text-sm d-none d-md-block">
+                      {{ todo.createdAt }}
+                    </div>
+                  </div>
+
+                  <div>
+                    <div class="item-action dropdown">
+                      <a data-toggle="dropdown" class="text-muted" data-abc="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">
+                          <circle cx="12" cy="12" r="1"></circle>
+                          <circle cx="12" cy="5" r="1"></circle>
+                          <circle cx="12" cy="19" r="1"></circle>
+                        </svg>
+                      </a>
+                      <div class="dropdown-menu dropdown-menu-right" role="menu">
+                        <a class="dropdown-item" data-abc="true" (click)="displayTodo(todo); displaySelectedTodo = true">See detail</a>
+                        <a class="dropdown-item edit" data-abc="true" (click)="setEditTodo(); editTodoForm = true">Edit</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item trash" data-abc="true" (click)="deleteTodo(todo.id); displayTodos = false">Delete item</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<button class="btn btn-primary" (click)="displayTodos = false" type="submit">Cancel</button>
+</div>
+
+<div *ngIf="displaySelectedTodo == true">
+  <h1><span [ngClass]="checkWarningForIndividualTodo()">{{selectedTodo.name}}</span></h1>
+  <ul>
+    <li>{{ selectedTodo.id }}</li>
+    <li>{{ selectedTodo.name }}</li>
+    <li>{{ selectedTodo.description }}</li>
+    <li>{{ selectedTodo.createdAt }}</li>
+    <li>{{ selectedTodo.completedAt }}</li>
+  </ul>
+  <button (click)="displaySelectedTodo = false">Cancel</button>
+</div>
+
+<form *ngIf="selected && editTodoForm == true">
+  <label for="name" class="form-label">Name: </label>
+  <input type="text" name="name" [(ngModel)]="editTodo.name" />
+  <br>
+  <label for="description" class="form-label">Description: </label>
+  <input type="text" name="description" [(ngModel)]="editTodo.description"/>
+  <button class="btn btn-primary" type="submit" (click)="updateTodo(editTodo.id, editTodo); editTodoForm = false">
+    Save Edit
+  </button>
+  <button class="btn btn-primary" type="submit" (click)="editTodoForm = false">Cancel</button>
+</form>
+
+
+<form *ngIf="displayAddTodoForm == true" class="row g-3">
+  <div class="col-md-6">
+
+    <label class="form-label">Task</label>
+    <input type="text" name="name" [(ngModel)]="newTodo.name"/>
+
+
+    <label class="form-label">Due Date</label>
+    <input type="date" name="dueDate" [(ngModel)]="newTodo.dueDate">
+
+    <!-- <input type="number" name="userPlantId" [(ngModel)]="newTodo.userplant.id"/> -->
+
+
+
+    <button class="btn btn-primary" (click)="addTodo(newTodo, selected.id); " type="submit">Submit</button>
+    <button class="btn btn-primary" (click)="displayAddTodoForm = false" type="submit">Cancel</button>
+  </div>
+</form>
+
+
+<form *ngIf="displayAddWater == true" class="row g-3">
+  <div class="col-md-6">
+
+    <select name="name" class="form-select" [(ngModel)]="newWater.name">
+    <option value="water schedule">Water Schedule</option>
+  </select>
+
+  <label class="form-label">Start Date</label>
+  <input type="date" name="dueDate" [(ngModel)]="newWater.dueDate">
+
+  <select
+    name="completedAt" class="form-select" [(ngModel)]="newWater.completeDate">
+      <option type="date" [value]="weekly()">Weekly</option>
+      <option type="date"  [value]="biWeekly()">Bi-Weekly</option>
+      <option type="date"  [value]="monthly()">Monthly</option>
+    </select>
+
+
+    <button class="btn btn-primary" (click)="addWater(newWater, selected.id); displayAddWater = true; displayWater(newWater)" type="submit">Submit</button>
+    <button class="btn btn-primary" (click)="displayAddWater = false" type="submit">Cancel</button>
+  </div>
+</form>
+
+
+
+<div *ngIf="displayAddWater == true && selectedWater">
+<p>{{selectedWater.name}}</p>
+<p>{{selectedWater.dueDate}}</p>
+<p>{{selectedWater.completeDate}}</p>
+</div>
+</body>
+
+
+
+
+<!-- ---------------------------------------- edit form ------------------------------------------ -->
+<!--
+<div *ngIf="selected && editForm == true">
+  <section class="vh-100" id="registrationForm" style="background-color: #eee">
+        <div class="container h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-lg-12 col-xl-11">
+              <div class="card text-black" style="border-radius: 25px">
+                <div class="card-body p-md-5">
+                  <div class="row justify-content-center">
+                    <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                      <p
+                        class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4"
+                      ></p>
+
+                      <form class="mx-1 mx-md-4"> -->
+                        <!-- <div class="d-flex flex-row align-items-center mb-4">
+                          <div class="form-outline flex-fill mb-0">
+                            <input name="nickname" [(ngModel)]="editUserPlant.nickname"
+                              type="text"
+                              class="form-control"
+                            />
+                            <label class="form-label" for="nickname">
+                              Nickname</label
+                            >
+                          </div>
+                        </div> -->
+
+                        <!-- <div class="d-flex flex-row align-items-center mb-4">
+                          <div class="form-outline flex-fill mb-0">
+                            <input
+                              [(ngModel)]="editUserPlant.homeLocation"
+                              type="text"
+                              name="homeLocation"
+                              class="form-control"
+                            />
+                            <label class="form-label" name="homeLocation"
+                              >Home Location</label
+                            >
+                          </div>
+                        </div> -->
+
+                        <!-- <div class="d-flex flex-row align-items-center mb-4">
+                          <div class="form-outline flex-fill mb-0">
+                            <textarea
+                              class="form-control"
+                              rows="2"
+                              name="description"
+                              [(ngModel)]="editUserPlant.description"
+                            ></textarea>
+                            <label class="form-label" name="description"
+                              >Description</label
+                            >
+                          </div>
+                        </div> -->
+
+                        <!-- <div
+                          class="d-flex justify-content-center mx-4 mb-3 mb-lg-4"
+                        >
+                          <button
+                            (click)="updateUserPlant(editUserPlant, editUserPlant.id)"
+                            type="button"
+                            class="btn btn-primary btn-lg">
+                            Update Plant
+                          </button>
+                        </div>
+
+                        <div
+                          class="d-flex justify-content-center mx-4 mb-3 mb-lg-4"
+                        >
+                          <button
+                            class="btn btn-primary btn-lg"
+                            type="submit"
+                            name="submit"
+                            value="Cancel"
+                            (click)="editForm = false">
+                            Cancel
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                    <div
+                      class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2"
+                    >
+                      <img
+                        src="https://live.staticflickr.com/65535/52101246520_8a9e9ea24c_z.jpg"
+                        class="img-fluid"
+                        alt="Plant Daddy"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+  </div> -->
+
+
+  <!-- ----------------------------------------------DETAIL form OF PLANT -------------------------------------- -->
 
 
 
@@ -363,467 +940,6 @@
 
 
 
-<!-- -----------------DISPLAY GROWTH MODAL  -->
 
-<div class="modal" id="displayGrowthModal" tabindex="-1" role="dialog" *ngIf="displayGrowthData">
-  <div class="modal-dialog" role="document">
-      <div class="modal-content">
-          <form>
-              <div class="modal-header">
-                  <h6 class="modal-title mb-0" id="editPlantModalLabel">Edit Plant </h6>
-                  <button type="button" class="close-button" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">X</span>
-                  </button>
-              </div>
-              <div class="modal-body">
-                <div class="row">
-                  <div class="form-group">
-                      <label for="editPlantTitle">Common Name</label>
-                      <input type="text" class="form-control" name="commonName" placeholder="Enter commonName" [(ngModel)]="editPlant.commonName" autofocus="" />
-                  </div>
-                  <div class="form-group">
-                      <label for="editPlantTitle">Boranical Name</label>
-                      <input type="text" class="form-control" name="botanicalName" placeholder="Enter title" [(ngModel)]="editPlant.botanicalName" autofocus="" />
-                  </div>
 
-                  <div class="form-group">
-                      <label for="editPlantTitle">Care Difficulty </label>
-                      <input type="text" class="form-control" name="careDifficulty" placeholder="Enter title" [(ngModel)]="editPlant.careDifficulty" autofocus="" />
-                  </div>
-                  <div class="form-group">
-                      <label for="editPlantTitle">Today's Date</label>
-                      <input type="text" class="form-control" name="careDifficulty" placeholder="Enter title" [(ngModel)]="editPlant.careDifficulty" autofocus="" />
-                  </div>
-                  <div class="form-group">
-                      <label for="editPlantTitle">Today's Date</label>
-                      <input type="text" class="form-control" name="imageUrl" placeholder="Enter title" [(ngModel)]="editPlant.imageUrl" autofocus="" />
-                  </div>
-
-                </div>
-
-
-
-              </div>
-              <div class="modal-footer">
-                  <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
-                  <button type="button" class="btn btn-primary" (click)="updatePlant(editPlant, editPlant.id)"  data-dismiss="modal" >Update</button>
-              </div>
-          </form>
-      </div>
-  </div>
-</div>
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<br>
-<br>
-<br>
-<br>
-<!-- ---------------------------------------- edit form ------------------------------------------ -->
-
-<div *ngIf="selected && editForm == true">
-<section class="vh-100" id="registrationForm" style="background-color: #eee">
-      <div class="container h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-          <div class="col-lg-12 col-xl-11">
-            <div class="card text-black" style="border-radius: 25px">
-              <div class="card-body p-md-5">
-                <div class="row justify-content-center">
-                  <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-                    <p
-                      class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4"
-                    ></p>
-
-                    <form class="mx-1 mx-md-4">
-                      <div class="d-flex flex-row align-items-center mb-4">
-                        <div class="form-outline flex-fill mb-0">
-                          <input name="nickname" [(ngModel)]="editUserPlant.nickname"
-                            type="text"
-                            class="form-control"
-                          />
-                          <label class="form-label" for="nickname">
-                            Nickname</label
-                          >
-                        </div>
-                      </div>
-
-                      <!-- <div class="d-flex flex-row align-items-center mb-4">
-                        <div class="form-outline flex-fill mb-0">
-                          <input
-                            [(ngModel)]="editUserPlant.height"
-                            type="number"
-                            name="height"
-                            class="form-control"
-                          />
-                          <label class="form-label" name="height">Height</label>
-                        </div>
-                      </div>
-
-                      <div class="d-flex flex-row align-items-center mb-4">
-                        <div class="form-outline flex-fill mb-0">
-                          <input
-                            [(ngModel)]="editUserPlant.spread"
-                            type="number"
-                            name="spread"
-                            class="form-control"
-                          />
-                          <label class="form-label" name="spread">Spread</label>
-                        </div>
-                      </div>
-
-                      <div class="d-flex flex-row align-items-center mb-4">
-                        <div class="form-outline flex-fill mb-0">
-                          <input
-                            [(ngModel)]="editUserPlant.potDiameter"
-                            type="number"
-                            name="potDiameter"
-                            class="form-control"
-                          />
-                          <label class="form-label" name="potDiameter"
-                            >Pot Diameter</label
-                          >
-                        </div>
-                      </div> -->
-
-                      <div class="d-flex flex-row align-items-center mb-4">
-                        <div class="form-outline flex-fill mb-0">
-                          <input
-                            [(ngModel)]="editUserPlant.homeLocation"
-                            type="text"
-                            name="homeLocation"
-                            class="form-control"
-                          />
-                          <label class="form-label" name="homeLocation"
-                            >Home Location</label
-                          >
-                        </div>
-                      </div>
-
-                      <div class="d-flex flex-row align-items-center mb-4">
-                        <div class="form-outline flex-fill mb-0">
-                          <textarea
-                            class="form-control"
-                            rows="2"
-                            name="description"
-                            [(ngModel)]="editUserPlant.description"
-                          ></textarea>
-                          <label class="form-label" name="description"
-                            >Description</label
-                          >
-                        </div>
-                      </div>
-
-                      <!-- <div class="d-flex flex-row align-items-center mb-4">
-                        <div class="form-outline flex-fill mb-0">
-                          <input type="text" class="form-control" rows="2" name="imageUrl"
-                            [(ngModel)]="editUserPlant.imageUrl"/>
-                          <label class="form-label" name="imageUrl"
-                            >Image URL</label
-                          >
-                        </div>
-                      </div> -->
-
-                      <div
-                        class="d-flex justify-content-center mx-4 mb-3 mb-lg-4"
-                      >
-                        <button
-                          (click)="updateUserPlant(editUserPlant, editUserPlant.id)"
-                          type="button"
-                          class="btn btn-primary btn-lg">
-                          Update Plant
-                        </button>
-                      </div>
-
-                      <div
-                        class="d-flex justify-content-center mx-4 mb-3 mb-lg-4"
-                      >
-                        <button
-                          class="btn btn-primary btn-lg"
-                          type="submit"
-                          name="submit"
-                          value="Cancel"
-                          (click)="editForm = false">
-                          Cancel
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-                  <div
-                    class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2"
-                  >
-                    <img
-                      src="https://live.staticflickr.com/65535/52101246520_8a9e9ea24c_z.jpg"
-                      class="img-fluid"
-                      alt="Plant Daddy"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-</div>
-
-<!-- --------------------------- SELECTED TODO VIEW OF A PLANT ------------------------------ -->
-
-<div *ngIf="selected && displayTodos == true">
-  <div class="page-content page-container" id="page-content">
-    <div class="padding">
-      <div class="row">
-        <div class="col-sm-8">
-          <div class="container-fluid d-flex justify-content-center">
-
-            <div class="list list-row card" id="sortable" data-sortable-id="0" aria-dropeffect="move">
-                    <button *ngIf="displayTodos == true" class="btn btn-primary btn-lg" type="submit" (click)="displayAddTodoForm = true">Add A Todo</button>
-            <div *ngFor="let todo of todos">
-                <div class="list-item" data-id="13" data-item-sortable-id="0" draggable="true" role="option" aria-grabbed="false">
-                  <div>
-                    <a data-abc="true"><span class="w-40 avatar gd-primary">P</span></a>
-                  </div>
-                  <div class="flex">
-                    <a class="item-author text-color" data-abc="true">{{todo.name}}</a>
-                    <div class="item-except text-muted text-sm h-1x">
-                     {{ todo.description }}
-                    </div>
-                    <div class="item-except text-muted text-sm h-1x">
-                      <span [ngClass]="checkWarning(todo)">{{todo.dueDate}}</span>
-                    </div>
-                    <div class="item-except text-muted text-sm h-1x">
-                      {{ todo.active }}
-                    </div>
-                  </div>
-                  <div class="no-wrap">
-                    <div class="item-date text-muted text-sm d-none d-md-block">
-                      {{ todo.createdAt }}
-                    </div>
-                  </div>
-
-                  <div>
-                    <div class="item-action dropdown">
-                      <a data-toggle="dropdown" class="text-muted" data-abc="true">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">
-                          <circle cx="12" cy="12" r="1"></circle>
-                          <circle cx="12" cy="5" r="1"></circle>
-                          <circle cx="12" cy="19" r="1"></circle>
-                        </svg>
-                      </a>
-                      <div class="dropdown-menu dropdown-menu-right" role="menu">
-                        <a class="dropdown-item" data-abc="true" (click)="displayTodo(todo); displaySelectedTodo = true">See detail</a>
-                        <a class="dropdown-item edit" data-abc="true" (click)="setEditTodo(); editTodoForm = true">Edit</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item trash" data-abc="true" (click)="deleteTodo(todo.id); displayTodos = false">Delete item</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-<button class="btn btn-primary" (click)="displayTodos = false" type="submit">Cancel</button>
-</div>
-
-<div *ngIf="displaySelectedTodo == true">
-  <h1><span [ngClass]="checkWarningForIndividualTodo()">{{selectedTodo.name}}</span></h1>
-  <ul>
-    <li>{{ selectedTodo.id }}</li>
-    <li>{{ selectedTodo.name }}</li>
-    <li>{{ selectedTodo.description }}</li>
-    <li>{{ selectedTodo.createdAt }}</li>
-    <li>{{ selectedTodo.completedAt }}</li>
-  </ul>
-  <button (click)="displaySelectedTodo = false">Cancel</button>
-</div>
-
-<form *ngIf="selected && editTodoForm == true">
-  <label for="name" class="form-label">Name: </label>
-  <input type="text" name="name" [(ngModel)]="editTodo.name" />
-  <br>
-  <label for="description" class="form-label">Description: </label>
-  <input type="text" name="description" [(ngModel)]="editTodo.description"/>
-  <button class="btn btn-primary" type="submit" (click)="updateTodo(editTodo.id, editTodo); editTodoForm = false">
-    Save Edit
-  </button>
-  <button class="btn btn-primary" type="submit" (click)="editTodoForm = false">Cancel</button>
-</form>
-
-
-<form *ngIf="displayAddTodoForm == true" class="row g-3">
-  <div class="col-md-6">
-
-    <label class="form-label">Task</label>
-    <input type="text" name="name" [(ngModel)]="newTodo.name"/>
-
-
-    <label class="form-label">Due Date</label>
-    <input type="date" name="dueDate" [(ngModel)]="newTodo.dueDate">
-
-    <!-- <input type="number" name="userPlantId" [(ngModel)]="newTodo.userplant.id"/> -->
-
-
-
-    <button class="btn btn-primary" (click)="addTodo(newTodo, selected.id); " type="submit">Submit</button>
-    <button class="btn btn-primary" (click)="displayAddTodoForm = false" type="submit">Cancel</button>
-  </div>
-</form>
-
-
-<form *ngIf="displayAddWater == true" class="row g-3">
-  <div class="col-md-6">
-
-    <select name="name" class="form-select" [(ngModel)]="newWater.name">
-    <option value="water schedule">Water Schedule</option>
-  </select>
-
-  <label class="form-label">Start Date</label>
-  <input type="date" name="dueDate" [(ngModel)]="newWater.dueDate">
-
-  <select
-    name="completedAt" class="form-select" [(ngModel)]="newWater.completeDate">
-      <option type="date" [value]="weekly()">Weekly</option>
-      <option type="date"  [value]="biWeekly()">Bi-Weekly</option>
-      <option type="date"  [value]="monthly()">Monthly</option>
-    </select>
-
-
-    <button class="btn btn-primary" (click)="addWater(newWater, selected.id); displayAddWater = true; displayWater(newWater)" type="submit">Submit</button>
-    <button class="btn btn-primary" (click)="displayAddWater = false" type="submit">Cancel</button>
-  </div>
-</form>
-
-
-
-<div *ngIf="displayAddWater == true && selectedWater">
-<p>{{selectedWater.name}}</p>
-<p>{{selectedWater.dueDate}}</p>
-<p>{{selectedWater.completeDate}}</p>
-</div>
-</body>
-
-
-<div class="modal fade" id="addGrowthDataModal" tabindex="-1" role="dialog" *ngIf="addData">
-  <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-          <form>
-              <div class="modal-header d-flex align-items-center bg-primary text-white">
-                  <h6 class="modal-title mb-0" id="addGrowthDataModalLabel">Add Growth Data</h6>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">×</span>
-                  </button>
-              </div>
-
-              <div class="modal-body">
-
-                <div class="col-lg-8">
-                  <div class="card">
-                    <div class="card-body">
-
-
-                      <div class="row mb-3">
-                        <div class="col-sm-3">
-                          <h6 class="mb-0">Image</h6>
-                        </div>
-
-                        <div class="col-sm-9 text-secondary">
-                          <input type="text" class="form-control" name="imageUrl" [(ngModel)]="addData.imageUrl">
-                        </div>
-                      </div>
-
-
-                      <div class="form-group">
-                        <label for="commentContent">Description</label>
-                      <textarea class="form-control" rows="5" name="spread" [(ngModel)]="addData.growthDescription"></textarea>
-                      </div>
-
-
-                      <div class="row mb-3">
-                        <div class="col-sm-3">
-                          <h6 class="mb-0">Plant Height</h6>
-                        </div>
-                        <div class="col-sm-3 text-secondary">
-                          <input type="number" class="form-control" name="height" [(ngModel)]="addData.height">Inches
-                        </div>
-                      </div>
-                      <div class="row mb-3">
-                        <div class="col-sm-3">
-                          <h6 class="mb-0">Leaf Spread</h6>
-                        </div>
-                        <div class="col-sm-3 text-secondary">
-                          <input type="number" class="form-control" name="spread" [(ngModel)]="addData.spread"> Inches
-                        </div>
-                      </div>
-                      <div class="row mb-3">
-                        <div class="col-sm-3">
-                          <h6 class="mb-0">New Pot Size</h6>
-                        </div>
-                        <div class="col-sm-3 text-secondary">
-                          <input type="number" class="form-control" name="potDiameter" [(ngModel)]="addData.potDiameter">Inches
-                        </div>
-                      </div>
-
-
-                      <!-- <div class="row mb-3">
-                        <div class="col-sm-3">
-                          <h6 class="mb-0">Active  </h6>
-                        </div>
-                        <div class=" checkbox">
-                          <input type="checkbox" class="checkbox" name="active" [(ngModel)]="editPost.active">
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-sm-3"></div>
-
-                      </div> -->
-                    </div>
-                  </div>
-                  </div>
-                   </div>
-
-
-
-
-
-
-
-              <div class="modal-footer">
-                  <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
-                  <button type="button" class="btn btn-primary" (click)="updateUserPlant(addData, addData.id); displayGrowthData(addData)"
-                   data-dismiss="modal" >Add</button>
-              </div>
-          </form>
-      </div>
-  </div>
 </div>
