@@ -41,7 +41,7 @@
   <p>{{selected.title}}</p>
   <p>{{selected.content}}</p>
 
-  <button (click)="displayTable()">Back</button>
+  <button class="btn btn-success" (click)="displayTable()">Back</button>
 
   <div *ngIf="currentUserId === 1">
     <button (click)="setEditBlog()">Edit</button></div>
@@ -159,7 +159,7 @@
           <div *ngIf="!isNumber(currentUserId)">
 
 <div>
-  <button class="btn btn-primary" (click)="searchValue = null">Clear</button>
+  <button class="btn btn-success" (click)="searchValue = null">Clear</button>
 </div>
             <div *ngIf="currentUserId === 1">
               <button class="btn btn-primary" (click)="displayAddForm = true">Add A Blog Post </button>
