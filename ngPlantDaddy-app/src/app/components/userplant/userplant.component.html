@@ -10,18 +10,6 @@
 
 
 
-<table class="table" *ngIf="!selected && displayAddUserPlantForm == false">
-
-
-  <tbody>
-    <tr *ngFor="let userplant of userPlants">
-      <div class="plantCard">
-
-          <td *ngIf="userplant.active === true">
-            <img id="image" [src]="userplant.imageUrl" class="img-thumbnail" height="100px" />
-          </td>
-
-
       <div class = "container" id="plants">
 
 
@@ -148,7 +136,6 @@
         </div>
       </div>
     </div>
-  </div>
 
 
 
@@ -206,7 +193,6 @@
   </div>
   </div>
 
-</div>
 </div>
 
 <!-- ----------------------------------------------DETAIL form OF PLANT -------------------------------------- -->
@@ -685,7 +671,6 @@
         <p>{{selectedWater.dueDate}}</p>
         <p>{{selectedWater.completeDate}}</p>
       </div>
-  </div>
 
 
   <nav id="sidebar">
@@ -757,9 +742,7 @@
             </div>
             </div>
             </nav>
-            </div>
 
 
 
 
-</body>
