@@ -90,7 +90,7 @@ td li {
   background-color: white;
 
 }
-.library-table {
+.garden-table {
   width: 800px;
   border-collapse: separate;
   border-spacing: 15px;
@@ -116,6 +116,51 @@ td li {
 
 }
 
+/*----SINGLE PLANT SELECTED ------------------*/
+
+.singlePlant{
+  background-color: white;
+  width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: justify;
+  font-size: 18px;
+  padding-top: 10px;
+  border-radius: 8px;
+  border: 1.5px solid black;
+  height: 400px;
+
+}
+
+.singlePlant img {
+    float: left;
+    margin: 10px;
+    height: 350px;
+    border-radius: 8px;
+    border: 1.5px solid white;
+}
+
+.singlePlant h1 {
+  padding-bottom: 2px;
+  padding-top: 50px;
+
+}
+
+.singlePlant .textbox {
+  padding-top: 15px;
+}
+
+.singlePlant p {
+  font-size: 14px;
+  padding-right: 10px;
+  padding-left: 2.5px;
+}
+
+/* -------------------GROWTH TRACKER --------------- */
+
+.growth {
+  background-color: white;
+}
 
 /* The actual timeline (the vertical ruler) */
 .main-timeline-2 {
