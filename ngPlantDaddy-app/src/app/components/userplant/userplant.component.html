@@ -5,9 +5,8 @@
 <!-- <h1>{{ title }}</h1> -->
 
 <div *ngIf="displayAddUserPlantForm == false && !selected" class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-  <button class="btn btn-primary btn-lg" (click)="displayAddUserPlantForm = true">Add a Plant to your Garden?</button>
+  <button class="button-add-plant" (click)="displayAddUserPlantForm = true">Add a Plant to your Garden?</button>
 </div>
-
 
 <table class="garden-table" *ngIf="!selected && displayAddUserPlantForm == false">
 
@@ -21,7 +20,7 @@
           </td>
 
       <ul>
-      <li *ngIf="userplant.active === true">{{ userplant.nickname }}</li>
+      <!-- <li *ngIf="userplant.active === true">{{ userplant.nickname }}</li> -->
       <li *ngIf="userplant.active === true"></li>
       <!-- <li *ngIf="userplant.active === true">{{ userplant.height }}</li>
       <li *ngIf="userplant.active === true">{{ userplant.spread }}</li>
@@ -30,12 +29,10 @@
       <li *ngIf="userplant.active === true">{{ userplant.description }}</li> -->
       <li *ngIf="userplant.active === true">
 
-        <!-- <li><button class="btn btn-primary btn-lg" (click)="setPlant(userplant)">
-          Details
-        </button></li> -->
+
 
         <button (click)="setPlant(userplant)" type="button" data-toggle="modal" data-target="#singlePlantModal">
-          Details
+          Check On {{userplant.nickname}}
       </button>
 
       </ul>
@@ -98,7 +95,7 @@
                       </button>
 
 
-                      <button (click)=" deactivateUserPlant(selected, selected.id); selected = null; displayAddTodoForm = false; editTodoForm = false; displaySelectedTodo = false">
+                      <button (click)=" deactivateUserPlant(selected, selected.id); selected = null; displayAddTodoForm = false; editTodoForm = false; displaySelectedTodo = false"  data-dismiss="modal">
                         Deactivate
                       </button>
 
@@ -314,7 +311,7 @@
 
               <div class="modal-footer">
                 <button type="button" class="btn btn-primary" (click)="addTodo(newTodo, selected.id); displayAddTodoForm == false"  data-dismiss="modal" >Add Task</button>
-                <button class="btn btn-primary" (click)="displayAddTodoForm = false" type="submit">Back</button>
+                <button class="btn btn-primary" (click)="displayAddTodoForm = false" type="submit"  data-dismiss="modal">Back</button>
               </div>
           </form>
       </div>

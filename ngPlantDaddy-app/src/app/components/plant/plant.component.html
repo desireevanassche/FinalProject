@@ -29,7 +29,7 @@
 
         <tbody>
 
-          <tr *ngFor="let plant of plants orderBy:'commonName' | searchPlants:searchValue | filterLightReq:filterLight | watertypefilter:filterWaterType | watercyclefilter:filterWaterCycle">
+          <tr *ngFor="let plant of plants | searchPlants:searchValue | filterLightReq:filterLight | watertypefilter:filterWaterType | watercyclefilter:filterWaterCycle">
             <div class="plantCard">
 
             <td *ngIf="plant.active === true">
@@ -53,22 +53,7 @@
 
 
 
-      <div *ngIf="!selected && displayAddForm == true">
-      <form class="addForm" *ngIf="!isNumber(currentUserId)">
-      Common Name: <input type="text" name="commonName" class="form-control" required [(ngModel)]="newPlant.commonName"/>
-      <br>
-      Botanical Name: <input required="true" type="text" name="botanicalName" class="form-control" required [(ngModel)]="newPlant.botanicalName">
-      <br>
-      Care Difficulty: <input type="text" name="careDifficulty" class="form-control" required [(ngModel)]="newPlant.careDifficulty" required>
-      <br>
-      Description: <input type="text" name="description" class="form-control" required [(ngModel)]="newPlant.description">
-      <br>
-      Image: <input type="text" name="imageUrl" class="form-control" required [(ngModel)]="newPlant.imageUrl">
-      <br>
-      <input type="submit" name="submit" value="Add Plant" (click)="addPlant(); displayAddForm = false">
-      <input type="submit" name="submit" value="Cancel" (click)="displayAddForm = false">
-      </form>
-      </div>
+
 
 
       <!-------------------- SINGLE PLANT SELECTED  ------------------------------------------------------>
@@ -90,6 +75,8 @@
             <button (click)="setEditPlant()" type="button" data-toggle="modal" data-target="#editPlantModal">
               Edit Plant
             </button>
+
+
 
 
             <button (click)="deactivate(selected, selected.id); selected = null">Deactivate</button><br>
@@ -251,8 +238,8 @@
         <div class="mb-5">
           <h5>Tag Cloud</h5>
           <div class="tagcloud" >
-            <a (click)="tagSearch('easy')" class="tag-cloud-link">Water Type</a>
-            <a (click)="tagSearch('easy')" class="tag-cloud-link">Easy Care</a>
+            <a (click)="tagSearch('easy')" class="tag-cloud-link">Easy</a>
+            <a (click)="tagSearch('weekly')" class="tag-cloud-link">Weekly</a>
             <a (click)="tagSearch('monthly')" class="tag-cloud-link">Water Monthly</a>
             <a (click)="tagSearch('low light')" class="tag-cloud-link">Low Light</a>
             <a (click)="tagSearch('bright')" class="tag-cloud-link">Bright Indirect Light</a>
@@ -271,10 +258,14 @@
 
               </div> -->
 
-              <div *ngIf="!isNumber(currentUserId)">
-                <div *ngIf="displayAddForm == false">
-                  <button (click)="displayAddForm = true">Add A Plant?</button>
-                </div>
+
+                  <!-- <button (click)="displayAddForm = true" data-toggle="modal" data-target="#editPlantModal">Add A Plant?</button>
+                </div> -->
+
+                <div *ngIf="!isNumber(currentUserId)">
+                 <button (click)="displayAddForm = true" type="button" data-toggle="modal" data-target="#addPlantModal">
+                  Add a New Plant
+                </button>
 
             </div>
         </div>
@@ -282,9 +273,77 @@
     </div>
     </nav>
   </div>
+<!----------------------------------------------------------------------------- -->
+<!------------------------ ADD A PLANT MODAL  ---------------------------------->
+<!----------------------------------------------------------------------------- -->
+
+<!-- <div *ngIf="!selected && displayAddForm == true">
+  <form class="addForm" *ngIf="!isNumber(currentUserId)">
+  Common Name: <input type="text" name="commonName" class="form-control" required [(ngModel)]="newPlant.commonName"/>
+  <br>
+  Botanical Name: <input required="true" type="text" name="botanicalName" class="form-control" required [(ngModel)]="newPlant.botanicalName">
+  <br>
+  Care Difficulty: <input type="text" name="careDifficulty" class="form-control" required [(ngModel)]="newPlant.careDifficulty" required>
+  <br>
+  Description: <input type="text" name="description" class="form-control" required [(ngModel)]="newPlant.description">
+  <br>
+  Image: <input type="text" name="imageUrl" class="form-control" required [(ngModel)]="newPlant.imageUrl">
+  <br>
+  <input type="submit" name="submit" value="Add Plant" (click)="addPlant(); displayAddForm = false">
+  <input type="submit" name="submit" value="Cancel" (click)="displayAddForm = false">
+  </form>
+  </div> -->
+
+
+<div class="modal" id="addPlantModal" tabindex="-1" role="dialog" *ngIf="!selected && displayAddForm == true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <form>
+              <div class="modal-header">
+                  <h6 class="modal-title mb-0" id="addPlantModalLabel">Add A New Plant </h6>
+                  <button type="button" class="close-button" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">X</span>
+                  </button>
+              </div>
+
+
+              <div class="modal-body">
+                <div class="row">
+                  <div class="form-group">
+                      <label for="editPlantTitle">Common Name</label>
+                      <input type="text" class="form-control" name="commonName" placeholder="Enter commonName" [(ngModel)]="newPlant.commonName" autofocus="" />
+                  </div>
+                  <div class="form-group">
+                      <label for="editPlantTitle">Boranical Name</label>
+                      <input type="text" class="form-control" name="botanicalName" placeholder="Enter title" [(ngModel)]="newPlant.botanicalName" autofocus="" />
+                  </div>
+
+                  <div class="form-group">
+                      <label for="editPlantTitle">Care Difficulty </label>
+                      <input type="text" class="form-control" name="careDifficulty" placeholder="Enter title" [(ngModel)]="newPlant.careDifficulty" autofocus="" />
+                  </div>
+                  <div class="form-group">
+                      <label for="editPlantTitle">Today's Date</label>
+                      <input type="date" class="form-control" name="careDifficulty" placeholder="Enter title" [(ngModel)]="newPlant.careDifficulty" autofocus="" />
+                  </div>
+                  <div class="form-group">
+                      <label for="editPlantTitle">Image Url</label>
+                      <input type="text" class="form-control" name="imageUrl" placeholder="Enter title" [(ngModel)]="newPlant.imageUrl" autofocus="" />
+                  </div>
+
+                </div>
 
 
 
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-primary" (click)="addPlant(); displayAddForm = false"  data-dismiss="modal" >Add</button>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
 
 
 
