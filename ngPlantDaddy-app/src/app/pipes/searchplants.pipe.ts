@@ -15,7 +15,7 @@ export class SearchPlantsPipe implements PipeTransform {
     ||plant.description?.toLowerCase().includes(searchValue.toLowerCase())
     ||plant.botanicalName?.toLowerCase().includes(searchValue.toLowerCase())
     ||plant.careDifficulty?.toLowerCase().includes(searchValue.toLowerCase())
-    ||plant.lightRequirement?.toLowerCase().includes(searchValue.toLowerCase())
+    ||plant.lightReq?.toLowerCase().includes(searchValue.toLowerCase())
     ||plant.waterCycle?.toLocaleLowerCase().includes(searchValue.toLowerCase())
     ||plant.waterType?.toLocaleLowerCase().includes(searchValue.toLowerCase())
 

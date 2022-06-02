@@ -54,7 +54,7 @@
 
                 <div class="modal-header ">
                     <h6 class="modal-title mb-0" id="careCardModalLabel"> {{ selected.nickname }}</h6>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="selected = null">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
@@ -455,7 +455,7 @@
                                         <h5  class="text-muted mb-4">{{selected.commonName}} </h5>
                                         <h5  class="text-muted mb-4">{{selected.type}} </h5>
 
-                                        <p class="text-muted mb-4"><i class="far fa-clock" aria-hidden="true"></i> {{growth.createDate}}</p>
+                                        <!-- <p class="text-muted mb-4"><i class="far fa-clock" aria-hidden="true"></i> </p> -->
 
                                         <ul>
                                           <li> Height: {{growth.height}}</li>
@@ -520,7 +520,7 @@
 
                         <div class="form-group">
                           <label for="commentContent">Description</label>
-                        <textarea class="form-control" rows="5" name="spread" [(ngModel)]="addData.growthDescription"></textarea>
+                        <textarea class="form-control" rows="5" name="description" [(ngModel)]="addData.growthDescription"></textarea>
                         </div>
 
 
