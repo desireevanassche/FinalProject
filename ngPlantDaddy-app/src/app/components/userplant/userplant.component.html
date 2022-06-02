@@ -421,8 +421,10 @@
 
 <div class="modal fade" id="growthTrackerModal" tabindex="-1" role="dialog" *ngIf="selected && showGrowth" >
 
+
   <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
+
 
               <div class="modal-header ">
                   <h6 class="modal-title mb-0" id="careCardModalLabel"> {{ selected.nickname }} </h6>
@@ -445,6 +447,12 @@
                         Add Growth Data
                       </button>
                       </div>
+
+
+
+
+
+
 
                       <div class="container" *ngFor="let growth of selected.growthData">
                         <div class="plantGrowth"  >
@@ -528,7 +536,7 @@
 
                       <div class="form-group">
                         <label for="commentContent">Description</label>
-                      <textarea class="form-control" rows="5" name="spread" [(ngModel)]="addData.growthDescription"></textarea>
+                      <textarea class="form-control" rows="5" name="description" [(ngModel)]="addData.growthDescription"></textarea>
                       </div>
 
 

@@ -78,6 +78,7 @@ import { FooterComponent } from './components/footer/footer.component';
     FooterComponent
 
 
+
   ],
   imports: [
     BrowserModule,
