@@ -65,7 +65,7 @@
 
           <div class="header-links">
             <ul class="links d-flex align-items-center mt-3 mt-md-0">
-              <div (click)=" displayAllFeed(); displayEditForm = false; displayMyPosts =false; ">
+              <div (click)=" displayAllFeed(); displayEditForm = false; reload()">
               <li class="header-link-item d-flex align-items-center active" >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -83,7 +83,7 @@
                     d="M12 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7m0-18H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7m0-18v18"
                   ></path>
                 </svg>
-                <a class="pt-1px d-none d-md-block"  >Feed</a>
+                <a class="pt-1px d-none d-md-block">Feed</a>
               </li>
             </div>
               <!-- <li class="header-link-item ml-3 pl-3 border-left d-flex align-items-center">
@@ -138,11 +138,12 @@
                 </svg>
                 <a class="pt-1px d-none d-md-block">Photos</a>
               </li>
+
               <li
                 class="header-link-item ml-3 pl-3 border-left d-flex align-items-center"
                 [routerLink]="['/userPlants']"
               >
-              <i class="fa fa-leaf" aria-hidden="true"></i>
+              <i aria-hidden="true"></i>
                 <a class="pt-1px d-none d-md-block" >My Garden</a>
               </li>
             </ul>
@@ -198,7 +199,7 @@
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                   <a
                     class="dropdown-item d-flex align-items-center"
-                    (click)="editUser = true"
+                    (click)="editUser = true; displayEditForm = true"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -245,44 +246,6 @@
                 >Website:</label
               >
               <p class="text-muted">www.PlantDaddy.com</p>
-            </div>
-            <div class="mt-3 d-flex social-links">
-              <a
-                href="javascript:;"
-                class="btn d-flex align-items-center justify-content-center border mr-2 btn-icon github"
-              ><i class="fa-brands fa-linkedin-in">ln</i>
-                <!-- <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="feather feather-github"
-                  data-toggle="tooltip"
-                  title=""
-                  data-original-title="github.com/nobleui"
-                >
-                  <path
-                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
-                  ></path>
-                </svg> -->
-              </a>
-              <a
-                href="javascript:;"
-                class="btn d-flex align-items-center justify-content-center border mr-2 btn-icon twitter"
-              >
-              <i class="fab fa-linkedin-in fa-stack-1x fa-inverse">gh</i>
-              </a>
-              <a
-                href="javascript:;"
-                class="btn d-flex align-items-center justify-content-center border mr-2 btn-icon instagram"
-              >
-              <i class="fab fa-linkedin-in fa-stack-1x fa-inverse">o</i>
-              </a>
             </div>
           </div>
         </div>
@@ -804,7 +767,7 @@
                   <p class="mb-3 tx-14">
                     {{ publicPost.content }}
                   </p>
-                  <img class="img-fluid" [src]="publicPost.imageUrl" alt="" />
+                  <img class="img-fluid" id="resize" [src]="publicPost.imageUrl" alt="" />
                 </div>
                 <div class="card-footer">
                   <div class="d-flex post-actions">
@@ -1409,17 +1372,6 @@
                                     Save Changes
                                   </button>
                                 </div>
-                                <div class="col d-flex justify-content-end">
-                                  <button
-                                    class="btn btn-primary"
-                                    (click)="
-                                      updateUser(currentUser); editUser = false
-                                    "
-                                    type="submit"
-                                  >
-                                    Save Changes
-                                  </button>
-                                </div>
                               </div>
                             </form>
                           </div>
@@ -1449,7 +1401,7 @@
                       <figure>
                         <img
                           class="img-fluid"
-                          src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                          src="https://live.staticflickr.com/65535/52098997645_4b643fbef9_z.jpg"
                           alt=""
                         />
                       </figure>
@@ -1458,7 +1410,7 @@
                       <figure>
                         <img
                           class="img-fluid"
-                          src="https://bootdey.com/img/Content/avatar/avatar2.png"
+                          src="https://live.staticflickr.com/65535/52098494851_14b2951f99_z.jpg"
                           alt=""
                         />
                       </figure>
@@ -1467,7 +1419,7 @@
                       <figure>
                         <img
                           class="img-fluid"
-                          src="https://bootdey.com/img/Content/avatar/avatar3.png"
+                          src="https://live.staticflickr.com/65535/52097469117_4e2fa16bde_z.jpg"
                           alt=""
                         />
                       </figure>
@@ -1476,7 +1428,7 @@
                       <figure>
                         <img
                           class="img-fluid"
-                          src="https://bootdey.com/img/Content/avatar/avatar4.png"
+                          src="https://live.staticflickr.com/65535/52098494696_758a5bf9e6_z.jpg"
                           alt=""
                         />
                       </figure>
@@ -1485,7 +1437,7 @@
                       <figure>
                         <img
                           class="img-fluid"
-                          src="https://bootdey.com/img/Content/avatar/avatar5.png"
+                          src="https://live.staticflickr.com/65535/52098522618_c63ee2bccf_z.jpg"
                           alt=""
                         />
                       </figure>
@@ -1494,7 +1446,7 @@
                       <figure>
                         <img
                           class="img-fluid"
-                          src="https://bootdey.com/img/Content/avatar/avatar6.png"
+                          src="https://live.staticflickr.com/65535/52098495176_74739296b6_z.jpg"
                           alt=""
                         />
                       </figure>
@@ -1503,7 +1455,7 @@
                       <figure class="mb-0">
                         <img
                           class="img-fluid"
-                          src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                          src="https://live.staticflickr.com/65535/52098997565_4f81188cb4_z.jpg"
                           alt=""
                         />
                       </figure>
@@ -1512,7 +1464,7 @@
                       <figure class="mb-0">
                         <img
                           class="img-fluid"
-                          src="https://bootdey.com/img/Content/avatar/avatar8.png"
+                          src="https://live.staticflickr.com/65535/52098732299_1372843ac5_z.jpg"
                           alt=""
                         />
                       </figure>
@@ -1521,7 +1473,7 @@
                       <figure class="mb-0">
                         <img
                           class="img-fluid"
-                          src="https://bootdey.com/img/Content/avatar/avatar9.png"
+                          src="https://live.staticflickr.com/65535/52098494936_14e75c5547_z.jpg"
                           alt=""
                         />
                       </figure>
@@ -1531,260 +1483,9 @@
               </div>
             </div>
           </div>
-          <div class="col-md-12 grid-margin">
-            <div class="card rounded">
-              <div class="card-body">
-                <h6 class="card-title">suggestions for you</h6>
-                <div
-                  class="d-flex justify-content-between mb-2 pb-2 border-bottom"
-                >
-                  <div class="d-flex align-items-center hover-pointer">
-                    <img
-                      class="img-xs rounded-circle"
-                      src="https://bootdey.com/img/Content/avatar/avatar2.png"
-                      alt=""
-                    />
-                    <div class="ml-2">
-                      <p>Mike Popescu</p>
-                      <p class="tx-11 text-muted">12 Mutual Friends</p>
-                    </div>
-                  </div>
-                  <button class="btn btn-icon">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="feather feather-user-plus"
-                      data-toggle="tooltip"
-                      title=""
-                      data-original-title="Connect"
-                    >
-                      <path
-                        d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"
-                      ></path>
-                      <circle cx="8.5" cy="7" r="4"></circle>
-                      <line x1="20" y1="8" x2="20" y2="14"></line>
-                      <line x1="23" y1="11" x2="17" y2="11"></line>
-                    </svg>
-                  </button>
-                </div>
-                <div
-                  class="d-flex justify-content-between mb-2 pb-2 border-bottom"
-                >
-                  <div class="d-flex align-items-center hover-pointer">
-                    <img
-                      class="img-xs rounded-circle"
-                      src="https://bootdey.com/img/Content/avatar/avatar3.png"
-                      alt=""
-                    />
-                    <div class="ml-2">
-                      <p>Mike Popescu</p>
-                      <p class="tx-11 text-muted">12 Mutual Friends</p>
-                    </div>
-                  </div>
-                  <button class="btn btn-icon">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="feather feather-user-plus"
-                      data-toggle="tooltip"
-                      title=""
-                      data-original-title="Connect"
-                    >
-                      <path
-                        d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"
-                      ></path>
-                      <circle cx="8.5" cy="7" r="4"></circle>
-                      <line x1="20" y1="8" x2="20" y2="14"></line>
-                      <line x1="23" y1="11" x2="17" y2="11"></line>
-                    </svg>
-                  </button>
-                </div>
-                <div
-                  class="d-flex justify-content-between mb-2 pb-2 border-bottom"
-                >
-                  <div class="d-flex align-items-center hover-pointer">
-                    <img
-                      class="img-xs rounded-circle"
-                      src="https://bootdey.com/img/Content/avatar/avatar4.png"
-                      alt=""
-                    />
-                    <div class="ml-2">
-                      <p>Mike Popescu</p>
-                      <p class="tx-11 text-muted">12 Mutual Friends</p>
-                    </div>
-                  </div>
-                  <button class="btn btn-icon">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="feather feather-user-plus"
-                      data-toggle="tooltip"
-                      title=""
-                      data-original-title="Connect"
-                    >
-                      <path
-                        d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"
-                      ></path>
-                      <circle cx="8.5" cy="7" r="4"></circle>
-                      <line x1="20" y1="8" x2="20" y2="14"></line>
-                      <line x1="23" y1="11" x2="17" y2="11"></line>
-                    </svg>
-                  </button>
-                </div>
-                <div
-                  class="d-flex justify-content-between mb-2 pb-2 border-bottom"
-                >
-                  <div class="d-flex align-items-center hover-pointer">
-                    <img
-                      class="img-xs rounded-circle"
-                      src="https://bootdey.com/img/Content/avatar/avatar5.png"
-                      alt=""
-                    />
-                    <div class="ml-2">
-                      <p>Mike Popescu</p>
-                      <p class="tx-11 text-muted">12 Mutual Friends</p>
-                    </div>
-                  </div>
-                  <button class="btn btn-icon">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="feather feather-user-plus"
-                      data-toggle="tooltip"
-                      title=""
-                      data-original-title="Connect"
-                    >
-                      <path
-                        d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"
-                      ></path>
-                      <circle cx="8.5" cy="7" r="4"></circle>
-                      <line x1="20" y1="8" x2="20" y2="14"></line>
-                      <line x1="23" y1="11" x2="17" y2="11"></line>
-                    </svg>
-                  </button>
-                </div>
-                <div
-                  class="d-flex justify-content-between mb-2 pb-2 border-bottom"
-                >
-                  <div class="d-flex align-items-center hover-pointer">
-                    <img
-                      class="img-xs rounded-circle"
-                      src="https://bootdey.com/img/Content/avatar/avatar6.png"
-                      alt=""
-                    />
-                    <div class="ml-2">
-                      <p>Mike Popescu</p>
-                      <p class="tx-11 text-muted">12 Mutual Friends</p>
-                    </div>
-                  </div>
-                  <button class="btn btn-icon">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="feather feather-user-plus"
-                      data-toggle="tooltip"
-                      title=""
-                      data-original-title="Connect"
-                    >
-                      <path
-                        d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"
-                      ></path>
-                      <circle cx="8.5" cy="7" r="4"></circle>
-                      <line x1="20" y1="8" x2="20" y2="14"></line>
-                      <line x1="23" y1="11" x2="17" y2="11"></line>
-                    </svg>
-                  </button>
-                </div>
-                <div class="d-flex justify-content-between">
-                  <div class="d-flex align-items-center hover-pointer">
-                    <img
-                      class="img-xs rounded-circle"
-                      src="https://bootdey.com/img/Content/avatar/avatar7.png"
-                      alt=""
-                    />
-                    <div class="ml-2">
-                      <p>Mike Popescu</p>
-                      <p class="tx-11 text-muted">12 Mutual Friends</p>
-                    </div>
-                  </div>
-                  <button class="btn btn-icon">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="feather feather-user-plus"
-                      data-toggle="tooltip"
-                      title=""
-                      data-original-title="Connect"
-                    >
-                      <path
-                        d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"
-                      ></path>
-                      <circle cx="8.5" cy="7" r="4"></circle>
-                      <line x1="20" y1="8" x2="20" y2="14"></line>
-                      <line x1="23" y1="11" x2="17" y2="11"></line>
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- right wrapper end -->
-    </div>
-  </div>
-</div>
 
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
 
-</body>
+
 
 <!--
 
