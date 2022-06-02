@@ -33,9 +33,9 @@
         <tbody>
 
           <tr *ngFor="let plant of plants | searchPlants:searchValue | filterLightReq:filterLight | watertypefilter:filterWaterType | watercyclefilter:filterWaterCycle">
-            <div class="plantCard"  *ngIf="plant.active === true">
+            <div class="plantCard">
 
-            <td >
+            <td *ngIf="plant.active === true">
               <img id="image" [src]="plant.imageUrl" class="img-thumbnail" height="200px"/>
             </td>
             <td>
@@ -121,9 +121,9 @@
 
 
                                   <ul>
-                                  <li>Water Cycle: {{selected.waterCycle}}</li>
-                                  <li>With {{selected.waterType}} water</li>
-                                  <li>I like {{selected.lightReq}} </li>
+                                  <li>Water Every: {{selected.waterCycle}}</li>
+                                  <li>With {{selected.waterType}}</li>
+                                  <li>I like {{selected.lightRequirement}} sun! </li>
 
                                 </ul>
 
@@ -325,7 +325,10 @@
                       <label for="editPlantTitle">Care Difficulty </label>
                       <input type="text" class="form-control" name="careDifficulty" placeholder="Enter title" [(ngModel)]="newPlant.careDifficulty" autofocus="" />
                   </div>
-
+                  <div class="form-group">
+                      <label for="editPlantTitle">Today's Date</label>
+                      <input type="date" class="form-control" name="careDifficulty" placeholder="Enter title" [(ngModel)]="newPlant.careDifficulty" autofocus="" />
+                  </div>
                   <div class="form-group">
                       <label for="editPlantTitle">Image Url</label>
                       <input type="text" class="form-control" name="imageUrl" placeholder="Enter title" [(ngModel)]="newPlant.imageUrl" autofocus="" />
@@ -353,4 +356,3 @@
 <script src="js/popper.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/main.js"></script> -->
-
