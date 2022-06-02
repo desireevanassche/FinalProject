@@ -35,7 +35,7 @@ img[alt*="profile"] {
 
 .profileCard {
 float: right !important;
-padding-right: 200px;
+/* padding-right: */
 justify-content: center;
 padding-top:10px;
 }
