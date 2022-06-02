@@ -57,6 +57,10 @@ export class UserplantService {
     );
   }
   public update(updateUserPlant: Userplant, id : number) {
+    console.log(" this is in service update user plant");
+    console.log(updateUserPlant);
+
+
     const httpOptions = {
       headers: {
         'Content-type': 'application/json',
