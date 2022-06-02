@@ -114,7 +114,17 @@ td li {
   border-radius: 10px;
   box-shadow: 1px 1px 1px 1px #CCCCCC;
   background-color: white;
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 25px;
+}
 
+
+.card {
+  display: flex;
+  margin: 10px 10px 10px 10px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 1px 1px #CCCCCC;
 }
 .library-table {
   width: 800px;
