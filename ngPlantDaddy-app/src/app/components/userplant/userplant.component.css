@@ -5,12 +5,18 @@ body{
   background-image: url("https://live.staticflickr.com/65535/52110712751_a423e4cc2e_k.jpg");
   background-attachment: fixed;
   background-position: center;
-  align-items: center;
-  width: 100vw;
-  height: 100vh;
 
 }
+* {
+  font-family: 'Josefin Sans', sans-serif;
+}
+td, th {
+  vertical-align: middle;
+}
 
+thead{
+  font-weight: bold;
+}
 
 a {
   text-decoration: none !important;
@@ -23,6 +29,8 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Yeseva One', cursive;
 }
 
+    /* PLANT TABLE--------------------- */
+
 ul {
   margin-bottom: 0px;
 }
@@ -34,222 +42,125 @@ p {
   font-family: 'Josefin Sans', sans-serif;
 }
 
-.plantCards {
+td {
+  font-size: 30px;
+  line-height: 28px;
+  color: black;
+  font-family: 'Josefin Sans', sans-serif;
+  justify-content: center;
+  border-style: hidden;
 
-  /* width: 100%; */
-  padding-top: 50px;
-  /* margin-right: auto;
-  margin-left: auto; */
 }
 
-.card {
-  margin: 10px 10px 10px 10px;
+tr {
+  font-size: 15px;
+  line-height: 28px;
+  color: black;
+  font-family: 'Josefin Sans', sans-serif;
+  justify-content: center;
+  border-style: hidden;
+}
+
+.libraryHead h3 {
+  font-size: 24px;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.img-thumbnail {
+  height: 300px;
+  width: 300px;
+}
+
+ul li {
+  padding-left: 0;
+  list-style: none;
+  font-size: 18px;
+  list-style: none;
+
+}
+
+td li {
+  padding-left: 0 !important;
+}
+
+.plantCard {
+  border: 1.5px solid black;
   border-radius: 10px;
   box-shadow: 1px 1px 1px 1px #CCCCCC;
+  background-color: white;
+
+}
+.garden-table {
+  width: 800px;
+  border-collapse: separate;
+  border-spacing: 15px;
+  margin-left: auto;
+  margin-right: auto;
+
+
 }
 
-.card-image {
-  border-radius: 10px;
+ button {
+  background-color: #BBCBB7;
+  border-radius: 8px;
+  border: black;
+  font-size: 14px;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  margin: 5px;
 }
 
+ button:hover {
+  background-color: #577050;
 
+}
 
-.side-nav {
+/*----SINGLE PLANT SELECTED ------------------*/
+
+.singlePlant{
+  background-color: white;
+  width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: justify;
+  font-size: 18px;
+  padding-top: 10px;
+  border-radius: 8px;
+  border: 1.5px solid black;
+  height: 400px;
+
+}
+
+.singlePlant img {
+    float: left;
+    margin: 10px;
+    height: 350px;
+    border-radius: 8px;
+    border: 1.5px solid white;
+}
+
+.singlePlant h1 {
+  padding-bottom: 2px;
+  padding-top: 50px;
+
+}
+
+.singlePlant .textbox {
+  padding-top: 15px;
+}
+
+.singlePlant p {
+  font-size: 14px;
+  padding-right: 10px;
+  padding-left: 2.5px;
+}
+
+/* -------------------GROWTH TRACKER --------------- */
+
+.growth {
   background-color: white;
 }
-
-[tabindex="-1"]:focus {
-  outline: 0 !important; }
-
-hr {
-  -webkit-box-sizing: content-box;
-  box-sizing: content-box;
-  height: 0;
-  overflow: visible; }
-
-
-
-abbr[title],
-abbr[data-original-title] {
-  text-decoration: underline;
-  -webkit-text-decoration: underline dotted;
-  text-decoration: underline dotted;
-  cursor: help;
-  border-bottom: 0;
-  text-decoration-skip-ink: none; }
-
-
-
-ol,
-ul,
-dl {
-  margin-top: 0;
-  margin-bottom: 1rem; }
-
-ol ol,
-ul ul,
-ol ul,
-ul ol {
-  margin-bottom: 0; }
-
-
-#sidebar {
-  min-width: 270px;
-  max-width: 270px;
-  color: #fff;
-  -webkit-transition: all 0.3s;
-  -o-transition: all 0.3s;
-  transition: all 0.3s;
-  position: relative;
-  z-index: 0;
-  border-left: 1px solid rgba(0, 0, 0, 0.05); }
-  #sidebar .h6 {
-    color: #fff; }
-  #sidebar.active {
-    margin-left: -270px; }
-  #sidebar ul.components {
-    padding: 0; }
-  #sidebar ul li {
-    font-size: 14px; }
-    #sidebar ul li > ul {
-      margin-left: 10px; }
-      #sidebar ul li > ul li {
-        font-size: 13px; }
-        #sidebar ul li > ul li a {
-          border-bottom: 1px solid transparent; }
-          #sidebar ul li > ul li a span {
-            color: #000; }
-    #sidebar ul li a {
-      padding: 10px 0;
-      display: block;
-      color: black;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
-      #sidebar ul li a span {
-        color: #fff; }
-    #sidebar ul li.active > a {
-      background: transparent;
-      color: #fc7fb2; }
-  @media (max-width: 767.98px) {
-    #sidebar {
-      min-width: 100%;
-      max-width: 180px;
-      border-left: none; } }
-  #sidebar .custom-menu {
-    display: inline-block;
-    position: absolute;
-    top: 20px;
-    right: 0;
-    margin-right: -20px;
-    -webkit-transition: 0.3s;
-    -o-transition: 0.3s;
-    transition: 0.3s; }
-    @media (prefers-reduced-motion: reduce) {
-      #sidebar .custom-menu {
-        -webkit-transition: none;
-        -o-transition: none;
-        transition: none; } }
-    #sidebar .custom-menu .btn {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      position: relative; }
-      #sidebar .custom-menu .btn i {
-        margin-right: -40px;
-        font-size: 14px; }
-      #sidebar .custom-menu .btn.btn-primary {
-        background: transparent;
-        border-color: transparent; }
-        #sidebar .custom-menu .btn.btn-primary:after {
-          z-index: -1;
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          content: '';
-          -webkit-transform: rotate(45deg);
-          -ms-transform: rotate(45deg);
-          transform: rotate(45deg);
-          background: #fc7fb2;
-          border-radius: 10px; }
-        #sidebar .custom-menu .btn.btn-primary:hover, #sidebar .custom-menu .btn.btn-primary:focus {
-          background: transparent !important;
-          border-color: transparent !important; }
-
-
-
-
-
-
-
-
-
-
-a {
-  -webkit-transition: .3s all ease;
-  -o-transition: .3s all ease;
-  transition: .3s all ease;
-  color: #fc7fb2; }
-  a:hover, a:focus {
-    text-decoration: none !important;
-    outline: none !important;
-    -webkit-box-shadow: none;
-    box-shadow: none; }
-
-
-
-h1, h2, h3, h4, h5,
-.h1, .h2, .h3, .h4, .h5 {
-  line-height: 1.5;
-  font-weight: 600;
-  font-family: 'Josefin Sans', sans-serif;
-   color: #000; }
-
-.wrapper {
-  width: 100%; }
-
-
-
-#content {
-  width: 100%;
-  padding: 0;
-  min-height: 100vh;
-  -webkit-transition: all 0.3s;
-  -o-transition: all 0.3s;
-  transition: all 0.3s; }
-
-
-
-.tagcloud a {
-  text-transform: uppercase;
-  display: inline-block;
-  padding: 4px 10px;
-  margin-bottom: 7px;
-  margin-right: 4px;
-  border-radius: 4px;
-  color: #000;
-  border: 1px solid #ccc;
-  font-size: 11px; }
-  .tagcloud a:hover {
-    border-color: #fc7fb2;
-    background: #fc7fb2;
-    color: #fff; }
-
-
-#registrationForm {
-  padding-top: 50px;
-  padding-bottom: 50px;
-}
-.selectedImage{
-  width: 20rem;
-  height: 20rem;
-}
-.selectedPlant{
-  text-align: center;
-} */
-
-
-
 
 /* The actual timeline (the vertical ruler) */
 .main-timeline-2 {

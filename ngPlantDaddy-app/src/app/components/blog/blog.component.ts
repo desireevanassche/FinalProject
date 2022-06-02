@@ -44,7 +44,6 @@ export class BlogComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUserId = parseInt(""+this.authServ.getCurrentUserId());
-    console.log(this.currentUserId);
 
     if (!this.selected && this.route.snapshot.paramMap.get('id')) {
       let id = this.route.snapshot.paramMap.get('id');
@@ -153,6 +152,18 @@ setEditBlog(){
 tagSearch(searchTag: string){
   this.searchValue = searchTag;
   }
+
+
+blogCreated(blog: Blog){
+
+  let create = new Date();
+
+  let createDate = new Date(create);
+
+  return createDate.toDateString();
+
+}
+
 
 }
 
