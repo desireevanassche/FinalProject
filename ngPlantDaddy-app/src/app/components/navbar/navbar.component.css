@@ -10,11 +10,16 @@ img {
   font-family: 'Josefin Sans', sans-serif;
 }
 
+ul{
+  padding-left: 400px;
+}
+
 li {
   padding-top: 15px;
   font-size: 16px;
   padding-left: 40px;
 }
+
 
 /* a:hover {
   font-size: 20px;
@@ -30,7 +35,7 @@ img[alt*="profile"] {
 
 .profileCard {
 float: right !important;
-padding-right: 20px;
+/* padding-right: */
 justify-content: center;
 padding-top:10px;
 }
