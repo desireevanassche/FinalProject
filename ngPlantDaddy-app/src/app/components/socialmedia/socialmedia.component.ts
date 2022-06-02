@@ -258,6 +258,8 @@ export class SocialmediaComponent implements OnInit {
 
       }
     })
+
+
   }
 
 
@@ -293,6 +295,12 @@ export class SocialmediaComponent implements OnInit {
 
         return lastComment;
       }
+
+      tagSearch(searchTag: string){
+        this.searchValue = searchTag;
+        }
+
+
 
 
 
