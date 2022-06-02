@@ -46,7 +46,7 @@ public class PlantGrowth {
 		@Column(name="create_date")
 		private LocalDateTime createDate;
 		
-		@JsonIgnore
+		@JsonIgnoreProperties({"growthData"})
 		@ManyToOne
 		@JoinColumn(name="user_plant_id")
 		private UserPlant userPlant;
@@ -127,7 +127,8 @@ public class PlantGrowth {
 		@Override
 		public String toString() {
 			return "PlantGrowth [id=" + id + ", height=" + height + ", spread=" + spread + ", potDiameter="
-					+ potDiameter + ", createDate=" + createDate + "]";
+					+ potDiameter + ", growthDescription=" + growthDescription + ", growthImage=" + growthImage
+					+ ", createDate=" + createDate + ", userPlant=" + userPlant + "]";
 		}
 
 		@Override

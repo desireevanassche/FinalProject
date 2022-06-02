@@ -37,6 +37,8 @@ export class UserplantComponent implements OnInit {
 
   currentUserId: number | null = 0;
 
+  searchValue: string = "";
+
 
   plants: Plant[] = [];
 
@@ -52,6 +54,8 @@ export class UserplantComponent implements OnInit {
   showGrowth: boolean = false;
 
   leftSide : boolean = false;
+
+  addData : Userplant | null = null;
 
 
 
@@ -126,6 +130,7 @@ export class UserplantComponent implements OnInit {
       next: (data) => {
         this.userPlants = data;
         this.displayAllUserPlants();
+        // this.reloadGrowthData()
 
         this.plantSvc.index().subscribe({
           next: (plantData) => {
@@ -143,6 +148,20 @@ export class UserplantComponent implements OnInit {
     });
   }
 
+
+  reloadGrowthData(userPlantId: number){
+    this.growthServ.indexGrowthData(userPlantId).subscribe({
+      next: (data)=>{
+        this.growthData = data;
+      },
+
+      error: (err)=>{
+        console.log(err);
+
+      }
+    })
+
+  }
 
 
 
@@ -185,6 +204,7 @@ export class UserplantComponent implements OnInit {
     this.userPlantSvc.update(userPlant, id).subscribe(
       (data) => {
         this.reload();
+        this.reloadGrowthData(id);
         this.editUserPlant = null;
         if (this.selected) {
           this.selected = Object.assign({}, userPlant);
@@ -247,31 +267,33 @@ export class UserplantComponent implements OnInit {
   }
 
 
-  reloadGrowthData(userPlantId: number){
-  console.log(userPlantId);
 
 
-     this.growthServ.indexGrowthData(userPlantId).subscribe({
+  // reloadGrowthData(userPlantId: number){
+  // console.log(userPlantId);
+
+
+  //    this.growthServ.indexGrowthData(userPlantId).subscribe({
 
 
 
-      next:(growthDataArray)=>{
-        console.log(userPlantId);
+  //     next:(growthDataArray)=>{
+  //       console.log(userPlantId);
 
-        this.growthData = growthDataArray;
-        console.log(growthDataArray);
-        console.log(this.growthData);
+  //       this.growthData = growthDataArray;
+  //       console.log(growthDataArray);
+  //       console.log(this.growthData);
 
-      },
-      error:(growErr)=>{
-        console.log(growErr);
+  //     },
+  //     error:(growErr)=>{
+  //       console.log(growErr);
 
-      }
+  //     }
 
 
-     })
+  //    })
 
-   }
+  //  }
 
 
 
@@ -357,7 +379,7 @@ export class UserplantComponent implements OnInit {
 
   displayGrowthData(userPlant: Userplant){
    this.selected = userPlant;
-
+    this
 
   }
 
@@ -369,6 +391,15 @@ export class UserplantComponent implements OnInit {
 
   }
 
+
+  addGrowthData = ( plant : Userplant)=>{
+    this.addData = plant;
+    console.log(this.addData);
+
+    let plantId = this.addData.id;
+
+    this.reloadGrowthData(plantId);
+  }
 
 
   // addTodo(todo : Todo, userPlantId : number){
