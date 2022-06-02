@@ -12,7 +12,7 @@ export class FilterLightReqPipe implements PipeTransform {
       return plants;
     }
     return plants.filter(plant =>
-    plant.lightRequirement?.toLowerCase().includes(filterLight.toLowerCase())
+    plant.lightReq?.toLowerCase().includes(filterLight.toLowerCase())
 
     );
 
