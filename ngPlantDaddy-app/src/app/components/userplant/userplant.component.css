@@ -35,8 +35,7 @@ p {
 }
 
 .plantCards {
-  display: flex;
-  flex-wrap: wrap;
+
   /* width: 100%; */
   padding-top: 50px;
   /* margin-right: auto;
@@ -44,7 +43,6 @@ p {
 }
 
 .card {
-  display: flex;
   margin: 10px 10px 10px 10px;
   border-radius: 10px;
   box-shadow: 1px 1px 1px 1px #CCCCCC;

@@ -82,8 +82,8 @@
       <!-------------------- SINGLE PLANT SELECTED  ------------------------------------------------------>
       <!-- AND DISPLAY SINGLE + true  -->
 
-      <div *ngIf="selected && !setEditPlant">
-          <div class="singlePlant">
+      <div class="singlePlant">
+        <div *ngIf="selected">
           <div> <img [src]="selected.imageUrl"/></div>
 
           <div class="textbox">
@@ -271,13 +271,13 @@
         </div>
         <div class="mb-5">
 
-            <div class="form-group d-flex">
+            <!-- <div class="form-group d-flex">
               <div class="icon"><span class="icon-paper-plane"></span></div>
               <div class="search">
                 <input type="text" id="search" [(ngModel)] ="searchValue" placeholder="Search our Library"/>
               </div>
 
-              </div>
+              </div> -->
 
               <div *ngIf="!isNumber(currentUserId)">
                 <div *ngIf="displayAddForm == false">
@@ -302,5 +302,4 @@
 <script src="js/popper.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/main.js"></script>
-
 
