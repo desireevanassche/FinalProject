@@ -69,9 +69,9 @@
 <div *ngIf="!isNumber(currentUserId)">
 
 
-  <div *ngIf="currentUserId === 1">
+  <!-- <div *ngIf="currentUserId === 1">
     <button class="btn btn-primary" (click)="displayAddForm = true">Add A Blog Post </button>
-  </div>
+  </div> -->
 </div>
 
 <div *ngIf="!selected && displayAddForm == true">
@@ -95,44 +95,7 @@
 <nav id="sidebar">
   <div class="side-nav">
   <div class="p-4 pt-5">
-    <!-- <h5>Categories</h5> -->
-    <!-- <ul class="list-unstyled components mb-5"> -->
-      <!-- <li> -->
-        <!-- <select [(ngModel)]="searchValue"  name="filterCareDifficulty"  class="custom-select custom-select-sm w-auto mr-1">
-          <option value="" [selected]="'Care Level'">Care Level</option>
-          <option value="easy">Easy</option>
-          <option value="intermediate" >Intermediate</option>
-          <option value="difficult" >Advanced</option>
-          </select>
-      </li>
 
-      <li>
-        <select [(ngModel)]="searchValue"  name="filterLight"  class="custom-select custom-select-sm w-auto mr-1">
-          <option value="" [selected]="'Light Requirement'">Light Requirement</option>
-          <option value="Low Light">Low Light</option>
-          <option value="Partial Sun" >Partial Sun </option>
-          <option value="Full Sun" >Full Sun </option>
-          <option value="Bright Indirect">Bright Indirect </option>
-        </select>
-      </li>
-
-      <li>
-        <select [(ngModel)]="searchValue"  name="waterCycle"  class="custom-select custom-select-sm w-auto mr-1">
-          <option value="" [selected]="'Water Cycle'">Water Cycle</option>
-          <option value="Weekly">Weekly</option>
-          <option value="Bi-Weekly" >Bi-Weekly </option>
-          <option value="Monthly" >Monthly </option>
-        </select>
-      </li>
-      <li>
-        <select [(ngModel)]="searchValue"  name="waterType"  class="custom-select custom-select-sm w-auto mr-1">
-          <option value="" [selected]="'Water Type'">Water Type</option>
-          <option value="Tap">Tap</option>
-          <option value="Filtered" >Filtered </option>
-          <option value="Mineral" >Mineral </option>
-        </select> -->
-      <!-- </li> -->
-    <!-- </ul> -->
 
     <div class="mb-5">
       <h5>Tag Cloud</h5>
@@ -159,10 +122,10 @@
           <div *ngIf="!isNumber(currentUserId)">
 
 <div>
-  <button class="btn btn-success" (click)="searchValue = null">Clear</button>
+  <button class="button" (click)="searchValue = null">Clear</button>
 </div>
             <div *ngIf="currentUserId === 1">
-              <button class="btn btn-primary" (click)="displayAddForm = true">Add A Blog Post </button>
+              <button class="button" (click)="displayAddForm = true">Add A Blog Post </button>
             </div>
           </div>
             </div>

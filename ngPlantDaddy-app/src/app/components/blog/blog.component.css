@@ -111,3 +111,21 @@ ul li {
   padding-right: 10px;
   padding-left: 2.5px;
 }
+
+
+button {
+  background-color: #BBCBB7;
+  border-radius: 8px;
+  border: 1.5px solid white;
+  font-size: 14px;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  margin: 5px;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+ button:hover {
+  background-color: #577050;
+
+}

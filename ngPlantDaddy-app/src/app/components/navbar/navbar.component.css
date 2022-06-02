@@ -1,6 +1,7 @@
 img {
   height: 75px;
   width: auto;
+  padding-right: 45px;
   }
 
 * {
@@ -10,22 +11,14 @@ img {
   font-family: 'Josefin Sans', sans-serif;
 }
 
-ul{
-  padding-left: 400px;
-}
-
 li {
   padding-top: 15px;
-  font-size: 16px;
-  padding-left: 40px;
+  font-size: 14px;
+  padding-left: 55px;
 }
 
 
-/* a:hover {
-  font-size: 20px;
-  color: #BBCBB7;
-} */
-
+/* PROFILE/ ACCOUNT  */
 
 
 img[alt*="profile"] {
@@ -35,7 +28,7 @@ img[alt*="profile"] {
 
 .profileCard {
 float: right !important;
-/* padding-right: */
+margin-right: 20px;
 justify-content: center;
 padding-top:10px;
 }

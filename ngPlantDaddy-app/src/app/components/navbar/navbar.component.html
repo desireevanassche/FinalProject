@@ -20,7 +20,7 @@
     <ul class="navbar-nav mr-auto">
        <li class="nav-item active" *ngIf="loggedIn()">
         <a class="nav-link" [routerLink]="['/userPlants']"
-          >My Garden <span class="sr-only"></span></a
+          >MY GARDEN <span class="sr-only"></span></a
         >
       </li>
 
@@ -28,7 +28,7 @@
 
       <li class="nav-item active">
         <a class="nav-link" [routerLink]="['/plant']"
-          >Plant Library <span class="sr-only"></span></a
+          >PLANT LIBRARY <span class="sr-only"></span></a
         >
       </li>
 
@@ -44,7 +44,7 @@
           aria-expanded="false"
 
         >
-         Community
+         COMMUNITY
         </a>
 
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -54,11 +54,11 @@
 
 
         <li class="nav-item-logout active" *ngIf="loggedIn()">
-          <a class="nav-link"  (click)="logout()" [routerLink]="['/logout']">Logout</a>
+          <a class="nav-link"  (click)="logout()" [routerLink]="['/logout']">LOGOUT</a>
         </li>
 
         <li class="nav-item active" *ngIf="!loggedIn()">
-          <a class="nav-link"  [routerLink]="['/login']">Login</a>
+          <a class="nav-link"  [routerLink]="['/login']">LOGIN</a>
         </li>
 
       </ul>
