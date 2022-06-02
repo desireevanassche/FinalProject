@@ -61,6 +61,12 @@ ul {
   margin-bottom: 0px;
 }
 
+#registrationForm {
+  height: 800px;
+  width: 800px;
+}
+
+
 p {
   font-size: 15px;
   line-height: 28px;
