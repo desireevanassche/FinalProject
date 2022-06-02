@@ -653,6 +653,7 @@ COMMIT;
 START TRANSACTION;
 USE `plantdb`;
 INSERT INTO `post` (`id`, `user_id`, `topic_id`, `title`, `content`, `image_url`, `create_date`, `update_date`, `active`) VALUES (1, 1, 2, 'Check out Todd!!!', 'Todd is getting a little crazy here. I must have used the right fertilizer', 'https://cdn.shoplightspeed.com/shops/620787/files/22745656/plant-shop-at-junebug-split-leaf-philodendron-6.jpg', '2022-05-24 12:25:00', '2022-05-24 13:25:00', 1);
+INSERT INTO `post` (`id`, `user_id`, `topic_id`, `title`, `content`, `image_url`, `create_date`, `update_date`, `active`) VALUES (2, 3, 9, 'New Plant Baby!!!', 'Got a new plant baby to celebrate finals!!', 'https://www.thespruce.com/thmb/MyxDIrqMGPWVIYwDuzAR7yWT50s=/3000x2000/filters:fill(auto,1)/how-to-propagate-aloe-vera-5087447-hero-32432ce03913495896fb2fc6295e0a58.jpg', '2022-06-1 12:00:00', '2022-06-1 12:00:01', 1);
 
 COMMIT;
 
