@@ -117,7 +117,6 @@ export class UserplantComponent implements OnInit {
       let id = this.route.snapshot.paramMap.get('id');
       if (id) {
         this.show(parseInt(id));
-        this.reload();
       }
     } else {
     }

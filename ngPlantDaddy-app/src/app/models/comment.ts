@@ -5,7 +5,7 @@ export class Comment {
   id: number;
   inReplyToId: number | null;
   content: string | null;
-  createDate: string | null;
+  createAt: string | null;
   active: boolean | null;
   post: Post;
   user: User;
@@ -14,7 +14,7 @@ export class Comment {
     id: number = 0,
     inReplyToId: number = 0,
     content: string = '',
-    createDate: string = '',
+    createAt: string = '',
     active: boolean = true,
     post: Post = new Post(),
     user: User = new User()
@@ -22,7 +22,7 @@ export class Comment {
     this.id = id;
     this.inReplyToId = inReplyToId;
     this.content = content;
-    this.createDate = createDate;
+    this.createAt = createAt;
     this.active = active;
     this.post = post;
     this.user = user;

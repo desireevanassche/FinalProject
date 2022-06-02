@@ -76,8 +76,6 @@ export class SocialmediaComponent implements OnInit {
     this.currentUserId = parseInt('' + this.authServ.getCurrentUserId());
     console.log(this.currentUserId);
 
-
-
     if (!this.selected && this.route.snapshot.paramMap.get('id')) {
       let id = this.route.snapshot.paramMap.get('id');
       if (id) {
@@ -92,6 +90,7 @@ export class SocialmediaComponent implements OnInit {
     this.postSvc.indexPosts().subscribe({
       next: (data) => {
         this.posts = data;
+
         this.displayAllPosts();
 
 
@@ -99,6 +98,7 @@ export class SocialmediaComponent implements OnInit {
         this.topicSvc.indexTopics().subscribe({
           next: (topicData) => {
             this.topics = topicData;
+
 
           },
           error: (fail) => {
@@ -160,10 +160,10 @@ export class SocialmediaComponent implements OnInit {
   disablePost(id: number, disablePost: Post) {
     this.postSvc.disablePost(id, disablePost).subscribe(
       (data) => {
-        console.log(id), disablePost;
 
         this.reload();
         this.editPost = null;
+
         if (this.selected) {
           this.selected.id = Object.assign({}, id, disablePost);
         }
@@ -227,10 +227,10 @@ export class SocialmediaComponent implements OnInit {
     this.commentSvc.createCommentOnPost(postId,comment).subscribe({
 
       next : (data)=>{
-
-        this.newComment = new Comment();
-        console.log(this.newComment);
+        this.reload();
         this.reloadComments(postId);
+        this.newComment = data;
+        console.log(this.newComment);
 
 
       },
@@ -249,9 +249,10 @@ export class SocialmediaComponent implements OnInit {
     this.commentSvc.createCommentOnComment(postId, commentId, comment ).subscribe({
       next : (data)=>{
         console.log(comment);
+        // this.reload();
 
-        this.newComment = new Comment ();
-        this.reloadComments(postId);
+        this.newComment = data;
+
       },
       error : (err) =>{
         console.log(err + "this error is inside creating a new comment on a comment in social component.ts");
