@@ -10,7 +10,6 @@
       <div class= "garden" id="plants">
         <div class="plantCards" *ngIf="!selected && displayAddUserPlantForm == false">
             <div class="card" *ngFor="let userplant of userPlants | searchfilter:searchValue">
-
               <img [src]="userplant.imageUrl" alt="" class="card-image" height="250" width="250px"  >
               <!-- <ul *ngIf="userplant.active === true">
                 <li *ngIf="userplant.active === true">{{ userplant.nickname }}</li>
@@ -19,7 +18,6 @@
               <button (click)="setPlant(userplant)" type="button" data-toggle="modal" data-target="#singlePlantModal">
                 Check On {{userplant.nickname}}
             </button>
-
 
           </div>
         </div>
