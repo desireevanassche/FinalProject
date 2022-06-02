@@ -16,13 +16,14 @@
   <table class="table" *ngIf="!selected">
     <tbody>
 
-     <tr class = "table-row" *ngFor="let blog of blogs | searchfilter:searchValue" >
+     <tr class = "table-row" *ngFor="let blog of blogs | orderBy:'createdAt'| searchfilter:searchValue" >
        <div class="blogCard">
 
         <td> <img [src]="blog.imageUrl" height="300px"> </td>
 
         <td>
         <ul>
+          <li>{{blog.createdAt}}</li>
           <li (click)="displayBlog(blog)"><h4>{{blog.title}}</h4></li>
           <li (click)="displayBlog(blog)">{{blog.content}}</li>
     </ul>
