@@ -84,7 +84,7 @@ export class UserplantComponent implements OnInit {
 
   editTodoForm: Boolean = false;
 
-  displayAddTodoForm: Boolean = false;
+  displayAddTodoForm: boolean = false;
 
   displaySelectedTodo: Boolean = false;
 
@@ -412,6 +412,7 @@ export class UserplantComponent implements OnInit {
 
   addTodo(todo : Todo, userPlantId : number){
     this.todoService.create(todo, userPlantId).subscribe(
+
     (data)=>{
       this.newTodo = new Todo();
       this.displayPlantsTodos(userPlantId);
