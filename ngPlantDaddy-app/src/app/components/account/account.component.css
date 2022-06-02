@@ -330,3 +330,7 @@ div.card.rounded {
 .cover .card-rounded {
   border-bottom:  1.5px solid #000000;;
 }
+
+#resize {
+  width: auto;
+}
