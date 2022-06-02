@@ -14,7 +14,9 @@ export class GrowthDataService {
   private url = environment.baseUrl + 'api/userPlants';
   private url2 = this.url + '/search';
 
+
   constructor(private http: HttpClient, private auth: AuthService) { }
+
 
   getHttpOptions() {
     let options = {

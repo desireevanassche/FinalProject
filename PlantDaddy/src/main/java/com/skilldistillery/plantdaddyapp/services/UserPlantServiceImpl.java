@@ -21,11 +21,9 @@ public class UserPlantServiceImpl implements UserPlantService {
 
 	@Autowired
 	private UserRepository userRepo;
-	
+
 	@Autowired
 	private PlantGrowthRepository growRepo;
-	
-	
 
 	@Override
 	public List<UserPlant> index(String username) {
@@ -45,27 +43,24 @@ public class UserPlantServiceImpl implements UserPlantService {
 	@Override
 	public UserPlant updatePlant(UserPlant userPlant, int plantid, String username) {
 		UserPlant managed = userPlantRepo.findByUser_UsernameAndId(username, plantid);
-		
+
 		PlantGrowth plantGrowth = new PlantGrowth();
-		
-		
-		
+
 		if (managed != null) {
-			
+
 			plantGrowth.setHeight(managed.getHeight());
 			plantGrowth.setSpread(managed.getSpread());
 			plantGrowth.setPotDiameter(managed.getPotDiameter());
+			plantGrowth.setGrowthDescription(managed.getDescription());
+			plantGrowth.setGrowthImage(managed.getImageUrl());
 			plantGrowth.setUserPlant(managed);
-			plantGrowth.setGrowthDescription(managed.getGrowthDescription());
-			plantGrowth.setGrowthImage(managed.getGrowthImage());
-			
+			System.out.println("********************");
+			System.out.println(plantGrowth);
 			PlantGrowth persistedGrowth = growRepo.saveAndFlush(plantGrowth);
-			
-			
+
 			managed.addPlantGrowth(plantGrowth);
 			System.out.println(persistedGrowth);
-			
-			
+
 			managed.setHeight(userPlant.getHeight());
 			managed.setSpread(userPlant.getSpread());
 			managed.setNickname(userPlant.getNickname());
@@ -101,7 +96,7 @@ public class UserPlantServiceImpl implements UserPlantService {
 			UserPlant result = op.get();
 			if (result.getUser().getUsername().equals(username)) {
 				return result;
-			} 
+			}
 		}
 		return null;
 	}
