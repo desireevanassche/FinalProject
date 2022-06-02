@@ -34,6 +34,7 @@ export class BlogComponent implements OnInit {
   displayEditForm: boolean = false;
 
 
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -156,9 +157,12 @@ tagSearch(searchTag: string){
 
 blogCreated(blog: Blog){
 
-  let create = new Date();
+  let create = blog.createdAt
+  console.log(create);
 
   let createDate = new Date(create);
+  console.log(createDate);
+
 
   return createDate.toDateString();
 

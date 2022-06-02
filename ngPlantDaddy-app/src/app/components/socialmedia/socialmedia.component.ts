@@ -75,6 +75,7 @@ export class SocialmediaComponent implements OnInit {
 
 
   ngOnInit(): void {
+
     this.currentUserId = parseInt('' + this.authServ.getCurrentUserId());
     console.log(this.currentUserId);
 

@@ -10,7 +10,7 @@ export class Plant {
   careDifficulty : string;
   waterCycle : string | null;
   waterType : string | null;
-  lightRequirement : string | null;
+  lightReq : string | null;
   active : boolean | null;
   user: User;
 
@@ -22,7 +22,7 @@ export class Plant {
     careDifficulty : string = "",
     waterCycle : string = "",
     waterType : string = "",
-    lightRequirement : string = "",
+    lightReq : string = "",
     active : boolean = true,
     user : User = new User()
 
@@ -36,7 +36,7 @@ export class Plant {
     this.careDifficulty = careDifficulty;
     this.waterCycle = waterCycle;
     this.waterType = waterType;
-    this.lightRequirement = lightRequirement;
+    this.lightReq = lightReq;
     this.active = active;
     this.user = user;
   }
