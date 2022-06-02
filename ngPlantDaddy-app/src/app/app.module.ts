@@ -37,6 +37,7 @@ import { FilterTopicPipe } from './pipes/filtertopic.pipe';
 import { FilterDatePipe } from './pipes/filterdate.pipe';
 import { WatertypefilterPipe } from './pipes/watertypefilter.pipe';
 import { WatercyclefilterPipe } from './pipes/watercyclefilter.pipe';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 
@@ -73,7 +74,8 @@ import { WatercyclefilterPipe } from './pipes/watercyclefilter.pipe';
     FilterDatePipe,
     WatertypefilterPipe,
     WatercyclefilterPipe,
-    OrderByPipe
+    OrderByPipe,
+    FooterComponent
 
 
   ],

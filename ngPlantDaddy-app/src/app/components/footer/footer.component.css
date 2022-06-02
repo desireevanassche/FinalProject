@@ -1,0 +1,28 @@
+footer{
+  display: block;
+}
+footer.no-space {
+  margin-top: 0;
+}
+
+footer {
+  background-color: black;
+  text-align: center;
+  padding: 25px 0px;
+  margin-top: 120px;
+  margin-bottom: 0;
+}
+
+footer p {
+  color: #fff;
+  font-weight: 300;
+}
+
+footer p a {
+  color: #fff;
+  font-weight: 500;
+}
+
+a{
+  text-decoration: none;
+}
